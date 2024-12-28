@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   FaRocket,
   FaLaptopCode,
-  FaProjectDiagram,
   FaGithub,
   FaTwitter,
   FaLinkedin,
@@ -16,7 +15,6 @@ import {
 export default function ComingSoon() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -246,83 +244,6 @@ export default function ComingSoon() {
                   <p className="text-gray-300 leading-relaxed">
                     {item.description}
                   </p>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Projects Preview */}
-      <motion.section
-        className="py-24 px-8"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Our Projects
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: FaProjectDiagram,
-                title: "Project Alpha",
-                description: "Revolutionary user interaction platform",
-                color: "from-indigo-600 to-blue-600",
-              },
-              {
-                icon: FaRocket,
-                title: "Project Beta",
-                description: "Community-driven innovation hub",
-                color: "from-purple-600 to-indigo-600",
-              },
-              {
-                icon: FaLaptopCode,
-                title: "Project Gamma",
-                description: "Next-gen web applications",
-                color: "from-pink-600 to-purple-600",
-              },
-            ].map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                onHoverStart={() => setHoveredCard(index)}
-                onHoverEnd={() => setHoveredCard(null)}
-              >
-                <motion.div
-                  className={`p-8 rounded-2xl bg-gradient-to-br ${project.color} shadow-lg cursor-pointer overflow-hidden relative`}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <motion.div
-                    initial={{ scale: 1 }}
-                    animate={{
-                      scale: hoveredCard === index ? 1.1 : 1,
-                      rotate: hoveredCard === index ? 5 : 0,
-                    }}
-                  >
-                    <project.icon className="text-4xl mb-6 text-white/90" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                  <p className="text-white/80">{project.description}</p>
-
-                  <motion.div
-                    className="absolute inset-0 bg-white/5"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
                 </motion.div>
               </motion.div>
             ))}
