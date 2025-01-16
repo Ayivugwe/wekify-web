@@ -1,269 +1,287 @@
 "use client";
 
 import React, { useState } from "react";
-import Head from "next/head";
-import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaRocket,
-  FaLaptopCode,
-  FaGithub,
-  FaTwitter,
-  FaLinkedin,
-  FaArrowRight,
-} from "react-icons/fa";
+  Github,
+  Twitter,
+  Linkedin,
+  ArrowRight,
+  Book,
+  Users,
+  Globe,
+  MessageSquare,
+  Heart,
+  Lightbulb,
+} from "lucide-react";
 
 export default function ComingSoon() {
   const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-    setEmail("");
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const headerTextVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const buttonHoverVariants = {
-    hover: {
-      scale: 1.05,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
-      },
-    },
-  };
 
   return (
-    <div className="bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white min-h-screen font-inter overflow-hidden">
-      <Head>
-        <title>Wekify - Innovating Tomorrow</title>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+    <div className="min-h-screen bg-white text-gray-900 font-sans">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 py-4 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+          <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+            Wekify
+          </span>
+          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105">
+            Get Started
+          </button>
+        </div>
+      </nav>
 
       {/* Hero Section */}
-      <header className="relative flex flex-col items-center justify-center min-h-screen text-center px-4">
-        <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_100%)]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-        />
-
-        <motion.div
-          className="relative z-10 max-w-4xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div className="mb-8" variants={headerTextVariants}>
-            <motion.h1
-              className="text-7xl md:text-9xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-pink-100"
-              animate={{
-                backgroundPosition: ["0%", "100%"],
-                transition: {
-                  duration: 8,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                },
-              }}
-              style={{ backgroundSize: "200%" }}
-            >
-              Wekify
-            </motion.h1>
-
-            <motion.p
-              className="text-xl md:text-3xl max-w-2xl mx-auto mb-12 text-gray-200"
-              variants={itemVariants}
-            >
-              Crafting digital experiences that inspire and transform
-            </motion.p>
-          </motion.div>
-
-          <motion.form
-            onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto"
-            variants={itemVariants}
-          >
-            <motion.div
-              className="relative w-full sm:w-64"
-              whileHover={{ scale: 1.02 }}
-            >
+      <section className="pt-32 pb-24 px-4 min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
+        <div className="absolute inset-0 bg-gradient-radial from-blue-100/50 to-transparent"></div>
+        <div className="max-w-6xl mx-auto w-full relative">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+              Preserving Languages
+              <br />
+              Empowering Cultures
+            </h1>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Starting with Kifuliiru - Building the future of indigenous
+              language preservation through digital innovation
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto pt-8">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 border border-white/20"
-                required
+                className="flex-1 px-6 py-4 bg-white rounded-xl text-gray-900 placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all"
               />
-            </motion.div>
-
-            <motion.button
-              variants={buttonHoverVariants}
-              whileHover="hover"
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-purple-500/50 w-full sm:w-auto flex items-center justify-center gap-2 group"
-            >
-              <span>Notify Me</span>
-              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </motion.form>
-
-          <AnimatePresence>
-            {isSubmitted && (
-              <motion.p
-                className="mt-4 text-green-400"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-              >
-                Thanks! We&apos;ll keep you updated.
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-8 w-full"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-        >
-          <div className="flex justify-center space-x-6">
-            {[
-              { Icon: FaGithub, url: "#" },
-              { Icon: FaTwitter, url: "#" },
-              { Icon: FaLinkedin, url: "#" },
-            ].map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.url}
-                className="text-2xl text-gray-300 hover:text-white"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <social.Icon />
-              </motion.a>
-            ))}
+              <button className="group px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all flex items-center justify-center gap-2 hover:gap-3">
+                Join Our Mission
+                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            </div>
           </div>
-        </motion.div>
-      </header>
+        </div>
+      </section>
 
-      {/* What We Do Section */}
-      <motion.section
-        className="py-24 px-8 bg-black/40 backdrop-blur-lg"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
+      {/* Mission Section */}
+      <section className="py-24 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <motion.h2
-            className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            What We Do
-          </motion.h2>
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+              Our Mission
+            </h2>
+            <p className="text-gray-600">
+              We&apos;re dedicated to preserving and promoting linguistic
+              diversity through innovative digital solutions
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: FaRocket,
-                title: "Innovative Solutions",
+                icon: <Book className="w-8 h-8 text-blue-600" />,
+                title: "Digital Dictionaries",
                 description:
-                  "We craft cutting-edge digital solutions that transform ideas into powerful, scalable realities.",
-                color: "from-purple-500 to-indigo-500",
+                  "Creating comprehensive digital dictionaries for languages with limited online presence",
               },
               {
-                icon: FaLaptopCode,
-                title: "Modern Tech Stack",
+                icon: <Users className="w-8 h-8 text-blue-600" />,
+                title: "Community Building",
                 description:
-                  "Built with Next.js, React, Node.js, and cloud-native technologies for maximum performance and scalability.",
-                color: "from-pink-500 to-purple-500",
+                  "Connecting native speakers and learners in engaging, supportive communities",
               },
-            ].map((item, index) => (
-              <motion.div
+              {
+                icon: <Globe className="w-8 h-8 text-blue-600" />,
+                title: "Cultural Preservation",
+                description:
+                  "Ensuring languages and cultures thrive in the digital age",
+              },
+            ].map((feature, index) => (
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ scale: 1.05 }}
-                className="group"
+                className="group p-8 bg-white rounded-2xl hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-100 hover:-translate-y-1"
               >
-                <motion.div
-                  className="p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 hover:border-purple-500/50 transition-all duration-300"
-                  whileHover={{ y: -5 }}
-                >
-                  <motion.div
-                    initial={{ scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <item.icon
-                      className={`text-5xl mb-6 bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
-                    />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {item.description}
-                  </p>
-                </motion.div>
-              </motion.div>
+                <div className="mb-6 p-3 bg-blue-50 rounded-xl w-fit group-hover:bg-blue-100 transition-all duration-300 group-hover:rotate-6">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.footer
-        className="py-8 px-8 text-center bg-black/40 backdrop-blur-lg border-t border-white/10"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto">
-          <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} Wekify. Crafting the future of
-            digital experiences.
+      {/* Kifuliiru Project */}
+      <section className="py-24 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+              Kifuliiru Public Dictionary
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Our flagship project focuses on Kifuliiru, a language spoken in
+              Congo-Kinshasa, creating the first comprehensive digital platform
+              for its preservation and growth.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: <MessageSquare className="w-6 h-6 text-blue-600" />,
+                title: "Interactive Learning",
+                description:
+                  "Engage with native speakers and learn through immersive content",
+              },
+              {
+                icon: <Book className="w-6 h-6 text-blue-600" />,
+                title: "Digital Resources",
+                description:
+                  "Access comprehensive dictionary and learning materials",
+              },
+              {
+                icon: <Heart className="w-6 h-6 text-blue-600" />,
+                title: "Cultural Context",
+                description:
+                  "Understand the rich cultural heritage behind the language",
+              },
+              {
+                icon: <Lightbulb className="w-6 h-6 text-blue-600" />,
+                title: "Community Input",
+                description:
+                  "Contribute to the growth and accuracy of the platform",
+              },
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="group p-6 bg-gray-50 rounded-xl border border-gray-100 hover:border-blue-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="mb-4 p-2 bg-blue-50 rounded-lg w-fit group-hover:bg-blue-100 transition-all duration-300 group-hover:rotate-6">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+              Our Approach
+            </h2>
+          </div>
+
+          <div className="space-y-12">
+            {[
+              {
+                step: 1,
+                title: "Document",
+                description:
+                  "We work with native speakers to document vocabulary, phrases, and cultural context",
+              },
+              {
+                step: 2,
+                title: "Digitize",
+                description:
+                  "Create intuitive digital platforms for learning and preservation",
+              },
+              {
+                step: 3,
+                title: "Engage",
+                description:
+                  "Build active communities around each language platform",
+              },
+              {
+                step: 4,
+                title: "Evolve",
+                description:
+                  "Continuously improve and expand based on community feedback and needs",
+              },
+            ].map((step, index) => (
+              <div key={index} className="group flex gap-8 items-start">
+                <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center flex-shrink-0 border border-gray-100 group-hover:border-blue-100 transition-all duration-300 text-blue-600 font-semibold group-hover:rotate-6">
+                  {step.step}
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-600">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-4 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+            Join Our Mission
+          </h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            Help us preserve and promote linguistic diversity. Starting with
+            Kifuliiru, we&apos;re building the future of language preservation.
           </p>
+          <button className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all inline-flex items-center gap-2">
+            Get Early Access
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+          </button>
         </div>
-      </motion.footer>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-t border-gray-200 pt-8">
+            <p className="text-gray-500">
+              &copy; {new Date().getFullYear()} Wekify. Founded by Ayivugwe
+              Kabemba.
+            </p>
+            <div className="flex gap-6">
+              {[
+                { icon: <Github className="w-5 h-5" />, href: "#" },
+                { icon: <Twitter className="w-5 h-5" />, href: "#" },
+                { icon: <Linkedin className="w-5 h-5" />, href: "#" },
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  className="group text-gray-400 hover:text-gray-600 transition-colors p-2 hover:bg-gray-100 rounded-lg"
+                >
+                  <div className="transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    {social.icon}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <style jsx global>{`
+        @keyframes float {
+          0% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
+        }
+      `}</style>
     </div>
   );
 }
