@@ -2,9 +2,6 @@
 
 import React, { useState } from "react";
 import {
-  Github,
-  Twitter,
-  Linkedin,
   ArrowRight,
   Book,
   Users,
@@ -13,47 +10,55 @@ import {
   Heart,
   Lightbulb,
 } from "lucide-react";
+import Header from "@/app/components/Header";
+import Footer from "./components/Footer";
 
-export default function ComingSoon() {
+export default function Home() {
   const [email, setEmail] = useState("");
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 py-4 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-          <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
-            Wekify
-          </span>
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105">
-            Get Started
-          </button>
-        </div>
-      </nav>
+      <Header />
 
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
-        <div className="absolute inset-0 bg-gradient-radial from-blue-100/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-blue-100/50 to-transparent animate-pulse-slow"></div>
         <div className="max-w-6xl mx-auto w-full relative">
           <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text transform transition-transform duration-700 hover:scale-105 pb-4">
               Preserving Languages
               <br />
               Empowering Cultures
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-gray-600 leading-relaxed animate-fade-in">
               Starting with Kifuliiru - Building the future of indigenous
               language preservation through digital innovation
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto pt-8">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 bg-white rounded-xl text-gray-900 placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all"
-              />
-              <button className="group px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all flex items-center justify-center gap-2 hover:gap-3">
+              <div
+                className={`flex-1 relative transform transition-all duration-300 ${
+                  isInputFocused ? "scale-105" : ""
+                }`}
+              >
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onFocus={() => setIsInputFocused(true)}
+                  onBlur={() => setIsInputFocused(false)}
+                  placeholder="Enter your email"
+                  className="w-full px-6 py-4 bg-white rounded-xl text-gray-900 placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-300"
+                />
+                <div
+                  className={`absolute inset-0 -z-10 bg-blue-100 rounded-xl transition-transform duration-300 ${
+                    isInputFocused
+                      ? "scale-105 opacity-50"
+                      : "scale-100 opacity-0"
+                  }`}
+                ></div>
+              </div>
+              <button className="group px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 hover:gap-3 hover:scale-105 hover:shadow-lg hover:shadow-blue-200 active:scale-95">
                 Join Our Mission
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
@@ -66,10 +71,10 @@ export default function ComingSoon() {
       <section className="py-24 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text transform transition-transform duration-500 hover:scale-105">
               Our Mission
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 animate-fade-in">
               We&apos;re dedicated to preserving and promoting linguistic
               diversity through innovative digital solutions
             </p>
@@ -98,12 +103,12 @@ export default function ComingSoon() {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="group p-8 bg-white rounded-2xl hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-100 hover:-translate-y-1"
+                className="group p-8 bg-white rounded-2xl transition-all duration-500 border border-gray-100 hover:border-blue-100 hover:shadow-xl hover:-translate-y-1"
               >
-                <div className="mb-6 p-3 bg-blue-50 rounded-xl w-fit group-hover:bg-blue-100 transition-all duration-300 group-hover:rotate-6">
+                <div className="mb-6 p-3 bg-blue-50 rounded-xl w-fit transition-all duration-300 group-hover:bg-blue-100 group-hover:scale-110 group-hover:rotate-3">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900 transition-colors duration-300 group-hover:text-blue-600">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600">{feature.description}</p>
@@ -233,53 +238,48 @@ export default function ComingSoon() {
             Help us preserve and promote linguistic diversity. Starting with
             Kifuliiru, we&apos;re building the future of language preservation.
           </p>
-          <button className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all inline-flex items-center gap-2">
-            Get Early Access
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+          <button className="group relative px-8 py-4 bg-blue-600 text-white rounded-xl font-medium transition-all inline-flex items-center gap-2 overflow-hidden">
+            <span className="relative z-10">Join Our Mission</span>
+            <ArrowRight className="w-5 h-5 relative z-10 transform transition-transform duration-300 group-hover:translate-x-1" />
+            <div className="absolute inset-0 border-2 border-blue-600 rounded-xl"></div>
+            <div className="absolute inset-0 border-2 border-white rounded-xl opacity-0 scale-50 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500"></div>
           </button>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-t border-gray-200 pt-8">
-            <p className="text-gray-500">
-              &copy; {new Date().getFullYear()} Wekify. Founded by Ayivugwe
-              Kabemba.
-            </p>
-            <div className="flex gap-6">
-              {[
-                { icon: <Github className="w-5 h-5" />, href: "#" },
-                { icon: <Twitter className="w-5 h-5" />, href: "#" },
-                { icon: <Linkedin className="w-5 h-5" />, href: "#" },
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="group text-gray-400 hover:text-gray-600 transition-colors p-2 hover:bg-gray-100 rounded-lg"
-                >
-                  <div className="transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                    {social.icon}
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <style jsx global>{`
-        @keyframes float {
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes pulse-slow {
           0% {
-            transform: translateY(0px);
+            opacity: 0.5;
           }
           50% {
-            transform: translateY(-10px);
+            opacity: 0.7;
           }
           100% {
-            transform: translateY(0px);
+            opacity: 0.5;
           }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 1s ease-out forwards;
+        }
+
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
         }
       `}</style>
     </div>
