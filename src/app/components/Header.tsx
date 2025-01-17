@@ -16,6 +16,27 @@ import {
   Building,
   Rocket,
   ExternalLink,
+  CircuitBoard,
+  Database,
+  Cloud,
+  Shield,
+  Cpu,
+  Brain,
+  Heart,
+  Network,
+  Palette,
+  Book,
+  GraduationCap,
+  School,
+  Library,
+  Newspaper,
+  HelpCircle,
+  Info,
+  Phone,
+  Mail,
+  MapPin,
+  Building2,
+  Users2,
 } from "lucide-react";
 
 interface MenuItem {
@@ -47,38 +68,93 @@ const Header = () => {
       title: "Solutions",
       sections: [
         {
-          title: "Products",
+          title: "Core Products",
           icon: Rocket,
           items: [
             {
               icon: Layers,
-              title: "Digital Dictionary",
-              description: "Comprehensive language documentation",
+              title: "Digital Dictionary Platform",
+              description:
+                "Comprehensive language documentation and preservation",
               href: "/solutions/digital-dictionary",
             },
             {
               icon: Code,
               title: "Integration Platform",
-              description: "Connect and extend your systems",
+              description: "Connect and extend language preservation systems",
               href: "/solutions/integration-platform",
+            },
+            {
+              icon: CircuitBoard,
+              title: "Language Learning Tools",
+              description: "Interactive platforms for language acquisition",
+              href: "/solutions/learning-tools",
+            },
+            {
+              icon: Database,
+              title: "Cultural Heritage Archive",
+              description: "Digital preservation of cultural assets",
+              href: "/solutions/heritage-archive",
+            },
+          ],
+        },
+        {
+          title: "Enterprise Solutions",
+          icon: Building,
+          items: [
+            {
+              icon: Cloud,
+              title: "Cloud Infrastructure",
+              description: "Scalable cloud solutions for language platforms",
+              href: "/solutions/cloud",
+            },
+            {
+              icon: Shield,
+              title: "Security & Compliance",
+              description: "Enterprise-grade security for sensitive data",
+              href: "/solutions/security",
+            },
+            {
+              icon: Cpu,
+              title: "AI & Machine Learning",
+              description: "Advanced language processing capabilities",
+              href: "/solutions/ai-ml",
+            },
+            {
+              icon: Network,
+              title: "API Ecosystem",
+              description: "Extensible API framework for integration",
+              href: "/solutions/api",
             },
           ],
         },
         {
           title: "By Industry",
-          icon: Building,
+          icon: Globe,
           items: [
             {
-              icon: Globe,
-              title: "Cultural Institutions",
-              description: "Preserve and share heritage",
-              href: "/solutions/cultural-institutions",
+              icon: Book,
+              title: "Academic Research",
+              description: "Tools for linguistic research and analysis",
+              href: "/solutions/academic",
             },
             {
-              icon: BookOpen,
-              title: "Educational",
-              description: "Tools for learning and teaching",
-              href: "/solutions/education",
+              icon: Heart,
+              title: "Non-Profit Organizations",
+              description: "Solutions for cultural preservation initiatives",
+              href: "/solutions/non-profit",
+            },
+            {
+              icon: Building2,
+              title: "Government Institutions",
+              description: "Language preservation for public sector",
+              href: "/solutions/government",
+            },
+            {
+              icon: Palette,
+              title: "Cultural Centers",
+              description: "Digital platforms for cultural engagement",
+              href: "/solutions/cultural-centers",
             },
           ],
         },
@@ -99,15 +175,27 @@ const Header = () => {
             },
             {
               icon: Code,
-              title: "API Reference",
-              description: "Technical documentation",
+              title: "API Documentation",
+              description: "Comprehensive API references",
               href: "/resources/api",
+            },
+            {
+              icon: Book,
+              title: "User Guides",
+              description: "Detailed platform documentation",
+              href: "/resources/guides",
+            },
+            {
+              icon: Brain,
+              title: "Best Practices",
+              description: "Implementation guidelines and tips",
+              href: "/resources/best-practices",
             },
           ],
         },
         {
-          title: "Learning",
-          icon: Users,
+          title: "Learning Center",
+          icon: GraduationCap,
           items: [
             {
               icon: PlayCircle,
@@ -116,10 +204,117 @@ const Header = () => {
               href: "/resources/tutorials",
             },
             {
+              icon: School,
+              title: "Training Programs",
+              description: "Structured learning paths",
+              href: "/resources/training",
+            },
+            {
+              icon: Library,
+              title: "Resource Library",
+              description: "Downloadable resources and tools",
+              href: "/resources/library",
+            },
+            {
+              icon: Users,
+              title: "Community Forums",
+              description: "Connect with other users",
+              href: "/resources/community",
+            },
+          ],
+        },
+        {
+          title: "Updates & Support",
+          icon: HelpCircle,
+          items: [
+            {
+              icon: Newspaper,
+              title: "Latest Updates",
+              description: "Product updates and announcements",
+              href: "/resources/updates",
+            },
+            {
               icon: MessageCircle,
-              title: "Community Forum",
-              description: "Connect and learn from others",
-              href: "/resources/forum",
+              title: "Support Center",
+              description: "Technical support and help",
+              href: "/resources/support",
+            },
+            {
+              icon: Heart,
+              title: "Success Stories",
+              description: "Customer case studies",
+              href: "/resources/success-stories",
+            },
+            {
+              icon: Users2,
+              title: "Partner Network",
+              description: "Implementation partners directory",
+              href: "/resources/partners",
+            },
+          ],
+        },
+      ],
+    },
+    about: {
+      title: "About",
+      sections: [
+        {
+          title: "Company",
+          icon: Building2,
+          items: [
+            {
+              icon: Info,
+              title: "Our Story",
+              description: "Learn about our mission and vision",
+              href: "/about/story",
+            },
+            {
+              icon: Users2,
+              title: "Leadership Team",
+              description: "Meet our executive team",
+              href: "/about/leadership",
+            },
+            {
+              icon: Heart,
+              title: "Culture & Values",
+              description: "What drives us forward",
+              href: "/about/culture",
+            },
+            {
+              icon: MapPin,
+              title: "Locations",
+              description: "Our global presence",
+              href: "/about/locations",
+            },
+          ],
+        },
+        {
+          title: "Connect",
+          icon: Phone,
+          items: [
+            {
+              icon: Mail,
+              title: "Contact Us",
+              description: "Get in touch with our team",
+              href: "/about/contact",
+            },
+            {
+              icon: Building,
+              title: "Careers",
+              description: "Join our growing team",
+              href: "/about/careers",
+            },
+            {
+              icon: Users,
+              title: "Partners",
+              description: "Partnership opportunities",
+              href: "/about/partners",
+            },
+            {
+              icon: Newspaper,
+              title: "Newsroom",
+              description: "Latest news and press releases",
+              href: "/about/news",
             },
           ],
         },
@@ -139,18 +334,18 @@ const Header = () => {
 
   const renderMenuItem = (item: MenuItem) => {
     const content = (
-      <div className="flex items-start gap-3 p-2">
+      <div className="flex items-start gap-4 p-3">
         <div
-          className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center 
+          className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center 
           group-hover:bg-blue-100 group-hover:scale-110 transition-all duration-200"
         >
-          <IconWrapper icon={item.icon} className="w-4 h-4 text-blue-600" />
+          <IconWrapper icon={item.icon} className="w-5 h-5 text-blue-600" />
         </div>
         <div>
-          <div className="text-sm font-medium text-gray-900 group-hover:text-blue-600">
+          <div className="text-base font-medium text-gray-900 group-hover:text-blue-600">
             {item.title}
           </div>
-          <div className="text-xs text-gray-500 mt-0.5">{item.description}</div>
+          <div className="text-sm text-gray-500 mt-0.5">{item.description}</div>
         </div>
       </div>
     );
@@ -181,7 +376,7 @@ const Header = () => {
 
           {/* Main Navigation */}
           <div className="hidden lg:flex items-center flex-1">
-            <div className="flex items-center gap-6 flex-1">
+            <div className="flex items-center gap-8 flex-1">
               {Object.entries(menuStructure).map(([key, menu]) => {
                 return (
                   <div key={key} className="relative group">
@@ -207,11 +402,11 @@ const Header = () => {
                       <div
                         onMouseEnter={() => setActiveMenu(key)}
                         onMouseLeave={() => setActiveMenu(null)}
-                        className="fixed left-0 right-0 top-16 bg-white shadow-lg border-t border-gray-100
-                          transition-all duration-200"
+                        className="absolute left-0 top-full bg-white shadow-lg rounded-lg border border-gray-100
+                          transition-all duration-200 w-[900px]"
                       >
-                        <div className="max-w-7xl mx-auto px-8 py-6">
-                          <div className="grid grid-cols-2 gap-8">
+                        <div className="p-8">
+                          <div className="grid grid-cols-3 gap-8">
                             {menu.sections.map((section, idx) => (
                               <div
                                 key={idx}
@@ -219,7 +414,7 @@ const Header = () => {
                                   idx > 0 ? "border-l border-gray-100 pl-8" : ""
                                 }
                               >
-                                <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                                <h3 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
                                   <IconWrapper
                                     icon={section.icon}
                                     className="w-5 h-5 text-blue-600"
@@ -240,14 +435,6 @@ const Header = () => {
                   </div>
                 );
               })}
-
-              <Link
-                href="/about"
-                className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 
-                  transition-colors rounded-md"
-              >
-                About
-              </Link>
             </div>
 
             {/* Contact Button (far right) */}
@@ -295,13 +482,7 @@ const Header = () => {
                   ))}
                 </div>
               ))}
-              <div className="pt-4 space-y-4">
-                <Link
-                  href="/about"
-                  className="block text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  About
-                </Link>
+              <div className="pt-4">
                 <a
                   href="https://ayivugwekabemba.com/contact"
                   target="_blank"
