@@ -159,11 +159,7 @@ const Header = () => {
       <Link
         key={item.title}
         href={item.href}
-        className="group block p-3 rounded-lg hover:bg-gray-50 transition-all duration-300"
-        onClick={() => {
-          setActiveMenu(null);
-          setIsMenuOpen(false);
-        }}
+        className="group block rounded-lg hover:bg-gray-50 transition-all duration-300"
       >
         {content}
       </Link>
@@ -174,74 +170,77 @@ const Header = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 shadow-sm">
       <div className="max-w-7xl mx-auto">
         {/* Desktop Navigation */}
-        <div className="flex items-center justify-between px-6 h-16">
-          <div className="flex items-center gap-8">
-            <Link
-              href="/"
-              className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text"
-            >
-              Wekify
-            </Link>
+        <div className="flex items-center px-6 h-16">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text mr-8"
+          >
+            Wekify
+          </Link>
 
-            <div className="hidden lg:flex items-center gap-6">
-              {/* Main Navigation Items */}
-              {Object.entries(menuStructure).map(([key, menu]) => (
-                <div key={key} className="relative group">
-                  <button
-                    className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium
-                      transition-colors group-hover:text-blue-600 ${
-                        activeMenu === key ? "text-blue-600" : "text-gray-600"
-                      }`}
-                    onClick={() =>
-                      setActiveMenu(activeMenu === key ? null : key)
-                    }
-                    onMouseEnter={() => setActiveMenu(key)}
-                  >
-                    {menu.title}
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 
-                      group-hover:rotate-180 ${
-                        activeMenu === key ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
+          {/* Main Navigation */}
+          <div className="hidden lg:flex items-center flex-1">
+            <div className="flex items-center gap-6 flex-1">
+              {Object.entries(menuStructure).map(([key, menu]) => {
+                return (
+                  <div key={key} className="relative group">
+                    <button
+                      className={`group flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium
+                        transition-colors hover:text-blue-600 ${
+                          activeMenu === key ? "text-blue-600" : "text-gray-600"
+                        }`}
+                      onMouseEnter={() => setActiveMenu(key)}
+                      onClick={() =>
+                        setActiveMenu(activeMenu === key ? null : key)
+                      }
+                    >
+                      {menu.title}
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          activeMenu === key ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
 
-                  <div
-                    className={`absolute top-full -left-4 w-screen max-w-6xl bg-white shadow-lg 
-                      rounded-lg border border-gray-100 opacity-0 invisible translate-y-2
-                      transition-all duration-200 ${
-                        activeMenu === key
-                          ? "opacity-100 visible translate-y-0"
-                          : ""
-                      }`}
-                    onMouseLeave={() => setActiveMenu(null)}
-                  >
-                    <div className="p-6 grid grid-cols-2 gap-8">
-                      {menu.sections.map((section, idx) => (
-                        <div
-                          key={idx}
-                          className={
-                            idx > 0 ? "border-l border-gray-100 pl-8" : ""
-                          }
-                        >
-                          <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                            <IconWrapper
-                              icon={section.icon}
-                              className="w-5 h-5 text-blue-600"
-                            />
-                            {section.title}
-                          </h3>
-                          <div className="space-y-2">
-                            {section.items.map((item) => renderMenuItem(item))}
+                    {activeMenu === key && (
+                      <div
+                        onMouseEnter={() => setActiveMenu(key)}
+                        onMouseLeave={() => setActiveMenu(null)}
+                        className="fixed left-0 right-0 top-16 bg-white shadow-lg border-t border-gray-100
+                          transition-all duration-200"
+                      >
+                        <div className="max-w-7xl mx-auto px-8 py-6">
+                          <div className="grid grid-cols-2 gap-8">
+                            {menu.sections.map((section, idx) => (
+                              <div
+                                key={idx}
+                                className={
+                                  idx > 0 ? "border-l border-gray-100 pl-8" : ""
+                                }
+                              >
+                                <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                                  <IconWrapper
+                                    icon={section.icon}
+                                    className="w-5 h-5 text-blue-600"
+                                  />
+                                  {section.title}
+                                </h3>
+                                <div className="space-y-2">
+                                  {section.items.map((item) =>
+                                    renderMenuItem(item)
+                                  )}
+                                </div>
+                              </div>
+                            ))}
                           </div>
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
 
-              {/* Other Navigation Links */}
               <Link
                 href="/about"
                 className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 
@@ -249,24 +248,25 @@ const Header = () => {
               >
                 About
               </Link>
-
-              <a
-                href="https://ayivugwekabemba.com/contact"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-blue-600 
-                  text-white rounded-lg hover:bg-blue-700 transition-colors ml-2"
-              >
-                Contact Us
-                <ExternalLink className="w-4 h-4" />
-              </a>
             </div>
+
+            {/* Contact Button (far right) */}
+            <a
+              href="https://ayivugwekabemba.com/contact"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-blue-600 
+                text-white rounded-lg hover:bg-blue-700 transition-colors ml-auto"
+            >
+              Contact Us
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors"
+            className="lg:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors ml-auto"
           >
             {isMenuOpen ? (
               <X className="w-6 h-6" />
@@ -306,7 +306,8 @@ const Header = () => {
                   href="https://ayivugwekabemba.com/contact"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white 
+                    rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Contact Us
                   <ExternalLink className="w-4 h-4" />
