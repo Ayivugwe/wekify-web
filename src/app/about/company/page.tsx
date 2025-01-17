@@ -1,12 +1,12 @@
 import React from "react";
 import { ArrowRight, BookOpen, Globe, Users, Code, Shield } from "lucide-react";
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
+
 import Head from "next/head";
+import Layout from "@/app/components/layout";
 
 export default function CompanyPage() {
   return (
-    <>
+    <Layout>
       <Head>
         <title>Wekify - Building Digital Solutions for Global Content</title>
         <meta
@@ -30,7 +30,6 @@ export default function CompanyPage() {
       </Head>
 
       <div className="min-h-screen bg-white">
-        <Header />
         {/* Hero Section */}
         <section className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
           <div className="max-w-6xl mx-auto px-4">
@@ -170,8 +169,7 @@ export default function CompanyPage() {
             </a>
           </div>
         </section>
-        <Footer />
       </div>
-    </>
+    </Layout>
   );
 }

@@ -13,10 +13,11 @@ import {
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import Head from "next/head";
+import Layout from "@/app/components/layout";
 
 export default function TeamPage() {
   return (
-    <>
+    <Layout>
       <Head>
         <title>Meet the Team - Wekify</title>
         <meta
@@ -233,6 +234,6 @@ export default function TeamPage() {
         </section>
         <Footer />
       </div>
-    </>
+    </Layout>
   );
 }

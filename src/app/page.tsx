@@ -10,9 +10,7 @@ import {
   Heart,
   Lightbulb,
 } from "lucide-react";
-import Header from "@/app/components/Header";
-import Footer from "./components/Footer";
-import Layout from "./layout";
+import Layout from "./components/layout";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -21,8 +19,6 @@ export default function Home() {
   return (
     <Layout>
       <div className="min-h-screen bg-white text-gray-900 font-sans">
-        <Header />
-
         {/* Hero Section */}
         <section className="pt-32 pb-24 px-4 min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
           <div className="absolute inset-0 bg-gradient-radial from-blue-100/50 to-transparent animate-pulse-slow"></div>
@@ -247,9 +243,6 @@ export default function Home() {
             </button>
           </div>
         </section>
-
-        {/* Footer */}
-        <Footer />
 
         <style jsx global>{`
           @keyframes fade-in {
