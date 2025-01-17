@@ -26,7 +26,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-radial from-blue-100/50 to-transparent animate-pulse-slow"></div>
         <div className="max-w-6xl mx-auto w-full relative">
           <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text transform transition-transform duration-700 hover:scale-105 pb-4">
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text transform transition-transform duration-700 pb-4">
               Preserving Languages
               <br />
               Empowering Cultures
