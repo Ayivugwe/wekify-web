@@ -10,7 +10,7 @@ import {
   Lock,
   Zap,
 } from "lucide-react";
-import Layout from "../layout";
+import Layout from "../components/layout";
 
 export default function SolutionsPage() {
   return (
