@@ -10,8 +10,6 @@ import {
   Database,
   BookOpen,
 } from "lucide-react";
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
 import Head from "next/head";
 import Layout from "@/app/components/layout";
 
@@ -37,7 +35,6 @@ export default function TeamPage() {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className="min-h-screen bg-white">
-        <Header />
         {/* Hero Section */}
         <section className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
           <div className="max-w-6xl mx-auto px-4">
@@ -232,7 +229,6 @@ export default function TeamPage() {
             </div>
           </div>
         </section>
-        <Footer />
       </div>
     </Layout>
   );
