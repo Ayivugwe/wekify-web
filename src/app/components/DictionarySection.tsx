@@ -90,14 +90,12 @@ const DictionarySection = () => {
               <div className="mb-4">
                 <div className="text-sm text-gray-500 mb-1">Kifuliiru</div>
                 <div className="text-lg font-semibold text-gray-900">
-                  Mulembe
+                  Musingo, Twalamusa
                 </div>
               </div>
               <div>
                 <div className="text-sm text-gray-500 mb-1">English</div>
-                <div className="text-lg text-gray-900">
-                  Hello, Peace, Greetings
-                </div>
+                <div className="text-lg text-gray-900">Hello, Greetings</div>
               </div>
             </div>
             <div className="flex space-x-2">

@@ -71,7 +71,7 @@ const Footer = () => {
     {
       icon: Globe,
       label: "Languages",
-      value: "English, Français, Kifuliiru",
+      value: "Kifuliiru, Kiswahili, English, Français",
     },
   ];
 
@@ -101,18 +101,19 @@ const Footer = () => {
             </p>
 
             {/* Newsletter Signup */}
+
             <div className="pt-4">
               <h3 className="text-white font-semibold mb-3">Stay Updated</h3>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2 max-w-full">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 bg-gray-800 rounded-lg border border-gray-700 
-                    focus:outline-none focus:border-blue-500 text-gray-300"
+                  className="w-full px-4 py-2 bg-gray-800 rounded-lg border border-gray-700 
+        focus:outline-none focus:border-blue-500 text-gray-300"
                 />
                 <button
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
-                  transition-colors flex items-center gap-2"
+                  className="whitespace-nowrap px-4 py-2 bg-blue-600 text-white rounded-lg 
+      hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
                 >
                   Subscribe
                   <ArrowRight className="w-4 h-4" />
