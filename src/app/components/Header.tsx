@@ -268,13 +268,13 @@ const Header = () => {
               icon: Info,
               title: "Our Story",
               description: "Learn about our mission and vision",
-              href: "/about/story",
+              href: "/about/our-story",
             },
             {
               icon: Users2,
-              title: "Leadership Team",
-              description: "Meet our executive team",
-              href: "/about/leadership",
+              title: "Our Team",
+              description: "Meet our leadership and team members",
+              href: "/about/team",
             },
             {
               icon: Heart,
