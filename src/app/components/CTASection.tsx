@@ -5,7 +5,7 @@ import { ArrowRight, Globe, Heart, Users } from "lucide-react";
 
 const CTASection = () => {
   return (
-    <section className="py-24 px-4">
+    <section className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex justify-center">
         <div className="relative max-w-3xl w-full">
           {/* Background Gradient Elements */}

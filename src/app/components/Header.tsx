@@ -378,6 +378,12 @@ const Header = () => {
 
           {/* Main Navigation */}
           <div className="hidden lg:flex items-center flex-1">
+            <Link
+              href="/"
+              className="text-gray-700 hover:text-blue-600 transition-colors px-3 py-2"
+            >
+              Home
+            </Link>
             <div className="flex items-center gap-8 flex-1">
               {Object.entries(menuStructure).map(([key, menu]) => {
                 return (
@@ -468,7 +474,15 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-100">
-            <div className="p-4 space-y-6">
+            <div className="p-4 space-y-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
+              {/* Home Link */}
+              <Link
+                href="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
+              >
+                Home
+              </Link>
               {Object.entries(menuStructure).map(([key, menu]) => (
                 <div key={key} className="space-y-4">
                   <h3 className="font-semibold text-gray-900">{menu.title}</h3>
