@@ -4,6 +4,8 @@ import DictionarySection from "./components/DictionarySection";
 import ApproachSection from "./components/ApproachSection";
 import CTASection from "./components/CTASection";
 import Layout from "./components/layout";
+import FAQSection from "./components/FAQSection";
+import { faqData } from "./lib/data/faqData";
 
 export default function Home() {
   return (
@@ -14,6 +16,7 @@ export default function Home() {
         <DictionarySection />
         <ApproachSection />
         <CTASection />
+        <FAQSection faqs={faqData} />
       </main>
     </Layout>
   );
