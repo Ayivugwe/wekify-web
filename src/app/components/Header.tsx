@@ -339,9 +339,16 @@ const Header = () => {
       <div className="flex items-start gap-4 p-3">
         <div
           className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center 
-          group-hover:bg-blue-100 group-hover:scale-110 transition-all duration-200"
+          group-hover:bg-blue-100 group-hover:scale-110 transition-all duration-200 
+          overflow-hidden relative"
         >
-          <IconWrapper icon={item.icon} className="w-5 h-5 text-blue-600" />
+          <IconWrapper 
+            icon={item.icon} 
+            className="w-5 h-5 text-blue-600 group-hover:text-blue-700 group-hover:rotate-3 
+            transition-all duration-300 transform" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 
+          opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
         <div>
           <div className="text-base font-medium text-gray-900 group-hover:text-blue-600">
@@ -425,7 +432,8 @@ const Header = () => {
                                 <h3 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
                                   <IconWrapper
                                     icon={section.icon}
-                                    className="w-5 h-5 text-blue-600"
+                                    className="w-5 h-5 text-blue-600 transform transition-all duration-300 
+                                    hover:scale-110 hover:text-blue-700"
                                   />
                                   {section.title}
                                 </h3>
