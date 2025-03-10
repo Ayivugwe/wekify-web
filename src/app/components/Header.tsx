@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import {
   ChevronDown,
@@ -53,6 +54,20 @@ interface MenuSection {
   icon: LucideIcon;
   items: MenuItem[];
 }
+
+// Add the logo at the beginning of the navigation
+const Logo = () => (
+  <Link href="/" className="flex items-center gap-2">
+    <Image 
+      src="/logo.png" 
+      alt="Wekify Logo" 
+      width={36} 
+      height={36} 
+      className="h-9 w-auto"
+    />
+    <span className="font-bold text-xl">Wekify</span>
+  </Link>
+);
 
 interface MenuStructure {
   [key: string]: {
