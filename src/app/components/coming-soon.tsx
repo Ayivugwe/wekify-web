@@ -90,3 +90,41 @@ export default function ComingSoon({
     </div>
   );
 }
+import React from "react";
+import Link from "next/link";
+import { Calendar } from "lucide-react";
+
+interface ComingSoonProps {
+  title: string;
+  description: string;
+  date?: string;
+}
+
+const ComingSoon: React.FC<ComingSoonProps> = ({ title, description, date }) => {
+  return (
+    <div className="min-h-[80vh] flex flex-col items-center justify-center text-center px-4 py-16 bg-gradient-to-b from-blue-50 to-white">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{title}</h1>
+        <p className="text-xl text-gray-600 mb-10">{description}</p>
+        
+        {date && (
+          <div className="inline-flex items-center bg-blue-100 text-blue-700 px-6 py-3 rounded-lg mb-10">
+            <Calendar className="mr-2 h-5 w-5" />
+            <span className="font-medium">Expected Launch: {date}</span>
+          </div>
+        )}
+        
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link href="/solutions" className="btn-primary">
+            Explore Other Solutions
+          </Link>
+          <Link href="/contact" className="btn-secondary">
+            Contact Us
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ComingSoon;
