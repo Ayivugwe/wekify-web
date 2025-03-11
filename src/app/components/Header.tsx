@@ -108,12 +108,8 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
-  const handleMegaMenuToggle = (menuName: string) => {
-    if (activeMegaMenu === menuName) {
-      setActiveMegaMenu(null);
-    } else {
-      setActiveMegaMenu(menuName);
-    }
+  const handleMegaMenuHover = (menuName: string | null) => {
+    setActiveMegaMenu(menuName);
   };
 
   return (
@@ -142,9 +138,13 @@ const Header = () => {
           </Link>
 
           {Object.keys(megaMenuItems).map((menuName) => (
-            <div key={menuName} className="relative">
+            <div 
+              key={menuName} 
+              className="relative"
+              onMouseEnter={() => handleMegaMenuHover(menuName)}
+              onMouseLeave={() => handleMegaMenuHover(null)}
+            >
               <button
-                onClick={() => handleMegaMenuToggle(menuName)}
                 className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300"
               >
                 {menuName}
@@ -154,7 +154,7 @@ const Header = () => {
               </button>
 
               {activeMegaMenu === menuName && (
-                <div className="absolute top-full left-0 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn z-50">
                   <div className="grid grid-cols-2 gap-3">
                     {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
                       (item) => {
@@ -164,7 +164,6 @@ const Header = () => {
                             key={item.name}
                             href={item.href}
                             className="group block p-3 hover:bg-gray-50 rounded-lg text-text-primary hover:text-primary transition-all duration-300"
-                            onClick={() => setActiveMegaMenu(null)}
                           >
                             <div className="flex items-start">
                               {Icon && (

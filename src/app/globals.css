@@ -136,6 +136,7 @@ button:hover .icon-container svg {
 
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out forwards;
+  max-width: 90vw; /* Prevent menu from extending beyond viewport */
 }
 
 /* Enhanced mega menu hover effects */
