@@ -2,193 +2,216 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, MapPin, Phone, Mail } from "lucide-react";
 import Layout from "../components/layout";
+import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [formState, setFormState] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    console.log("Form submitted:", formState);
+    // Reset form
+    setFormState({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+    setFormSubmitted(true);
     
-    // Mock form submission
+    // Reset the submission message after 5 seconds
     setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitMessage("Thank you for your message! We'll be in touch soon.");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      
-      // Clear success message after 5 seconds
-      setTimeout(() => setSubmitMessage(""), 5000);
-    }, 1500);
+      setFormSubmitted(false);
+    }, 5000);
   };
 
   return (
     <Layout>
-      <div className="container mx-auto py-16 px-4">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center text-center">
-              <div className="bg-primary/10 p-4 rounded-full mb-4">
-                <MapPin className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Our Location</h3>
-              <p className="text-gray-600">123 Language Way, Digital City, 10001</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center text-center">
-              <div className="bg-primary/10 p-4 rounded-full mb-4">
-                <Phone className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Phone Number</h3>
-              <p className="text-gray-600">+1 (555) 123-4567</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center text-center">
-              <div className="bg-primary/10 p-4 rounded-full mb-4">
-                <Mail className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Email Address</h3>
-              <p className="text-gray-600">info@wekify.com</p>
+      <div className="min-h-screen bg-white">
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-to-b from-primary/10 to-white">
+          <div className="container">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+                Get in Touch
+              </h1>
+              <p className="text-xl text-text-secondary leading-relaxed mb-8">
+                We'd love to hear from you. Reach out for questions, partnerships, or to learn more about our services.
+              </p>
             </div>
           </div>
-          
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="p-8 bg-gradient-to-br from-primary to-secondary text-white flex flex-col justify-center">
-                <h2 className="text-3xl font-bold mb-6">Get In Touch</h2>
-                <p className="text-white/90 mb-8">
-                  We'd love to hear from you! Whether you have questions about our services, want to
-                  partner with us, or are interested in contributing to our mission, please reach out.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start space-x-3">
-                    <MapPin className="h-6 w-6 mt-0.5" />
-                    <span>123 Language Way, Digital City, 10001</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <Phone className="h-6 w-6" />
-                    <span>+1 (555) 123-4567</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <Mail className="h-6 w-6" />
-                    <span>info@wekify.com</span>
-                  </li>
-                </ul>
+        </section>
+
+        {/* Contact Form Section */}
+        <section className="py-16">
+          <div className="container">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              {/* Contact Info */}
+              <div className="lg:col-span-1">
+                <div className="bg-gray-50 p-8 rounded-2xl h-full">
+                  <h2 className="text-2xl font-bold mb-6 text-primary">Contact Information</h2>
+                  
+                  <div className="space-y-6">
+                    <div className="flex items-start">
+                      <div className="bg-primary/10 p-3 rounded-full mr-4">
+                        <Mail className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text-primary">Email</h3>
+                        <p className="text-text-secondary mt-1">info@wekify.com</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="bg-primary/10 p-3 rounded-full mr-4">
+                        <Phone className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text-primary">Phone</h3>
+                        <p className="text-text-secondary mt-1">+1 (555) 123-4567</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="bg-primary/10 p-3 rounded-full mr-4">
+                        <MapPin className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text-primary">Location</h3>
+                        <p className="text-text-secondary mt-1">
+                          123 Digital Ave, <br />
+                          San Francisco, CA 94107
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-12">
+                    <h3 className="text-xl font-semibold mb-4 text-primary">Follow Us</h3>
+                    <div className="flex space-x-4">
+                      {["Twitter", "LinkedIn", "Facebook", "Instagram"].map((social) => (
+                        <a
+                          key={social}
+                          href="#"
+                          className="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-200"
+                        >
+                          <span className="sr-only">{social}</span>
+                          <div className="w-5 h-5 bg-primary/80 rounded-full"></div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
               
-              <div className="p-8">
-                <h3 className="text-2xl font-semibold mb-6">Send Us a Message</h3>
-                
-                {submitMessage && (
-                  <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-6">
-                    {submitMessage}
-                  </div>
-                )}
-                
-                <form onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 gap-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                        Your Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                      />
+              {/* Form */}
+              <div className="lg:col-span-2">
+                <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                  <h2 className="text-2xl font-bold mb-6 text-primary">Send Us a Message</h2>
+                  
+                  {formSubmitted ? (
+                    <div className="bg-green-50 border border-green-100 rounded-xl p-6 flex items-center">
+                      <CheckCircle className="h-8 w-8 text-green-500 mr-4" />
+                      <div>
+                        <h3 className="text-lg font-semibold text-green-800">Message Sent!</h3>
+                        <p className="text-green-700">Thank you for reaching out. We'll get back to you shortly.</p>
+                      </div>
                     </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                        Your Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                        Subject
-                      </label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                      >
-                        <option value="">Please select</option>
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Partnership">Partnership Opportunities</option>
-                        <option value="Technical Support">Technical Support</option>
-                        <option value="Language Preservation">Language Preservation Project</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                        Your Message
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={4}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                      ></textarea>
-                    </div>
-                    
-                    <div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">
+                            Your Name
+                          </label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={formState.name}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                            placeholder="John Doe"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
+                            Email Address
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formState.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                            placeholder="john@example.com"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="subject" className="block text-sm font-medium text-text-secondary mb-2">
+                          Subject
+                        </label>
+                        <input
+                          type="text"
+                          id="subject"
+                          name="subject"
+                          value={formState.subject}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                          placeholder="How can we help you?"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2">
+                          Message
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formState.message}
+                          onChange={handleChange}
+                          required
+                          rows={6}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                          placeholder="Your message here..."
+                        ></textarea>
+                      </div>
+                      
                       <button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="w-full bg-primary hover:bg-primary/90 text-white py-3 px-8 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center"
+                        className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-all duration-200"
                       >
-                        {isSubmitting ? (
-                          <span>Sending...</span>
-                        ) : (
-                          <>
-                            <span>Send Message</span>
-                            <Send className="ml-2 h-5 w-5" />
-                          </>
-                        )}
+                        Send Message
+                        <Send className="h-5 w-5 ml-2" />
                       </button>
-                    </div>
-                  </div>
-                </form>
+                    </form>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </Layout>
   );
