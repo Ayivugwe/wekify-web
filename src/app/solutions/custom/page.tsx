@@ -32,7 +32,7 @@ export default function CustomSolutionsPage() {
                   description: "Bespoke software development tailored to your specific requirements and objectives."
                 },
                 {
-                  icon: <Lightbulb className="w-8 h-8 text-blue-600" />,
+                  icon: <Shield className="w-8 h-8 text-blue-600" />,
                   title: "Platform Optimization",
                   description: "Improve performance, usability, and functionality of your existing digital platforms."
                 },

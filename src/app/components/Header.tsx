@@ -3,12 +3,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Globe, Share2, Code, BookOpen, Cloud, Brain, Building, FileText, FileCode, Terminal, Users, Book, UserPlus, Heart } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, Share2, Code, BookOpen, FileText, Users, Book, Heart } from "lucide-react";
 
 // Icon mapping for dynamic rendering
 const IconMap: Record<string, React.ElementType> = {
-  Globe, Share2, Code, BookOpen, Cloud, Brain, Building, FileText, 
-  FileCode, Terminal, Users, Book, UserPlus, Heart
+  Globe, Share2, Code, BookOpen, FileText, Users, Book, Heart
 };
 
 const megaMenuItems = {
@@ -36,51 +35,21 @@ const megaMenuItems = {
       href: "/solutions/language-preservation",
       icon: "BookOpen",
       description: "Tools for documenting and preserving endangered languages"
-    },
-    { 
-      name: "Cloud Infrastructure", 
-      href: "/solutions/cloud",
-      icon: "Cloud",
-      description: "Scalable hosting for language and cultural platforms"
-    },
-    { 
-      name: "AI & Machine Learning", 
-      href: "/solutions/ai-ml",
-      icon: "Brain",
-      description: "Advanced AI for language analysis and processing"
-    },
-    { 
-      name: "Cultural Institutions", 
-      href: "/solutions/cultural-institutions",
-      icon: "Building",
-      description: "Digital solutions for museums and cultural centers"
-    },
+    }
   ],
   Resources: [
     { 
       name: "Case Studies", 
       href: "/case-studies",
       icon: "FileText",
-      description: "See how our solutions work in real-world cases"
-    },
-    { 
-      name: "Documentation", 
-      href: "/resources/documentation",
-      icon: "FileCode",
-      description: "Comprehensive guides for using our platforms"
-    },
-    { 
-      name: "API", 
-      href: "/resources/api",
-      icon: "Terminal",
-      description: "Technical documentation for developers"
+      description: "See how our solutions work with the Bafuliiru community"
     },
     { 
       name: "Community Forum", 
       href: "/resources/forum",
       icon: "Users",
-      description: "Connect with others in our language preservation community"
-    },
+      description: "Currently focused on supporting the Bafuliiru community"
+    }
   ],
   About: [
     { 
@@ -90,17 +59,11 @@ const megaMenuItems = {
       description: "Learn about our mission and journey"
     },
     { 
-      name: "Team", 
-      href: "/about/team",
-      icon: "UserPlus",
-      description: "Meet the people behind Wekify"
-    },
-    { 
-      name: "Culture", 
-      href: "/about/culture",
+      name: "Vision", 
+      href: "/about/vision",
       icon: "Heart",
-      description: "Our values and what drives us"
-    },
+      description: "Our future plans for language preservation"
+    }
   ],
 };
 
@@ -110,6 +73,10 @@ const Header = () => {
 
   const handleMegaMenuHover = (menuName: string | null) => {
     setActiveMegaMenu(menuName);
+  };
+
+  const handleMegaMenuToggle = (menuName: string) => {
+    setActiveMegaMenu(activeMegaMenu === menuName ? null : menuName);
   };
 
   return (
