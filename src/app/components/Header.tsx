@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -43,7 +42,7 @@ const Header = () => {
 
   return (
     <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-      <div className="container flex items-center justify-between py-2">
+      <div className="container flex items-center justify-between py-3">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Image
@@ -65,7 +64,7 @@ const Header = () => {
           >
             Home
           </Link>
-          
+
           {Object.keys(megaMenuItems).map((menuName) => (
             <div key={menuName} className="relative">
               <button
@@ -73,39 +72,40 @@ const Header = () => {
                 className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300"
               >
                 {menuName}
-                <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === menuName ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === menuName ? "rotate-180" : ""}`}
+                />
               </button>
-              
+
               {activeMegaMenu === menuName && (
                 <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl p-4">
                   <div className="grid gap-2">
-                    {megaMenuItems[menuName as keyof typeof megaMenuItems].map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="block p-2 hover:bg-gray-50 rounded text-text-primary hover:text-primary transition-colors"
-                        onClick={() => setActiveMegaMenu(null)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
+                    {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
+                      (item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="block p-2 hover:bg-gray-50 rounded text-text-primary hover:text-primary transition-colors"
+                          onClick={() => setActiveMegaMenu(null)}
+                        >
+                          {item.name}
+                        </Link>
+                      ),
+                    )}
                   </div>
                 </div>
               )}
             </div>
           ))}
-          
+
           <Link
             href="/blog"
             className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
           >
             Blog
           </Link>
-          
-          <Link
-            href="/contact"
-            className="btn-primary ml-4"
-          >
+
+          <Link href="/contact" className="btn-primary ml-4">
             Contact Us
           </Link>
         </nav>
@@ -135,7 +135,7 @@ const Header = () => {
             >
               Home
             </Link>
-            
+
             {Object.keys(megaMenuItems).map((menuName) => (
               <div key={menuName} className="space-y-2">
                 <button
@@ -143,26 +143,30 @@ const Header = () => {
                   className="flex items-center justify-between w-full text-text-primary hover:text-primary font-medium transition-colors duration-300"
                 >
                   {menuName}
-                  <ChevronDown className={`h-4 w-4 transition-transform ${activeMegaMenu === menuName ? 'rotate-180' : ''}`} />
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${activeMegaMenu === menuName ? "rotate-180" : ""}`}
+                  />
                 </button>
-                
+
                 {activeMegaMenu === menuName && (
                   <div className="pl-4 space-y-2 mt-2 border-l-2 border-gray-100">
-                    {megaMenuItems[menuName as keyof typeof megaMenuItems].map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="block py-1 text-text-primary hover:text-primary transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
+                    {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
+                      (item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="block py-1 text-text-primary hover:text-primary transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      ),
+                    )}
                   </div>
                 )}
               </div>
             ))}
-            
+
             <Link
               href="/blog"
               className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
@@ -170,7 +174,7 @@ const Header = () => {
             >
               Blog
             </Link>
-            
+
             <Link
               href="/contact"
               className="btn-primary block text-center"
