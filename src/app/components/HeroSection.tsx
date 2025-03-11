@@ -1,160 +1,244 @@
 
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 const languages = [
-  "English", "Spanish", "French", "Mandarin", "Arabic", 
-  "Russian", "Hindi", "Portuguese", "Bengali", "Japanese",
-  "Kifuliiru", "Swahili", "Yoruba", "Zulu", "Xhosa",
-  "Amharic", "Tigrinya", "Hausa", "Igbo", "Wolof",
-  "German", "Italian", "Dutch", "Swedish", "Norwegian",
-  "Finnish", "Danish", "Polish", "Czech", "Hungarian",
-  "Greek", "Turkish", "Korean", "Thai", "Vietnamese",
-  "Malay", "Indonesian", "Tagalog", "Navajo", "Cherokee"
+  "English",
+  "Spanish",
+  "French",
+  "Mandarin",
+  "Arabic",
+  "Russian",
+  "Japanese",
+  "German",
+  "Portuguese",
+  "Hindi",
+  "Bengali",
+  "Punjabi",
+  "Kifuliiru",
+  "Swahili",
+  "Yoruba",
+  "Zulu",
+  "Hausa",
+  "Amharic",
+  "Oromo",
+  "Igbo",
+  "Korean",
+  "Italian",
+  "Vietnamese",
+  "Turkish",
+  "Thai",
+  "Dutch",
+  "Polish",
+  "Greek",
+  "Hungarian",
+  "Czech",
+  "Swedish",
+  "Malay",
+  "Indonesian",
+  "Tagalog",
+  "Farsi",
+  "Urdu",
 ];
 
-const HeroSection = () => {
-  const [rotation, setRotation] = useState(0);
-  const [currentLanguage, setCurrentLanguage] = useState(languages[0]);
-  const [languageIndex, setLanguageIndex] = useState(0);
+interface GlobePoint {
+  id: number;
+  x: number;
+  y: number;
+  language: string;
+  opacity: number;
+  scale: number;
+  entering: boolean;
+}
+
+const HeroSection: React.FC = () => {
+  const [globePoints, setGlobePoints] = useState<GlobePoint[]>([]);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number>(0);
+  const pointCountRef = useRef<number>(0);
 
   useEffect(() => {
-    // Rotation effect
-    const rotationInterval = setInterval(() => {
-      setRotation((prevRotation) => (prevRotation + 0.5) % 360);
-    }, 50);
+    const createRandomPoint = (): GlobePoint => {
+      // Calculate position on a sphere
+      const theta = Math.random() * Math.PI * 2; // Longitude (0 to 2π)
+      const phi = Math.acos(2 * Math.random() - 1); // Latitude (0 to π)
+      
+      // Convert to Cartesian coordinates and project to 2D
+      const radius = 130;
+      const x = 50 + radius * Math.sin(phi) * Math.cos(theta);
+      const y = 50 + radius * Math.sin(phi) * Math.sin(theta);
+      
+      const language = languages[Math.floor(Math.random() * languages.length)];
+      
+      return {
+        id: pointCountRef.current++,
+        x,
+        y,
+        language,
+        opacity: 0,
+        scale: 0,
+        entering: true
+      };
+    };
 
-    // Language changing effect
-    const languageInterval = setInterval(() => {
-      setLanguageIndex((prevIndex) => (prevIndex + 1) % languages.length);
-    }, 2000);
+    // Initialize with 5 points
+    const initialPoints: GlobePoint[] = [];
+    for (let i = 0; i < 5; i++) {
+      initialPoints.push(createRandomPoint());
+    }
+    setGlobePoints(initialPoints);
 
+    const updateAnimation = (currentTime: number) => {
+      if (!lastTimeRef.current) {
+        lastTimeRef.current = currentTime;
+      }
+      
+      const deltaTime = currentTime - lastTimeRef.current;
+      lastTimeRef.current = currentTime;
+      
+      setGlobePoints(prev => {
+        const updatedPoints = [...prev];
+        
+        // Check if we need to add a new point (keep a maximum of 10 points visible)
+        if (updatedPoints.length < 10 && Math.random() < 0.02) {
+          updatedPoints.push(createRandomPoint());
+        }
+        
+        // Update existing points
+        return updatedPoints.map(point => {
+          if (point.entering) {
+            // Fade in
+            return {
+              ...point,
+              opacity: Math.min(1, point.opacity + 0.01 * deltaTime / 16),
+              scale: Math.min(1, point.scale + 0.01 * deltaTime / 16),
+              entering: point.opacity < 1 || point.scale < 1
+            };
+          } else {
+            // Fade out
+            const newOpacity = Math.max(0, point.opacity - 0.01 * deltaTime / 16);
+            const newScale = Math.max(0, point.scale - 0.01 * deltaTime / 16);
+            return {
+              ...point,
+              opacity: newOpacity,
+              scale: newScale
+            };
+          }
+        }).filter(point => {
+          // Remove points that have completely faded out and are not entering
+          return point.opacity > 0 || point.entering;
+        });
+      });
+      
+      // Randomly change state of points from entering to exiting
+      if (Math.random() < 0.01) {
+        setGlobePoints(prev => {
+          const points = [...prev];
+          if (points.length > 0) {
+            const randomIndex = Math.floor(Math.random() * points.length);
+            if (points[randomIndex].entering && points[randomIndex].opacity >= 1) {
+              points[randomIndex].entering = false;
+            }
+          }
+          return points;
+        });
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(updateAnimation);
+    };
+    
+    animationFrameRef.current = requestAnimationFrame(updateAnimation);
+    
     return () => {
-      clearInterval(rotationInterval);
-      clearInterval(languageInterval);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
   }, []);
 
-  useEffect(() => {
-    setCurrentLanguage(languages[languageIndex]);
-  }, [languageIndex]);
-
   return (
-    <section className="bg-gradient-to-r from-primary to-accent text-white">
-      <div className="container py-24 md:py-40">
-        {/* Added more vertical padding */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
-              Preserving Indigenous Languages Through Digital Innovation
-            </h1>
-            <p className="text-xl text-white/90 mb-8">
-              Wekify empowers communities to document, learn, and celebrate their languages with cutting-edge technology solutions.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/solutions" className="bg-white text-primary px-6 py-3 rounded-xl font-medium hover:bg-opacity-90 transition-all duration-300">
+    <section className="hero-section bg-gradient-to-b from-primary-50 to-white py-24 md:py-32">
+      <div className="container">
+        <div className="flex flex-col md:flex-row items-center">
+          <div className="md:w-1/2 mb-12 md:mb-0">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6"
+            >
+              Preserving Languages, Connecting Cultures
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg md:text-xl text-text-secondary mb-8"
+            >
+              Our digital platform empowers language preservation and cultural
+              heritage through innovative technology solutions.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Link href="/solutions" className="btn-primary">
                 Explore Solutions
               </Link>
-              <Link href="/contact" className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-xl font-medium hover:bg-white hover:text-primary transition-all duration-300">
-                Contact Us
-              </Link>
-            </div>
-          </div>
-          <div className="hidden md:flex justify-center">
-            <div className="relative w-[400px] h-[400px]">
-              {/* Glowing circle background */}
-              <div className="absolute inset-0 rounded-full bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_100px_rgba(255,255,255,0.3)]"></div>
-              
-              {/* Globe */}
-              <div 
-                className="absolute inset-0 flex items-center justify-center"
-                style={{ transform: `rotateY(${rotation}deg)` }}
+              <Link
+                href="/contact"
+                className="btn-secondary flex items-center justify-center"
               >
-                <div className="relative w-[280px] h-[280px] rounded-full overflow-hidden shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
-                  <div className="absolute inset-0 bg-blue-500 opacity-70 rounded-full">
-                    {/* World map pattern */}
-                    <div className="absolute inset-0 opacity-80 bg-gradient-to-r from-blue-400 to-indigo-600">
-                      <div className="absolute inset-0" style={{ 
-                        backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 1px, transparent 1px)',
-                        backgroundSize: '20px 20px',
-                      }}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                Contact Us <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </motion.div>
+          </div>
+          <div className="md:w-1/2 relative">
+            <div className="globe-container w-full h-96 md:h-[500px] relative flex items-center justify-center">
+              {/* Globe background */}
+              <div className="absolute w-64 h-64 bg-blue-50 rounded-full opacity-50"></div>
+              <div className="absolute w-60 h-60 bg-blue-100 rounded-full opacity-30"></div>
               
-              {/* Dynamic Language Display */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="relative">
-                  <div 
-                    className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-lg px-4 py-2 rounded-lg text-white text-lg font-medium z-10 whitespace-nowrap"
-                    style={{ 
-                      animation: 'fadeInOut 2s infinite', 
-                      boxShadow: '0 0 20px rgba(255,255,255,0.2)'
+              {/* Globe dots and languages */}
+              <div className="globe-points relative w-full h-full">
+                {globePoints.map((point) => (
+                  <motion.div
+                    key={point.id}
+                    className="absolute"
+                    style={{
+                      left: `${point.x}%`,
+                      top: `${point.y}%`,
+                      opacity: point.opacity,
+                      scale: point.scale,
+                      transformOrigin: 'center',
                     }}
+                    initial={false}
                   >
-                    {currentLanguage}
-                  </div>
-                </div>
-              </div>
-              
-              {/* Orbiting elements */}
-              <div className="absolute inset-0" style={{ animation: 'spin 20s linear infinite' }}>
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-              </div>
-              
-              {/* Additional orbiting particles */}
-              <div className="absolute inset-0" style={{ animation: 'reverseSpin 30s linear infinite' }}>
-                {[...Array(8)].map((_, i) => (
-                  <div 
-                    key={i} 
-                    className="absolute w-1 h-1 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
-                    style={{ 
-                      top: `${50 + 35 * Math.sin(i * Math.PI / 4)}%`,
-                      left: `${50 + 35 * Math.cos(i * Math.PI / 4)}%`
-                    }}
-                  ></div>
+                    <div className="flex flex-col items-center">
+                      <div className="h-2 w-2 bg-primary rounded-full"></div>
+                      <div className="mt-1 px-2 py-1 bg-white rounded-md shadow-md">
+                        <span className="text-xs font-medium text-primary whitespace-nowrap">
+                          {point.language}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
               
-              {/* Pulsing core */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/20 rounded-full" style={{ animation: 'pulse 2s ease-in-out infinite' }}></div>
+              {/* Rotating circle element */}
+              <div className="absolute w-72 h-72 border border-blue-300 border-dashed rounded-full animate-spin-slow"></div>
+              <div className="absolute w-80 h-80 border border-blue-200 border-dashed rounded-full animate-spin-reverse-slow"></div>
             </div>
           </div>
         </div>
       </div>
-      
-      {/* Add animation keyframes */}
-      <style jsx>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        @keyframes reverseSpin {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-        
-        @keyframes pulse {
-          0% { transform: scale(1) translate(-50%, -50%); opacity: 0.2; }
-          50% { transform: scale(1.5) translate(-33%, -33%); opacity: 0.4; }
-          100% { transform: scale(1) translate(-50%, -50%); opacity: 0.2; }
-        }
-        
-        @keyframes fadeInOut {
-          0% { opacity: 0; transform: translateY(10px) translateX(-50%); }
-          20% { opacity: 1; transform: translateY(0) translateX(-50%); }
-          80% { opacity: 1; transform: translateY(0) translateX(-50%); }
-          100% { opacity: 0; transform: translateY(-10px) translateX(-50%); }
-        }
-      `}</style>
     </section>
   );
 };

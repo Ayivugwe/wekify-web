@@ -8,14 +8,19 @@ import { Menu, X, ChevronDown } from "lucide-react";
 
 const megaMenuItems = {
   Solutions: [
+    { name: "Digital Content Platform", href: "/solutions/digital-content" },
+    { name: "Integration Services", href: "/solutions/integration-services" },
+    { name: "Custom Solutions", href: "/solutions/custom" },
     { name: "Language Preservation", href: "/solutions/language-preservation" },
-    { name: "Digital Learning", href: "/solutions/digital-learning" },
-    { name: "Cultural Heritage", href: "/solutions/cultural-heritage" },
+    { name: "Cloud Infrastructure", href: "/solutions/cloud" },
+    { name: "AI & Machine Learning", href: "/solutions/ai-ml" },
+    { name: "Cultural Institutions", href: "/solutions/cultural-institutions" },
   ],
   Resources: [
     { name: "Case Studies", href: "/case-studies" },
     { name: "Documentation", href: "/resources/documentation" },
     { name: "API", href: "/resources/api" },
+    { name: "Community Forum", href: "/resources/forum" },
   ],
   About: [
     { name: "Our Story", href: "/about/our-story" },
@@ -72,7 +77,7 @@ const Header = () => {
               </button>
               
               {activeMegaMenu === menuName && (
-                <div className="absolute top-full left-0 mt-2 w-60 bg-white rounded-lg shadow-xl p-4">
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl p-4">
                   <div className="grid gap-2">
                     {megaMenuItems[menuName as keyof typeof megaMenuItems].map((item) => (
                       <Link

@@ -43,10 +43,13 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Solutions</h3>
             <ul className="space-y-2">
-              <li><Link href="/solutions/digital-dictionary" className="text-gray-400 hover:text-white transition-colors duration-300">Digital Dictionary</Link></li>
-              <li><Link href="/solutions/integration-platform" className="text-gray-400 hover:text-white transition-colors duration-300">Integration Platform</Link></li>
+              <li><Link href="/solutions/digital-content" className="text-gray-400 hover:text-white transition-colors duration-300">Digital Content Platform</Link></li>
+              <li><Link href="/solutions/integration-services" className="text-gray-400 hover:text-white transition-colors duration-300">Integration Services</Link></li>
+              <li><Link href="/solutions/custom" className="text-gray-400 hover:text-white transition-colors duration-300">Custom Solutions</Link></li>
+              <li><Link href="/solutions/language-preservation" className="text-gray-400 hover:text-white transition-colors duration-300">Language Preservation</Link></li>
+              <li><Link href="/solutions/cloud" className="text-gray-400 hover:text-white transition-colors duration-300">Cloud Infrastructure</Link></li>
+              <li><Link href="/solutions/ai-ml" className="text-gray-400 hover:text-white transition-colors duration-300">AI & Machine Learning</Link></li>
               <li><Link href="/solutions/cultural-institutions" className="text-gray-400 hover:text-white transition-colors duration-300">Cultural Institutions</Link></li>
-              <li><Link href="/solutions/education" className="text-gray-400 hover:text-white transition-colors duration-300">Education</Link></li>
             </ul>
           </div>
 
