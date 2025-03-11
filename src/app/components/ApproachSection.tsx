@@ -1,121 +1,116 @@
-"use client";
 
 import React from "react";
-import { FileText, Code, Users, Sparkles } from "lucide-react";
+import { Code, Shapes, Database, LayoutGrid } from "lucide-react";
 
 const ApproachSection = () => {
-  const steps = [
-    {
-      number: "01",
-      icon: FileText,
-      title: "Document",
-      description:
-        "We work with native speakers to document vocabulary, phrases, and cultural context",
-      gradient: "from-blue-500 to-blue-600",
-      delay: "0",
-    },
-    {
-      number: "02",
-      icon: Code,
-      title: "Digitize",
-      description:
-        "Create intuitive digital platforms for learning and preservation",
-      gradient: "from-indigo-500 to-indigo-600",
-      delay: "150",
-    },
-    {
-      number: "03",
-      icon: Users,
-      title: "Engage",
-      description: "Build active communities around each language platform",
-      gradient: "from-purple-500 to-purple-600",
-      delay: "300",
-    },
-    {
-      number: "04",
-      icon: Sparkles,
-      title: "Evolve",
-      description:
-        "Continuously improve and expand based on community feedback and needs",
-      gradient: "from-violet-500 to-violet-600",
-      delay: "450",
-    },
-  ];
-
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gray-900">
-        <div
-          className="absolute inset-0 opacity-50"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4">
+    <section className="section bg-white">
+      <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-6 text-white">Our Approach</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A systematic methodology for preserving and digitizing languages
+          <h2 className="mb-4">Our Technical Approach</h2>
+          <p className="max-w-3xl mx-auto">
+            We combine cutting-edge technology with linguistic expertise to create sustainable, scalable solutions for language preservation.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="group relative"
-              style={{
-                opacity: 0,
-                animation: `fadeInUp 0.5s ease-out forwards ${step.delay}ms`,
-              }}
-            >
-              {/* Connection Line */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 left-full w-full h-0.5 bg-gradient-to-r from-gray-700 to-transparent -translate-y-1/2 z-0"></div>
-              )}
-
-              {/* Card */}
-              <div className="relative z-10 p-6 bg-gray-800 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-300 h-full transform hover:-translate-y-1">
-                {/* Step Number */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center text-white text-sm font-bold">
-                  {step.number}
-                </div>
-
-                {/* Icon */}
-                <div
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-r ${step.gradient} flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform`}
-                >
-                  <step.icon className="w-6 h-6 text-white" />
-                </div>
-
-                <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-400 transition-colors">
-                  {step.title}
-                </h3>
-                <p className="text-gray-400">{step.description}</p>
-
-                {/* Bottom Accent */}
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
+            <div className="bg-primary/10 p-4 rounded-xl w-16 h-16 flex items-center justify-center mb-6">
+              <Database className="text-primary h-8 w-8" />
             </div>
-          ))}
+            <h3 className="text-xl font-bold mb-3">Robust Data Architecture</h3>
+            <p className="mb-4">
+              We've developed a specialized database schema optimized for linguistic data, capturing complex relationships between words, meanings, and cultural contexts.
+            </p>
+            <ul className="space-y-2 text-text-secondary">
+              <li className="flex items-center">
+                <span className="mr-2 text-primary">•</span>
+                Flexible schema supporting diverse language structures
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2 text-primary">•</span>
+                Comprehensive metadata for linguistic analysis
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2 text-primary">•</span>
+                Efficient search and retrieval systems
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
+            <div className="bg-secondary/10 p-4 rounded-xl w-16 h-16 flex items-center justify-center mb-6">
+              <Code className="text-secondary h-8 w-8" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Modern Web Technologies</h3>
+            <p className="mb-4">
+              Our platform is built with the latest web technologies, ensuring fast, responsive experiences across all devices.
+            </p>
+            <ul className="space-y-2 text-text-secondary">
+              <li className="flex items-center">
+                <span className="mr-2 text-secondary">•</span>
+                Next.js for performant, SEO-friendly interfaces
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2 text-secondary">•</span>
+                Progressive Web App capabilities for offline access
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2 text-secondary">•</span>
+                Responsive design optimized for all screen sizes
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
+            <div className="bg-accent/10 p-4 rounded-xl w-16 h-16 flex items-center justify-center mb-6">
+              <Shapes className="text-accent h-8 w-8" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Machine Learning Integration</h3>
+            <p className="mb-4">
+              We leverage AI to enhance language documentation, learning, and analysis capabilities.
+            </p>
+            <ul className="space-y-2 text-text-secondary">
+              <li className="flex items-center">
+                <span className="mr-2 text-accent">•</span>
+                Natural Language Processing for semantic analysis
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2 text-accent">•</span>
+                Automated speech recognition for audio transcription
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2 text-accent">•</span>
+                Adaptive learning algorithms for personalized education
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
+            <div className="bg-success/10 p-4 rounded-xl w-16 h-16 flex items-center justify-center mb-6">
+              <LayoutGrid className="text-success h-8 w-8" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Modular Architecture</h3>
+            <p className="mb-4">
+              Our platform is built with modularity in mind, allowing for customization and extension to suit specific language needs.
+            </p>
+            <ul className="space-y-2 text-text-secondary">
+              <li className="flex items-center">
+                <span className="mr-2 text-success">•</span>
+                Microservices-based backend for scalability
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2 text-success">•</span>
+                API-first design for integration with existing systems
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2 text-success">•</span>
+                Extensible framework for custom language features
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 };
