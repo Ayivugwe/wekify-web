@@ -1,7 +1,6 @@
-
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -45,119 +44,17 @@ const languages = [
   "Urdu",
 ];
 
-interface GlobePoint {
-  id: number;
-  x: number;
-  y: number;
-  language: string;
-  opacity: number;
-  scale: number;
-  entering: boolean;
-}
-
 const HeroSection: React.FC = () => {
-  const [globePoints, setGlobePoints] = useState<GlobePoint[]>([]);
-  const animationFrameRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number>(0);
-  const pointCountRef = useRef<number>(0);
+  const [activeLanguage, setActiveLanguage] = useState<string>("English");
 
   useEffect(() => {
-    const createRandomPoint = (): GlobePoint => {
-      // Calculate position on a sphere
-      const theta = Math.random() * Math.PI * 2; // Longitude (0 to 2π)
-      const phi = Math.acos(2 * Math.random() - 1); // Latitude (0 to π)
-      
-      // Convert to Cartesian coordinates and project to 2D
-      const radius = 130;
-      const x = 50 + radius * Math.sin(phi) * Math.cos(theta);
-      const y = 50 + radius * Math.sin(phi) * Math.sin(theta);
-      
-      const language = languages[Math.floor(Math.random() * languages.length)];
-      
-      return {
-        id: pointCountRef.current++,
-        x,
-        y,
-        language,
-        opacity: 0,
-        scale: 0,
-        entering: true
-      };
-    };
+    const interval = setInterval(() => {
+      const randomLanguage =
+        languages[Math.floor(Math.random() * languages.length)];
+      setActiveLanguage(randomLanguage);
+    }, 2000);
 
-    // Initialize with 5 points
-    const initialPoints: GlobePoint[] = [];
-    for (let i = 0; i < 5; i++) {
-      initialPoints.push(createRandomPoint());
-    }
-    setGlobePoints(initialPoints);
-
-    const updateAnimation = (currentTime: number) => {
-      if (!lastTimeRef.current) {
-        lastTimeRef.current = currentTime;
-      }
-      
-      const deltaTime = currentTime - lastTimeRef.current;
-      lastTimeRef.current = currentTime;
-      
-      setGlobePoints(prev => {
-        const updatedPoints = [...prev];
-        
-        // Check if we need to add a new point (keep a maximum of 10 points visible)
-        if (updatedPoints.length < 10 && Math.random() < 0.02) {
-          updatedPoints.push(createRandomPoint());
-        }
-        
-        // Update existing points
-        return updatedPoints.map(point => {
-          if (point.entering) {
-            // Fade in
-            return {
-              ...point,
-              opacity: Math.min(1, point.opacity + 0.01 * deltaTime / 16),
-              scale: Math.min(1, point.scale + 0.01 * deltaTime / 16),
-              entering: point.opacity < 1 || point.scale < 1
-            };
-          } else {
-            // Fade out
-            const newOpacity = Math.max(0, point.opacity - 0.01 * deltaTime / 16);
-            const newScale = Math.max(0, point.scale - 0.01 * deltaTime / 16);
-            return {
-              ...point,
-              opacity: newOpacity,
-              scale: newScale
-            };
-          }
-        }).filter(point => {
-          // Remove points that have completely faded out and are not entering
-          return point.opacity > 0 || point.entering;
-        });
-      });
-      
-      // Randomly change state of points from entering to exiting
-      if (Math.random() < 0.01) {
-        setGlobePoints(prev => {
-          const points = [...prev];
-          if (points.length > 0) {
-            const randomIndex = Math.floor(Math.random() * points.length);
-            if (points[randomIndex].entering && points[randomIndex].opacity >= 1) {
-              points[randomIndex].entering = false;
-            }
-          }
-          return points;
-        });
-      }
-      
-      animationFrameRef.current = requestAnimationFrame(updateAnimation);
-    };
-    
-    animationFrameRef.current = requestAnimationFrame(updateAnimation);
-    
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -203,38 +100,73 @@ const HeroSection: React.FC = () => {
             <div className="globe-container w-full h-96 md:h-[500px] relative flex items-center justify-center">
               {/* Globe background */}
               <div className="absolute w-64 h-64 bg-blue-50 rounded-full opacity-50"></div>
-              <div className="absolute w-60 h-60 bg-blue-100 rounded-full opacity-30"></div>
-              
-              {/* Globe dots and languages */}
-              <div className="globe-points relative w-full h-full">
-                {globePoints.map((point) => (
-                  <motion.div
-                    key={point.id}
-                    className="absolute"
-                    style={{
-                      left: `${point.x}%`,
-                      top: `${point.y}%`,
-                      opacity: point.opacity,
-                      scale: point.scale,
-                      transformOrigin: 'center',
-                    }}
-                    initial={false}
-                  >
-                    <div className="flex flex-col items-center">
-                      <div className="h-2 w-2 bg-primary rounded-full"></div>
-                      <div className="mt-1 px-2 py-1 bg-white rounded-md shadow-md">
-                        <span className="text-xs font-medium text-primary whitespace-nowrap">
-                          {point.language}
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+
+              {/* Language display */}
+              <div className="absolute language-display">
+                <motion.span
+                  key={activeLanguage}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-2xl font-bold text-primary"
+                >
+                  {activeLanguage}
+                </motion.span>
               </div>
-              
-              {/* Rotating circle element */}
+
+              {/* Globe animations */}
               <div className="absolute w-72 h-72 border border-blue-300 border-dashed rounded-full animate-spin-slow"></div>
               <div className="absolute w-80 h-80 border border-blue-200 border-dashed rounded-full animate-spin-reverse-slow"></div>
+
+              {/* Globe dots - let's add more to represent different languages */}
+              <div className="globe-dots">
+                {[...Array(15)].map((_, index) => {
+                  const angle = (index / 15) * Math.PI * 2;
+                  const radius = 120;
+                  const x = Math.cos(angle) * radius;
+                  const y = Math.sin(angle) * radius;
+
+                  return (
+                    <div
+                      key={index}
+                      className="absolute h-2 w-2 bg-primary rounded-full"
+                      style={{
+                        left: `calc(50% + ${x}px)`,
+                        top: `calc(50% + ${y}px)`,
+                        opacity: Math.random() * 0.5 + 0.5,
+                      }}
+                    ></div>
+                  );
+                })}
+
+                {/* Add language labels at specific points around the globe */}
+                {languages.slice(0, 6).map((lang, index) => {
+                  const angle = (index / 6) * Math.PI * 2;
+                  const radius = 140;
+                  const x = Math.cos(angle) * radius;
+                  const y = Math.sin(angle) * radius;
+
+                  return (
+                    <div
+                      key={`lang-${index}`}
+                      className="absolute"
+                      style={{
+                        left: `calc(50% + ${x}px)`,
+                        top: `calc(50% + ${y}px)`,
+                        transform: 'translate(-50%, -50%)',
+                      }}
+                    >
+                      <div className="px-2 py-1 bg-white rounded-md shadow-sm">
+                        <span className="text-xs font-medium text-primary">{lang}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Pulsing center */}
+              <div className="absolute w-4 h-4 bg-primary rounded-full opacity-20 animate-pulse"></div>
             </div>
           </div>
         </div>
