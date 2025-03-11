@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Lightbulb, Tool, Shield, Clock, Zap, MessageCircle } from "lucide-react";
+import { Lightbulb, Shield, Clock, Zap, MessageCircle } from "lucide-react";
 import Layout from "@/app/components/layout";
 import Link from "next/link";
 
@@ -32,7 +32,7 @@ export default function CustomSolutionsPage() {
                   description: "Bespoke software development tailored to your specific requirements and objectives."
                 },
                 {
-                  icon: <Tool className="w-8 h-8 text-blue-600" />,
+                  icon: <Lightbulb className="w-8 h-8 text-blue-600" />,
                   title: "Platform Optimization",
                   description: "Improve performance, usability, and functionality of your existing digital platforms."
                 },
