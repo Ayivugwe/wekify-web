@@ -1,176 +1,87 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
-const languages = [
-  "English",
-  "Spanish",
-  "French",
-  "Mandarin",
-  "Arabic",
-  "Russian",
-  "Japanese",
-  "German",
-  "Portuguese",
-  "Hindi",
-  "Bengali",
-  "Punjabi",
-  "Kifuliiru",
-  "Swahili",
-  "Yoruba",
-  "Zulu",
-  "Hausa",
-  "Amharic",
-  "Oromo",
-  "Igbo",
-  "Korean",
-  "Italian",
-  "Vietnamese",
-  "Turkish",
-  "Thai",
-  "Dutch",
-  "Polish",
-  "Greek",
-  "Hungarian",
-  "Czech",
-  "Swedish",
-  "Malay",
-  "Indonesian",
-  "Tagalog",
-  "Farsi",
-  "Urdu",
-];
-
-const HeroSection: React.FC = () => {
-  const [activeLanguage, setActiveLanguage] = useState<string>("English");
+const HeroSection = () => {
+  const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomLanguage =
-        languages[Math.floor(Math.random() * languages.length)];
-      setActiveLanguage(randomLanguage);
-    }, 2000);
+      setRotation((prev) => (prev + 0.5) % 360);
+    }, 50);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="hero-section bg-gradient-to-b from-primary-50 to-white py-24 md:py-32">
-      <div className="container">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-12 md:mb-0">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6"
-            >
-              Preserving Languages, Connecting Cultures
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-text-secondary mb-8"
-            >
-              Our digital platform empowers language preservation and cultural
-              heritage through innovative technology solutions.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <Link href="/solutions" className="btn-primary">
+    <section className="bg-gradient-to-r from-primary to-accent text-white">
+      <div className="container py-20 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
+              Preserving Indigenous Languages Through Digital Innovation
+            </h1>
+            <p className="text-xl text-white/90 mb-8">
+              Wekify empowers communities to document, learn, and celebrate their languages with cutting-edge technology solutions.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/solutions" className="bg-white text-primary px-6 py-3 rounded-xl font-medium hover:bg-opacity-90 transition-all duration-300">
                 Explore Solutions
               </Link>
-              <Link
-                href="/contact"
-                className="btn-secondary flex items-center justify-center"
-              >
-                Contact Us <ArrowRight className="ml-2 h-4 w-4" />
+              <Link href="/contact" className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-xl font-medium hover:bg-white hover:text-primary transition-all duration-300">
+                Contact Us
               </Link>
-            </motion.div>
+            </div>
           </div>
-          <div className="md:w-1/2 relative">
-            <div className="globe-container w-full h-96 md:h-[500px] relative flex items-center justify-center">
-              {/* Globe background */}
-              <div className="absolute w-64 h-64 bg-blue-50 rounded-full opacity-50"></div>
+          <div className="hidden md:flex justify-center">
+            <div className="relative w-[400px] h-[400px]">
+              {/* Glowing circle background */}
+              <div className="absolute inset-0 rounded-full bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_100px_rgba(255,255,255,0.3)]"></div>
 
-              {/* Language display */}
-              <div className="absolute language-display">
-                <motion.span
-                  key={activeLanguage}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-2xl font-bold text-primary"
-                >
-                  {activeLanguage}
-                </motion.span>
-              </div>
-
-              {/* Globe animations */}
-              <div className="absolute w-72 h-72 border border-blue-300 border-dashed rounded-full animate-spin-slow"></div>
-              <div className="absolute w-80 h-80 border border-blue-200 border-dashed rounded-full animate-spin-reverse-slow"></div>
-
-              {/* Globe dots - let's add more to represent different languages */}
-              <div className="globe-dots">
-                {[...Array(15)].map((_, index) => {
-                  const angle = (index / 15) * Math.PI * 2;
-                  const radius = 120;
-                  const x = Math.cos(angle) * radius;
-                  const y = Math.sin(angle) * radius;
-
-                  return (
-                    <div
-                      key={index}
-                      className="absolute h-2 w-2 bg-primary rounded-full"
-                      style={{
-                        left: `calc(50% + ${x}px)`,
-                        top: `calc(50% + ${y}px)`,
-                        opacity: Math.random() * 0.5 + 0.5,
-                      }}
-                    ></div>
-                  );
-                })}
-
-                {/* Add language labels at specific points around the globe */}
-                {languages.slice(0, 6).map((lang, index) => {
-                  const angle = (index / 6) * Math.PI * 2;
-                  const radius = 140;
-                  const x = Math.cos(angle) * radius;
-                  const y = Math.sin(angle) * radius;
-
-                  return (
-                    <div
-                      key={`lang-${index}`}
-                      className="absolute"
-                      style={{
-                        left: `calc(50% + ${x}px)`,
-                        top: `calc(50% + ${y}px)`,
-                        transform: 'translate(-50%, -50%)',
-                      }}
-                    >
-                      <div className="px-2 py-1 bg-white rounded-md shadow-sm">
-                        <span className="text-xs font-medium text-primary">{lang}</span>
-                      </div>
+              {/* Globe */}
+              <div 
+                className="absolute inset-0 flex items-center justify-center"
+                style={{ transform: `rotateY(${rotation}deg)` }}
+              >
+                <div className="relative w-[280px] h-[280px] rounded-full overflow-hidden shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
+                  <div className="absolute inset-0 bg-blue-500 opacity-70 rounded-full">
+                    {/* World map pattern */}
+                    <div className="absolute inset-0 opacity-80 bg-gradient-to-r from-blue-400 to-indigo-600">
+                      <div className="absolute inset-0" style={{ 
+                        backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 1px, transparent 1px)',
+                        backgroundSize: '20px 20px',
+                      }}></div>
                     </div>
-                  );
-                })}
+                  </div>
+                </div>
               </div>
 
-              {/* Pulsing center */}
-              <div className="absolute w-4 h-4 bg-primary rounded-full opacity-20 animate-pulse"></div>
+              {/* Orbiting elements */}
+              <div className="absolute inset-0" style={{ animation: 'spin 20s linear infinite' }}>
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+              </div>
+
+              {/* Overlaying text elements */}
+              <div className="absolute top-[15%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">Kifuliiru</div>
+              <div className="absolute top-[70%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">Swahili</div>
+              <div className="absolute top-[40%] left-[80%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">Yoruba</div>
+              <div className="absolute top-[25%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">Twi</div>
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </section>
   );
 };
