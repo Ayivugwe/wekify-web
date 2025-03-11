@@ -121,7 +121,8 @@ const Header = () => {
 
               {activeMegaMenu === menuName && (
                 <div 
-                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn z-50"
+                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn z-50 mx-auto"
+                  style={{ left: '50%', transform: 'translateX(-50%)' }}
                   onMouseEnter={() => handleMegaMenuHover(menuName)}
                   onMouseLeave={() => handleMegaMenuHover(null)}
                 >
