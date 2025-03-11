@@ -58,14 +58,13 @@ interface MenuSection {
 // Add the logo at the beginning of the navigation
 const Logo = () => (
   <Link href="/" className="flex items-center gap-2">
-    <Image 
-      src="/logo.png" 
-      alt="Wekify Logo" 
-      width={36} 
-      height={36} 
+    <Image
+      src="/favicon.png"
+      alt="Wekify Logo"
+      width={36}
+      height={36}
       className="h-9 w-auto"
     />
-    <span className="font-bold text-xl">Wekify</span>
   </Link>
 );
 
@@ -357,13 +356,15 @@ const Header = () => {
           group-hover:bg-blue-100 group-hover:scale-110 transition-all duration-200 
           overflow-hidden relative"
         >
-          <IconWrapper 
-            icon={item.icon} 
+          <IconWrapper
+            icon={item.icon}
             className="w-5 h-5 text-blue-600 group-hover:text-blue-700 group-hover:rotate-3 
-            transition-all duration-300 transform" 
+            transition-all duration-300 transform"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 
-          opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 
+          opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
         </div>
         <div>
           <div className="text-base font-medium text-gray-900 group-hover:text-blue-600">
@@ -391,12 +392,7 @@ const Header = () => {
         {/* Desktop Navigation */}
         <div className="flex items-center px-6 h-16">
           {/* Logo */}
-          <Link
-            href="/"
-            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text mr-8"
-          >
-            Wekify
-          </Link>
+          <Logo />
 
           {/* Main Navigation */}
           <div className="hidden lg:flex items-center flex-1">
@@ -454,7 +450,7 @@ const Header = () => {
                                 </h3>
                                 <div className="space-y-2">
                                   {section.items.map((item) =>
-                                    renderMenuItem(item)
+                                    renderMenuItem(item),
                                   )}
                                 </div>
                               </div>
