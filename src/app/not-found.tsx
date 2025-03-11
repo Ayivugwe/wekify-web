@@ -6,9 +6,12 @@ import { Home, ArrowLeft, Search } from "lucide-react";
 import Layout from "./components/layout";
 
 export default function NotFound() {
-  const [animationComplete, setAnimationComplete] = useState(false);
+  // Pre-define animation state to avoid hydration mismatch
+  const [animationComplete, setAnimationComplete] = useState(true);
 
   useEffect(() => {
+    // Reset animation state on client side to trigger animation sequence
+    setAnimationComplete(false);
     const timer = setTimeout(() => {
       setAnimationComplete(true);
     }, 2000);
@@ -35,19 +38,41 @@ export default function NotFound() {
             >
               404
             </div>
-            {/* Animated particles */}
+            {/* Animated particles with fixed positions to avoid hydration issues */}
             <div className="absolute inset-0 overflow-hidden">
-              {[...Array(20)].map((_, i) => (
+              {/* Fixed particle positions instead of random */}
+              {[
+                { size: 12, left: 20, top: 30, duration: 15, delay: 0 },
+                { size: 8, left: 45, top: 60, duration: 18, delay: 1 },
+                { size: 15, left: 70, top: 25, duration: 13, delay: 2 },
+                { size: 10, left: 85, top: 80, duration: 16, delay: 3 },
+                { size: 7, left: 30, top: 85, duration: 14, delay: 1 },
+                { size: 16, left: 60, top: 40, duration: 17, delay: 2 },
+                { size: 9, left: 15, top: 50, duration: 19, delay: 0 },
+                { size: 13, left: 75, top: 65, duration: 12, delay: 3 },
+                { size: 11, left: 40, top: 15, duration: 16, delay: 2 },
+                { size: 14, left: 55, top: 75, duration: 15, delay: 1 },
+                { size: 8, left: 25, top: 60, duration: 14, delay: 3 },
+                { size: 12, left: 90, top: 35, duration: 18, delay: 0 },
+                { size: 10, left: 5, top: 70, duration: 13, delay: 2 },
+                { size: 15, left: 50, top: 10, duration: 17, delay: 1 },
+                { size: 9, left: 80, top: 55, duration: 15, delay: 0 },
+                { size: 13, left: 35, top: 45, duration: 16, delay: 3 },
+                { size: 11, left: 65, top: 20, duration: 14, delay: 1 },
+                { size: 14, left: 10, top: 90, duration: 19, delay: 2 },
+                { size: 8, left: 95, top: 5, duration: 13, delay: 0 },
+                { size: 12, left: 20, top: 95, duration: 15, delay: 3 }
+              ].map((particle, i) => (
                 <div
                   key={i}
                   className="absolute rounded-full bg-primary/20"
                   style={{
-                    width: `${Math.random() * 20 + 5}px`,
-                    height: `${Math.random() * 20 + 5}px`,
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    animation: `float ${Math.random() * 10 + 10}s linear infinite`,
-                    animationDelay: `${Math.random() * 5}s`,
+                    width: `${particle.size}px`,
+                    height: `${particle.size}px`,
+                    left: `${particle.left}%`,
+                    top: `${particle.top}%`,
+                    animation: `float ${particle.duration}s linear infinite`,
+                    animationDelay: `${particle.delay}s`,
                     opacity: animationComplete ? 0.7 : 0,
                     transition: "opacity 1s ease-in-out",
                   }}
