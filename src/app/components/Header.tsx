@@ -142,7 +142,6 @@ const Header = () => {
               key={menuName} 
               className="relative"
               onMouseEnter={() => handleMegaMenuHover(menuName)}
-              onMouseLeave={() => handleMegaMenuHover(null)}
             >
               <button
                 className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300"
@@ -154,7 +153,11 @@ const Header = () => {
               </button>
 
               {activeMegaMenu === menuName && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn z-50">
+                <div 
+                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn z-50"
+                  onMouseEnter={() => handleMegaMenuHover(menuName)}
+                  onMouseLeave={() => handleMegaMenuHover(null)}
+                >
                   <div className="grid grid-cols-2 gap-3">
                     {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
                       (item) => {
