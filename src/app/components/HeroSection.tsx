@@ -1,24 +1,51 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+const languages = [
+  "English", "Spanish", "French", "Mandarin", "Arabic", 
+  "Russian", "Hindi", "Portuguese", "Bengali", "Japanese",
+  "Kifuliiru", "Swahili", "Yoruba", "Zulu", "Xhosa",
+  "Amharic", "Tigrinya", "Hausa", "Igbo", "Wolof",
+  "German", "Italian", "Dutch", "Swedish", "Norwegian",
+  "Finnish", "Danish", "Polish", "Czech", "Hungarian",
+  "Greek", "Turkish", "Korean", "Thai", "Vietnamese",
+  "Malay", "Indonesian", "Tagalog", "Navajo", "Cherokee"
+];
+
 const HeroSection = () => {
   const [rotation, setRotation] = useState(0);
+  const [currentLanguage, setCurrentLanguage] = useState(languages[0]);
+  const [languageIndex, setLanguageIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setRotation((prev) => (prev + 0.5) % 360);
+    // Rotation effect
+    const rotationInterval = setInterval(() => {
+      setRotation((prevRotation) => (prevRotation + 0.5) % 360);
     }, 50);
-    
-    return () => clearInterval(interval);
+
+    // Language changing effect
+    const languageInterval = setInterval(() => {
+      setLanguageIndex((prevIndex) => (prevIndex + 1) % languages.length);
+    }, 2000);
+
+    return () => {
+      clearInterval(rotationInterval);
+      clearInterval(languageInterval);
+    };
   }, []);
+
+  useEffect(() => {
+    setCurrentLanguage(languages[languageIndex]);
+  }, [languageIndex]);
 
   return (
     <section className="bg-gradient-to-r from-primary to-accent text-white">
-      <div className="container py-20 md:py-32">
+      <div className="container py-24 md:py-40">
+        {/* Added more vertical padding */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
@@ -59,6 +86,21 @@ const HeroSection = () => {
                 </div>
               </div>
               
+              {/* Dynamic Language Display */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="relative">
+                  <div 
+                    className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-lg px-4 py-2 rounded-lg text-white text-lg font-medium z-10 whitespace-nowrap"
+                    style={{ 
+                      animation: 'fadeInOut 2s infinite', 
+                      boxShadow: '0 0 20px rgba(255,255,255,0.2)'
+                    }}
+                  >
+                    {currentLanguage}
+                  </div>
+                </div>
+              </div>
+              
               {/* Orbiting elements */}
               <div className="absolute inset-0" style={{ animation: 'spin 20s linear infinite' }}>
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
@@ -67,20 +109,50 @@ const HeroSection = () => {
                 <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
               </div>
               
-              {/* Overlaying text elements */}
-              <div className="absolute top-[15%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">Kifuliiru</div>
-              <div className="absolute top-[70%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">Swahili</div>
-              <div className="absolute top-[40%] left-[80%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">Yoruba</div>
-              <div className="absolute top-[25%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">Twi</div>
+              {/* Additional orbiting particles */}
+              <div className="absolute inset-0" style={{ animation: 'reverseSpin 30s linear infinite' }}>
+                {[...Array(8)].map((_, i) => (
+                  <div 
+                    key={i} 
+                    className="absolute w-1 h-1 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]" 
+                    style={{ 
+                      top: `${50 + 35 * Math.sin(i * Math.PI / 4)}%`,
+                      left: `${50 + 35 * Math.cos(i * Math.PI / 4)}%`
+                    }}
+                  ></div>
+                ))}
+              </div>
+              
+              {/* Pulsing core */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/20 rounded-full" style={{ animation: 'pulse 2s ease-in-out infinite' }}></div>
             </div>
           </div>
         </div>
       </div>
       
+      {/* Add animation keyframes */}
       <style jsx>{`
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
+        }
+        
+        @keyframes reverseSpin {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        
+        @keyframes pulse {
+          0% { transform: scale(1) translate(-50%, -50%); opacity: 0.2; }
+          50% { transform: scale(1.5) translate(-33%, -33%); opacity: 0.4; }
+          100% { transform: scale(1) translate(-50%, -50%); opacity: 0.2; }
+        }
+        
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: translateY(10px) translateX(-50%); }
+          20% { opacity: 1; transform: translateY(0) translateX(-50%); }
+          80% { opacity: 1; transform: translateY(0) translateX(-50%); }
+          100% { opacity: 0; transform: translateY(-10px) translateX(-50%); }
         }
       `}</style>
     </section>
