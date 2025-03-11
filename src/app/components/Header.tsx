@@ -154,8 +154,8 @@ const Header = () => {
               </button>
 
               {activeMegaMenu === menuName && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl p-4">
-                  <div className="grid gap-2">
+                <div className="absolute top-full left-0 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn">
+                  <div className="grid grid-cols-2 gap-3">
                     {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
                       (item) => {
                         const Icon = item.icon ? IconMap[item.icon] : null;
@@ -163,19 +163,19 @@ const Header = () => {
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="block p-3 hover:bg-gray-50 rounded text-text-primary hover:text-primary transition-colors"
+                            className="group block p-3 hover:bg-gray-50 rounded-lg text-text-primary hover:text-primary transition-all duration-300"
                             onClick={() => setActiveMegaMenu(null)}
                           >
                             <div className="flex items-start">
                               {Icon && (
-                                <div className="icon-container mr-3 mt-1">
-                                  <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110" />
+                                <div className="icon-container mr-3 mt-1 p-2 bg-gray-50 rounded-lg group-hover:bg-primary/10 transition-all duration-300">
+                                  <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110 group-hover:rotate-6" />
                                 </div>
                               )}
                               <div>
-                                <div className="font-medium">{item.name}</div>
+                                <div className="font-medium group-hover:translate-x-1 transition-transform duration-300">{item.name}</div>
                                 {item.description && (
-                                  <div className="text-xs text-gray-500 mt-1">
+                                  <div className="text-xs text-gray-500 mt-1 pr-4 group-hover:text-primary/70 transition-colors duration-300">
                                     {item.description}
                                   </div>
                                 )}
