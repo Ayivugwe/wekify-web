@@ -3,28 +3,104 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, Share2, Code, BookOpen, Cloud, Brain, Building, FileText, FileCode, Terminal, Users, Book, UserPlus, Heart } from "lucide-react";
+
+// Icon mapping for dynamic rendering
+const IconMap: Record<string, React.ElementType> = {
+  Globe, Share2, Code, BookOpen, Cloud, Brain, Building, FileText, 
+  FileCode, Terminal, Users, Book, UserPlus, Heart
+};
 
 const megaMenuItems = {
   Solutions: [
-    { name: "Digital Content Platform", href: "/solutions/digital-content" },
-    { name: "Integration Services", href: "/solutions/integration-services" },
-    { name: "Custom Solutions", href: "/solutions/custom" },
-    { name: "Language Preservation", href: "/solutions/language-preservation" },
-    { name: "Cloud Infrastructure", href: "/solutions/cloud" },
-    { name: "AI & Machine Learning", href: "/solutions/ai-ml" },
-    { name: "Cultural Institutions", href: "/solutions/cultural-institutions" },
+    { 
+      name: "Digital Content Platform", 
+      href: "/solutions/digital-content",
+      icon: "Globe",
+      description: "Build scalable content platforms for language and cultural content"
+    },
+    { 
+      name: "Integration Services", 
+      href: "/solutions/integration-services",
+      icon: "Share2",
+      description: "Connect your platforms with powerful APIs and integrations"
+    },
+    { 
+      name: "Custom Solutions", 
+      href: "/solutions/custom",
+      icon: "Code",
+      description: "Tailored development for your specific language needs"
+    },
+    { 
+      name: "Language Preservation", 
+      href: "/solutions/language-preservation",
+      icon: "BookOpen",
+      description: "Tools for documenting and preserving endangered languages"
+    },
+    { 
+      name: "Cloud Infrastructure", 
+      href: "/solutions/cloud",
+      icon: "Cloud",
+      description: "Scalable hosting for language and cultural platforms"
+    },
+    { 
+      name: "AI & Machine Learning", 
+      href: "/solutions/ai-ml",
+      icon: "Brain",
+      description: "Advanced AI for language analysis and processing"
+    },
+    { 
+      name: "Cultural Institutions", 
+      href: "/solutions/cultural-institutions",
+      icon: "Building",
+      description: "Digital solutions for museums and cultural centers"
+    },
   ],
   Resources: [
-    { name: "Case Studies", href: "/case-studies" },
-    { name: "Documentation", href: "/resources/documentation" },
-    { name: "API", href: "/resources/api" },
-    { name: "Community Forum", href: "/resources/forum" },
+    { 
+      name: "Case Studies", 
+      href: "/case-studies",
+      icon: "FileText",
+      description: "See how our solutions work in real-world cases"
+    },
+    { 
+      name: "Documentation", 
+      href: "/resources/documentation",
+      icon: "FileCode",
+      description: "Comprehensive guides for using our platforms"
+    },
+    { 
+      name: "API", 
+      href: "/resources/api",
+      icon: "Terminal",
+      description: "Technical documentation for developers"
+    },
+    { 
+      name: "Community Forum", 
+      href: "/resources/forum",
+      icon: "Users",
+      description: "Connect with others in our language preservation community"
+    },
   ],
   About: [
-    { name: "Our Story", href: "/about/our-story" },
-    { name: "Team", href: "/about/team" },
-    { name: "Culture", href: "/about/culture" },
+    { 
+      name: "Our Story", 
+      href: "/about/our-story",
+      icon: "Book",
+      description: "Learn about our mission and journey"
+    },
+    { 
+      name: "Team", 
+      href: "/about/team",
+      icon: "UserPlus",
+      description: "Meet the people behind Wekify"
+    },
+    { 
+      name: "Culture", 
+      href: "/about/culture",
+      icon: "Heart",
+      description: "Our values and what drives us"
+    },
   ],
 };
 
@@ -78,19 +154,36 @@ const Header = () => {
               </button>
 
               {activeMegaMenu === menuName && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl p-4">
+                <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl p-4">
                   <div className="grid gap-2">
                     {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
-                      (item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="block p-2 hover:bg-gray-50 rounded text-text-primary hover:text-primary transition-colors"
-                          onClick={() => setActiveMegaMenu(null)}
-                        >
-                          {item.name}
-                        </Link>
-                      ),
+                      (item) => {
+                        const Icon = item.icon ? IconMap[item.icon] : null;
+                        return (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block p-3 hover:bg-gray-50 rounded text-text-primary hover:text-primary transition-colors"
+                            onClick={() => setActiveMegaMenu(null)}
+                          >
+                            <div className="flex items-start">
+                              {Icon && (
+                                <div className="icon-container mr-3 mt-1">
+                                  <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110" />
+                                </div>
+                              )}
+                              <div>
+                                <div className="font-medium">{item.name}</div>
+                                {item.description && (
+                                  <div className="text-xs text-gray-500 mt-1">
+                                    {item.description}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      },
                     )}
                   </div>
                 </div>
@@ -149,18 +242,35 @@ const Header = () => {
                 </button>
 
                 {activeMegaMenu === menuName && (
-                  <div className="pl-4 space-y-2 mt-2 border-l-2 border-gray-100">
+                  <div className="pl-4 space-y-3 mt-2 border-l-2 border-gray-100">
                     {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
-                      (item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="block py-1 text-text-primary hover:text-primary transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
-                      ),
+                      (item) => {
+                        const Icon = item.icon ? IconMap[item.icon] : null;
+                        return (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="group block py-2 text-text-primary hover:text-primary transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <div className="flex items-start">
+                              {Icon && (
+                                <div className="icon-container mr-3">
+                                  <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110" />
+                                </div>
+                              )}
+                              <div>
+                                <div className="font-medium">{item.name}</div>
+                                {item.description && (
+                                  <div className="text-xs text-gray-500 mt-1 pr-4">
+                                    {item.description}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      },
                     )}
                   </div>
                 )}

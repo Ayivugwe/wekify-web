@@ -51,6 +51,32 @@
   h4 {
     @apply text-xl md:text-2xl font-semibold text-text-primary leading-snug;
   }
+
+/* Mega menu icon hover effects */
+.icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  transition: all 0.3s ease;
+}
+
+a:hover .icon-container svg,
+button:hover .icon-container svg {
+  color: var(--color-primary);
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Make links in mega menu behave as groups for hover effects */
+.group:hover .group-hover\:text-primary {
+  color: var(--color-primary);
+}
+
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+
   p {
     @apply text-base md:text-lg text-text-secondary leading-relaxed;
   }
