@@ -42,16 +42,16 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container flex items-center justify-between py-4">
+    <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+      <div className="container flex items-center justify-between py-2">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.png"
               alt="Wekify Logo"
-              width={220}
-              height={68}
-              className="h-16 w-auto"
+              width={180}
+              height={56}
+              className="h-12 w-auto"
               priority
             />
           </Link>
