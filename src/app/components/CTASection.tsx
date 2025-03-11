@@ -17,7 +17,7 @@ const CTASection = () => {
               href="/contact"
               className="bg-white text-primary px-8 py-4 rounded-xl font-semibold hover:bg-opacity-90 transition-all duration-300"
             >
-              Get Started Today
+              Contact Us Today
             </Link>
             <Link
               href="/resources"

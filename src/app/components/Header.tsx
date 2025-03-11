@@ -24,9 +24,9 @@ const Header = () => {
             <Image
               src="/logo.png"
               alt="Wekify Logo"
-              width={140}
-              height={40}
-              className="h-10 w-auto"
+              width={180}
+              height={55}
+              className="h-14 w-auto"
             />
           </Link>
         </div>
@@ -46,7 +46,7 @@ const Header = () => {
             href="/contact"
             className="btn-primary ml-4"
           >
-            Get Started
+            Contact Us
           </Link>
         </nav>
 
@@ -83,7 +83,7 @@ const Header = () => {
               className="btn-primary block text-center"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Get Started
+              Contact Us
             </Link>
           </div>
         </div>
@@ -93,3 +93,26 @@ const Header = () => {
 };
 
 export default Header;
+
+
+// Placeholder components for About and FAQ (replace with actual implementations)
+export const About = () => <div>About page content will go here</div>;
+export const FAQ = () => <div>FAQ content will go here</div>;
+
+//Contact Page with form (Not connected to DB)
+export const Contact = () => {
+  return (
+    <div>
+      <h1>Contact Us</h1>
+      <form>
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" name="name" /><br/>
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" name="email" /><br/>
+        <label htmlFor="message">Message:</label>
+        <textarea id="message" name="message"></textarea><br/>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  );
+};
