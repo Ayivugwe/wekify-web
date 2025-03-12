@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
-import SEOMetadata from "../components/SEOMetadata";
 import { FadeIn } from "../components/FadeIn";
 import Link from "next/link";
 import { Button } from "../components/Button";
@@ -214,11 +213,7 @@ export default function LanguagesPage() {
 
   return (
     <Layout>
-      <SEOMetadata 
-        title="World Languages | Wekify"
-        description="Explore the world's languages organized by continent and region. Learn about language vitality and speaker populations."
-        keywords="languages, world languages, language vitality, language preservation"
-      />
+      
       <div className="min-h-screen pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeIn>
