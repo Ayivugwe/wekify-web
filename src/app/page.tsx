@@ -8,6 +8,13 @@ import FAQSection from "./components/FAQSection";
 import { faqData } from "./lib/data/faqData";
 import GamePromoSection from "./components/GamePromoSection";
 import { LanguageDirectoryPromo } from "./components/LanguageDirectoryPromo";
+import { generateMetadata } from "./components/SEOMetadata";
+
+export const metadata = generateMetadata({
+  title: "Wekify - Language Preservation Platform",
+  description: "Empowering indigenous language preservation through digital innovation.",
+  keywords: ["language preservation", "digital platform", "indigenous languages", "Kifuliiru"],
+});
 
 export default function Home() {
   return (

@@ -11,7 +11,8 @@ interface SEOMetadataProps {
   noIndex?: boolean;
 }
 
-export default function SEOMetadata({
+// Changed to not be a React component but a function that returns Metadata
+export function generateMetadata({
   title,
   description,
   keywords = [],
