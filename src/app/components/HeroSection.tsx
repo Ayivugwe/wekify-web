@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 const HeroSection = () => {
   const [rotation, setRotation] = useState(0);
   const [activeLanguage, setActiveLanguage] = useState("Kifuliiru");
-  const languages = ["Kifuliiru", "Swahili", "Yoruba", "Twi", "Hausa", "Amharic"];
+  const languages = ["Kifuliiru", "Swahili", "Yoruba", "Twi", "Hausa", "Amharic", "Quechua", "Navajo", "Māori", "Hindi", "Mongolian", "Welsh", "Sámi"];
   
   // Rotate the globe effect
   useEffect(() => {
@@ -46,20 +46,20 @@ const HeroSection = () => {
             <div className="flex flex-wrap gap-4">
               <Link 
                 href="/solutions" 
-                className="bg-white text-primary px-6 py-3 rounded-xl font-medium hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center"
+                className="bg-white text-blue-700 px-6 py-3 rounded-xl font-medium hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center"
               >
                 Explore Solutions <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link 
                 href="/contact" 
-                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-xl font-medium hover:bg-white/10 transition-all duration-300 shadow-md"
+                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-xl font-medium hover:bg-white hover:text-blue-700 transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1"
               >
                 Contact Us
               </Link>
             </div>
           </div>
-          <div className="hidden md:flex justify-center">
-            <div className="relative w-[400px] h-[400px] transform hover:scale-105 transition-transform duration-500">
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-[280px] h-[280px] md:w-[400px] md:h-[400px] transform hover:scale-105 transition-transform duration-500">
               {/* Glowing circle background */}
               <div className="absolute inset-0 rounded-full bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_100px_rgba(255,255,255,0.3)]"></div>
 
@@ -97,7 +97,7 @@ const HeroSection = () => {
                 <div className="absolute top-0 left-0 w-full h-full rounded-full bg-white/10 animate-pulse"></div>
               </div>
 
-              {/* Static language bubbles */}
+              {/* Static language bubbles representing global diversity */}
               <div className="absolute top-[15%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
                 Amharic
               </div>
@@ -110,6 +110,18 @@ const HeroSection = () => {
               <div className="absolute top-[60%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
                 Hausa
               </div>
+              <div className="absolute top-[85%] left-[40%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
+                Quechua
+              </div>
+              <div className="absolute top-[30%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
+                Māori
+              </div>
+              <div className="absolute top-[20%] left-[45%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
+                Welsh
+              </div>
+              <div className="absolute top-[75%] left-[85%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
+                Hindi
+              </div>
             </div>
           </div>
         </div>
@@ -118,6 +130,7 @@ const HeroSection = () => {
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-white/10 -skew-x-12 transform origin-top-right"></div>
       <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/30 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-2 bg-indigo-900"></div> {/* Border to separate sections */}
 
       <style jsx>{`
         @keyframes spin {

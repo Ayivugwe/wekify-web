@@ -238,7 +238,7 @@ const Header = () => {
           </div>
           <Link 
             href="/contact" 
-            className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
+            className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-indigo-600 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
           >
            Contact Us
           </Link>
