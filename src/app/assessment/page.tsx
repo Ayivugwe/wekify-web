@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import Layout from "../components/layout";
-import { Button } from "../components/ui/Button";
 import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
 import { assessmentQuestions } from "../lib/data/assessmentQuestions";
 import Link from "next/link";
+import { Button } from "../components/Button";
 
 export default function AssessmentPage() {
   const [currentStep, setCurrentStep] = useState(0);
