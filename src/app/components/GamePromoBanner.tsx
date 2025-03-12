@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "./FadeIn";
-import { GameController, Star, Trophy, Users } from "lucide-react";
+import { Gamepad2, Star, Trophy, Users } from "lucide-react";
 
 export default function GamePromoBanner() {
   return (
@@ -20,7 +20,7 @@ export default function GamePromoBanner() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="md:w-1/2">
               <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
-                <GameController className="h-4 w-4 mr-2" /> Fun Learning Experience
+                <Gamepad2 className="h-4 w-4 mr-2" /> Fun Learning Experience
               </div>
               
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
