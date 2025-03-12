@@ -33,7 +33,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-r from-primary to-accent text-white">
+    <section className="bg-gradient-to-r from-slate-800 to-indigo-800 text-white">
       <div className="container py-20 md:py-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
@@ -116,8 +116,8 @@ const HeroSection = () => {
       </div>
 
       {/* Background decorative elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 -skew-x-12 transform origin-top-right"></div>
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/20 to-transparent"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-white/10 -skew-x-12 transform origin-top-right"></div>
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/30 to-transparent"></div>
 
       <style jsx>{`
         @keyframes spin {
