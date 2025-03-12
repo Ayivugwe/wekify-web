@@ -60,7 +60,7 @@ export default function FuliiruHubShowcase() {
             <div className="grid grid-cols-2 gap-3">
               <div className="relative rounded-xl overflow-hidden shadow-xl">
                 <Image 
-                  src="/fuliiru-hub-homepage.jpg" 
+                  src="/fuliiru-hub-homepage.png" 
                   alt="FuliiruHub Gateway" 
                   width={500} 
                   height={350}
@@ -73,7 +73,7 @@ export default function FuliiruHubShowcase() {
               
               <div className="relative rounded-xl overflow-hidden shadow-xl">
                 <Image 
-                  src="/fuliiru-hub-about.jpg" 
+                  src="/fuliiru-hub-about.png" 
                   alt="FuliiruHub About" 
                   width={500} 
                   height={350}
@@ -86,7 +86,7 @@ export default function FuliiruHubShowcase() {
               
               <div className="relative rounded-xl overflow-hidden shadow-xl">
                 <Image 
-                  src="/fuliiru-hub-contribute.jpg" 
+                  src="/fuliiru-hub-contribute.png" 
                   alt="FuliiruHub Contribute" 
                   width={500} 
                   height={350}
@@ -99,7 +99,7 @@ export default function FuliiruHubShowcase() {
               
               <div className="relative rounded-xl overflow-hidden shadow-xl">
                 <Image 
-                  src="/fuliiru-hub-motherland.jpg" 
+                  src="/fuliiru-hub-motherland.png" 
                   alt="FuliiruHub Ibufuliiru" 
                   width={500} 
                   height={350}
