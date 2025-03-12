@@ -25,7 +25,7 @@ export default function SEOMetadata({
   return {
     title,
     description,
-    keywords: keywords.join(", "),
+    keywords: Array.isArray(keywords) ? keywords.join(", ") : keywords,
     metadataBase,
     alternates: {
       canonical: canonicalUrl,
