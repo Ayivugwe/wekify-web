@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import Button from "../components/Button";
+import { Button } from "@/app/components/Button";
 import Link from "next/link";
 import Section from "../components/Section";
 import FadeIn from "../components/FadeIn";
