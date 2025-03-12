@@ -95,6 +95,12 @@ export default function AboutPage() {
                   icon: <Heart className="w-8 h-8" />,
                   href: "/about/culture",
                 },
+                {
+                  title: "Our Policies",
+                  description: "Learn about our guiding principles and vision",
+                  icon: <Shield className="w-8 h-8" />,
+                  href: "/about/our-policies",
+                },
               ].map((item, index) => (
                 <Link
                   href={item.href}
