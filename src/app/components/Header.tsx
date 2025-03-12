@@ -186,6 +186,7 @@ const Header = () => {
             Language Resource Assessment
           </Link>
           <Link href="/dashboard" className="text-text-primary hover:text-primary font-medium transition-colors duration-300">Dashboard</Link> 
+          <Link href="/languages" className="text-text-primary hover:text-primary font-medium transition-colors duration-300">Languages</Link> {/* Added Languages link */}
           <Link href="/contact" className="btn-primary ml-4">
             Contact Us
           </Link>
@@ -286,6 +287,13 @@ const Header = () => {
             >
               Dashboard
             </Link> 
+            <Link
+              href="/languages"
+              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Languages
+            </Link> {/* Added Languages link */}
             <Link
               href="/contact"
               className="btn-primary block text-center"
