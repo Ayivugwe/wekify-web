@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { Button } from "@/app/components/Button";
 import Link from "next/link";
 import Section from "../components/Section";
-import FadeIn from "../components/FadeIn";
+import { FadeIn } from "../components/FadeIn";
 import Layout from "../components/layout";
 import SEOMetadata from "../components/SEOMetadata";
 import { cn } from "@/lib/utils";
