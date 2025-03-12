@@ -27,7 +27,7 @@ export default function Home() {
         <HeroSection />
 
         {/* Key Features Section - Teal/Green Background */}
-        <section className="py-24 mt-16 bg-gradient-to-b from-teal-500 to-teal-600">
+        <section className="py-24 bg-gradient-to-b from-teal-500 to-teal-600">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">

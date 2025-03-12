@@ -47,7 +47,7 @@ const HeroSection = () => {
 
   return (
     <section className="bg-gradient-to-r from-slate-800 to-indigo-800 text-white relative">
-      <div className="container py-20 md:py-32 pb-28">
+      <div className="container py-20 md:py-32 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
