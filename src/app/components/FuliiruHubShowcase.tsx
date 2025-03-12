@@ -57,20 +57,57 @@ export default function FuliiruHubShowcase() {
           </div>
           
           <div className="relative">
-            <div className="relative rounded-xl overflow-hidden shadow-2xl">
-              <Image 
-                src="/ayivugwe.png" 
-                alt="FuliiruHub Language Preservation" 
-                width={600} 
-                height={450}
-                className="w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-8">
-                <div className="bg-orange-600 text-white px-4 py-2 rounded-full w-fit mb-4">
-                  Live Project
+            <div className="grid grid-cols-2 gap-3">
+              <div className="relative rounded-xl overflow-hidden shadow-xl">
+                <Image 
+                  src="/fuliiru-hub-homepage.jpg" 
+                  alt="FuliiruHub Gateway" 
+                  width={500} 
+                  height={350}
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex flex-col justify-end p-4">
+                  <h4 className="text-sm font-bold text-white">Gateway to Kifuliiru</h4>
                 </div>
-                <h3 className="text-2xl font-bold text-white">FuliiruHub</h3>
-                <p className="text-white/90">Preserving cultural heritage through digital innovation</p>
+              </div>
+              
+              <div className="relative rounded-xl overflow-hidden shadow-xl">
+                <Image 
+                  src="/fuliiru-hub-about.jpg" 
+                  alt="FuliiruHub About" 
+                  width={500} 
+                  height={350}
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex flex-col justify-end p-4">
+                  <h4 className="text-sm font-bold text-white">Mission & Goals</h4>
+                </div>
+              </div>
+              
+              <div className="relative rounded-xl overflow-hidden shadow-xl">
+                <Image 
+                  src="/fuliiru-hub-contribute.jpg" 
+                  alt="FuliiruHub Contribute" 
+                  width={500} 
+                  height={350}
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex flex-col justify-end p-4">
+                  <h4 className="text-sm font-bold text-white">Community Contribution</h4>
+                </div>
+              </div>
+              
+              <div className="relative rounded-xl overflow-hidden shadow-xl">
+                <Image 
+                  src="/fuliiru-hub-motherland.jpg" 
+                  alt="FuliiruHub Ibufuliiru" 
+                  width={500} 
+                  height={350}
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex flex-col justify-end p-4">
+                  <h4 className="text-sm font-bold text-white">Ibufuliiru Section</h4>
+                </div>
               </div>
             </div>
             
