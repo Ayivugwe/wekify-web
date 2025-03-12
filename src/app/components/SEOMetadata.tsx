@@ -20,7 +20,7 @@ export default function SEOMetadata({
   twitterHandle = "@wekify",
   noIndex = false,
 }: SEOMetadataProps): Metadata {
-  const metadataBase = new URL("https://www.wekify.org");
+  const metadataBase = new URL("https://www.wekify.com");
   
   return {
     title,
