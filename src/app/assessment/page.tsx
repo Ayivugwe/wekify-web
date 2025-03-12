@@ -1,523 +1,360 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Button } from "@/app/components/Button";
-import { FadeIn } from "../components/FadeIn";
-import { ArrowRight, CheckCircle, XCircle, AlertCircle, BookOpen, Globe, Database, Users, BookMarked, GraduationCap, BarChart2 } from "lucide-react";
-import SEOMetadata from "../components/SEOMetadata";
-import Layout from "../components/layout";
-import { cn } from "@/lib/utils";
+import React, { useState } from 'react';
+import { ArrowRight, Check, X, Loader2 } from 'lucide-react';
+import Layout from '../components/layout';
+import { Button } from '../components/Button';
 
-// Assessment criteria
-const assessmentCriteria = [
+const questions = [
   {
-    id: "documentation",
-    title: "Documentation Status",
-    icon: <BookOpen className="w-5 h-5" />,
-    description: "Evaluate the availability of dictionaries, grammars, and linguistic resources",
+    id: 'speakers',
+    question: 'How many native speakers does the language have?',
     options: [
-      { value: 0, label: "Extensive documentation (multiple comprehensive resources)" },
-      { value: 1, label: "Good documentation (at least one comprehensive grammar and dictionary)" },
-      { value: 2, label: "Limited documentation (partial grammar or small dictionary)" },
-      { value: 3, label: "Minimal documentation (word lists or brief descriptions only)" },
-      { value: 4, label: "No documentation (no written resources available)" }
+      { value: 'many', label: 'Over 1 million speakers', score: 10 },
+      { value: 'moderate', label: 'Between 100,000 and 1 million speakers', score: 5 },
+      { value: 'few', label: 'Between 10,000 and 100,000 speakers', score: 2 },
+      { value: 'endangered', label: 'Less than 10,000 speakers', score: 0 }
     ]
   },
   {
-    id: "speakers",
-    title: "Number of Speakers",
-    icon: <Users className="w-5 h-5" />,
-    description: "Estimate the current number of fluent speakers",
+    id: 'documentation',
+    question: 'How well is the language documented?',
     options: [
-      { value: 0, label: "More than 1,000,000 speakers" },
-      { value: 1, label: "100,000 - 1,000,000 speakers" },
-      { value: 2, label: "10,000 - 100,000 speakers" },
-      { value: 3, label: "1,000 - 10,000 speakers" },
-      { value: 4, label: "Fewer than 1,000 speakers" }
+      { value: 'extensive', label: 'Comprehensive dictionary, grammar, and learning resources', score: 10 },
+      { value: 'moderate', label: 'Basic dictionary and some grammar resources', score: 5 },
+      { value: 'minimal', label: 'Limited documentation with significant gaps', score: 2 },
+      { value: 'none', label: 'Almost no documentation exists', score: 0 }
     ]
   },
   {
-    id: "digitalPresence",
-    title: "Digital Presence",
-    icon: <Globe className="w-5 h-5" />,
-    description: "Assess online resources, social media use, and digital tools",
+    id: 'digital',
+    question: 'What is the digital presence of the language?',
     options: [
-      { value: 0, label: "Extensive (operating systems, multiple apps, active online communities)" },
-      { value: 1, label: "Good (some applications, active websites, social media presence)" },
-      { value: 2, label: "Limited (few websites, minimal social media, basic digital tools)" },
-      { value: 3, label: "Minimal (occasional online content, no dedicated tools)" },
-      { value: 4, label: "None (no meaningful digital presence)" }
+      { value: 'strong', label: 'Available in major platforms, apps, and has online content', score: 10 },
+      { value: 'moderate', label: 'Some online content but limited app support', score: 5 },
+      { value: 'minimal', label: 'Very little online content or digital resources', score: 2 },
+      { value: 'none', label: 'No significant digital presence', score: 0 }
     ]
   },
   {
-    id: "education",
-    title: "Educational Support",
-    icon: <GraduationCap className="w-5 h-5" />,
-    description: "Evaluate language teaching in schools and educational institutions",
+    id: 'education',
+    question: 'Is the language taught in schools?',
     options: [
-      { value: 0, label: "Taught at all levels of education with dedicated programs" },
-      { value: 1, label: "Taught in some schools with formal curriculum" },
-      { value: 2, label: "Optional subject or extracurricular activity in some schools" },
-      { value: 3, label: "Informal teaching only (community-led initiatives)" },
-      { value: 4, label: "No educational programs available" }
+      { value: 'extensively', label: 'Taught as a primary language in many schools', score: 10 },
+      { value: 'somewhat', label: 'Taught as a subject in some schools', score: 5 },
+      { value: 'rarely', label: 'Taught in very few educational settings', score: 2 },
+      { value: 'never', label: 'Not taught in formal education', score: 0 }
     ]
   },
   {
-    id: "mediaContent",
-    title: "Media & Content",
-    icon: <BookMarked className="w-5 h-5" />,
-    description: "Assess availability of books, media, and entertainment",
+    id: 'government',
+    question: 'What is the official status of the language?',
     options: [
-      { value: 0, label: "Wide range of media (TV, radio, publications, literature)" },
-      { value: 1, label: "Regular media presence (some TV/radio, periodic publications)" },
-      { value: 2, label: "Limited media (occasional broadcasts, few publications)" },
-      { value: 3, label: "Minimal media (rare publications, no regular broadcasts)" },
-      { value: 4, label: "No media content available" }
+      { value: 'official', label: 'Official national or regional language', score: 10 },
+      { value: 'recognized', label: 'Recognized minority language with some protections', score: 5 },
+      { value: 'unrecognized', label: 'No official recognition but tolerated', score: 2 },
+      { value: 'suppressed', label: 'Actively discouraged by authorities', score: 0 }
     ]
   },
   {
-    id: "dataAvailability",
-    title: "Data Availability",
-    icon: <Database className="w-5 h-5" />,
-    description: "Evaluate existing corpus, recordings, and language data",
+    id: 'intergenerational',
+    question: 'Is the language being passed to younger generations?',
     options: [
-      { value: 0, label: "Extensive corpora and datasets readily available" },
-      { value: 1, label: "Good data availability with some structured datasets" },
-      { value: 2, label: "Limited structured data with some recordings available" },
-      { value: 3, label: "Minimal data (scattered recordings or text samples)" },
-      { value: 4, label: "No significant language data available" }
+      { value: 'strong', label: 'Most children learn it as their first language', score: 10 },
+      { value: 'moderate', label: 'Some children learn it, but many do not', score: 5 },
+      { value: 'weak', label: 'Few children are learning it', score: 2 },
+      { value: 'none', label: 'Almost no intergenerational transmission', score: 0 }
     ]
-  }
+  },
+  {
+    id: 'media',
+    question: 'Is there media content in this language?',
+    options: [
+      { value: 'abundant', label: 'Extensive TV, radio, newspapers, and online content', score: 10 },
+      { value: 'moderate', label: 'Some dedicated media outlets and content', score: 5 },
+      { value: 'minimal', label: 'Very limited media presence', score: 2 },
+      { value: 'none', label: 'No significant media content', score: 0 }
+    ]
+  },
 ];
 
-export default function LanguageAssessment() {
-  const [formData, setFormData] = useState({});
-  const [languageName, setLanguageName] = useState("");
-  const [results, setResults] = useState(null);
+export default function LanguageAssessmentPage() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [languageName, setLanguageName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [languageSummary, setLanguageSummary] = useState(null);
-  const [existingLanguages, setExistingLanguages] = useState(["Swahili", "Navajo", "Welsh", "French", "Spanish"]); // Sample data
-  const [isSearching, setIsSearching] = useState(false);
+  const [result, setResult] = useState(null);
 
-
-  const handleOptionChange = (criteriaId, value) => {
-    setFormData({
-      ...formData,
-      [criteriaId]: parseInt(value)
+  const handleAnswer = (questionId, answer, score) => {
+    setAnswers({
+      ...answers,
+      [questionId]: { answer, score }
     });
+
+    if (currentStep < questions.length) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
-  const saveLanguageAssessment = async (resultsData) => {
-    // Simulate saving to a database.  Replace with your actual database interaction.
-    const existingAssessments = localStorage.getItem('languageAssessments') ? JSON.parse(localStorage.getItem('languageAssessments')) : {};
-    existingAssessments[resultsData.languageName] = existingAssessments[resultsData.languageName] || [];
-    existingAssessments[resultsData.languageName].push(resultsData);
-    localStorage.setItem('languageAssessments', JSON.stringify(existingAssessments));
-
+  const calculateTotalScore = () => {
+    return Object.values(answers).reduce((total, item) => total + item.score, 0);
   };
 
-  const getLanguageSummary = async (language) => {
-      const existingAssessments = localStorage.getItem('languageAssessments') ? JSON.parse(localStorage.getItem('languageAssessments')) : {};
-      if (!existingAssessments[language] || existingAssessments[language].length === 0) return null;
-      const assessments = existingAssessments[language];
-      const totalPercentage = assessments.reduce((sum, assessment) => sum + assessment.percentage, 0);
-      const averagePercentage = (totalPercentage / assessments.length).toFixed(2);
-
-      return { assessmentsCount: assessments.length, averagePercentage: parseFloat(averagePercentage) };
+  const calculatePercentage = () => {
+    const totalPossible = questions.length * 10;
+    const score = calculateTotalScore();
+    return Math.round((score / totalPossible) * 100);
   };
 
-  const searchLanguage = async () => {
-    setIsSearching(true);
-    const summary = await getLanguageSummary(languageName);
-    setLanguageSummary(summary);
-    setIsSearching(false);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Calculate scores
-    const totalScore = Object.values(formData).reduce((sum, val) => sum + val, 0);
-    const maxPossibleScore = assessmentCriteria.length * 4; // Maximum score is 4 per criteria
-    const percentage = (totalScore / maxPossibleScore) * 100;
-
-    // Determine risk level and recommendations
-    let riskLevel;
-    let needsSupport;
-    let recommendations;
-
-    if (percentage >= 75) {
-      riskLevel = "Critical Risk";
-      needsSupport = true;
-      recommendations = [
-        "Urgent documentation needed",
-        "Develop learning materials",
-        "Create digital archives",
-        "Establish speaker communities",
-        "Develop language technology tools"
-      ];
-    } else if (percentage >= 50) {
-      riskLevel = "High Risk";
-      needsSupport = true;
-      recommendations = [
-        "Expand documentation",
-        "Create digital presence",
-        "Develop educational programs",
-        "Support intergenerational transmission",
-        "Build mobile applications"
-      ];
-    } else if (percentage >= 25) {
-      riskLevel = "Moderate Risk";
-      needsSupport = true;
-      recommendations = [
-        "Enhance digital resources",
-        "Improve educational materials",
-        "Strengthen community engagement",
-        "Develop specialized content",
-        "Create technology integrations"
-      ];
-    } else {
-      riskLevel = "Low Risk";
-      needsSupport = false;
-      recommendations = [
-        "Maintain current resources",
-        "Consider advanced digital integration",
-        "Develop specialized content",
-        "Support continued education programs",
-        "Monitor language vitality periodically"
-      ];
+  const handleSubmit = async () => {
+    if (!languageName.trim()) {
+      alert('Please enter a language name');
+      return;
     }
 
-    const resultsData = {
-      languageName,
-      score: totalScore,
-      maxScore: maxPossibleScore,
-      percentage,
-      riskLevel,
-      needsSupport,
-      recommendations,
-      criteriaScores: { ...formData }
-    };
+    setIsSubmitting(true);
 
-    // Save to database
-    await saveLanguageAssessment(resultsData);
+    try {
+      const totalScore = calculateTotalScore();
+      const percentage = calculatePercentage();
 
-    setResults(resultsData);
-    setIsSubmitting(false);
+      const assessmentData = {
+        language: languageName,
+        answers,
+        totalScore,
+        percentage,
+        timestamp: new Date().toISOString()
+      };
 
-    // Update the language summary after saving
-    const summary = await getLanguageSummary(languageName);
-    setLanguageSummary(summary);
+      const response = await fetch('/api/assessments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(assessmentData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setResult({
+          language: languageName,
+          score: totalScore,
+          percentage,
+          needsSupport: percentage < 50
+        });
+      } else {
+        throw new Error(data.error || 'Failed to save assessment');
+      }
+    } catch (error) {
+      console.error('Error submitting assessment:', error);
+      alert('There was an error submitting your assessment. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const resetForm = () => {
-    setFormData({});
-    setLanguageName("");
-    setResults(null);
-    setLanguageSummary(null);
+  const resetAssessment = () => {
+    setCurrentStep(0);
+    setAnswers({});
+    setLanguageName('');
+    setResult(null);
   };
+
+  // Render the intro step
+  if (currentStep === 0) {
+    return (
+      <Layout>
+        <div className="min-h-screen pt-32 pb-16">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+              <h1 className="text-3xl md:text-4xl font-bold mb-6">Language Resource Assessment</h1>
+              <p className="text-lg text-gray-700 mb-8">
+                Determine if a language needs digital preservation and support. This assessment evaluates
+                key factors like speaker population, documentation, and digital presence.
+              </p>
+
+              <div className="mb-8">
+                <label htmlFor="language-name" className="block text-lg font-medium text-gray-700 mb-2">
+                  Language Name
+                </label>
+                <input
+                  type="text"
+                  id="language-name"
+                  value={languageName}
+                  onChange={(e) => setLanguageName(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                  placeholder="e.g., Swahili, Navajo, Welsh"
+                />
+              </div>
+
+              <Button onClick={() => setCurrentStep(1)} className="w-full justify-center">
+                Start Assessment <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  // Render results
+  if (currentStep > questions.length || result) {
+    return (
+      <Layout>
+        <div className="min-h-screen pt-32 pb-16">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+              <h1 className="text-3xl md:text-4xl font-bold mb-6">Assessment Results</h1>
+
+              {!result && !isSubmitting ? (
+                <>
+                  <p className="text-lg text-gray-700 mb-6">
+                    You've completed the assessment for <span className="font-semibold">{languageName}</span>.
+                  </p>
+
+                  <div className="bg-gray-100 rounded-lg p-6 mb-8">
+                    <h2 className="text-2xl font-bold mb-4">Summary</h2>
+                    <p className="text-lg mb-4">
+                      Score: <span className="font-bold">{calculateTotalScore()}</span> out of {questions.length * 10} ({calculatePercentage()}%)
+                    </p>
+
+                    <div className="w-full bg-gray-300 h-4 rounded-full mb-6">
+                      <div 
+                        className={`h-4 rounded-full ${calculatePercentage() < 50 ? 'bg-red-500' : 'bg-green-500'}`}
+                        style={{ width: `${calculatePercentage()}%` }}
+                      ></div>
+                    </div>
+
+                    <p className="text-lg font-medium">
+                      {calculatePercentage() < 50 ? (
+                        <span className="text-red-600">This language may need significant support.</span>
+                      ) : (
+                        <span className="text-green-600">This language has a relatively strong foundation.</span>
+                      )}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button onClick={handleSubmit} className="flex-1 justify-center">
+                      Save Results <Check className="ml-2 h-5 w-5" />
+                    </Button>
+                    <Button variant="outline" onClick={resetAssessment} className="flex-1 justify-center">
+                      Start New Assessment
+                    </Button>
+                  </div>
+                </>
+              ) : isSubmitting ? (
+                <div className="flex flex-col items-center justify-center py-12">
+                  <Loader2 className="h-12 w-12 text-primary animate-spin mb-4" />
+                  <p className="text-lg">Saving your assessment...</p>
+                </div>
+              ) : (
+                <>
+                  <div className="bg-gray-100 rounded-lg p-6 mb-8">
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-2xl font-bold">Results Saved</h2>
+                      <div className={`px-4 py-1 rounded-full text-white ${result.needsSupport ? 'bg-red-500' : 'bg-green-500'}`}>
+                        {result.needsSupport ? 'Needs Support' : 'Well Resourced'}
+                      </div>
+                    </div>
+
+                    <p className="text-lg mb-4">
+                      <span className="font-bold">{result.language}</span> scored {result.percentage}%
+                    </p>
+
+                    {result.needsSupport ? (
+                      <div className="bg-red-100 border-l-4 border-red-500 p-4 mb-4">
+                        <p className="text-red-700">
+                          This language has been identified as needing support. Your assessment helps us understand where to focus our preservation efforts.
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="bg-green-100 border-l-4 border-green-500 p-4 mb-4">
+                        <p className="text-green-700">
+                          This language appears to be well-resourced. However, continued monitoring and support is important.
+                        </p>
+                      </div>
+                    )}
+
+                    <p className="text-gray-700">
+                      Thank you for contributing to our language preservation efforts. This data will help inform our work and priorities.
+                    </p>
+                  </div>
+
+                  <Button onClick={resetAssessment} className="w-full justify-center">
+                    Start New Assessment <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  // Render questions
+  const question = questions[currentStep - 1];
 
   return (
     <Layout>
-      <SEOMetadata
-        title="Language Resource Assessment | Wekify"
-        description="Evaluate if a language needs preservation support by assessing its current resources, speakers, and digital presence."
-        keywords="language assessment, language preservation, endangered languages, language resources, language vitality"
-      />
+      <div className="min-h-screen pt-32 pb-16">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <div className="flex items-center justify-between mb-8">
+              <h1 className="text-2xl md:text-3xl font-bold">Assessing: {languageName}</h1>
+              <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                Question {currentStep} of {questions.length}
+              </span>
+            </div>
 
-      <main className="flex-grow">
-        <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-          <div className="container mx-auto px-4 py-20">
-            <FadeIn>
-              <div className="max-w-3xl mx-auto text-center">
-                <h1 className="mb-6">Language Resource Assessment</h1>
-                <p className="text-xl mb-6">
-                  Evaluate if a language needs preservation and digitization support based on current resources and vitality.
-                </p>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+            <div className="mb-8">
+              <h2 className="text-xl md:text-2xl font-semibold mb-6">{question.question}</h2>
 
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <FadeIn>
-              <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-                <div className="p-8">
-                  {!results ? (
-                    <form onSubmit={handleSubmit} className="space-y-8">
-                      <div className="mb-6">
-                        <label htmlFor="languageName" className="block text-sm font-medium text-gray-700 mb-1">
-                          Language Name
-                        </label>
-                        <div className="flex gap-2">
-                          <input
-                            type="text"
-                            id="languageName"
-                            value={languageName}
-                            onChange={(e) => {
-                              setLanguageName(e.target.value);
-                              setLanguageSummary(null);
-                            }}
-                            required
-                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Enter language name (e.g., Swahili, Navajo, Welsh)"
-                            list="languagesList"
-                          />
-                          <Button
-                            type="button"
-                            size="sm"
-                            onClick={searchLanguage}
-                            disabled={isSearching || !languageName.trim()}
-                          >
-                            {isSearching ? "Searching..." : "Search"}
-                          </Button>
-                        </div>
-
-                        <datalist id="languagesList">
-                          {existingLanguages.map((lang, index) => (
-                            <option key={index} value={lang} />
-                          ))}
-                        </datalist>
-
-                        {languageSummary && (
-                          <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                            <h3 className="text-lg font-medium flex items-center gap-2 text-blue-800">
-                              <BarChart2 className="h-5 w-5" />
-                              Existing Assessment Data
-                            </h3>
-                            <p className="text-sm text-blue-700 mt-2">
-                              {languageSummary.assessmentsCount} {languageSummary.assessmentsCount === 1 ? 'person has' : 'people have'} already assessed this language.
-                            </p>
-                            <div className="mt-2">
-                              <div className="flex items-center justify-between text-sm mt-1">
-                                <span className="text-gray-600">Risk Level:</span>
-                                <span className={cn(
-                                  "font-medium",
-                                  languageSummary.averagePercentage >= 75 ? "text-red-600" :
-                                    languageSummary.averagePercentage >= 50 ? "text-orange-600" :
-                                      languageSummary.averagePercentage >= 25 ? "text-yellow-600" : "text-green-600"
-                                )}>
-                                  {languageSummary.averagePercentage >= 75 ? "Critical Risk" :
-                                    languageSummary.averagePercentage >= 50 ? "High Risk" :
-                                      languageSummary.averagePercentage >= 25 ? "Moderate Risk" : "Low Risk"}
-                                </span>
-                              </div>
-                              <div className="relative h-2 w-full bg-gray-200 rounded-full overflow-hidden mt-1">
-                                <div
-                                  className={cn(
-                                    "absolute top-0 left-0 h-full",
-                                    languageSummary.averagePercentage >= 75 ? "bg-red-500" :
-                                      languageSummary.averagePercentage >= 50 ? "bg-orange-500" :
-                                        languageSummary.averagePercentage >= 25 ? "bg-yellow-500" : "bg-green-500"
-                                  )}
-                                  style={{ width: `${languageSummary.averagePercentage}%` }}
-                                ></div>
-                              </div>
-                            </div>
-                            <p className="text-sm text-blue-700 mt-3">
-                              Your assessment will be added to the existing data to improve accuracy.
-                            </p>
-                          </div>
+              <div className="space-y-4">
+                {question.options.map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => handleAnswer(question.id, option.value, option.score)}
+                    className="w-full text-left p-4 border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
+                  >
+                    <div className="flex items-center">
+                      <div className={`w-6 h-6 rounded-full border ${answers[question.id]?.answer === option.value ? 'bg-primary border-primary' : 'border-gray-400'} mr-3 flex items-center justify-center`}>
+                        {answers[question.id]?.answer === option.value && (
+                          <Check className="h-4 w-4 text-white" />
                         )}
                       </div>
-
-                      <h2 className="text-2xl font-bold mb-6">Assessment Criteria</h2>
-
-                      {assessmentCriteria.map((criteria) => (
-                        <div key={criteria.id} className="mb-8 p-6 border border-gray-200 rounded-xl">
-                          <div className="flex items-center gap-3 mb-3">
-                            <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
-                              {criteria.icon}
-                            </div>
-                            <h3 className="text-xl font-semibold">{criteria.title}</h3>
-                          </div>
-                          <p className="text-gray-600 mb-4">{criteria.description}</p>
-
-                          <div className="space-y-3">
-                            {criteria.options.map((option) => (
-                              <div key={option.value} className="flex items-start">
-                                <input
-                                  type="radio"
-                                  id={`${criteria.id}-${option.value}`}
-                                  name={criteria.id}
-                                  value={option.value}
-                                  checked={formData[criteria.id] === option.value}
-                                  onChange={(e) => handleOptionChange(criteria.id, e.target.value)}
-                                  className="mt-1 mr-3"
-                                  required
-                                />
-                                <label htmlFor={`${criteria.id}-${option.value}`} className="text-gray-700">
-                                  {option.label}
-                                </label>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-
-                      <div className="text-center">
-                        <Button type="submit" size="lg" disabled={isSubmitting}>
-                          {isSubmitting ? "Analyzing..." : "Analyze Language Vitality"} <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
-                      </div>
-                    </form>
-                  ) : (
-                    <div className="results">
-                      <div className="text-center mb-8">
-                        <h2 className="text-2xl font-bold mb-2">Assessment Results</h2>
-                        <p className="text-gray-600">Analysis for {results.languageName}</p>
-
-                        <div className="my-8">
-                          <div className="relative h-4 w-full bg-gray-200 rounded-full overflow-hidden">
-                            <div
-                              className={cn(
-                                "absolute top-0 left-0 h-full",
-                                results.percentage >= 75 ? "bg-red-500" :
-                                  results.percentage >= 50 ? "bg-orange-500" :
-                                    results.percentage >= 25 ? "bg-yellow-500" : "bg-green-500"
-                              )}
-                              style={{ width: `${results.percentage}%` }}
-                            ></div>
-                          </div>
-                          <div className="flex justify-between mt-2 text-sm text-gray-600">
-                            <span>Lower Risk</span>
-                            <span>Higher Risk</span>
-                          </div>
-                        </div>
-
-                        <div className={cn(
-                          "inline-flex items-center px-4 py-2 rounded-full text-white font-medium",
-                          results.percentage >= 75 ? "bg-red-500" :
-                            results.percentage >= 50 ? "bg-orange-500" :
-                              results.percentage >= 25 ? "bg-yellow-500" : "bg-green-500"
-                        )}>
-                          {results.riskLevel} - Score: {results.score}/{results.maxScore} ({Math.round(results.percentage)}%)
-                        </div>
-                      </div>
-
-                      <div className="mb-8">
-                        <h3 className="text-xl font-semibold mb-4">Assessment Summary</h3>
-                        <div className="p-4 rounded-lg border border-gray-200">
-                          <div className="flex items-center gap-2 mb-4">
-                            {results.needsSupport ? (
-                              <>
-                                <AlertCircle className="text-red-500" />
-                                <p className="font-medium">This language needs preservation support.</p>
-                              </>
-                            ) : (
-                              <>
-                                <CheckCircle className="text-green-500" />
-                                <p className="font-medium">This language has sufficient resources.</p>
-                              </>
-                            )}
-                          </div>
-                          <p className="text-gray-700">
-                            Based on the assessment, {results.languageName} {results.needsSupport
-                              ? "requires assistance with preservation and digitization. The language shows significant gaps in resources that could affect its long-term viability."
-                              : "appears to have good support and resources. The language has a solid foundation for continued use and development."}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="mb-8">
-                        <h3 className="text-xl font-semibold mb-4">Recommendations</h3>
-                        <ul className="space-y-2">
-                          {results.recommendations.map((recommendation, index) => (
-                            <li key={index} className="flex items-start gap-2">
-                              <ArrowRight className="min-w-5 h-5 text-blue-500 mt-0.5" />
-                              <span>{recommendation}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="mb-8">
-                        <h3 className="text-xl font-semibold mb-4">Detailed Criteria Scores</h3>
-                        <div className="grid gap-4 md:grid-cols-2">
-                          {assessmentCriteria.map((criteria) => {
-                            const score = results.criteriaScores[criteria.id] || 0;
-                            return (
-                              <div key={criteria.id} className="p-4 border border-gray-200 rounded-lg">
-                                <div className="flex items-center gap-2 mb-2">
-                                  <div className="p-1.5 bg-blue-50 rounded-md text-blue-600">
-                                    {criteria.icon}
-                                  </div>
-                                  <h4 className="font-medium">{criteria.title}</h4>
-                                </div>
-                                <div className={cn(
-                                  "text-sm font-medium",
-                                  score >= 3 ? "text-red-500" :
-                                    score >= 2 ? "text-orange-500" :
-                                      score >= 1 ? "text-yellow-500" : "text-green-500"
-                                )}>
-                                  Score: {score}/4 - {score === 0 ? "Excellent" :
-                                    score === 1 ? "Good" :
-                                      score === 2 ? "Limited" :
-                                        score === 3 ? "Minimal" : "None"}
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4 justify-center mt-8">
-                        {results.needsSupport && (
-                          <Button href="/ambassador" variant="primary">
-                            Become an Ambassador
-                          </Button>
-                        )}
-                        <Button onClick={resetForm} variant="outline">
-                          New Assessment
-                        </Button>
-                      </div>
+                      <span>{option.label}</span>
                     </div>
-                  )}
-                </div>
-              </FadeIn>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
 
-        <section className="bg-gray-50 py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Why Assess Language Resources?</h2>
-              <p className="text-gray-700 mb-10">
-                Understanding the current state of a language's resources and vitality is the first step in creating
-                effective preservation strategies. This assessment helps identify specific areas that need support
-                and development.
-              </p>
+            <div className="flex justify-between">
+              <Button variant="outline" onClick={() => setCurrentStep(currentStep - 1)} disabled={currentStep === 1}>
+                Previous
+              </Button>
 
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="bg-white p-6 rounded-xl shadow-md">
-                  <div className="p-3 bg-blue-50 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4">
-                    <Globe className="h-7 w-7 text-blue-600" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">Identify Gaps</h3>
-                  <p className="text-gray-600">Pinpoint specific resource gaps that need to be addressed</p>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-md">
-                  <div className="p-3 bg-blue-50 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4">
-                    <Users className="h-7 w-7 text-blue-600" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">Prioritize Efforts</h3>
-                  <p className="text-gray-600">Focus resources where they will have the greatest impact</p>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-md">
-                  <div className="p-3 bg-blue-50 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4">
-                    <BookOpen className="h-7 w-7 text-blue-600" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">Track Progress</h3>
-                  <p className="text-gray-600">Measure improvements over time as preservation efforts advance</p>
-                </div>
+              {currentStep === questions.length && (
+                <Button onClick={() => setCurrentStep(questions.length + 1)}>
+                  See Results <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              )}
+            </div>
+
+            <div className="mt-8">
+              <div className="w-full bg-gray-200 h-2 rounded-full">
+                <div 
+                  className="bg-primary h-2 rounded-full"
+                  style={{ width: `${(currentStep / questions.length) * 100}%` }}
+                ></div>
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </div>
     </Layout>
   );
 }

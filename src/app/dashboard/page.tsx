@@ -1,418 +1,309 @@
+'use client';
 
-"use client";
+import React, { useState, useEffect } from 'react';
+import { 
+  BarChart, 
+  FileText, 
+  Download, 
+  Search, 
+  AlertTriangle, 
+  Check, 
+  Loader2 
+} from 'lucide-react';
+import Layout from '../components/layout';
+import { Button } from '../components/Button';
 
-import React, { useState, useEffect } from "react";
-import { Button } from "@/app/components/Button";
-import { FadeIn } from "../components/FadeIn";
-import { ArrowLeft, BarChart2, Download, DownloadCloud, FileText, Globe, Info, PieChart, Search } from "lucide-react";
-import SEOMetadata from "../components/SEOMetadata";
-import Layout from "../components/layout";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { getAllLanguagesSummary, getLanguageAssessments } from "@/lib/database";
-
-export default function Dashboard() {
-  const [summaries, setSummaries] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
-  const [languageDetails, setLanguageDetails] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("risk"); // risk, count, name
-  const [sortDirection, setSortDirection] = useState("desc");
+export default function LanguageDashboardPage() {
+  const [stats, setStats] = useState([]);
+  const [assessments, setAssessments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('all'); // 'all', 'needs-support', 'well-resourced'
 
   useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      const data = await getAllLanguagesSummary();
-      setSummaries(data);
-      setLoading(false);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+
+        const [statsResponse, assessmentsResponse] = await Promise.all([
+          fetch('/api/language-stats'),
+          fetch('/api/assessments')
+        ]);
+
+        const statsData = await statsResponse.json();
+        const assessmentsData = await assessmentsResponse.json();
+
+        if (statsData.success) {
+          setStats(statsData.data);
+        }
+
+        if (assessmentsData.success) {
+          setAssessments(assessmentsData.data);
+        }
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    loadData();
+    fetchData();
   }, []);
 
-  const handleViewDetails = async (language) => {
-    setSelectedLanguage(language);
-    const details = await getLanguageAssessments(language.languageName);
-    setLanguageDetails(details);
-  };
+  const filteredStats = stats
+    .filter(stat => {
+      if (filter === 'needs-support') return stat.needsSupport;
+      if (filter === 'well-resourced') return !stat.needsSupport;
+      return true;
+    })
+    .filter(stat => 
+      stat.language.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-  const handleBack = () => {
-    setSelectedLanguage(null);
-    setLanguageDetails(null);
-  };
+  const filteredAssessments = assessments
+    .filter(assessment => {
+      if (filter === 'needs-support') return assessment.percentage < 50;
+      if (filter === 'well-resourced') return assessment.percentage >= 50;
+      return true;
+    })
+    .filter(assessment => 
+      assessment.language.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-  const sortedSummaries = [...summaries]
-    .filter(lang => lang.languageName.toLowerCase().includes(searchQuery.toLowerCase()))
-    .sort((a, b) => {
-      if (sortBy === "risk") {
-        return sortDirection === "desc" 
-          ? b.averagePercentage - a.averagePercentage 
-          : a.averagePercentage - b.averagePercentage;
-      } else if (sortBy === "count") {
-        return sortDirection === "desc" 
-          ? b.assessmentsCount - a.assessmentsCount 
-          : a.assessmentsCount - b.assessmentsCount;
-      } else {
-        return sortDirection === "desc" 
-          ? b.languageName.localeCompare(a.languageName) 
-          : a.languageName.localeCompare(b.languageName);
-      }
-    });
+  const generateCSV = (data) => {
+    if (data.length === 0) return '';
 
-  const generateCsv = (data) => {
-    // Create CSV header
-    const headers = ["Language", "Assessments Count", "Average Risk %", "Risk Level", "Needs Support"];
-    
-    // Format data rows
-    const rows = data.map(lang => [
-      lang.languageName,
-      lang.assessmentsCount,
-      lang.averagePercentage.toFixed(2),
-      lang.averagePercentage >= 75 ? "Critical Risk" :
-      lang.averagePercentage >= 50 ? "High Risk" :
-      lang.averagePercentage >= 25 ? "Moderate Risk" : "Low Risk",
-      lang.needsSupport ? "Yes" : "No"
-    ]);
-    
-    // Combine header and rows
-    const csvContent = [
-      headers.join(","),
-      ...rows.map(row => row.join(","))
-    ].join("\n");
-    
-    return csvContent;
-  };
+    const headers = Object.keys(data[0]).filter(key => key !== 'answers');
+    const csvRows = [];
 
-  const handleDownloadCsv = () => {
-    const csvContent = generateCsv(sortedSummaries);
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", "language_assessments.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+    // Add headers
+    csvRows.push(headers.join(','));
 
-  const generateLanguageReport = (language, details) => {
-    // Create CSV header
-    const headers = ["Date", "Score", "Max Score", "Risk %", "Risk Level", "Needs Support"];
-    
-    // Add criteria headers
-    if (details.length > 0 && details[0].criteriaScores) {
-      Object.keys(details[0].criteriaScores).forEach(key => {
-        headers.push(`${key} Score`);
+    // Add data rows
+    for (const item of data) {
+      const values = headers.map(header => {
+        const value = item[header];
+        return typeof value === 'string' ? `"${value}"` : value;
       });
+      csvRows.push(values.join(','));
     }
-    
-    // Format data rows
-    const rows = details.map(assessment => {
-      const baseData = [
-        new Date(assessment.timestamp).toLocaleDateString(),
-        assessment.score,
-        assessment.maxScore,
-        assessment.percentage.toFixed(2),
-        assessment.riskLevel,
-        assessment.needsSupport ? "Yes" : "No"
-      ];
-      
-      // Add criteria scores
-      if (assessment.criteriaScores) {
-        Object.values(assessment.criteriaScores).forEach(score => {
-          baseData.push(score);
-        });
-      }
-      
-      return baseData;
-    });
-    
-    // Combine header and rows
-    const csvContent = [
-      [`Language Assessment Report for ${language.languageName}`],
-      [`Generated on ${new Date().toLocaleDateString()}`],
-      [""],
-      headers.join(","),
-      ...rows.map(row => row.join(","))
-    ].join("\n");
-    
-    return csvContent;
+
+    return csvRows.join('\n');
   };
 
-  const handleDownloadLanguageReport = () => {
-    if (!selectedLanguage || !languageDetails) return;
-    
-    const csvContent = generateLanguageReport(selectedLanguage, languageDetails);
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", `${selectedLanguage.languageName.toLowerCase()}_assessment_report.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const downloadCSV = () => {
+    const csv = generateCSV(assessments);
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('hidden', '');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'language_assessments.csv');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="min-h-screen pt-32 pb-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="flex flex-col items-center justify-center py-12">
+              <Loader2 className="h-12 w-12 text-primary animate-spin mb-4" />
+              <p className="text-lg">Loading dashboard data...</p>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
-      <SEOMetadata
-        title="Language Assessment Dashboard | Wekify"
-        description="View statistics and reports for language assessments. Analyze trends and identify languages that need preservation support."
-        keywords="language assessment, dashboard, statistics, language preservation, data analysis"
-      />
-
-      <main className="flex-grow">
-        <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-          <div className="container mx-auto px-4 py-16">
-            <FadeIn>
-              <div className="max-w-4xl mx-auto">
-                <h1 className="mb-6 text-center">{selectedLanguage ? selectedLanguage.languageName : "Language Assessment Dashboard"}</h1>
-                {!selectedLanguage ? (
-                  <p className="text-xl mb-6 text-center">
-                    View assessment data for all languages and generate reports for analysis.
-                  </p>
-                ) : (
-                  <p className="text-xl mb-6 text-center">
-                    Detailed assessment data for {selectedLanguage.languageName}.
-                  </p>
-                )}
-              </div>
-            </FadeIn>
+      <div className="min-h-screen pt-32 pb-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Language Preservation Dashboard</h1>
+            <p className="text-lg text-gray-700">
+              Monitor the status of languages assessed through our platform and identify preservation priorities.
+            </p>
           </div>
-        </section>
 
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              {!selectedLanguage ? (
-                <>
-                  <div className="mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
-                    <div className="relative w-full md:w-auto">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Search className="h-5 w-5 text-gray-400" />
-                      </div>
-                      <input
-                        type="text"
-                        placeholder="Search languages..."
-                        className="pl-10 pr-4 py-2 border border-gray-300 rounded-md w-full md:w-64"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                      />
-                    </div>
-                    <div className="flex gap-4 w-full md:w-auto">
-                      <select 
-                        className="px-4 py-2 border border-gray-300 rounded-md"
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                      >
-                        <option value="risk">Sort by Risk</option>
-                        <option value="count">Sort by Assessment Count</option>
-                        <option value="name">Sort by Name</option>
-                      </select>
-                      <Button 
-                        size="sm" 
-                        onClick={() => setSortDirection(sortDirection === "asc" ? "desc" : "asc")}
-                      >
-                        {sortDirection === "asc" ? "↑ Asc" : "↓ Desc"}
-                      </Button>
-                      <Button 
-                        size="sm"
-                        variant="secondary"
-                        onClick={handleDownloadCsv}
-                        className="flex items-center gap-2"
-                      >
-                        <Download className="h-4 w-4" /> Export CSV
-                      </Button>
-                    </div>
-                  </div>
+          {/* Stats Summary */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex justify-between mb-4">
+                <h3 className="text-lg font-medium">Total Languages</h3>
+                <BarChart className="h-6 w-6 text-primary" />
+              </div>
+              <p className="text-3xl font-bold">{stats.length}</p>
+            </div>
 
-                  {loading ? (
-                    <div className="text-center py-20">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700 mx-auto"></div>
-                      <p className="mt-4 text-gray-600">Loading language data...</p>
-                    </div>
-                  ) : summaries.length === 0 ? (
-                    <div className="text-center py-20 bg-gray-50 rounded-lg">
-                      <Globe className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                      <h2 className="text-2xl font-semibold text-gray-700 mb-2">No Language Assessments</h2>
-                      <p className="text-gray-600 mb-6">No languages have been assessed yet.</p>
-                      <Link href="/assessment">
-                        <Button>Assess a Language</Button>
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="grid gap-6">
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 font-medium text-sm text-gray-500 px-4 pb-2">
-                        <div>Language</div>
-                        <div>Assessments</div>
-                        <div>Risk Level</div>
-                        <div className="text-right">Actions</div>
-                      </div>
-                      {sortedSummaries.map((lang, index) => (
-                        <div 
-                          key={index} 
-                          className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-                        >
-                          <div>
-                            <h3 className="font-semibold text-lg">{lang.languageName}</h3>
-                            <p className="text-gray-500 text-sm">
-                              {lang.needsSupport ? "Needs preservation support" : "Has sufficient resources"}
-                            </p>
-                          </div>
-                          <div>
-                            <div className="text-lg font-medium">{lang.assessmentsCount}</div>
-                            <p className="text-gray-500 text-sm">Total assessments</p>
-                          </div>
-                          <div>
-                            <div className="flex items-center">
-                              <div className="relative h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                                <div 
-                                  className={cn(
-                                    "absolute top-0 left-0 h-full",
-                                    lang.averagePercentage >= 75 ? "bg-red-500" :
-                                    lang.averagePercentage >= 50 ? "bg-orange-500" :
-                                    lang.averagePercentage >= 25 ? "bg-yellow-500" : "bg-green-500"
-                                  )}
-                                  style={{ width: `${lang.averagePercentage}%` }}
-                                ></div>
-                              </div>
-                              <span className="ml-2 min-w-[40px] text-sm">{lang.averagePercentage.toFixed(0)}%</span>
-                            </div>
-                            <p className="text-sm mt-1">
-                              <span className={cn(
-                                "font-medium",
-                                lang.averagePercentage >= 75 ? "text-red-600" :
-                                lang.averagePercentage >= 50 ? "text-orange-600" :
-                                lang.averagePercentage >= 25 ? "text-yellow-600" : "text-green-600"
-                              )}>
-                                {lang.averagePercentage >= 75 ? "Critical Risk" :
-                                lang.averagePercentage >= 50 ? "High Risk" :
-                                lang.averagePercentage >= 25 ? "Moderate Risk" : "Low Risk"}
-                              </span>
-                            </p>
-                          </div>
-                          <div className="text-right">
-                            <Button 
-                              size="sm" 
-                              onClick={() => handleViewDetails(lang)}
-                            >
-                              View Details
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div>
-                  <div className="mb-8">
-                    <Button onClick={handleBack} size="sm" variant="secondary" className="flex items-center gap-2">
-                      <ArrowLeft className="h-4 w-4" /> Back to List
-                    </Button>
-                  </div>
-                  
-                  <div className="bg-white p-8 rounded-lg shadow-md mb-8">
-                    <div className="flex flex-col md:flex-row gap-6 justify-between mb-8">
-                      <div>
-                        <h2 className="text-2xl font-bold mb-2">{selectedLanguage.languageName}</h2>
-                        <p className="text-gray-600">{selectedLanguage.assessmentsCount} total assessments</p>
-                        
-                        <div className="mt-4">
-                          <div className="flex items-center mt-1">
-                            <span className="text-gray-600 mr-2">Average Risk Level:</span>
-                            <span className={cn(
-                              "font-medium",
-                              selectedLanguage.averagePercentage >= 75 ? "text-red-600" :
-                              selectedLanguage.averagePercentage >= 50 ? "text-orange-600" :
-                              selectedLanguage.averagePercentage >= 25 ? "text-yellow-600" : "text-green-600"
-                            )}>
-                              {selectedLanguage.averagePercentage >= 75 ? "Critical Risk" :
-                              selectedLanguage.averagePercentage >= 50 ? "High Risk" :
-                              selectedLanguage.averagePercentage >= 25 ? "Moderate Risk" : "Low Risk"}
-                            </span>
-                          </div>
-                          
-                          <div className="relative h-2 w-full max-w-md bg-gray-200 rounded-full overflow-hidden mt-1">
-                            <div 
-                              className={cn(
-                                "absolute top-0 left-0 h-full",
-                                selectedLanguage.averagePercentage >= 75 ? "bg-red-500" :
-                                selectedLanguage.averagePercentage >= 50 ? "bg-orange-500" :
-                                selectedLanguage.averagePercentage >= 25 ? "bg-yellow-500" : "bg-green-500"
-                              )}
-                              style={{ width: `${selectedLanguage.averagePercentage}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <Button
-                        onClick={handleDownloadLanguageReport}
-                        variant="secondary"
-                        className="flex items-center gap-2 self-start"
-                      >
-                        <FileText className="h-4 w-4" /> Download Full Report
-                      </Button>
-                    </div>
-                    
-                    <div className="mb-8">
-                      <h3 className="text-lg font-semibold mb-4">Top Recommendations</h3>
-                      <ul className="list-disc pl-5 space-y-2">
-                        {selectedLanguage.topRecommendations.map((rec, idx) => (
-                          <li key={idx} className="text-gray-700">{rec}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold mb-4">Assessment History</h3>
-                      {languageDetails && languageDetails.length > 0 ? (
-                        <div className="overflow-x-auto">
-                          <table className="min-w-full border-collapse">
-                            <thead>
-                              <tr className="bg-gray-50">
-                                <th className="py-2 px-4 border text-left">Date</th>
-                                <th className="py-2 px-4 border text-left">Risk Level</th>
-                                <th className="py-2 px-4 border text-left">Score</th>
-                                <th className="py-2 px-4 border text-left">Risk %</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {languageDetails.map((assessment, idx) => (
-                                <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                                  <td className="py-2 px-4 border">
-                                    {assessment.timestamp ? new Date(assessment.timestamp).toLocaleDateString() : "N/A"}
-                                  </td>
-                                  <td className="py-2 px-4 border">
-                                    <span className={cn(
-                                      "font-medium",
-                                      assessment.percentage >= 75 ? "text-red-600" :
-                                      assessment.percentage >= 50 ? "text-orange-600" :
-                                      assessment.percentage >= 25 ? "text-yellow-600" : "text-green-600"
-                                    )}>
-                                      {assessment.riskLevel}
-                                    </span>
-                                  </td>
-                                  <td className="py-2 px-4 border">{assessment.score} / {assessment.maxScore}</td>
-                                  <td className="py-2 px-4 border">{assessment.percentage.toFixed(1)}%</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      ) : (
-                        <p className="text-gray-500">No detailed assessment history available.</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex justify-between mb-4">
+                <h3 className="text-lg font-medium">Need Support</h3>
+                <AlertTriangle className="h-6 w-6 text-red-500" />
+              </div>
+              <p className="text-3xl font-bold">{stats.filter(s => s.needsSupport).length}</p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex justify-between mb-4">
+                <h3 className="text-lg font-medium">Total Assessments</h3>
+                <FileText className="h-6 w-6 text-blue-500" />
+              </div>
+              <p className="text-3xl font-bold">{assessments.length}</p>
             </div>
           </div>
-        </section>
-      </main>
+
+          {/* Filters */}
+          <div className="bg-white rounded-xl shadow-md p-6 mb-10">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+              <h2 className="text-xl font-bold">Language Statistics</h2>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <input
+                    type="text"
+                    placeholder="Search languages..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:ring-primary focus:border-primary"
+                  />
+                </div>
+
+                <select
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value)}
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                >
+                  <option value="all">All Languages</option>
+                  <option value="needs-support">Needs Support</option>
+                  <option value="well-resourced">Well Resourced</option>
+                </select>
+
+                <Button onClick={downloadCSV} variant="outline" className="flex items-center">
+                  <Download className="mr-2 h-5 w-5" />
+                  Export Data
+                </Button>
+              </div>
+            </div>
+
+            {filteredStats.length === 0 ? (
+              <div className="text-center py-12 bg-gray-50 rounded-lg">
+                <p className="text-gray-500">No languages match your search criteria.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead>
+                    <tr>
+                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Language
+                      </th>
+                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Assessments
+                      </th>
+                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Average Score
+                      </th>
+                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {filteredStats.map((stat, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                          {stat.language}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                          {stat.count}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                          {Math.round(stat.averageScore / 70 * 100)}%
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {stat.needsSupport ? (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                              Needs Support
+                            </span>
+                          ) : (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                              Well Resourced
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Recent Assessments */}
+          <div className="bg-white rounded-xl shadow-md p-6">
+            <h2 className="text-xl font-bold mb-6">Recent Assessments</h2>
+
+            {filteredAssessments.length === 0 ? (
+              <div className="text-center py-12 bg-gray-50 rounded-lg">
+                <p className="text-gray-500">No recent assessments match your search criteria.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead>
+                    <tr>
+                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Language
+                      </th>
+                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Score
+                      </th>
+                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                      </th>
+                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Date
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {filteredAssessments.slice(0, 10).map((assessment) => (
+                      <tr key={assessment.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                          {assessment.language}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                          {assessment.percentage}%
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {assessment.percentage < 50 ? (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                              Needs Support
+                            </span>
+                          ) : (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                              Well Resourced
+                            </span>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                          {new Date(assessment.timestamp).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }

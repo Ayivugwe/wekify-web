@@ -1,119 +1,70 @@
+// This file should only be imported in server components or API routes
+'use server';
 
 import { createClient } from '@replit/database';
 
+// Create a database client
 const db = createClient();
 
 export async function saveLanguageAssessment(data) {
   try {
-    // Get existing assessments for this language
-    const existingData = await getLanguageAssessments(data.languageName) || [];
-    
-    // Add the new assessment
-    existingData.push({
-      ...data,
-      timestamp: new Date().toISOString(),
-      id: Date.now().toString()
-    });
-    
-    // Save back to database
-    await db.set(`language:${data.languageName.toLowerCase()}`, JSON.stringify(existingData));
-    
-    // Update language list
-    await updateLanguageList(data.languageName);
-    
-    return true;
+    const id = `language_assessment_${Date.now()}`;
+    await db.set(id, data);
+
+    // Update the language stats
+    const langKey = `stats_${data.language}`;
+    const existingStats = await db.get(langKey) || { count: 0, totalScore: 0 };
+
+    existingStats.count += 1;
+    existingStats.totalScore += data.totalScore;
+
+    await db.set(langKey, existingStats);
+
+    return { success: true, id };
   } catch (error) {
-    console.error("Error saving assessment:", error);
-    return false;
+    console.error('Database error:', error);
+    return { success: false, error: error.message };
   }
 }
 
-export async function getLanguageAssessments(languageName) {
+export async function getLanguageStats() {
   try {
-    const assessmentsJson = await db.get(`language:${languageName.toLowerCase()}`);
-    return assessmentsJson ? JSON.parse(assessmentsJson) : [];
+    // Get all keys that start with "stats_"
+    const keys = await db.list("stats_");
+
+    // Fetch all stats in parallel
+    const statsPromises = keys.map(async (key) => {
+      const stats = await db.get(key);
+      const language = key.replace("stats_", "");
+      return {
+        language,
+        count: stats.count,
+        averageScore: stats.totalScore / stats.count,
+        needsSupport: stats.totalScore / stats.count < 50 // Threshold for needing support
+      };
+    });
+
+    return await Promise.all(statsPromises);
   } catch (error) {
-    console.error("Error getting assessments:", error);
+    console.error('Database error:', error);
     return [];
   }
 }
 
-export async function getAllLanguages() {
+export async function getAllAssessments() {
   try {
-    const languagesJson = await db.get('languages:list');
-    return languagesJson ? JSON.parse(languagesJson) : [];
-  } catch (error) {
-    console.error("Error getting language list:", error);
-    return [];
-  }
-}
-
-async function updateLanguageList(languageName) {
-  try {
-    // Get current list
-    const existingList = await getAllLanguages();
-    
-    // Only add if not already in list
-    if (!existingList.includes(languageName)) {
-      existingList.push(languageName);
-      await db.set('languages:list', JSON.stringify(existingList));
-    }
-  } catch (error) {
-    console.error("Error updating language list:", error);
-  }
-}
-
-export async function getLanguageSummary(languageName) {
-  try {
-    const assessments = await getLanguageAssessments(languageName);
-    
-    if (assessments.length === 0) return null;
-    
-    // Calculate average score
-    const totalScore = assessments.reduce((sum, assessment) => sum + assessment.score, 0);
-    const averageScore = totalScore / assessments.length;
-    
-    // Calculate average percentage
-    const totalPercentage = assessments.reduce((sum, assessment) => sum + assessment.percentage, 0);
-    const averagePercentage = totalPercentage / assessments.length;
-    
-    // Find most common recommendations
-    const allRecommendations = assessments.flatMap(a => a.recommendations);
-    const recommendationCounts = {};
-    allRecommendations.forEach(rec => {
-      recommendationCounts[rec] = (recommendationCounts[rec] || 0) + 1;
+    const keys = await db.list("language_assessment_");
+    const assessmentsPromises = keys.map(async (key) => {
+      const assessment = await db.get(key);
+      return {
+        id: key,
+        ...assessment
+      };
     });
-    
-    // Sort by count and get top 5
-    const topRecommendations = Object.entries(recommendationCounts)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 5)
-      .map(([rec]) => rec);
-    
-    return {
-      languageName,
-      assessmentsCount: assessments.length,
-      averageScore,
-      averagePercentage,
-      needsSupport: averagePercentage > 50, // Higher percentage means higher risk
-      latestAssessment: assessments[assessments.length - 1],
-      topRecommendations
-    };
-  } catch (error) {
-    console.error("Error calculating language summary:", error);
-    return null;
-  }
-}
 
-export async function getAllLanguagesSummary() {
-  try {
-    const languages = await getAllLanguages();
-    const summaries = await Promise.all(
-      languages.map(async (lang) => await getLanguageSummary(lang))
-    );
-    return summaries.filter(s => s !== null);
+    return await Promise.all(assessmentsPromises);
   } catch (error) {
-    console.error("Error getting all summaries:", error);
+    console.error('Database error:', error);
     return [];
   }
 }
