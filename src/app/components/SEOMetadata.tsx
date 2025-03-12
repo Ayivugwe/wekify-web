@@ -1,52 +1,60 @@
 
-"use client";
-
-import React from 'react';
-import Head from 'next/head';
+import { Metadata } from "next";
 
 interface SEOMetadataProps {
   title: string;
   description: string;
-  keywords: string;
-  ogTitle?: string;
-  ogDescription?: string;
+  keywords?: string[];
   ogImage?: string;
-  ogUrl?: string;
-  canonical?: string;
+  canonicalUrl?: string;
+  twitterHandle?: string;
+  noIndex?: boolean;
 }
 
 export default function SEOMetadata({
   title,
   description,
-  keywords,
-  ogTitle,
-  ogDescription,
-  ogImage = '/logo.png',
-  ogUrl,
-  canonical
-}: SEOMetadataProps) {
-  return (
-    <Head>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={ogTitle || title} />
-      <meta property="og:description" content={ogDescription || description} />
-      {ogImage && <meta property="og:image" content={ogImage} />}
-      {ogUrl && <meta property="og:url" content={ogUrl} />}
-      
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={ogTitle || title} />
-      <meta name="twitter:description" content={ogDescription || description} />
-      {ogImage && <meta name="twitter:image" content={ogImage} />}
-      
-      {/* Canonical Link */}
-      {canonical && <link rel="canonical" href={canonical} />}
-    </Head>
-  );
+  keywords = [],
+  ogImage = "/og-image.jpg",
+  canonicalUrl,
+  twitterHandle = "@wekify",
+  noIndex = false,
+}: SEOMetadataProps): Metadata {
+  const metadataBase = new URL("https://www.wekify.org");
+  
+  return {
+    title,
+    description,
+    keywords: keywords.join(", "),
+    metadataBase,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      siteName: "Wekify",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      creator: twitterHandle,
+      images: [ogImage],
+    },
+    robots: noIndex ? "noindex, nofollow" : "index, follow",
+    icons: {
+      icon: "/favicon.png",
+      apple: "/apple-touch-icon.png",
+    },
+  };
 }

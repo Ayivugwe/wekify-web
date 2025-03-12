@@ -1,43 +1,143 @@
 
-"use client";
-
-import { ReactNode } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 interface CardProps {
-  title: string;
-  description: string;
-  icon?: ReactNode;
-  accentColor?: string;
   className?: string;
-  iconClass?: string;
-  children?: ReactNode;
+  children: React.ReactNode;
+  hover?: boolean;
+  variant?: "default" | "bordered" | "elevated" | "flat";
+  padding?: "none" | "sm" | "md" | "lg";
 }
 
 export const Card = ({
-  title,
-  description,
-  icon,
-  accentColor = "primary",
-  className = "",
-  iconClass = "",
+  className,
   children,
+  hover = false,
+  variant = "default",
+  padding = "md",
+  ...props
 }: CardProps) => {
+  // Base card styles
+  const baseStyles = "rounded-xl transition-all duration-300 overflow-hidden";
+  
+  // Variant styles
+  const variantStyles = {
+    default: "bg-white shadow",
+    bordered: "bg-white border border-neutral-200",
+    elevated: "bg-white shadow-lg",
+    flat: "bg-neutral-50"
+  };
+  
+  // Padding styles
+  const paddingStyles = {
+    none: "p-0",
+    sm: "p-4",
+    md: "p-6",
+    lg: "p-8"
+  };
+  
+  // Hover effects
+  const hoverStyles = hover ? "hover:shadow-lg hover:-translate-y-1" : "";
+  
   return (
-    <div className={cn(
-      "bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1",
-      className
-    )}>
-      {icon && (
-        <div className={cn(
-          `bg-${accentColor}/10 p-4 rounded-xl w-16 h-16 flex items-center justify-center mb-6`,
-          iconClass
-        )}>
-          {icon}
-        </div>
+    <div
+      className={cn(
+        baseStyles,
+        variantStyles[variant],
+        paddingStyles[padding],
+        hoverStyles,
+        className
       )}
-      <h3 className="text-xl font-bold mb-3">{title}</h3>
-      <p className="mb-4 text-gray-600">{description}</p>
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
+interface CardHeaderProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const CardHeader = ({ className, children }: CardHeaderProps) => {
+  return (
+    <div 
+      className={cn("mb-4", className)}
+    >
+      {children}
+    </div>
+  );
+};
+
+interface CardTitleProps {
+  className?: string;
+  children: React.ReactNode;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}
+
+export const CardTitle = ({ 
+  className, 
+  children, 
+  as: Component = "h3" 
+}: CardTitleProps) => {
+  return (
+    <Component 
+      className={cn(
+        "text-xl font-semibold text-neutral-800",
+        className
+      )}
+    >
+      {children}
+    </Component>
+  );
+};
+
+interface CardDescriptionProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const CardDescription = ({ className, children }: CardDescriptionProps) => {
+  return (
+    <p 
+      className={cn(
+        "text-sm text-neutral-600 mt-1",
+        className
+      )}
+    >
+      {children}
+    </p>
+  );
+};
+
+interface CardContentProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const CardContent = ({ className, children }: CardContentProps) => {
+  return (
+    <div className={cn("", className)}>
+      {children}
+    </div>
+  );
+};
+
+interface CardFooterProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const CardFooter = ({ className, children }: CardFooterProps) => {
+  return (
+    <div 
+      className={cn(
+        "mt-6 flex items-center",
+        className
+      )}
+    >
       {children}
     </div>
   );

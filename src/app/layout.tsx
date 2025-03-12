@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { inter, lexend, jetbrainsMono } from './fonts';
 
-const inter = Inter({ subsets: ["latin"] });
+const interFont = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Wekify",
@@ -59,12 +60,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={interFont.className}>
       <head>
         <link rel="icon" href="/favicon.png" sizes="any" />
         <link rel="apple-touch-icon" href="/favicon.png" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={`${interFont.variable} ${lexend.variable} ${jetbrainsMono.variable}`}>{children}</body>
     </html>
   );
 }
