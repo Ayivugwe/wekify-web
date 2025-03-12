@@ -227,10 +227,10 @@ export default function AssessmentPage() {
 
                     <div className="grid grid-cols-1 gap-3 mt-6">
                       {[
-                        { value: 0, label: "Not at all", description: question.options[0] },
-                        { value: 3, label: "Minimally", description: question.options[1] },
-                        { value: 7, label: "Moderately", description: question.options[2] },
-                        { value: 10, label: "Extensively", description: question.options[3] },
+                        { value: 0, label: "Not at all", description: question.options[0].label },
+                        { value: 3, label: "Minimally", description: question.options[1].label },
+                        { value: 7, label: "Moderately", description: question.options[2].label },
+                        { value: 10, label: "Extensively", description: question.options[3].label },
                       ].map((option) => (
                         <div 
                           key={option.value}
