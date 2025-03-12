@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Globe, Share2, Code, BookOpen, FileText, Users, Book, Heart } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, Share2, Code, BookOpen, FileText, Users, Book, Heart, Award, Shield, Star, MessageSquare } from "lucide-react";
 
 // Icon mapping for dynamic rendering
 const IconMap: Record<string, React.ElementType> = {
-  Globe, Share2, Code, BookOpen, FileText, Users, Book, Heart
+  Globe, Share2, Code, BookOpen, FileText, Users, Book, Heart, Award, Shield, Star, MessageSquare
 };
 
 const megaMenuItems = {
@@ -49,6 +49,12 @@ const megaMenuItems = {
       href: "/resources/forum",
       icon: "Users",
       description: "Currently focused on supporting the Bafuliiru community"
+    },
+    { 
+      name: "Become An Ambassador", 
+      href: "/ambassador",
+      icon: "Award",
+      description: "Join our network of language preservation advocates"
     }
   ],
   About: [
