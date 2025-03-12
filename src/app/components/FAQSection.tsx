@@ -1,65 +1,75 @@
+
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, ChevronRight, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
-import { Disclosure } from "@headlessui/react";
 
 interface FAQ {
   question: string;
-  answer: string;
+  answer: string | React.ReactNode;
 }
 
-interface FAQSectionProps {
-  faqs: FAQ[];
+interface FAQDisclosureProps {
+  faq: FAQ;
 }
 
-const FAQSection = ({ faqs }: FAQSectionProps) => {
-  //rest of the file remains unchanged
+// Custom Disclosure component to replace @headlessui/react
+const FAQDisclosure: React.FC<FAQDisclosureProps> = ({ faq }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find answers to common questions about our language preservation platform
-          </p>
+    <div className="border-b border-gray-200">
+      <button
+        className="w-full py-5 flex justify-between items-center text-left focus:outline-none"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="text-lg font-medium text-gray-900">{faq.question}</span>
+        {isOpen ? (
+          <ChevronUp className="h-5 w-5 text-gray-500" />
+        ) : (
+          <ChevronDown className="h-5 w-5 text-gray-500" />
+        )}
+      </button>
+      {isOpen && (
+        <div className="pb-5 pr-12">
+          <div className="text-base text-gray-600">
+            {typeof faq.answer === "string" ? (
+              <p>{faq.answer}</p>
+            ) : (
+              faq.answer
+            )}
+          </div>
         </div>
+      )}
+    </div>
+  );
+};
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+export default function FAQSection({ faqs }: { faqs: FAQ[] }) {
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+          Frequently Asked Questions
+        </h2>
+        <div className="max-w-3xl mx-auto">
+          <div className="space-y-0">
             {faqs.map((faq, index) => (
-              <Disclosure key={index} as="div" className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button className="flex w-full justify-between rounded-t-xl bg-white px-6 py-5 text-left text-lg font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-primary border-b border-gray-100">
-                      <span className="pr-6">{faq.question}</span>
-                      <ChevronDown
-                        className={`${
-                          open ? "rotate-180 transform" : ""
-                        } h-5 w-5 text-primary flex-shrink-0`}
-                      />
-                    </Disclosure.Button>
-                    <Disclosure.Panel className="px-6 py-5 text-gray-600">
-                      <p className="leading-relaxed">{faq.answer}</p>
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
+              <FAQDisclosure key={index} faq={faq} />
             ))}
           </div>
-
-          <div className="mt-12 text-center">
-            <Link href="/faq" className="inline-flex items-center text-primary font-medium hover:underline">
-              View all FAQs <ChevronRight className="ml-1 h-4 w-4" />
-            </Link>
-          </div>
+        </div>
+        <div className="text-center mt-12">
+          <Link 
+            href="/contact" 
+            className="inline-flex items-center text-primary font-medium hover:underline"
+          >
+            Have more questions? Contact us
+            <ChevronDown className="ml-2 h-4 w-4 rotate-270" />
+          </Link>
         </div>
       </div>
     </section>
   );
-};
-
-export default FAQSection;
+}
