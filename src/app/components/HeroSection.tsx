@@ -46,8 +46,8 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-r from-slate-800 to-indigo-800 text-white">
-      <div className="container py-20 md:py-32">
+    <section className="bg-gradient-to-r from-slate-800 to-indigo-800 text-white relative">
+      <div className="container py-20 md:py-32 pb-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
@@ -153,7 +153,7 @@ const HeroSection = () => {
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-white/10 -skew-x-12 transform origin-top-right"></div>
       <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/30 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 w-full h-2 bg-indigo-900"></div>{" "}
+      <div className="absolute bottom-0 left-0 w-full h-3 bg-indigo-900"></div>
       {/* Border to separate sections */}
       <style jsx>{`
         @keyframes spin {
