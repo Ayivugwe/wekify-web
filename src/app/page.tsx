@@ -26,16 +26,16 @@ export default function Home() {
         {/* Hero Section with Globe */}
         <HeroSection />
 
-        {/* Key Benefits Section - Teal/Green Background */}
+        {/* Key Features Section - Teal/Green Background */}
         <section className="py-24 bg-gradient-to-b from-teal-500 to-teal-600">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Preserve Your Heritage Through Technology
+                Powerful Language Tools
               </h2>
               <p className="text-xl text-teal-100 max-w-3xl mx-auto">
                 Our platform offers comprehensive tools to document, teach, and celebrate 
-                indigenous languages for generations to come.
+                languages for generations to come.
               </p>
             </div>
 

@@ -51,7 +51,7 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
-              Preserving Indigenous Languages Through Digital Innovation
+              Preserving Languages Through Digital Innovation
             </h1>
             <p className="text-xl text-white/90 mb-8">
               Wekify empowers communities to document, learn, and celebrate
