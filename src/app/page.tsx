@@ -1,6 +1,7 @@
 
 import { Metadata } from "next";
 import HeroSection from "./components/HeroSection";
+import Layout from "./components/layout";
 import FAQSection from "./components/FAQSection";
 import { faqData } from "./lib/data/faqData";
 import GamePromoSection from "./components/GamePromoSection";
@@ -18,7 +19,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <Layout>
+      <main>
       {/* Hero Section with Globe */}
       <HeroSection />
 
@@ -241,5 +243,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+    </Layout>
   );
 }
