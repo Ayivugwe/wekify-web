@@ -63,6 +63,12 @@ const megaMenuItems = {
       href: "/about/vision",
       icon: "Heart",
       description: "Our future plans for language preservation"
+    },
+    { 
+      name: "Our Policies", 
+      href: "/about/our-policies",
+      icon: "Shield",
+      description: "Learn about our guiding principles and vision"
     }
   ],
 };
