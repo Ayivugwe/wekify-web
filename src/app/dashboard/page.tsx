@@ -161,6 +161,13 @@ export default function LanguageDashboardPage() {
           <div className="bg-white rounded-xl shadow-md p-6 mb-10">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
               <h2 className="text-xl font-bold">Language Statistics</h2>
+              
+              <div className="text-sm text-gray-500">
+                <span className="inline-block bg-blue-100 text-blue-800 text-xs px-1 rounded mr-1">Dict</span> Dictionary
+                <span className="inline-block bg-purple-100 text-purple-800 text-xs px-1 rounded mx-1">Web</span> Website
+                <span className="inline-block bg-yellow-100 text-yellow-800 text-xs px-1 rounded mx-1">News</span> News
+                <span className="inline-block bg-green-100 text-green-800 text-xs px-1 rounded ml-1">Edu</span> Education
+              </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative">
@@ -276,7 +283,35 @@ export default function LanguageDashboardPage() {
                     {filteredAssessments.slice(0, 10).map((assessment) => (
                       <tr key={assessment.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          {assessment.language}
+                          <Link 
+                            href={`/dashboard/language/${encodeURIComponent(assessment.language)}`}
+                            className="text-primary hover:text-primary-dark hover:underline"
+                          >
+                            {assessment.language}</Link>
+                          {assessment.resources && (
+                            <div className="flex space-x-1 mt-1">
+                              {assessment.resources.dictionary && assessment.resources.dictionary.exists && (
+                                <span title="Has dictionary" className="inline-block bg-blue-100 text-blue-800 text-xs px-1 rounded">
+                                  Dict
+                                </span>
+                              )}
+                              {assessment.resources.website && assessment.resources.website.exists && (
+                                <span title="Has website" className="inline-block bg-purple-100 text-purple-800 text-xs px-1 rounded">
+                                  Web
+                                </span>
+                              )}
+                              {assessment.resources.news && assessment.resources.news.exists && (
+                                <span title="Has news sources" className="inline-block bg-yellow-100 text-yellow-800 text-xs px-1 rounded">
+                                  News
+                                </span>
+                              )}
+                              {assessment.resources.educationMaterials && assessment.resources.educationMaterials.exists && (
+                                <span title="Has educational materials" className="inline-block bg-green-100 text-green-800 text-xs px-1 rounded">
+                                  Edu
+                                </span>
+                              )}
+                            </div>
+                          )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                           {assessment.percentage}%

@@ -84,6 +84,14 @@ export default function LanguageAssessmentPage() {
   const [languageName, setLanguageName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState(null);
+  const [resources, setResources] = useState({
+    dictionary: { exists: false, type: '', info: '' },
+    website: { exists: false, url: '', info: '' },
+    news: { exists: false, url: '', info: '' },
+    socialMedia: { exists: false, platforms: [], info: '' },
+    educationMaterials: { exists: false, types: [], info: '' },
+    contactInfo: { name: '', email: '', organization: '' }
+  });
 
   const handleAnswer = (questionId, answer, score) => {
     setAnswers({
@@ -106,6 +114,31 @@ export default function LanguageAssessmentPage() {
     return Math.round((score / totalPossible) * 100);
   };
 
+  const handleResourceChange = (category, field, value) => {
+    setResources(prev => ({
+      ...prev,
+      [category]: {
+        ...prev[category],
+        [field]: value
+      }
+    }));
+  };
+
+  const handleMultiSelectChange = (category, field, value) => {
+    const currentValues = resources[category][field];
+    const newValues = currentValues.includes(value)
+      ? currentValues.filter(item => item !== value)
+      : [...currentValues, value];
+    
+    setResources(prev => ({
+      ...prev,
+      [category]: {
+        ...prev[category],
+        [field]: newValues
+      }
+    }));
+  };
+
   const handleSubmit = async () => {
     if (!languageName.trim()) {
       alert('Please enter a language name');
@@ -121,6 +154,7 @@ export default function LanguageAssessmentPage() {
       const assessmentData = {
         language: languageName,
         answers,
+        resources,
         totalScore,
         percentage,
         timestamp: new Date().toISOString()
@@ -161,6 +195,376 @@ export default function LanguageAssessmentPage() {
     setResult(null);
   };
 
+  // Resource collection form after completing the core assessment
+  if (currentStep === questions.length + 1) {
+    return (
+      <Layout>
+        <div className="min-h-screen pt-32 pb-16">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+              <h1 className="text-3xl md:text-4xl font-bold mb-6">Resource Information</h1>
+              <p className="text-lg text-gray-700 mb-8">
+                Please share information about existing resources for {languageName}. This helps us better understand the current state and provide targeted recommendations.
+              </p>
+              
+              <div className="space-y-8">
+                {/* Dictionary Resources */}
+                <div className="border-b pb-6">
+                  <h2 className="text-xl font-semibold mb-4">Dictionary Resources</h2>
+                  <div className="mb-4">
+                    <label className="inline-flex items-center mr-6">
+                      <input
+                        type="radio"
+                        checked={resources.dictionary.exists}
+                        onChange={() => handleResourceChange('dictionary', 'exists', true)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">Yes, dictionaries exist</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input
+                        type="radio"
+                        checked={!resources.dictionary.exists}
+                        onChange={() => handleResourceChange('dictionary', 'exists', false)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">No dictionaries available</span>
+                    </label>
+                  </div>
+                  
+                  {resources.dictionary.exists && (
+                    <>
+                      <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Dictionary Type
+                        </label>
+                        <select
+                          value={resources.dictionary.type}
+                          onChange={(e) => handleResourceChange('dictionary', 'type', e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                        >
+                          <option value="">Select type</option>
+                          <option value="print">Print only</option>
+                          <option value="digital">Digital only</option>
+                          <option value="both">Both print and digital</option>
+                          <option value="app">Mobile app</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Additional Information
+                        </label>
+                        <textarea
+                          value={resources.dictionary.info}
+                          onChange={(e) => handleResourceChange('dictionary', 'info', e.target.value)}
+                          placeholder="Dictionary name, publication date, publisher, URL if digital..."
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                          rows={2}
+                        ></textarea>
+                      </div>
+                    </>
+                  )}
+                </div>
+                
+                {/* Website Resources */}
+                <div className="border-b pb-6">
+                  <h2 className="text-xl font-semibold mb-4">Website Resources</h2>
+                  <div className="mb-4">
+                    <label className="inline-flex items-center mr-6">
+                      <input
+                        type="radio"
+                        checked={resources.website.exists}
+                        onChange={() => handleResourceChange('website', 'exists', true)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">Yes, websites exist</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input
+                        type="radio"
+                        checked={!resources.website.exists}
+                        onChange={() => handleResourceChange('website', 'exists', false)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">No websites available</span>
+                    </label>
+                  </div>
+                  
+                  {resources.website.exists && (
+                    <>
+                      <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Website URL
+                        </label>
+                        <input
+                          type="text"
+                          value={resources.website.url}
+                          onChange={(e) => handleResourceChange('website', 'url', e.target.value)}
+                          placeholder="https://example.com"
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Website Description
+                        </label>
+                        <textarea
+                          value={resources.website.info}
+                          onChange={(e) => handleResourceChange('website', 'info', e.target.value)}
+                          placeholder="What content is available, who maintains it, etc."
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                          rows={2}
+                        ></textarea>
+                      </div>
+                    </>
+                  )}
+                </div>
+                
+                {/* News Resources */}
+                <div className="border-b pb-6">
+                  <h2 className="text-xl font-semibold mb-4">News Resources</h2>
+                  <div className="mb-4">
+                    <label className="inline-flex items-center mr-6">
+                      <input
+                        type="radio"
+                        checked={resources.news.exists}
+                        onChange={() => handleResourceChange('news', 'exists', true)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">Yes, news sources exist</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input
+                        type="radio"
+                        checked={!resources.news.exists}
+                        onChange={() => handleResourceChange('news', 'exists', false)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">No news sources available</span>
+                    </label>
+                  </div>
+                  
+                  {resources.news.exists && (
+                    <>
+                      <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          News Source URL or Name
+                        </label>
+                        <input
+                          type="text"
+                          value={resources.news.url}
+                          onChange={(e) => handleResourceChange('news', 'url', e.target.value)}
+                          placeholder="https://news.example.com or newspaper name"
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Additional Information
+                        </label>
+                        <textarea
+                          value={resources.news.info}
+                          onChange={(e) => handleResourceChange('news', 'info', e.target.value)}
+                          placeholder="Publication frequency, content type, audience reach..."
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                          rows={2}
+                        ></textarea>
+                      </div>
+                    </>
+                  )}
+                </div>
+                
+                {/* Educational Materials */}
+                <div className="border-b pb-6">
+                  <h2 className="text-xl font-semibold mb-4">Educational Materials</h2>
+                  <div className="mb-4">
+                    <label className="inline-flex items-center mr-6">
+                      <input
+                        type="radio"
+                        checked={resources.educationMaterials.exists}
+                        onChange={() => handleResourceChange('educationMaterials', 'exists', true)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">Yes, educational materials exist</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input
+                        type="radio"
+                        checked={!resources.educationMaterials.exists}
+                        onChange={() => handleResourceChange('educationMaterials', 'exists', false)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">No educational materials available</span>
+                    </label>
+                  </div>
+                  
+                  {resources.educationMaterials.exists && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Types of Educational Materials (select all that apply)
+                      </label>
+                      <div className="grid grid-cols-2 gap-2 mb-4">
+                        {['Textbooks', 'Online courses', 'Mobile apps', 'Videos', 'Audio lessons', 'Flashcards', 'Grammar guides'].map(type => (
+                          <label key={type} className="inline-flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={resources.educationMaterials.types.includes(type)}
+                              onChange={() => handleMultiSelectChange('educationMaterials', 'types', type)}
+                              className="form-checkbox h-4 w-4 text-primary"
+                            />
+                            <span className="ml-2 text-sm">{type}</span>
+                          </label>
+                        ))}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Additional Information
+                        </label>
+                        <textarea
+                          value={resources.educationMaterials.info}
+                          onChange={(e) => handleResourceChange('educationMaterials', 'info', e.target.value)}
+                          placeholder="Where these materials can be found, target audience, effectiveness..."
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                          rows={2}
+                        ></textarea>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Social Media Presence */}
+                <div className="border-b pb-6">
+                  <h2 className="text-xl font-semibold mb-4">Social Media Presence</h2>
+                  <div className="mb-4">
+                    <label className="inline-flex items-center mr-6">
+                      <input
+                        type="radio"
+                        checked={resources.socialMedia.exists}
+                        onChange={() => handleResourceChange('socialMedia', 'exists', true)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">Yes, social media content exists</span>
+                    </label>
+                    <label className="inline-flex items-center">
+                      <input
+                        type="radio"
+                        checked={!resources.socialMedia.exists}
+                        onChange={() => handleResourceChange('socialMedia', 'exists', false)}
+                        className="form-radio h-5 w-5 text-primary"
+                      />
+                      <span className="ml-2">No social media presence</span>
+                    </label>
+                  </div>
+                  
+                  {resources.socialMedia.exists && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Platforms (select all that apply)
+                      </label>
+                      <div className="grid grid-cols-2 gap-2 mb-4">
+                        {['Facebook', 'Twitter', 'Instagram', 'YouTube', 'TikTok', 'LinkedIn', 'WhatsApp'].map(platform => (
+                          <label key={platform} className="inline-flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={resources.socialMedia.platforms.includes(platform)}
+                              onChange={() => handleMultiSelectChange('socialMedia', 'platforms', platform)}
+                              className="form-checkbox h-4 w-4 text-primary"
+                            />
+                            <span className="ml-2 text-sm">{platform}</span>
+                          </label>
+                        ))}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Additional Information
+                        </label>
+                        <textarea
+                          value={resources.socialMedia.info}
+                          onChange={(e) => handleResourceChange('socialMedia', 'info', e.target.value)}
+                          placeholder="Community size, active groups or channels, notable content creators..."
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                          rows={2}
+                        ></textarea>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Contact Information */}
+                <div>
+                  <h2 className="text-xl font-semibold mb-4">Your Contact Information (Optional)</h2>
+                  <p className="text-sm text-gray-600 mb-4">
+                    If you'd like to receive targeted recommendations or be notified of resources that become available for this language, please provide your contact information.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        value={resources.contactInfo.name}
+                        onChange={(e) => handleResourceChange('contactInfo', 'name', e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        value={resources.contactInfo.email}
+                        onChange={(e) => handleResourceChange('contactInfo', 'email', e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Organization (if applicable)
+                    </label>
+                    <input
+                      type="text"
+                      value={resources.contactInfo.organization}
+                      onChange={(e) => handleResourceChange('contactInfo', 'organization', e.target.value)}
+                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setCurrentStep(currentStep - 1)} 
+                  className="justify-center"
+                >
+                  <ArrowLeft className="mr-2 h-5 w-5" /> Back to Questions
+                </Button>
+                <Button 
+                  onClick={handleSubmit} 
+                  className="justify-center flex-1"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Processing...
+                    </>
+                  ) : (
+                    <>
+                      Submit Assessment <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   // Render the intro step
   if (currentStep === 0) {
     return (
@@ -199,7 +603,7 @@ export default function LanguageAssessmentPage() {
   }
 
   // Render results
-  if (currentStep > questions.length || result) {
+  if (result) {
     return (
       <Layout>
         <div className="min-h-screen pt-32 pb-16">
@@ -207,7 +611,7 @@ export default function LanguageAssessmentPage() {
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
               <h1 className="text-3xl md:text-4xl font-bold mb-6">Assessment Results</h1>
 
-              {!result && !isSubmitting ? (
+              {!isSubmitting ? (
                 <>
                   <p className="text-lg text-gray-700 mb-6">
                     You've completed the assessment for <span className="font-semibold">{languageName}</span>.
@@ -265,26 +669,129 @@ export default function LanguageAssessmentPage() {
 
                     {result.needsSupport ? (
                       <div className="bg-red-100 border-l-4 border-red-500 p-4 mb-4">
-                        <p className="text-red-700">
-                          This language has been identified as needing support. Your assessment helps us understand where to focus our preservation efforts.
-                        </p>
+                        <div className="flex items-start">
+                          <AlertTriangle className="h-6 w-6 text-red-600 mr-3 mt-0.5" />
+                          <div>
+                            <h3 className="font-bold text-red-800">This language needs support</h3>
+                            <p className="text-red-700">
+                              This language has been identified as needing preservation support. Your assessment helps us understand where to focus our efforts.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     ) : (
                       <div className="bg-green-100 border-l-4 border-green-500 p-4 mb-4">
-                        <p className="text-green-700">
-                          This language appears to be well-resourced. However, continued monitoring and support is important.
-                        </p>
+                        <div className="flex items-start">
+                          <Check className="h-6 w-6 text-green-600 mr-3 mt-0.5" />
+                          <div>
+                            <h3 className="font-bold text-green-800">Well-resourced language</h3>
+                            <p className="text-green-700">
+                              This language appears to be well-resourced. However, continued monitoring and support remains important.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     )}
 
-                    <p className="text-gray-700">
-                      Thank you for contributing to our language preservation efforts. This data will help inform our work and priorities.
+                    <div className="mt-8 mb-8">
+                      <h3 className="text-xl font-semibold mb-4">Recommendations for {result.language}</h3>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {result.percentage < 30 && (
+                          <div className="bg-blue-50 rounded-lg p-4">
+                            <h4 className="font-medium text-blue-800 mb-2">Urgent Documentation Needed</h4>
+                            <p className="text-sm text-gray-700">We recommend:</p>
+                            <ul className="list-disc pl-5 text-sm text-gray-700 mt-2">
+                              <li>Documentation of basic vocabulary and grammar</li>
+                              <li>Recording native speakers</li>
+                              <li>Creating a basic digital dictionary</li>
+                              <li>Seeking grant funding for documentation projects</li>
+                            </ul>
+                            <div className="mt-3">
+                              <Link href="/contact" className="text-blue-600 hover:underline text-sm font-medium">Contact our documentation team →</Link>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {result.percentage >= 30 && result.percentage < 50 && (
+                          <div className="bg-blue-50 rounded-lg p-4">
+                            <h4 className="font-medium text-blue-800 mb-2">Digital Resources Development</h4>
+                            <p className="text-sm text-gray-700">We recommend:</p>
+                            <ul className="list-disc pl-5 text-sm text-gray-700 mt-2">
+                              <li>Expanding existing documentation</li>
+                              <li>Creating digital learning materials</li>
+                              <li>Developing multimedia resources</li>
+                              <li>Building online community spaces</li>
+                            </ul>
+                            <div className="mt-3">
+                              <Link href="/services" className="text-blue-600 hover:underline text-sm font-medium">Learn about our digital services →</Link>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {result.percentage >= 50 && result.percentage < 75 && (
+                          <div className="bg-blue-50 rounded-lg p-4">
+                            <h4 className="font-medium text-blue-800 mb-2">Enhancement Opportunities</h4>
+                            <p className="text-sm text-gray-700">We recommend:</p>
+                            <ul className="list-disc pl-5 text-sm text-gray-700 mt-2">
+                              <li>Advanced natural language processing tools</li>
+                              <li>AI-assisted translation services</li>
+                              <li>Educational app development</li>
+                              <li>Academic research partnerships</li>
+                            </ul>
+                            <div className="mt-3">
+                              <Link href="/technology" className="text-blue-600 hover:underline text-sm font-medium">Explore our technology solutions →</Link>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {result.percentage >= 75 && (
+                          <div className="bg-blue-50 rounded-lg p-4">
+                            <h4 className="font-medium text-blue-800 mb-2">Preservation and Advancement</h4>
+                            <p className="text-sm text-gray-700">We recommend:</p>
+                            <ul className="list-disc pl-5 text-sm text-gray-700 mt-2">
+                              <li>Cultural heritage digitization</li>
+                              <li>Advanced computational linguistics</li>
+                              <li>Cross-language research initiatives</li>
+                              <li>Knowledge exchange programs</li>
+                            </ul>
+                            <div className="mt-3">
+                              <Link href="/research" className="text-blue-600 hover:underline text-sm font-medium">Join our research network →</Link>
+                            </div>
+                          </div>
+                        )}
+                        
+                        <div className="bg-violet-50 rounded-lg p-4">
+                          <h4 className="font-medium text-violet-800 mb-2">Wekify Services Available</h4>
+                          <p className="text-sm text-gray-700">Based on your assessment:</p>
+                          <ul className="list-disc pl-5 text-sm text-gray-700 mt-2">
+                            <li>Technical consultation with our linguists</li>
+                            <li>Resource development planning</li>
+                            <li>Community outreach strategies</li>
+                            <li>Grant application assistance</li>
+                          </ul>
+                          <div className="mt-3">
+                            <Link href="/services" className="text-violet-600 hover:underline text-sm font-medium">View all services →</Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-700 mb-6">
+                      Thank you for contributing to our language preservation efforts. Your data will help inform our work and priorities.
                     </p>
                   </div>
 
-                  <Button onClick={resetAssessment} className="w-full justify-center">
-                    Start New Assessment <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button onClick={resetAssessment} className="justify-center flex-1">
+                      Start New Assessment <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                    <Link href="/dashboard" className="flex-1">
+                      <Button variant="outline" className="w-full justify-center">
+                        View All Assessments <BarChart className="ml-2 h-5 w-5" />
+                      </Button>
+                    </Link>
+                  </div>
                 </>
               )}
             </div>
@@ -292,6 +799,13 @@ export default function LanguageAssessmentPage() {
         </div>
       </Layout>
     );
+  }
+
+  // After all questions, proceed to resource collection
+  if (currentStep === questions.length) {
+    // Move to resource collection step
+    setCurrentStep(questions.length + 1);
+    return null;
   }
 
   // Render questions
