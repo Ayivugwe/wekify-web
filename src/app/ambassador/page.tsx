@@ -1,24 +1,36 @@
-
 "use client";
 
 import React from "react";
 import Image from "next/image";
-import { SEOMetadata } from "../components/SEOMetadata";
+import dynamic from "next/dynamic";
+const SEOMetadata = dynamic(() => import("../components/SEOMetadata"), { ssr: false });
 import { FadeIn } from "../components/FadeIn";
 import { Button } from "../components/Button";
 import { Section } from "../components/Section";
 import { Card } from "../components/Card";
 import { ChevronRight, Globe, Users, Award, MessageSquare, Zap, BookOpen } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Become an Ambassador | Wekify",
+  description: "Join our ambassador program and help preserve languages in your community. Make a difference by connecting technology with cultural heritage.",
+  keywords: "language ambassador, cultural preservation, community leader, language technology",
+  openGraph: {
+    title: "Become an Ambassador | Wekify",
+    description: "Join our ambassador program and help preserve languages in your community.",
+    images: ['/ambassador-community.jpg'],
+  },
+};
 
 export default function AmbassadorPage() {
   return (
     <>
-      <SEOMetadata
+      {/*<SEOMetadata //Removed SEOMetadata as per instructions
         title="Become an Ambassador | Wekify"
         description="Join our ambassador program and help preserve languages in your community. Make a difference by connecting technology with cultural heritage."
         keywords="language ambassador, cultural preservation, community leader, language technology"
-      />
-      
+      />*/}
+
       <main>
         {/* Hero Section */}
         <Section background="gradient" spacing="xl">
@@ -49,7 +61,7 @@ export default function AmbassadorPage() {
                 </Button>
               </div>
             </FadeIn>
-            
+
             <FadeIn direction="right" delay={200}>
               <div className="relative rounded-xl overflow-hidden shadow-2xl">
                 <Image
@@ -63,7 +75,7 @@ export default function AmbassadorPage() {
             </FadeIn>
           </div>
         </Section>
-        
+
         {/* Role Description */}
         <Section background="light" id="learn-more">
           <FadeIn>
@@ -73,7 +85,7 @@ export default function AmbassadorPage() {
               They help bridge the digital divide while preserving cultural heritage.
             </p>
           </FadeIn>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -118,7 +130,7 @@ export default function AmbassadorPage() {
             ))}
           </div>
         </Section>
-        
+
         {/* Benefits Section */}
         <Section background="white">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -143,7 +155,7 @@ export default function AmbassadorPage() {
                 ))}
               </ul>
             </FadeIn>
-            
+
             <FadeIn direction="right" delay={200}>
               <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-md">
                 <h3 className="text-2xl font-bold mb-6 text-center">Ambassador Testimonial</h3>
@@ -163,7 +175,7 @@ export default function AmbassadorPage() {
             </FadeIn>
           </div>
         </Section>
-        
+
         {/* Application Section */}
         <Section background="gradient" spacing="xl" id="apply">
           <div className="max-w-3xl mx-auto">
@@ -192,7 +204,7 @@ export default function AmbassadorPage() {
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label htmlFor="email" className="block mb-2 font-medium">Email Address</label>
                     <input 
@@ -201,7 +213,7 @@ export default function AmbassadorPage() {
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="language" className="block mb-2 font-medium">Language Community</label>
                     <input 
@@ -211,7 +223,7 @@ export default function AmbassadorPage() {
                       placeholder="What language/community would you represent?"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="motivation" className="block mb-2 font-medium">Motivation</label>
                     <textarea 
@@ -221,7 +233,7 @@ export default function AmbassadorPage() {
                       placeholder="Why do you want to become an ambassador?"
                     ></textarea>
                   </div>
-                  
+
                   <Button type="submit" variant="primary" size="lg" fullWidth>
                     Submit Application
                   </Button>
@@ -230,12 +242,12 @@ export default function AmbassadorPage() {
             </FadeIn>
           </div>
         </Section>
-        
+
         {/* FAQ Section */}
         <Section background="light">
           <FadeIn>
             <h2 className="section-title">Frequently Asked Questions</h2>
-            
+
             <div className="max-w-3xl mx-auto space-y-6">
               {[
                 {
