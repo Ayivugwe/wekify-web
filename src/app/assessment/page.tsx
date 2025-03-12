@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
-import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Loader2, Clock } from "lucide-react";
 import { assessmentQuestions } from "../lib/data/assessmentQuestions";
 import Link from "next/link";
 import { Button } from "../components/Button";
@@ -19,6 +19,9 @@ export default function AssessmentPage() {
     needsSupport: boolean;
   } | null>(null);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [startTime, setStartTime] = useState(0);
 
   const [resources, setResources] = useState({
     dictionary: {
@@ -117,6 +120,7 @@ export default function AssessmentPage() {
         resources,
         totalScore,
         percentage,
+        elapsedTime,
         timestamp: new Date().toISOString()
       };
 
@@ -154,11 +158,44 @@ export default function AssessmentPage() {
 
   const resetAssessment = () => {
     setCurrentStep(0);
+    setCurrentQuestionIndex(0);
     setAnswers({});
     setLanguageName('');
     setResult(null);
     setSubmissionError(null);
+    setElapsedTime(0);
+    setStartTime(0);
   };
+
+  const formatTime = (timeInSeconds: number): string => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  const goToNextQuestion = () => {
+    setCurrentQuestionIndex(prevIndex => Math.min(prevIndex + 1, questions.length -1));
+  };
+
+  const goToPreviousQuestion = () => {
+    setCurrentQuestionIndex(prevIndex => Math.max(prevIndex - 1, 0));
+  };
+
+
+  useEffect(() => {
+    if (currentStep === 1 && currentQuestionIndex === 0 && startTime === 0) {
+      setStartTime(Date.now());
+    }
+
+    if (currentStep === 1 && startTime !== 0) {
+      const intervalId = setInterval(() => {
+          setElapsedTime(prevTime => prevTime + 1);
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [currentStep, currentQuestionIndex, startTime]);
+
 
   if (currentStep === 0) {
     return (
@@ -205,77 +242,132 @@ export default function AssessmentPage() {
 
   // Assessment questions section
   if (currentStep === 1) {
+    // Get current question
+    const currentQuestion = questions[currentQuestionIndex];
+
     return (
       <Layout>
         <div className="min-h-screen pt-32 pb-16">
           <div className="max-w-4xl mx-auto px-4">
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
               <div className="flex items-center justify-between mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold">Assessment: {languageName}</h1>
-                <span className="text-sm bg-gray-100 px-3 py-1 rounded-full">
-                  {Object.keys(answers).length}/{questions.length} Questions
-                </span>
+                <div>
+                  <h1 className="text-3xl md:text-4xl font-bold">Assessment: {languageName}</h1>
+                  <div className="flex items-center space-x-3 mt-2">
+                    <span className="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">
+                      Question {currentQuestionIndex + 1} of {questions.length}
+                    </span>
+                    <span className="text-sm bg-gray-100 px-3 py-1 rounded-full">
+                      {Object.keys(answers).length}/{questions.length} Answered
+                    </span>
+                    <span className="text-sm bg-amber-50 text-amber-600 px-3 py-1 rounded-full flex items-center">
+                      <Clock className="h-3.5 w-3.5 mr-1" /> {formatTime(elapsedTime)}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Progress bar */}
+                <div className="hidden md:block w-32 h-32 relative">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <circle 
+                      className="text-gray-200" 
+                      strokeWidth="8" 
+                      stroke="currentColor" 
+                      fill="transparent" 
+                      r="40" 
+                      cx="50" 
+                      cy="50" 
+                    />
+                    <circle 
+                      className="text-blue-600" 
+                      strokeWidth="8" 
+                      strokeLinecap="round" 
+                      stroke="currentColor" 
+                      fill="transparent" 
+                      r="40" 
+                      cx="50" 
+                      cy="50" 
+                      strokeDasharray={2 * Math.PI * 40}
+                      strokeDashoffset={2 * Math.PI * 40 * (1 - Object.keys(answers).length / questions.length)}
+                      style={{ transition: "stroke-dashoffset 0.5s ease" }}
+                    />
+                    <text x="50" y="50" textAnchor="middle" dominantBaseline="middle" className="text-2xl font-bold">
+                      {Math.round((Object.keys(answers).length / questions.length) * 100)}%
+                    </text>
+                  </svg>
+                </div>
               </div>
 
-              <div className="space-y-12 mb-10">
-                {questions.map((question, index) => (
-                  <div key={index} className="border-b border-gray-200 pb-10 last:border-0">
-                    <div className="mb-4">
-                      <h3 className="text-xl font-medium mb-2">{question.question}</h3>
-                      <p className="text-gray-600">{question.description}</p>
-                    </div>
+              <div className="mb-10">
+                <div className="border-b border-gray-200 pb-10">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-medium mb-2">{currentQuestion.question}</h3>
+                    <p className="text-gray-600">{currentQuestion.description}</p>
+                  </div>
 
-                    <div className="grid grid-cols-1 gap-3 mt-6">
-                      {[
-                        { value: 0, label: "Not at all", description: question.options[0].label },
-                        { value: 3, label: "Minimally", description: question.options[1].label },
-                        { value: 7, label: "Moderately", description: question.options[2].label },
-                        { value: 10, label: "Extensively", description: question.options[3].label },
-                      ].map((option) => (
-                        <div 
-                          key={option.value}
-                          className={`border rounded-lg p-4 cursor-pointer transition-all hover:border-primary
-                            ${answers[question.id] === option.value ? 'border-primary bg-primary/5' : 'border-gray-200'}`}
-                          onClick={() => handleAnswer(question.id, option.value)}
-                        >
+                  <div className="grid grid-cols-1 gap-3 mt-6">
+                    {currentQuestion.options.map((option, optIndex) => (
+                      <div 
+                        key={optIndex}
+                        className={`flex items-start p-4 border rounded-lg cursor-pointer transition-all duration-200 ${
+                          answers[currentQuestion.id] === option.score 
+                            ? 'border-blue-500 bg-blue-50 shadow-md transform scale-102' 
+                            : 'border-gray-200 hover:bg-gray-50'
+                        }`}
+                        onClick={() => handleAnswer(currentQuestion.id, option.score)}
+                      >
+                        <div className="flex-1">
                           <div className="flex items-center">
-                            <div className={`w-5 h-5 rounded-full border flex items-center justify-center mr-3
-                              ${answers[question.id] === option.value ? 'border-primary' : 'border-gray-300'}`}
-                            >
-                              {answers[question.id] === option.value && (
-                                <div className="w-3 h-3 rounded-full bg-primary"></div>
+                            <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                              answers[currentQuestion.id] === option.score 
+                                ? 'bg-blue-600 border-blue-600' 
+                                : 'border-2 border-gray-300'
+                            } mr-3`}>
+                              {answers[currentQuestion.id] === option.score && (
+                                <Check className="h-3 w-3 text-white" />
                               )}
                             </div>
-                            <div className="flex-1">
-                              <div className="font-medium">{option.label}</div>
-                              <div className="text-sm text-gray-600 mt-1">{option.description}</div>
-                            </div>
+                            <span className={`font-medium ${answers[currentQuestion.id] === option.score ? 'text-blue-700' : ''}`}>
+                              {option.label}
+                            </span>
                           </div>
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
 
+              {/* Navigation buttons */}
               <div className="flex justify-between">
                 <Button 
                   variant="outline" 
-                  onClick={() => setCurrentStep(0)}
+                  onClick={goToPreviousQuestion}
+                  disabled={currentQuestionIndex === 0}
+                  className={currentQuestionIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}
                 >
-                  <ArrowLeft className="mr-2 h-5 w-5" /> Back
+                  <ArrowLeft className="mr-2 h-4 w-4" /> Previous
                 </Button>
-                <Button 
-                  onClick={() => {
-                    if (Object.keys(answers).length === questions.length) {
-                      setCurrentStep(2);
-                    } else {
-                      alert('Please answer all questions before proceeding');
-                    }
-                  }}
-                >
-                  Continue <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+
+                <div className="flex space-x-3">
+                  {currentQuestionIndex === questions.length - 1 ? (
+                    <Button 
+                      onClick={() => setCurrentStep(2)}
+                      disabled={Object.keys(answers).length < questions.length}
+                      className={Object.keys(answers).length < questions.length ? 'opacity-70' : ''}
+                    >
+                      Review Results <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  ) : (
+                    <Button 
+                      onClick={goToNextQuestion}
+                      disabled={!answers[currentQuestion.id]}
+                      className={!answers[currentQuestion.id] ? 'opacity-70' : ''}
+                    >
+                      Next Question <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
