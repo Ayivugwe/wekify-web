@@ -13,7 +13,7 @@ interface FAQSectionProps {
   faqs: FAQ[];
 }
 
-const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => {
+const FAQSection = ({ faqs }: FAQSectionProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -21,36 +21,41 @@ const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => {
   };
 
   return (
-    <section className="section bg-background-alt">
-      <div className="container">
+    <section className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find answers to common questions about our language preservation platform and services.
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Find answers to common questions about our platform and services
           </p>
         </div>
+
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="mb-4 border border-gray-200 rounded-xl overflow-hidden bg-white"
+              className="mb-4 border border-gray-200 rounded-lg overflow-hidden bg-white"
             >
               <button
                 className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
                 onClick={() => toggleFAQ(index)}
               >
-                <span className="font-semibold text-lg text-gray-800">{faq.question}</span>
+                <span className="font-medium text-gray-900">{faq.question}</span>
                 {openIndex === index ? (
                   <ChevronUp className="h-5 w-5 text-primary" />
                 ) : (
                   <ChevronDown className="h-5 w-5 text-gray-500" />
                 )}
               </button>
-              {openIndex === index && (
-                <div className="px-6 pb-4">
-                  <p className="text-gray-600">{faq.answer}</p>
-                </div>
-              )}
+              <div
+                className={`px-6 pb-4 transition-all duration-300 ease-in-out overflow-hidden ${
+                  openIndex === index ? "max-h-96" : "max-h-0"
+                }`}
+              >
+                <p className="text-gray-600">{faq.answer}</p>
+              </div>
             </div>
           ))}
         </div>

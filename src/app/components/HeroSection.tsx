@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   const [rotation, setRotation] = useState(0);
@@ -47,84 +48,105 @@ const HeroSection = () => {
     ],
   ];
 
+  // Slow rotation effect
   useEffect(() => {
-    // Rotation of the globe
-    const rotationInterval = setInterval(() => {
-      setRotation((prev) => (prev + 0.5) % 360);
+    const interval = setInterval(() => {
+      setRotation((prevRotation) => (prevRotation + 0.2) % 360);
     }, 50);
-    
-    // Language cycling
-    const languageInterval = setInterval(() => {
-      setLanguageIndex((prevIndex) => (prevIndex + 1) % languageSets.length);
-    }, 5000); // Change languages every 5 seconds
-    
-    return () => {
-      clearInterval(rotationInterval);
-      clearInterval(languageInterval);
-    };
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Language tag cycling
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLanguageIndex((prev) => (prev + 1) % languageSets.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, [languageSets.length]);
 
   return (
-    <section className="bg-gradient-to-r from-primary to-accent text-white">
-      <div className="container py-20 md:py-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section className="bg-gradient-to-b from-blue-50 to-white py-20">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
-              Preserving Indigenous Languages Through Digital Innovation
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Preserving Languages Through Digital Innovation
             </h1>
-            <p className="text-xl text-white/90 mb-8">
-              Wekify empowers communities to document, learn, and celebrate their languages with cutting-edge technology solutions.
+            <p className="text-xl text-gray-600 mb-8">
+              Wekify empowers communities to document, learn, and celebrate
+              their languages with cutting-edge technology solutions.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/solutions" className="bg-white text-primary px-6 py-3 rounded-xl font-medium hover:bg-opacity-90 transition-all duration-300">
-                Explore Solutions
+              <Link
+                href="/solutions"
+                className="btn-primary inline-flex items-center"
+              >
+                Explore Solutions <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-              <Link href="/contact" className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-xl font-medium hover:bg-white hover:text-primary transition-all duration-300">
+              <Link href="/contact" className="btn-secondary">
                 Contact Us
               </Link>
             </div>
           </div>
-          <div className="hidden md:flex justify-center">
+
+          <div className="flex justify-center">
             <div className="relative w-[400px] h-[400px]">
               {/* Glowing circle background */}
-              <div className="absolute inset-0 rounded-full bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_100px_rgba(255,255,255,0.3)]"></div>
+              <div
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-indigo-500/20 blur-xl"
+                style={{
+                  transform: `rotate(${rotation}deg)`,
+                }}
+              ></div>
 
-              {/* Globe */}
-              <div 
-                className="absolute inset-0 flex items-center justify-center"
-                style={{ transform: `rotateY(${rotation}deg)` }}
-              >
-                <div className="relative w-[280px] h-[280px] rounded-full overflow-hidden shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
-                  <div className="absolute inset-0 bg-blue-500 opacity-70 rounded-full">
-                    {/* World map pattern */}
-                    <div className="absolute inset-0 opacity-80 bg-gradient-to-r from-blue-400 to-indigo-600">
-                      <div className="absolute inset-0" style={{ 
-                        backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 1px, transparent 1px)',
-                        backgroundSize: '20px 20px',
-                      }}></div>
-                    </div>
-                  </div>
+              {/* Globe outline */}
+              <div
+                className="absolute inset-0 border-2 border-blue-500/30 rounded-full"
+                style={{
+                  transform: `rotate(${rotation * 0.5}deg)`,
+                }}
+              ></div>
+
+              <div
+                className="absolute inset-0 border-2 border-dashed border-indigo-500/20 rounded-full"
+                style={{
+                  transform: `rotate(${-rotation * 0.3}deg)`,
+                }}
+              ></div>
+
+              {/* Inner rotating elements */}
+              <div
+                className="absolute inset-[50px] border border-blue-400/40 rounded-full"
+                style={{
+                  transform: `rotate(${-rotation * 0.7}deg)`,
+                }}
+              ></div>
+
+              {/* Central logo */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative w-24 h-24 rounded-full bg-white shadow-lg flex items-center justify-center p-2">
+                  <Image
+                    src="/ayivugwe.png"
+                    alt="Wekify Logo"
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                  />
                 </div>
               </div>
 
-              {/* Orbiting elements */}
-              <div className="absolute inset-0" style={{ animation: 'spin 20s linear infinite' }}>
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-              </div>
-
-              {/* Animated language elements */}
-              {languageSets[languageIndex].map((language, idx) => (
-                <div 
-                  key={`${language.name}-${idx}`}
-                  className={`absolute ${language.position} transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs language-tag`}
-                  style={{ 
-                    animation: 'fadeInOut 5s ease-in-out',
+              {/* Language tags */}
+              {languageSets[languageIndex].map((lang, i) => (
+                <div
+                  key={`${lang.name}-${i}`}
+                  className={`absolute ${lang.position} language-tag bg-white px-3 py-1 rounded-full shadow-md text-sm font-medium text-primary`}
+                  style={{
+                    animation: `fadeInOut 5s ease ${i * 0.5}s`,
                   }}
                 >
-                  {language.name}
+                  {lang.name}
                 </div>
               ))}
             </div>
