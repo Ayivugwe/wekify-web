@@ -1,51 +1,21 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { FadeIn } from "./FadeIn";
 
-const HeroSection = () => {
+export default function HeroSection() {
   const [rotation, setRotation] = useState(0);
   const [languageIndex, setLanguageIndex] = useState(0);
 
   const languageSets = [
-    // First set
-    [
-      { name: "Kifuliiru", position: "top-[15%] left-[20%]" },
-      { name: "Swahili", position: "top-[70%] left-[65%]" },
-      { name: "Yoruba", position: "top-[40%] left-[80%]" },
-      { name: "Twi", position: "top-[25%] left-[60%]" },
-    ],
-    // Second set
-    [
-      { name: "Zulu", position: "top-[15%] left-[20%]" },
-      { name: "Hausa", position: "top-[70%] left-[65%]" },
-      { name: "Igbo", position: "top-[40%] left-[80%]" },
-      { name: "Kikuyu", position: "top-[25%] left-[60%]" },
-    ],
-    // Third set
-    [
-      { name: "Amharic", position: "top-[15%] left-[20%]" },
-      { name: "Wolof", position: "top-[70%] left-[65%]" },
-      { name: "Bambara", position: "top-[40%] left-[80%]" },
-      { name: "Oromo", position: "top-[25%] left-[60%]" },
-    ],
-    // Fourth set
-    [
-      { name: "Xhosa", position: "top-[15%] left-[20%]" },
-      { name: "Lingala", position: "top-[70%] left-[65%]" },
-      { name: "Fula", position: "top-[40%] left-[80%]" },
-      { name: "Somali", position: "top-[25%] left-[60%]" },
-    ],
-    // Fifth set
-    [
-      { name: "Malagasy", position: "top-[15%] left-[20%]" },
-      { name: "Tigrinya", position: "top-[70%] left-[65%]" },
-      { name: "Tswana", position: "top-[40%] left-[80%]" },
-      { name: "Ndebele", position: "top-[25%] left-[60%]" },
-    ],
+    ["English", "French", "Spanish", "Portuguese", "Italian", "German"],
+    ["Mandarin", "Japanese", "Korean", "Vietnamese", "Thai", "Burmese"],
+    ["Swahili", "Zulu", "Yoruba", "Amharic", "Kifuliiru", "Lingala"],
+    ["Hindi", "Bengali", "Urdu", "Tamil", "Telugu", "Punjabi"],
+    ["Arabic", "Hebrew", "Persian", "Turkish", "Kurdish", "Berber"],
   ];
 
   // Slow rotation effect
@@ -67,7 +37,7 @@ const HeroSection = () => {
   }, [languageSets.length]);
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white py-20">
+    <section className="bg-gradient-to-b from-blue-50 to-blue-100 py-20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -81,98 +51,79 @@ const HeroSection = () => {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/solutions"
-                className="btn-primary inline-flex items-center"
+                className="px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center"
               >
-                Explore Solutions <ArrowRight className="ml-2 h-5 w-5" />
+                Discover Our Platform <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-              <Link href="/contact" className="btn-secondary">
-                Contact Us
+              <Link 
+                href="/contact" 
+                className="px-6 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-full font-medium hover:bg-blue-50 transition-colors shadow-md hover:shadow-lg"
+              >
+                Schedule a Demo
               </Link>
             </div>
           </div>
 
-          <div className="flex justify-center">
-            <div className="relative w-[400px] h-[400px]">
-              {/* Glowing circle background */}
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px]">
+              {/* Globe Container */}
               <div
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-indigo-500/20 blur-xl"
+                className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 absolute transform transition-transform"
                 style={{
                   transform: `rotate(${rotation}deg)`,
                 }}
-              ></div>
-
-              {/* Globe outline */}
-              <div
-                className="absolute inset-0 border-2 border-blue-500/30 rounded-full"
-                style={{
-                  transform: `rotate(${rotation * 0.5}deg)`,
-                }}
-              ></div>
-
-              <div
-                className="absolute inset-0 border-2 border-dashed border-indigo-500/20 rounded-full"
-                style={{
-                  transform: `rotate(${-rotation * 0.3}deg)`,
-                }}
-              ></div>
-
-              {/* Inner rotating elements */}
-              <div
-                className="absolute inset-[50px] border border-blue-400/40 rounded-full"
-                style={{
-                  transform: `rotate(${-rotation * 0.7}deg)`,
-                }}
-              ></div>
-
-              {/* Central logo */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-24 h-24 rounded-full bg-white shadow-lg flex items-center justify-center p-2">
-                  <Image
-                    src="/ayivugwe.png"
-                    alt="Wekify Logo"
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                  />
-                </div>
+              >
+                {/* Decorative points on the globe */}
+                {Array.from({ length: 18 }).map((_, i) => {
+                  const angle = (i * 20) % 360;
+                  const size = i % 3 === 0 ? 4 : i % 3 === 1 ? 3 : 2;
+                  const radius = 46 + (i % 5) * 2;
+                  const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
+                  const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
+                  return (
+                    <div
+                      key={i}
+                      className="absolute rounded-full bg-white"
+                      style={{
+                        width: `${size}%`,
+                        height: `${size}%`,
+                        left: `${x}%`,
+                        top: `${y}%`,
+                        transform: 'translate(-50%, -50%)',
+                        opacity: 0.7 + (i % 3) * 0.1,
+                      }}
+                    />
+                  );
+                })}
               </div>
 
-              {/* Language tags */}
-              {languageSets[languageIndex].map((lang, i) => (
-                <div
-                  key={`${lang.name}-${i}`}
-                  className={`absolute ${lang.position} language-tag bg-white px-3 py-1 rounded-full shadow-md text-sm font-medium text-primary`}
-                  style={{
-                    animation: `fadeInOut 5s ease ${i * 0.5}s`,
-                  }}
-                >
-                  {lang.name}
-                </div>
-              ))}
+              {/* Floating language tags */}
+              <div className="absolute inset-0">
+                {languageSets[languageIndex].map((lang, i) => {
+                  const angle = (i * 60) % 360;
+                  const radius = 42;
+                  const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
+                  const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
+                  return (
+                    <div
+                      key={i}
+                      className="absolute bg-white px-3 py-1 rounded-full text-sm font-medium shadow-md transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-in-out"
+                      style={{
+                        left: `${x}%`,
+                        top: `${y}%`,
+                        opacity: 0.9,
+                        transform: `translate(-50%, -50%) rotate(${-rotation}deg)`,
+                      }}
+                    >
+                      {lang}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeInOut {
-          0% { opacity: 0; transform: translateY(10px) translateX(-50%); }
-          20% { opacity: 1; transform: translateY(0) translateX(-50%); }
-          80% { opacity: 1; transform: translateY(0) translateX(-50%); }
-          100% { opacity: 0; transform: translateY(-10px) translateX(-50%); }
-        }
-
-        .language-tag {
-          animation-fill-mode: both;
-        }
-      `}</style>
     </section>
   );
-};
-
-export default HeroSection;
+}

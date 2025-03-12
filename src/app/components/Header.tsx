@@ -179,16 +179,68 @@ const Header = () => {
           >
             Blog
           </Link>
-          <Link
-            href="/assessment"
-            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
+          <div 
+            className="relative"
+            onMouseEnter={() => handleMegaMenuHover("Tools")}
           >
-            Language Resource Assessment
-          </Link>
-          <Link href="/dashboard" className="text-text-primary hover:text-primary font-medium transition-colors duration-300">Dashboard</Link> 
-          <Link href="/languages" className="text-text-primary hover:text-primary font-medium transition-colors duration-300">Languages</Link> {/* Added Languages link */}
-          <Link href="/contact" className="btn-primary ml-4">
-            Contact Us
+            <button
+              className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300"
+            >
+              Tools & Resources
+              <ChevronDown
+                className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === "Tools" ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            {activeMegaMenu === "Tools" && (
+              <div 
+                className="absolute top-full left-0 mt-2 w-[400px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn z-50"
+                style={{ transform: 'translateX(calc(-50% + 50px))' }}
+                onMouseEnter={() => handleMegaMenuHover("Tools")}
+                onMouseLeave={() => handleMegaMenuHover(null)}
+              >
+                <div className="grid grid-cols-1 gap-3">
+                  <Link
+                    href="/assessment"
+                    className="group block p-3 hover:bg-gray-50 rounded-lg text-text-primary hover:text-primary transition-all duration-300"
+                  >
+                    <div className="flex items-start">
+                      <div className="icon-container mr-3 mt-1 p-2 bg-gray-50 rounded-lg group-hover:bg-primary/10 transition-all duration-300">
+                        <FileText className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110 group-hover:rotate-6" />
+                      </div>
+                      <div>
+                        <div className="font-medium group-hover:translate-x-1 transition-transform duration-300">Language Resource Assessment</div>
+                        <div className="text-xs text-gray-500 mt-1 pr-4 group-hover:text-primary/70 transition-colors duration-300">
+                          Evaluate your language resources
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/languages"
+                    className="group block p-3 hover:bg-gray-50 rounded-lg text-text-primary hover:text-primary transition-all duration-300"
+                  >
+                    <div className="flex items-start">
+                      <div className="icon-container mr-3 mt-1 p-2 bg-gray-50 rounded-lg group-hover:bg-primary/10 transition-all duration-300">
+                        <Globe className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110 group-hover:rotate-6" />
+                      </div>
+                      <div>
+                        <div className="font-medium group-hover:translate-x-1 transition-transform duration-300">Languages Directory</div>
+                        <div className="text-xs text-gray-500 mt-1 pr-4 group-hover:text-primary/70 transition-colors duration-300">
+                          Browse our supported languages
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+          <Link 
+            href="/contact" 
+            className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
+          >
+            Start Free Trial
           </Link>
         </nav>
 
@@ -273,33 +325,62 @@ const Header = () => {
             >
               Blog
             </Link>
-            <Link
-              href="/assessment"
-              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Language Resource Assessment
-            </Link>
-            <Link
-              href="/dashboard"
-              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Dashboard
-            </Link> 
-            <Link
-              href="/languages"
-              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Languages
-            </Link> {/* Added Languages link */}
+            <div className="space-y-2">
+              <button
+                onClick={() => handleMegaMenuToggle("Tools")}
+                className="flex items-center justify-between w-full text-text-primary hover:text-primary font-medium transition-colors duration-300"
+              >
+                Tools & Resources
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${activeMegaMenu === "Tools" ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {activeMegaMenu === "Tools" && (
+                <div className="pl-4 space-y-3 mt-2 border-l-2 border-gray-100">
+                  <Link
+                    href="/assessment"
+                    className="group block py-2 text-text-primary hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-start">
+                      <div className="icon-container mr-3">
+                        <FileText className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110" />
+                      </div>
+                      <div>
+                        <div className="font-medium">Language Resource Assessment</div>
+                        <div className="text-xs text-gray-500 mt-1 pr-4">
+                          Evaluate your language resources
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/languages"
+                    className="group block py-2 text-text-primary hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-start">
+                      <div className="icon-container mr-3">
+                        <Globe className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110" />
+                      </div>
+                      <div>
+                        <div className="font-medium">Languages Directory</div>
+                        <div className="text-xs text-gray-500 mt-1 pr-4">
+                          Browse our supported languages
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              )}
+            </div>
             <Link
               href="/contact"
-              className="btn-primary block text-center"
+              className="block text-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors shadow-md"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Contact Us
+              Start Free Trial
             </Link>
           </div>
         </div>
