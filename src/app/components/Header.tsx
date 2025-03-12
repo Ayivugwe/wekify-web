@@ -179,7 +179,12 @@ const Header = () => {
           >
             Blog
           </Link>
-
+          <Link
+            href="/assessment"
+            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
+          >
+            Language Resource Assessment
+          </Link>
           <Link href="/contact" className="btn-primary ml-4">
             Contact Us
           </Link>
@@ -266,7 +271,13 @@ const Header = () => {
             >
               Blog
             </Link>
-
+            <Link
+              href="/assessment"
+              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Language Resource Assessment
+            </Link>
             <Link
               href="/contact"
               className="btn-primary block text-center"
