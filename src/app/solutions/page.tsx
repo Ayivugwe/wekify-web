@@ -3,6 +3,13 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, Globe, Database, Code, Settings, Cloud, Lock, Zap } from "lucide-react";
 import Layout from "../components/layout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Digital Solutions | Wekify",
+  description: "Innovative technology designed to preserve, promote, and revitalize languages across all communities.",
+  keywords: ["language preservation", "digital solutions", "technology", "indigenous languages"],
+};
 
 export default function SolutionsPage() {
   return (
