@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowRight, Check, X, Loader2 } from 'lucide-react';
+import { ArrowRight, Check, X, Loader2, ArrowLeft, BarChart } from 'lucide-react';
 import Layout from '../components/layout';
 import { Button } from '../components/Button';
+import Link from 'next/link';
 
 const questions = [
   {

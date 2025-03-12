@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, BookOpen, VolumeUp, MessageCircle, Sparkles } from "lucide-react";
+import { ChevronRight, BookOpen, Volume, MessageCircle, Sparkles } from "lucide-react";
 import { FadeIn } from "./FadeIn";
 
 export default function KifuliiruShowcase() {
@@ -59,7 +59,7 @@ export default function KifuliiruShowcase() {
                       <div className="flex justify-between items-start">
                         <h3 className="text-xl font-bold text-gray-900">{word.word}</h3>
                         <button className="text-gray-400 hover:text-primary">
-                          <VolumeUp size={20} />
+                          <Volume size={20} />
                         </button>
                       </div>
                       <div className="text-sm text-gray-500 mb-2">{word.pronunciation}</div>
@@ -87,7 +87,7 @@ export default function KifuliiruShowcase() {
                         <div className="text-sm text-gray-600">Good morning</div>
                       </div>
                       <button className="text-gray-400 hover:text-primary">
-                        <VolumeUp size={18} />
+                        <Volume size={18} />
                       </button>
                     </li>
                     <li className="flex justify-between">
@@ -96,7 +96,7 @@ export default function KifuliiruShowcase() {
                         <div className="text-sm text-gray-600">How are you?</div>
                       </div>
                       <button className="text-gray-400 hover:text-primary">
-                        <VolumeUp size={18} />
+                        <Volume size={18} />
                       </button>
                     </li>
                   </ul>
