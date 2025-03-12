@@ -1,0 +1,34 @@
+
+@layer base {
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl font-bold mb-6;
+  }
+  
+  h3 {
+    @apply text-2xl font-semibold mb-4;
+  }
+  
+  h4 {
+    @apply text-xl font-semibold mb-3;
+  }
+  
+  p {
+    @apply text-base leading-relaxed text-gray-600;
+  }
+  
+  .gradient-heading {
+    @apply bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text;
+  }
+  
+  .section-title {
+    @apply text-3xl font-bold text-center mb-10;
+  }
+  
+  .subsection-title {
+    @apply text-2xl font-semibold mb-6;
+  }
+}
