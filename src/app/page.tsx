@@ -1,4 +1,3 @@
-
 import { Metadata } from "next";
 import HeroSection from "./components/HeroSection";
 import Layout from "./components/layout";
@@ -11,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "./components/FadeIn";
 import { ArrowRight, Zap, Globe, Users, BookOpen, Clipboard, Languages, Heart, Shield, Gamepad } from "lucide-react";
+import AmbassadorSection from "./components/AmbassadorSection"; // Added import
 
 export const metadata: Metadata = {
   title: "Wekify - Language Preservation Platform",
@@ -115,7 +115,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            
+
             <div className="text-center mt-12">
               <Link 
                 href="/assessment" 
@@ -321,6 +321,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <AmbassadorSection /> {/* Added AmbassadorSection */}
       </main>
     </Layout>
   );
