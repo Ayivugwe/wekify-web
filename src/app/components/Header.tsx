@@ -153,11 +153,26 @@ const megaMenuItems = {
       description: "Our promise to ethical, community-focused AI",
     },
   ],
+  Languages: [
+    {
+      name: "World Languages",
+      href: "/languages",
+      icon: "Globe",
+      description: "Explore the diversity of world languages",
+    },
+    {
+      name: "Language Assessment",
+      href: "/assessment",
+      icon: "CheckSquare",
+      description: "Evaluate your language's digital presence",
+    },
+  ],
 };
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState({ Languages: false }); // Added state for Languages dropdown
 
   const handleMegaMenuHover = (menuName: string | null) => {
     setActiveMegaMenu(menuName);
@@ -165,6 +180,15 @@ const Header = () => {
 
   const handleMegaMenuToggle = (menuName: string) => {
     setActiveMegaMenu(activeMegaMenu === menuName ? null : menuName);
+  };
+
+  const toggleMenu = (menuName: string) => {
+    setIsOpen(prev => ({...prev, [menuName]: !prev[menuName]}));
+  };
+
+  const getIcon = (iconName: string, props: any) => {
+    const Icon = IconMap[iconName] || (() => null); // Handle missing icons
+    return <Icon {...props} />;
   };
 
   return (
@@ -198,7 +222,7 @@ const Header = () => {
               className="relative"
               onMouseEnter={() => handleMegaMenuHover(menuName)}
             >
-              <button className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300">
+              <button className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300" onClick={() => handleMegaMenuToggle(menuName)}>
                 {menuName}
                 <ChevronDown
                   className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === menuName ? "rotate-180" : ""}`}
@@ -254,18 +278,6 @@ const Header = () => {
             className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
           >
             Blog
-          </Link>
-          <Link
-            href="/assessment"
-            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
-          >
-            Assessment
-          </Link>
-          <Link
-            href="/languages"
-            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
-          >
-            Languages
           </Link>
 
           <Link
@@ -357,15 +369,31 @@ const Header = () => {
             >
               Blog
             </Link>
-            <div className="border-l-4 border-gray-200 pl-3">
-              <div className="font-medium mb-2">Languages</div>
-              <Link href="/languages" className="block ml-2 text-sm hover:text-primary mb-2" onClick={() => setMobileMenuOpen(false)}>
-                World Languages
-              </Link>
-              <Link href="/assessment" className="block ml-2 text-sm hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                Language Assessment
-              </Link>
+            <div className="relative group">
+              <button className="flex items-center text-gray-700 hover:text-primary transition-colors font-medium w-full py-2"
+                onClick={() => toggleMenu("Languages")}>
+                Languages
+                <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isOpen.Languages ? "rotate-180" : ""}`} />
+              </button>
+              {isOpen.Languages && (
+                <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-lg shadow-lg p-2 border border-gray-100 z-20">
+                  {megaMenuItems.Languages.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      href={item.href}
+                      className="block py-2 px-4 text-gray-700 hover:text-primary transition-colors"
+                      onClick={() => {
+                        toggleMenu("Languages");
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
+
             <Link
               href="/ai-and-us"
               className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
