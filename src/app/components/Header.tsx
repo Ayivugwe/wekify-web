@@ -3,123 +3,155 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Globe, Share2, Code, BookOpen, FileText, Users, Book, Heart, Award, Shield, Star, MessageSquare, Gamepad } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Globe,
+  Share2,
+  Code,
+  BookOpen,
+  FileText,
+  Users,
+  Book,
+  Heart,
+  Award,
+  Shield,
+  Star,
+  MessageSquare,
+  Gamepad,
+} from "lucide-react";
 
 // Icon mapping for dynamic rendering
 const IconMap: Record<string, React.ElementType> = {
-  Globe, Share2, Code, BookOpen, FileText, Users, Book, Heart, Award, Shield, Star, MessageSquare, GameController: Gamepad
+  Globe,
+  Share2,
+  Code,
+  BookOpen,
+  FileText,
+  Users,
+  Book,
+  Heart,
+  Award,
+  Shield,
+  Star,
+  MessageSquare,
+  GameController: Gamepad,
 };
 
 const megaMenuItems = {
   Solutions: [
-    { 
-      name: "Digital Content Platform", 
+    {
+      name: "Digital Content Platform",
       href: "/solutions/digital-content",
       icon: "Globe",
-      description: "Build scalable content platforms for language and cultural content"
+      description:
+        "Build scalable content platforms for language and cultural content",
     },
-    { 
-      name: "Integration Services", 
+    {
+      name: "Integration Services",
       href: "/solutions/integration-services",
       icon: "Share2",
-      description: "Connect your platforms with powerful APIs and integrations"
+      description: "Connect your platforms with powerful APIs and integrations",
     },
-    { 
-      name: "Custom Solutions", 
+    {
+      name: "Custom Solutions",
       href: "/solutions/custom",
       icon: "Code",
-      description: "Tailored development for your specific language needs"
+      description: "Tailored development for your specific language needs",
     },
-    { 
-      name: "Language Preservation", 
+    {
+      name: "Language Preservation",
       href: "/solutions/language-preservation",
       icon: "BookOpen",
-      description: "Tools for documenting and preserving endangered languages"
+      description: "Tools for documenting and preserving endangered languages",
     },
     {
       name: "AI & Language Vision",
       href: "/solutions/ai-vision",
       icon: "Code",
-      description: "Our approach to using AI for language revitalization and preservation."
-    }
+      description:
+        "Our approach to using AI for language revitalization and preservation.",
+    },
+  ],
+
+  Resources: [
+    {
+      name: "Case Studies",
+      href: "/case-studies",
+      icon: "FileText",
+      description: "See how our solutions work with the Bafuliiru community",
+    },
+    {
+      name: "Getting Started",
+      href: "/resources/getting-started",
+      icon: "BookOpen",
+      description: "Essential guides for new users",
+    },
+    {
+      name: "Documentation",
+      href: "/resources/documentation",
+      icon: "Book",
+      description: "Technical documentation and implementation guides",
+    },
+    {
+      name: "Language Game",
+      href: "/language-game",
+      icon: "GameController",
+      description: "Interactive language learning through gamification",
+    },
+    {
+      name: "Community Forum",
+      href: "/resources/forum",
+      icon: "Users",
+      description: "Currently focused on supporting the Bafuliiru community",
+    },
+    {
+      name: "Become An Ambassador",
+      href: "/ambassador",
+      icon: "Award",
+      description: "Join our network of language preservation advocates",
+    },
+  ],
+  About: [
+    {
+      name: "Our Story",
+      href: "/about/our-story",
+      icon: "Book",
+      description: "Learn about our mission and journey",
+    },
+    {
+      name: "Vision",
+      href: "/about/vision",
+      icon: "Heart",
+      description: "Our future plans for language preservation",
+    },
+    {
+      name: "Our Policies",
+      href: "/about/our-policies",
+      icon: "Shield",
+      description: "Learn about our guiding principles and vision",
+    },
   ],
   "AI & Us": [
     {
       name: "Our AI Approach",
       href: "/ai-and-us",
       icon: "Sparkles",
-      description: "How we're using AI to empower language communities"
+      description: "How we're using AI to empower language communities",
     },
     {
       name: "Current AI Projects",
       href: "/ai-and-us#ai-approach",
       icon: "Brain",
-      description: "Our ongoing AI initiatives for languages"
+      description: "Our ongoing AI initiatives for languages",
     },
     {
       name: "AI Commitment",
       href: "/ai-and-us#ai-approach",
       icon: "Lightbulb",
-      description: "Our promise to ethical, community-focused AI"
-    }
-  ],
-  Resources: [
-    { 
-      name: "Case Studies", 
-      href: "/case-studies",
-      icon: "FileText",
-      description: "See how our solutions work with the Bafuliiru community"
+      description: "Our promise to ethical, community-focused AI",
     },
-    { 
-      name: "Getting Started", 
-      href: "/resources/getting-started",
-      icon: "BookOpen",
-      description: "Essential guides for new users"
-    },
-    { 
-      name: "Documentation", 
-      href: "/resources/documentation",
-      icon: "Book",
-      description: "Technical documentation and implementation guides"
-    },
-    { 
-      name: "Language Game", 
-      href: "/language-game",
-      icon: "GameController",
-      description: "Interactive language learning through gamification"
-    },
-    { 
-      name: "Community Forum", 
-      href: "/resources/forum",
-      icon: "Users",
-      description: "Currently focused on supporting the Bafuliiru community"
-    },
-    { 
-      name: "Become An Ambassador", 
-      href: "/ambassador",
-      icon: "Award",
-      description: "Join our network of language preservation advocates"
-    }
-  ],
-  About: [
-    { 
-      name: "Our Story", 
-      href: "/about/our-story",
-      icon: "Book",
-      description: "Learn about our mission and journey"
-    },
-    { 
-      name: "Vision", 
-      href: "/about/vision",
-      icon: "Heart",
-      description: "Our future plans for language preservation"
-    },
-    { 
-      name: "Our Policies", 
-      href: "/about/our-policies",
-      icon: "Shield",
-      description: "Learn about our guiding principles and vision"
-    }
   ],
 };
 
@@ -142,7 +174,7 @@ const Header = () => {
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.png"
-              alt="Wekify Logo"
+              alt="Wekify LLC Logo"
               width={180}
               height={56}
               className="h-12 w-auto"
@@ -161,14 +193,12 @@ const Header = () => {
           </Link>
 
           {Object.keys(megaMenuItems).map((menuName) => (
-            <div 
-              key={menuName} 
+            <div
+              key={menuName}
               className="relative"
               onMouseEnter={() => handleMegaMenuHover(menuName)}
             >
-              <button
-                className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300"
-              >
+              <button className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300">
                 {menuName}
                 <ChevronDown
                   className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === menuName ? "rotate-180" : ""}`}
@@ -176,9 +206,9 @@ const Header = () => {
               </button>
 
               {activeMegaMenu === menuName && (
-                <div 
+                <div
                   className="absolute top-full left-0 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn z-50"
-                  style={{ transform: 'translateX(calc(-50% + 50px))' }}
+                  style={{ transform: "translateX(calc(-50% + 50px))" }}
                   onMouseEnter={() => handleMegaMenuHover(menuName)}
                   onMouseLeave={() => handleMegaMenuHover(null)}
                 >
@@ -199,7 +229,9 @@ const Header = () => {
                                 </div>
                               )}
                               <div>
-                                <div className="font-medium group-hover:translate-x-1 transition-transform duration-300">{item.name}</div>
+                                <div className="font-medium group-hover:translate-x-1 transition-transform duration-300">
+                                  {item.name}
+                                </div>
                                 {item.description && (
                                   <div className="text-xs text-gray-500 mt-1 pr-4 group-hover:text-primary/70 transition-colors duration-300">
                                     {item.description}
@@ -235,17 +267,12 @@ const Header = () => {
           >
             Languages
           </Link>
+
           <Link
-            href="/solutions/ai-and-us"
-            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
-          >
-            AI and Us
-          </Link>
-          <Link 
-            href="/contact" 
+            href="/contact"
             className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-indigo-600 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
           >
-           Contact Us
+            Contact Us
           </Link>
         </nav>
 
