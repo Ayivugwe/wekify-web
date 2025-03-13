@@ -216,7 +216,7 @@ const Header = () => {
             Languages
           </Link>
           <Link
-            href="/ai-and-us"
+            href="/solutions/ai-and-us"
             className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
           >
             AI and Us
