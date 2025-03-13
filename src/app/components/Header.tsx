@@ -357,26 +357,28 @@ const Header = () => {
             >
               Blog
             </Link>
-            <Link
-              href="/assessment"
-              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Assessment
-            </Link>
-            <Link
-              href="/languages"
-              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Languages
-            </Link>
+            <div className="border-l-4 border-gray-200 pl-3">
+              <div className="font-medium mb-2">Languages</div>
+              <Link href="/languages" className="block ml-2 text-sm hover:text-primary mb-2" onClick={() => setMobileMenuOpen(false)}>
+                World Languages
+              </Link>
+              <Link href="/assessment" className="block ml-2 text-sm hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                Language Assessment
+              </Link>
+            </div>
             <Link
               href="/ai-and-us"
               className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
               onClick={() => setMobileMenuOpen(false)}
             >
               AI and Us
+            </Link>
+            <Link
+              href="/about"
+              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About
             </Link>
             <Link
               href="/contact"

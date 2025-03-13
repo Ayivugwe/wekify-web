@@ -3,11 +3,21 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 
 const HeroSection = () => {
   const [rotation, setRotation] = useState(0);
   const [activeLanguage, setActiveLanguage] = useState("Kifuliiru");
+  const [bubbleLanguages, setBubbleLanguages] = useState({
+    topLeft: "Amharic",
+    topRight: "Māori",
+    middleRight: "Yoruba",
+    bottomRight: "Hindi",
+    bottomLeft: "Quechua",
+    middleLeft: "Hausa",
+    topMiddle: "Welsh"
+  });
+  
   const languages = [
     "Kifuliiru",
     "Kiswahili",
@@ -22,6 +32,20 @@ const HeroSection = () => {
     "Mongolian",
     "Welsh",
     "Sámi",
+    "Cherokee",
+    "Ainu",
+    "Zulu",
+    "Inuktitut",
+    "Guarani",
+    "Xhosa",
+    "Malagasy",
+    "Basque",
+    "Catalan",
+    "Irish",
+    "Scottish Gaelic",
+    "Lakota",
+    "Tibetan",
+    "Hawaiian"
   ];
 
   // Rotate the globe effect
@@ -33,7 +57,7 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Cycle through languages
+  // Cycle through main language display
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveLanguage((prev) => {
@@ -44,6 +68,32 @@ const HeroSection = () => {
 
     return () => clearInterval(interval);
   }, []);
+  
+  // Cycle through bubble languages
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBubbleLanguages(prev => {
+        // Get random languages excluding the current active language
+        const availableLanguages = languages.filter(lang => lang !== activeLanguage);
+        const getRandomLang = () => {
+          const randomIndex = Math.floor(Math.random() * availableLanguages.length);
+          return availableLanguages[randomIndex];
+        };
+        
+        return {
+          topLeft: getRandomLang(),
+          topRight: getRandomLang(),
+          middleRight: getRandomLang(),
+          bottomRight: getRandomLang(),
+          bottomLeft: getRandomLang(),
+          middleLeft: getRandomLang(),
+          topMiddle: getRandomLang()
+        };
+      });
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [activeLanguage]);
 
   return (
     <section className="bg-gradient-to-r from-slate-800 to-indigo-800 text-white relative">
@@ -121,30 +171,30 @@ const HeroSection = () => {
                 <div className="absolute top-0 left-0 w-full h-full rounded-full bg-white/10 animate-pulse"></div>
               </div>
 
-              {/* Static language bubbles representing global diversity */}
-              <div className="absolute top-[15%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
-                Amharic
+              {/* Dynamic language bubbles representing global diversity */}
+              <div className="absolute top-[15%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs transition-opacity duration-300">
+                {bubbleLanguages.topLeft}
               </div>
-              <div className="absolute top-[70%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
+              <div className="absolute top-[70%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs transition-opacity duration-300">
                 Swahili
               </div>
-              <div className="absolute top-[40%] left-[80%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
-                Yoruba
+              <div className="absolute top-[40%] left-[80%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs transition-opacity duration-300">
+                {bubbleLanguages.middleRight}
               </div>
-              <div className="absolute top-[60%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
-                Hausa
+              <div className="absolute top-[60%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs transition-opacity duration-300">
+                {bubbleLanguages.middleLeft}
               </div>
-              <div className="absolute top-[85%] left-[40%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
-                Quechua
+              <div className="absolute top-[85%] left-[40%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs transition-opacity duration-300">
+                {bubbleLanguages.bottomLeft}
               </div>
-              <div className="absolute top-[30%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
-                Māori
+              <div className="absolute top-[30%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs transition-opacity duration-300">
+                {bubbleLanguages.topRight}
               </div>
-              <div className="absolute top-[20%] left-[45%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
-                Welsh
+              <div className="absolute top-[20%] left-[45%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs transition-opacity duration-300">
+                {bubbleLanguages.topMiddle}
               </div>
-              <div className="absolute top-[75%] left-[85%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs">
-                Hindi
+              <div className="absolute top-[75%] left-[85%] transform -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs transition-opacity duration-300">
+                {bubbleLanguages.bottomRight}
               </div>
             </div>
           </div>
