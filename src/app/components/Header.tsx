@@ -43,6 +43,26 @@ const megaMenuItems = {
       description: "Our approach to using AI for language revitalization and preservation."
     }
   ],
+  "AI & Us": [
+    {
+      name: "Our AI Approach",
+      href: "/ai-and-us",
+      icon: "Sparkles",
+      description: "How we're using AI to empower language communities"
+    },
+    {
+      name: "Current AI Projects",
+      href: "/ai-and-us#ai-approach",
+      icon: "Brain",
+      description: "Our ongoing AI initiatives for languages"
+    },
+    {
+      name: "AI Commitment",
+      href: "/ai-and-us#ai-approach",
+      icon: "Lightbulb",
+      description: "Our promise to ethical, community-focused AI"
+    }
+  ],
   Resources: [
     { 
       name: "Case Studies", 
