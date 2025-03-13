@@ -35,6 +35,12 @@ const megaMenuItems = {
       href: "/solutions/language-preservation",
       icon: "BookOpen",
       description: "Tools for documenting and preserving endangered languages"
+    },
+    {
+      name: "AI & Language Vision",
+      href: "/solutions/ai-vision",
+      icon: "Code",
+      description: "Our approach to using AI for language revitalization and preservation."
     }
   ],
   Resources: [
@@ -209,6 +215,12 @@ const Header = () => {
           >
             Languages
           </Link>
+          <Link
+            href="/ai-and-us"
+            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
+          >
+            AI and Us
+          </Link>
           <Link 
             href="/contact" 
             className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-indigo-600 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
@@ -311,6 +323,13 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Languages
+            </Link>
+            <Link
+              href="/ai-and-us"
+              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              AI and Us
             </Link>
             <Link
               href="/contact"
