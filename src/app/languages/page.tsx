@@ -25,12 +25,13 @@ export default function WorldLanguagesPage() {
 
   // Group languages by continent and region
   const organizedData = {
-        "Democratic Republic of the Congo": ["Kifuliiru", "Swahili", "Lingala", "Tshiluba"],
-        "Tanzania": ["Swahili", "Sukuma", "Nyamwezi", "Haya", "Makonde"],
-        "Kenya": ["Swahili", "Kikuyu", "Luo", "Kamba", "Meru"],
-        "Uganda": ["Luganda", "Acholi", "Runyankole", "Ateso", "Lango"]
-      },
-      "Western Africa": {
+    "Eastern Africa": {
+      "Democratic Republic of the Congo": ["Kifuliiru", "Swahili", "Lingala", "Tshiluba"],
+      "Tanzania": ["Swahili", "Sukuma", "Nyamwezi", "Haya", "Makonde"],
+      "Kenya": ["Swahili", "Kikuyu", "Luo", "Kamba", "Meru"],
+      "Uganda": ["Luganda", "Acholi", "Runyankole", "Ateso", "Lango"]
+    },
+    "Western Africa": {
         "Nigeria": ["Yoruba", "Hausa", "Igbo", "Fulani", "Ibibio", "Edo", "Tiv"],
         "Ghana": ["Akan", "Ewe", "Dagbani", "Dagaare", "Ga"],
         "Senegal": ["Wolof", "Serer", "Pulaar", "Jola", "Mandinka"]
