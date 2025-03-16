@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@/app/components/layout";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,19 +12,8 @@ export default function WorldLanguagesPage() {
   const [languageData, setLanguageData] = useState<any>({});
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch('/api/languages')
-      .then(res => res.json())
-      .then(data => {
-        setLanguageData(data.data);
-        setLoading(false);
-      });
-  }, []);
-
   if (loading) return <div>Loading...</div>;
 
-  const [languageData, setLanguageData] = useState({});
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/languages')
