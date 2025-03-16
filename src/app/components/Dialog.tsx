@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { X } from 'lucide-react';
-import React from 'react';
+import { useEffect, useRef, useState } from "react";
+import { X } from "lucide-react";
+import React from "react";
 
 interface DialogProps {
   isOpen: boolean;
@@ -11,9 +11,14 @@ interface DialogProps {
   children: React.ReactNode;
 }
 
-export default function Dialog({ isOpen, onClose, title, children }: DialogProps) {
+export default function Dialog({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -26,15 +31,22 @@ export default function Dialog({ isOpen, onClose, title, children }: DialogProps
     }
   }, [isOpen]);
 
-  const handleSearch = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleSearch = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
     setSearchTerm(e.target.value);
   };
 
-  const filteredChildren = React.Children.map(children, child => {
+  const filteredChildren = React.Children.map(children, (child) => {
     if (!React.isValidElement(child)) return child;
 
-    const content = child.props.children;
-    if (typeof content === 'string' && !content.toLowerCase().includes(searchTerm.toLowerCase())) {
+    const element = child as React.ReactElement<{ children: string }>;
+    const content = element.props.children;
+
+    if (
+      typeof content === "string" &&
+      !content.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
       return null;
     }
     return child;
@@ -49,7 +61,10 @@ export default function Dialog({ isOpen, onClose, title, children }: DialogProps
       <div className="min-w-[300px] max-w-[90%] rounded-lg bg-white shadow-xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between border-b p-4">
           <h3 className="text-lg font-semibold">{title}</h3>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700"
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
