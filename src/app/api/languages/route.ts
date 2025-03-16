@@ -22,27 +22,25 @@ export async function GET() {
       ORDER BY continents.name, regions.name, countries.name, languages.name
     `);
 
-    // Transform the flat data into nested structure
-    const transformedData: any = {};
-    
-    result.rows.forEach(row => {
-      if (!transformedData[row.continent_name]) {
-        transformedData[row.continent_name] = [];
+    // Transform the flat data into a nested structure
+    const languageData = result.rows.reduce((acc, row) => {
+      // Initialize continent if it doesn't exist
+      if (!acc[row.continent_name]) {
+        acc[row.continent_name] = [];
       }
-      
-      let region = transformedData[row.continent_name].find(
-        (r: any) => r.name === row.region_name
-      );
-      
+
+      // Find or create region
+      let region = acc[row.continent_name].find(r => r.name === row.region_name);
       if (!region) {
-        region = { name: row.region_name, countries: [] };
-        transformedData[row.continent_name].push(region);
+        region = {
+          name: row.region_name,
+          countries: []
+        };
+        acc[row.continent_name].push(region);
       }
-      
-      let country = region.countries.find(
-        (c: any) => c.name === row.country_name
-      );
-      
+
+      // Find or create country
+      let country = region.countries.find(c => c.name === row.country_name);
       if (!country) {
         country = {
           name: row.country_name,
@@ -51,18 +49,24 @@ export async function GET() {
         };
         region.countries.push(country);
       }
-      
-      country.languages.push({
-        name: row.language_name,
-        native_name: row.native_name,
-        speakers: row.speakers,
-        status: row.status
-      });
-    });
 
-    return NextResponse.json(transformedData);
+      // Add language if it doesn't exist
+      const languageExists = country.languages.some(l => l.name === row.language_name);
+      if (!languageExists) {
+        country.languages.push({
+          name: row.language_name,
+          native_name: row.native_name,
+          speakers: row.speakers,
+          status: row.status
+        });
+      }
+
+      return acc;
+    }, {});
+
+    return NextResponse.json(languageData);
   } catch (error) {
     console.error('Error fetching language data:', error);
-    return NextResponse.json({ error: 'Failed to fetch language data' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
