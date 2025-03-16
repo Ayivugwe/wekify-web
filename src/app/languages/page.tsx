@@ -23,6 +23,7 @@ interface PaginatedResponse {
 export default function LanguagesPage() {
   const [languages, setLanguages] = useState<Language[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -42,11 +43,12 @@ export default function LanguagesPage() {
       }
 
       const data: PaginatedResponse = await response.json();
-      setLanguages(data.items);
+      setLanguages(data.items || []);
       setTotalPages(data.totalPages);
     } catch (error) {
       console.error('Error fetching languages:', error);
       setError('Failed to load languages');
+      setLanguages([]);
     } finally {
       setIsLoading(false);
     }
