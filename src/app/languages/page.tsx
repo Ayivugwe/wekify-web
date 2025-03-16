@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState } from "react";
 import Layout from "@/app/components/layout";
@@ -52,45 +52,48 @@ export default function WorldLanguagesPage() {
     return `https://flagcdn.com/${countryCode.toLowerCase()}.svg`;
   };
 
-  const renderLanguages = () => {
-    return Object.entries(languageData).map(([continent, regions]: [string, Region[]]) => (
-      <div key={continent} className="mb-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">{continent}</h2>
-        <div className="space-y-6">
-          {Array.isArray(regions) && regions.map((region) => (
-            <div key={region.name} className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">{region.name}</h3>
-              <div className="space-y-6">
-                {region.countries.map((country) => (
-                <div key={country.name} className="bg-white rounded-xl shadow-sm p-6">
-                  <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                    <img 
-                      src={getCountryFlag(country.code)} 
-                      alt={`${country.name} flag`}
-                      className="w-6 h-4 mr-2"
-                    />
-                    {country.name}
-                  </h4>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                    {country.languages.map((language) => (
-                      <Link
-                        key={language.name}
-                        href={`/languages/${language.name.toLowerCase().replace(/\s+/g, '-')}`}
-                        className="inline-flex items-center px-3 py-2 bg-gray-50 hover:bg-primary/10 rounded-lg text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-                      >
-                        <span>{language.name}</span>
-                        <span className="text-xs text-gray-500 ml-2">({language.native_name})</span>
-                      </Link>
-                    ))}
-                  </div>
+  const renderLanguages = () => (
+    <>
+      {Object.entries(languageData).map(([continent, regions]: [string, Region[]]) => (
+        <div key={continent} className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">{continent}</h2>
+          <div className="space-y-6">
+            {Array.isArray(regions) && regions.map((region) => (
+              <div key={region.name} className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4">{region.name}</h3>
+                <div className="space-y-6">
+                  {region.countries.map((country) => (
+                    <div key={country.name} className="bg-white rounded-xl shadow-sm p-6">
+                      <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+                        <img 
+                          src={getCountryFlag(country.code)} 
+                          alt={`${country.name} flag`}
+                          className="w-6 h-4 mr-2"
+                        />
+                        {country.name}
+                      </h4>
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        {country.languages.map((language) => (
+                          <Link
+                            key={language.name}
+                            href={`/languages/${language.name.toLowerCase().replace(/\s+/g, '-')}`}
+                            className="inline-flex items-center px-3 py-2 bg-gray-50 hover:bg-primary/10 rounded-lg text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                          >
+                            <span>{language.name}</span>
+                            <span className="text-xs text-gray-500 ml-2">({language.native_name})</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    ));
-  };
+        </div>
+      ))}
+    </>
+  );
 
   if (loading) {
     return (
