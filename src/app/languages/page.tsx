@@ -24,10 +24,9 @@ interface PaginatedResponse {
 
 export default function LanguagesPage() {
   const [languages, setLanguages] = useState<Language[]>([]);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
