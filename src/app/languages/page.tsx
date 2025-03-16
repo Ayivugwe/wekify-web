@@ -23,69 +23,27 @@ export default function WorldLanguagesPage() {
 
   if (loading) return <div>Loading...</div>;
 
-  // Group languages by continent and region
-  const organizedData = {
-    "Eastern Africa": {
-      "Democratic Republic of the Congo": ["Kifuliiru", "Swahili", "Lingala", "Tshiluba"],
-      "Tanzania": ["Swahili", "Sukuma", "Nyamwezi", "Haya", "Makonde"],
-      "Kenya": ["Swahili", "Kikuyu", "Luo", "Kamba", "Meru"],
-      "Uganda": ["Luganda", "Acholi", "Runyankole", "Ateso", "Lango"]
-    },
-    "Western Africa": {
-        "Nigeria": ["Yoruba", "Hausa", "Igbo", "Fulani", "Ibibio", "Edo", "Tiv"],
-        "Ghana": ["Akan", "Ewe", "Dagbani", "Dagaare", "Ga"],
-        "Senegal": ["Wolof", "Serer", "Pulaar", "Jola", "Mandinka"]
-      },
-      "Northern Africa": {
-        "Egypt": ["Arabic", "Coptic", "Beja", "Nubian", "Siwi"],
-        "Morocco": ["Arabic", "Tamazight", "Tachelhit", "Tarifit"]
-      }
-    },
-    Americas: {
-      "South America": {
-        "Peru": ["Quechua", "Aymara", "Asháninka", "Shipibo-Konibo"],
-        "Bolivia": ["Quechua", "Aymara", "Guaraní", "Chiquitano"],
-        "Ecuador": ["Quechua", "Shuar", "Cofán", "Waorani"]
-      },
-      "North America": {
-        "United States": ["Navajo", "Cherokee", "Sioux", "Apache", "Choctaw"],
-        "Canada": ["Cree", "Inuktitut", "Ojibwe", "Dene", "Mi'kmaq"]
-      }
-    },
-    Asia: {
-      "East Asia": {
-        "China": ["Mandarin", "Cantonese", "Wu", "Min", "Hakka"],
-        "Japan": ["Japanese", "Ainu", "Ryukyuan", "Hachijō"],
-        "Korea": ["Korean", "Jeju"]
-      },
-      "South Asia": {
-        "India": ["Hindi", "Bengali", "Telugu", "Marathi", "Tamil", "Urdu", "Gujarati"],
-        "Pakistan": ["Urdu", "Punjabi", "Sindhi", "Pashto", "Balochi"]
-      }
-    },
-    Europe: {
-      "Western Europe": {
-        "United Kingdom": ["English", "Welsh", "Scots", "Scottish Gaelic", "Cornish"],
-        "France": ["French", "Occitan", "Breton", "Basque", "Corsican"],
-        "Germany": ["German", "Low German", "Sorbian", "Danish", "Frisian"]
-      },
-      "Northern Europe": {
-        "Norway": ["Norwegian", "Sámi", "Kven"],
-        "Sweden": ["Swedish", "Sámi", "Finnish", "Meänkieli", "Yiddish"],
-        "Finland": ["Finnish", "Swedish", "Sámi", "Karelian", "Romani"]
-      }
-    },
-    Oceania: {
-      "Pacific": {
-        "New Zealand": ["Māori", "New Zealand Sign Language"],
-        "Fiji": ["Fijian", "Fiji Hindi", "Rotuman"],
-        "Papua New Guinea": ["Tok Pisin", "Hiri Motu", "Enga", "Melpa", "Huli"]
-      },
-      "Australia": {
-        "Australia": ["Pitjantjatjara", "Warlpiri", "Yolŋu", "Arrernte", "Tiwi"]
-      }
-    }
-  };
+  const [languageData, setLanguageData] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/languages')
+      .then(res => res.json())
+      .then(data => {
+        setLanguageData(data.data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-lg">Loading languages...</div>
+        </div>
+      </Layout>
+    );
+  }
 
   const renderLanguages = () => {
     return Object.entries(languageData).map(([continent, regions]) => (
