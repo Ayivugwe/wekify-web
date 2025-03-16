@@ -283,13 +283,80 @@ export default function LanguagesPage() {
         onClose={() => setShowDialog(null)}
         title={showDialog ? `${showDialog.charAt(0).toUpperCase()}${showDialog.slice(1)}` : ''}
       >
-        {dialogData.map((item: any) => (
-            <div key={item.id} className="py-2 border-b">
-              <h4 className="font-medium">{item.name}</h4>
-              {item.code && <p className="text-sm text-gray-600">Code: {item.code}</p>}
-              {item.symbol && <p className="text-sm text-gray-600">Symbol: {item.symbol}</p>}
-            </div>
-          ))}
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-full p-2 border rounded"
+            onChange={(e) => {
+              const searchTerm = e.target.value.toLowerCase();
+              const filtered = dialogData.filter((item: any) => 
+                item.name.toLowerCase().includes(searchTerm) ||
+                (item.code && item.code.toLowerCase().includes(searchTerm)) ||
+                (item.symbol && item.symbol.toLowerCase().includes(searchTerm))
+              );
+              setDialogData(filtered);
+            }}
+          />
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                {showDialog === 'countries' && (
+                  <>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Continent</th>
+                  </>
+                )}
+                {showDialog === 'currencies' && (
+                  <>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Symbol</th>
+                  </>
+                )}
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {dialogData.map((item: any) => (
+                <tr key={item.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
+                  {showDialog === 'countries' && (
+                    <>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.code}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.continent_name}</td>
+                    </>
+                  )}
+                  {showDialog === 'currencies' && (
+                    <>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.code}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.symbol}</td>
+                    </>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="mt-4 flex justify-between items-center">
+          <button
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            className="px-4 py-2 border rounded text-sm"
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          <span className="text-sm text-gray-600">
+            Page {currentPage}
+          </span>
+          <button
+            onClick={() => setCurrentPage(p => p + 1)}
+            className="px-4 py-2 border rounded text-sm"
+          >
+            Next
+          </button>
+        </div>
       </Dialog>
     </Layout>
   );
