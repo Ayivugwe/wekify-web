@@ -408,28 +408,42 @@ const Header = () => {
             <div className="relative group">
               <button
                 className="flex items-center text-gray-700 hover:text-primary transition-colors font-medium w-full py-2"
-                onClick={() => toggleMenu("Languages")}
+                onClick={() => handleMegaMenuToggle("Languages")}
               >
                 Languages
                 <ChevronDown
-                  className={`ml-1 h-4 w-4 transition-transform ${isOpen.Languages ? "rotate-180" : ""}`}
+                  className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === "Languages" ? "rotate-180" : ""}`}
                 />
               </button>
-              {isOpen.Languages && (
-                <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-lg shadow-lg p-2 border border-gray-100 z-20">
-                  {megaMenuItems.Languages.map((item, idx) => (
-                    <Link
-                      key={idx}
-                      href={item.href}
-                      className="block py-2 px-4 text-gray-700 hover:text-primary transition-colors"
-                      onClick={() => {
-                        toggleMenu("Languages");
-                        setMobileMenuOpen(false);
-                      }}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+              {activeMegaMenu === "Languages" && (
+                <div className="pl-4 space-y-3 mt-2 border-l-2 border-gray-100">
+                  {megaMenuItems.Languages.map((item) => {
+                    const Icon = item.icon ? IconMap[item.icon] : null;
+                    return (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="group block py-2 text-text-primary hover:text-primary transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <div className="flex items-start">
+                          {Icon && (
+                            <div className="icon-container mr-3">
+                              <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110" />
+                            </div>
+                          )}
+                          <div>
+                            <div className="font-medium">{item.name}</div>
+                            {item.description && (
+                              <div className="text-xs text-gray-500 mt-1 pr-4">
+                                {item.description}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </Link>
+                    )
+                  })}
                 </div>
               )}
             </div>
