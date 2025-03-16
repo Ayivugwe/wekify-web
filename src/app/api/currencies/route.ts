@@ -5,9 +5,11 @@ import { pool } from '@/lib/database/db';
 export async function GET() {
   try {
     const result = await pool.query(`
-      SELECT DISTINCT currency_code as code, currency_name as name
-      FROM countries
-      WHERE currency_code IS NOT NULL
+      SELECT DISTINCT c.currency, c.currency_symbol, 
+             STRING_AGG(DISTINCT c.name, ', ') as countries
+      FROM countries c
+      WHERE c.currency IS NOT NULL
+      GROUP BY c.currency, c.currency_symbol
       ORDER BY currency_name
     `);
 

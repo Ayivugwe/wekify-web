@@ -36,7 +36,9 @@ export async function GET(request: Request) {
     }
 
     if (continent) {
-      query += ` AND cont.name = $${paramCount}`;
+      query += ` LEFT JOIN countries c ON cl.country_id = c.id
+                 LEFT JOIN continents cont ON c.region_id = cont.id
+                 AND cont.name = $${paramCount}`;
       params.push(continent);
       paramCount++;
     }
