@@ -24,6 +24,7 @@ interface PaginatedResponse {
 
 export default function LanguagesPage() {
   const [languages, setLanguages] = useState<Language[]>([]);
+  const [isLoading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -37,6 +38,7 @@ export default function LanguagesPage() {
     try {
       setLoading(true);
       setError(null);
+      setLanguages([]);
       const response = await fetch(`/api/languages?page=${page}&limit=10`);
       
       if (!response.ok) {
@@ -93,7 +95,7 @@ export default function LanguagesPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {loading ? (
+              {isLoading ? (
                 Array(10).fill(0).map((_, index) => (
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -113,7 +115,7 @@ export default function LanguagesPage() {
                     </td>
                   </tr>
                 ))
-              ) : languages.length === 0 ? (
+              ) : !languages || languages.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
                     No languages found
