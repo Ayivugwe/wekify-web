@@ -1,3 +1,4 @@
+
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -35,6 +36,22 @@ export async function GET() {
               { name: "Yoruba", native_name: "Èdè Yorùbá", speakers: 45000000, status: "official" },
               { name: "Hausa", native_name: "Harshen Hausa", speakers: 43000000, status: "official" },
               { name: "Igbo", native_name: "Asụsụ Igbo", speakers: 27000000, status: "official" }
+            ]
+          }
+        ]
+      }
+    ],
+    "Europe": [
+      {
+        name: "Western Europe",
+        countries: [
+          {
+            name: "France",
+            code: "FR",
+            languages: [
+              { name: "French", native_name: "Français", speakers: 67000000, status: "official" },
+              { name: "Occitan", native_name: "Occitan", speakers: 1500000, status: "regional" },
+              { name: "Breton", native_name: "Brezhoneg", speakers: 200000, status: "regional" }
             ]
           }
         ]
