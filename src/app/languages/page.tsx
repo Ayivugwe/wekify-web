@@ -1,47 +1,111 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@/app/components/layout";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRight,
-  Globe,
-  Search,
-  Filter,
-  BookOpen,
-  Sparkles,
-  Users,
-  Mic,
-} from "lucide-react";
+import { ArrowRight, Globe, Search, Filter, BookOpen, Sparkles, Users, Mic } from "lucide-react";
 
 export default function WorldLanguagesPage() {
-  const featuredLanguages = [
-    {
-      name: "Kifuliiru",
-      region: "Eastern Africa",
-      speakers: "~350,000",
-      status: "Vulnerable",
-      image: "/fuliiru-hub-homepage.jpg",
-      path: "/languages/kifuliiru",
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const languageData = {
+    Africa: {
+      "Eastern Africa": {
+        "Democratic Republic of the Congo": ["Kifuliiru", "Swahili", "Lingala", "Tshiluba"],
+        "Tanzania": ["Swahili", "Sukuma", "Nyamwezi", "Haya", "Makonde"],
+        "Kenya": ["Swahili", "Kikuyu", "Luo", "Kamba", "Meru"],
+        "Uganda": ["Luganda", "Acholi", "Runyankole", "Ateso", "Lango"]
+      },
+      "Western Africa": {
+        "Nigeria": ["Yoruba", "Hausa", "Igbo", "Fulani", "Ibibio", "Edo", "Tiv"],
+        "Ghana": ["Akan", "Ewe", "Dagbani", "Dagaare", "Ga"],
+        "Senegal": ["Wolof", "Serer", "Pulaar", "Jola", "Mandinka"]
+      },
+      "Northern Africa": {
+        "Egypt": ["Arabic", "Coptic", "Beja", "Nubian", "Siwi"],
+        "Morocco": ["Arabic", "Tamazight", "Tachelhit", "Tarifit"]
+      }
     },
-    {
-      name: "Yoruba",
-      region: "West Africa",
-      speakers: "~50 million",
-      status: "Developing",
-      image: "/ambassador-community.jpg",
-      path: "/languages/yoruba",
+    Americas: {
+      "South America": {
+        "Peru": ["Quechua", "Aymara", "Asháninka", "Shipibo-Konibo"],
+        "Bolivia": ["Quechua", "Aymara", "Guaraní", "Chiquitano"],
+        "Ecuador": ["Quechua", "Shuar", "Cofán", "Waorani"]
+      },
+      "North America": {
+        "United States": ["Navajo", "Cherokee", "Sioux", "Apache", "Choctaw"],
+        "Canada": ["Cree", "Inuktitut", "Ojibwe", "Dene", "Mi'kmaq"]
+      }
     },
-    {
-      name: "Quechua",
-      region: "South America",
-      speakers: "~8-10 million",
-      status: "Endangered",
-      image: "/fuliiru-hub-motherland.jpg",
-      path: "/languages/quechua",
+    Asia: {
+      "East Asia": {
+        "China": ["Mandarin", "Cantonese", "Wu", "Min", "Hakka"],
+        "Japan": ["Japanese", "Ainu", "Ryukyuan", "Hachijō"],
+        "Korea": ["Korean", "Jeju"]
+      },
+      "South Asia": {
+        "India": ["Hindi", "Bengali", "Telugu", "Marathi", "Tamil", "Urdu", "Gujarati"],
+        "Pakistan": ["Urdu", "Punjabi", "Sindhi", "Pashto", "Balochi"]
+      }
     },
-  ];
+    Europe: {
+      "Western Europe": {
+        "United Kingdom": ["English", "Welsh", "Scots", "Scottish Gaelic", "Cornish"],
+        "France": ["French", "Occitan", "Breton", "Basque", "Corsican"],
+        "Germany": ["German", "Low German", "Sorbian", "Danish", "Frisian"]
+      },
+      "Northern Europe": {
+        "Norway": ["Norwegian", "Sámi", "Kven"],
+        "Sweden": ["Swedish", "Sámi", "Finnish", "Meänkieli", "Yiddish"],
+        "Finland": ["Finnish", "Swedish", "Sámi", "Karelian", "Romani"]
+      }
+    },
+    Oceania: {
+      "Pacific": {
+        "New Zealand": ["Māori", "New Zealand Sign Language"],
+        "Fiji": ["Fijian", "Fiji Hindi", "Rotuman"],
+        "Papua New Guinea": ["Tok Pisin", "Hiri Motu", "Enga", "Melpa", "Huli"]
+      },
+      "Australia": {
+        "Australia": ["Pitjantjatjara", "Warlpiri", "Yolŋu", "Arrernte", "Tiwi"]
+      }
+    }
+  };
+
+  const renderLanguages = () => {
+    return Object.entries(languageData).map(([continent, regions]) => (
+      <div key={continent} className="mb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">{continent}</h2>
+        {Object.entries(regions).map(([region, countries]) => (
+          <div key={region} className="mb-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">{region}</h3>
+            <div className="space-y-6">
+              {Object.entries(countries).map(([country, languages]) => (
+                <div key={country} className="bg-white rounded-xl shadow-sm p-6">
+                  <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+                    <Globe className="w-5 h-5 mr-2 text-primary" />
+                    {country}
+                  </h4>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {languages.map((language) => (
+                      <Link
+                        key={language}
+                        href={`/languages/${language.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="inline-flex items-center px-3 py-2 bg-gray-50 hover:bg-primary/10 rounded-lg text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                      >
+                        {language}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    ));
+  };
 
   return (
     <Layout>
@@ -66,6 +130,8 @@ export default function WorldLanguagesPage() {
                 <input
                   type="text"
                   placeholder="Search languages..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
                 />
               </div>
@@ -80,77 +146,11 @@ export default function WorldLanguagesPage() {
         </div>
       </section>
 
-      {/* Featured Languages */}
+      {/* Languages by Region */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between mb-12">
-              <h2 className="text-3xl font-bold text-gray-900">
-                Featured Languages
-              </h2>
-              <div className="flex items-center">
-                <button className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900">
-                  <Filter className="h-4 w-4 mr-2" />
-                  Filter
-                </button>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {featuredLanguages.map((language, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-                >
-                  <div className="relative h-48">
-                    <Image
-                      src={language.image}
-                      alt={language.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-xl font-bold">{language.name}</h3>
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          language.status === "Endangered"
-                            ? "bg-red-100 text-red-800"
-                            : language.status === "Vulnerable"
-                              ? "bg-amber-100 text-amber-800"
-                              : "bg-green-100 text-green-800"
-                        }`}
-                      >
-                        {language.status}
-                      </span>
-                    </div>
-                    <div className="space-y-2 mb-4">
-                      <p className="text-gray-600 flex items-center">
-                        <Globe className="h-4 w-4 mr-2 text-gray-400" />
-                        {language.region}
-                      </p>
-                      <p className="text-gray-600 flex items-center">
-                        <Users className="h-4 w-4 mr-2 text-gray-400" />
-                        {language.speakers} speakers
-                      </p>
-                    </div>
-                    <Link
-                      href={language.path}
-                      className="inline-flex items-center text-primary font-medium hover:text-primary/80"
-                    >
-                      Explore language <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <button className="px-6 py-3 bg-white text-gray-700 rounded-xl font-medium border border-gray-300 hover:bg-gray-50 transition-all">
-                View All Languages
-              </button>
-            </div>
+            {renderLanguages()}
           </div>
         </div>
       </section>
@@ -198,13 +198,9 @@ export default function WorldLanguagesPage() {
 
       {/* Take Assessment CTA */}
       <section className="py-16 bg-primary text-gray-900">
-        {" "}
-        {/* Changed text-white to text-gray-900 */}
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-gray-900 text-sm font-medium mb-6">
-              {" "}
-              {/* Changed text-white to text-gray-900 */}
               <Sparkles className="w-4 h-4 mr-2" />
               Evaluate Your Language
             </div>
