@@ -36,8 +36,8 @@ export default function WorldLanguagesPage() {
   const [selectedCountry, setSelectedCountry] = useState("");
 
   const continents = Object.keys(languageData);
-  const regions = selectedContinent
-    ? languageData[selectedContinent]?.map(r => r.name) || []
+  const regions = selectedContinent && languageData[selectedContinent]
+    ? [...new Set(languageData[selectedContinent].map(r => r.name))]
     : [];
   const countries = selectedRegion
     ? languageData[selectedContinent]
@@ -71,7 +71,7 @@ export default function WorldLanguagesPage() {
       .map(([continent, regions]) => (
       <div key={continent} className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">{continent}</h2>
-        {regions
+        {Array.isArray(regions) && regions
           .filter(region => !selectedRegion || region.name === selectedRegion)
           .map((region) => (
           <div key={region.name} className="mb-8">
