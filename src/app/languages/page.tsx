@@ -1,12 +1,18 @@
+
 'use client';
 import { useEffect, useState } from 'react';
 import Layout from '@/app/components/layout';
 
 interface Language {
+  id: number;
   name: string;
   native_name: string;
   speakers: number;
   status: string;
+  country_name: string;
+  country_code: string;
+  continent_name: string;
+  continent_code: string;
 }
 
 interface PaginatedResponse {
@@ -32,25 +38,25 @@ export default function LanguagesPage() {
       setLoading(true);
       setError(null);
       const response = await fetch(`/api/languages?page=${page}&limit=10`);
-
+      
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
 
       const data: PaginatedResponse = await response.json();
-      setLanguages(data.items || []); // Ensure we set an empty array if items is undefined
-      setTotalPages(data.totalPages || 0);
+      setLanguages(data.items);
+      setTotalPages(data.totalPages);
     } catch (error) {
       console.error('Error fetching languages:', error);
-      setError('Failed to load languages. Please try again later.');
-      setLanguages([]); // Reset to empty array on error
+      setError('Failed to load languages');
+      setLanguages([]);
     } finally {
       setLoading(false);
     }
   };
 
   const getStatusBadgeClass = (status: string) => {
-    switch (status.toLowerCase()) {
+    switch (status?.toLowerCase()) {
       case 'safe':
         return 'bg-green-100 text-green-800';
       case 'vulnerable':
@@ -83,6 +89,7 @@ export default function LanguagesPage() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Native Name</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Speakers</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -101,24 +108,33 @@ export default function LanguagesPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="h-4 bg-gray-200 rounded animate-pulse w-16"></div>
                     </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="h-4 bg-gray-200 rounded animate-pulse w-28"></div>
+                    </td>
                   </tr>
                 ))
-              ) : (languages || []).length === 0 ? (
+              ) : languages.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
+                  <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
                     No languages found
                   </td>
                 </tr>
               ) : (
-                (languages || []).map((language) => (
-                  <tr key={language.name} className="hover:bg-gray-50">
+                languages.map((language) => (
+                  <tr key={language.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap font-medium">{language.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{language.native_name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{language.speakers.toLocaleString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{language.speakers?.toLocaleString()}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(language.status)}`}>
                         {language.status}
                       </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex flex-col">
+                        <span className="text-sm text-gray-900">{language.country_name}</span>
+                        <span className="text-xs text-gray-500">{language.continent_name}</span>
+                      </div>
                     </td>
                   </tr>
                 ))
