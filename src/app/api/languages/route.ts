@@ -26,8 +26,15 @@ export async function GET(request: Request) {
     const totalItems = parseInt(countResult.rows[0].count);
     const totalPages = Math.ceil(totalItems / limit);
 
+    console.log('API Response:', {
+      rows: result.rows,
+      totalItems,
+      currentPage: page,
+      totalPages
+    });
+    
     return NextResponse.json({
-      items: result.rows,
+      items: result.rows || [],
       totalItems,
       currentPage: page,
       totalPages

@@ -1,4 +1,3 @@
-
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -36,7 +35,7 @@ export default function LanguagesPage() {
       setIsLoading(true);
       setError(null);
       const response = await fetch(`/api/languages?page=${page}&limit=10`);
-      
+
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
