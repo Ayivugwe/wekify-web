@@ -36,7 +36,7 @@ export default function Dialog({
       className="backdrop:bg-black/50 p-0 bg-transparent"
       onClose={onClose}
     >
-      <div className="min-w-[300px] max-w-[90%] rounded-lg bg-white shadow-xl max-h-[90vh] overflow-y-auto">
+      <div className="min-w-[80vw] md:min-w-[90vw] lg:min-w-[95vw] max-w-[95%] rounded-lg bg-white shadow-xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between border-b p-4">
           <h3 className="text-lg font-semibold">{title}</h3>
           <button
@@ -46,9 +46,7 @@ export default function Dialog({
             <X className="h-5 w-5" />
           </button>
         </div>
-        <div className="p-4">
-          {children}
-        </div>
+        <div className="p-4">{children}</div>
       </div>
     </dialog>
   );
