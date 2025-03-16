@@ -34,13 +34,30 @@ export default function LanguagesPage() {
     region: '',
   });
   const [showDialog, setShowDialog] = useState<'continents' | 'countries' | 'currencies' | null>(null);
-  const [dialogData, setDialogData] = useState<any[]>([]);
+  const [dialogStates, setDialogStates] = useState<{[key: string]: {
+    data: any[],
+    searchTerm: string,
+    currentPage: number,
+    originalData: any[]
+  }}>({
+    continents: { data: [], searchTerm: '', currentPage: 1, originalData: [] },
+    countries: { data: [], searchTerm: '', currentPage: 1, originalData: [] },
+    currencies: { data: [], searchTerm: '', currentPage: 1, originalData: [] }
+  });
 
   const fetchDialogData = async (type: 'continents' | 'countries' | 'currencies') => {
     try {
       const response = await fetch(`/api/${type}`);
       const data = await response.json();
-      setDialogData(data.items || []);
+      const items = data.items || [];
+      setDialogStates(prev => ({
+        ...prev,
+        [type]: {
+          ...prev[type],
+          data: items,
+          originalData: items
+        }
+      }));
     } catch (error) {
       console.error(`Error fetching ${type}:`, error);
     }
@@ -288,14 +305,24 @@ export default function LanguagesPage() {
             type="text"
             placeholder="Search..."
             className="w-full p-2 border rounded"
+            value={showDialog ? dialogStates[showDialog].searchTerm : ''}
             onChange={(e) => {
+              if (!showDialog) return;
               const searchTerm = e.target.value.toLowerCase();
-              const filtered = dialogData.filter((item: any) => 
+              const originalData = dialogStates[showDialog].originalData;
+              const filtered = originalData.filter((item: any) => 
                 item.name.toLowerCase().includes(searchTerm) ||
                 (item.code && item.code.toLowerCase().includes(searchTerm)) ||
                 (item.symbol && item.symbol.toLowerCase().includes(searchTerm))
               );
-              setDialogData(filtered);
+              setDialogStates(prev => ({
+                ...prev,
+                [showDialog]: {
+                  ...prev[showDialog],
+                  searchTerm: e.target.value,
+                  data: filtered
+                }
+              }));
             }}
           />
         </div>
@@ -319,7 +346,7 @@ export default function LanguagesPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {dialogData.map((item: any) => (
+              {(showDialog ? dialogStates[showDialog].data : []).map((item: any) => (
                 <tr key={item.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
                   {showDialog === 'countries' && (
@@ -339,24 +366,38 @@ export default function LanguagesPage() {
             </tbody>
           </table>
         </div>
-        <div className="mt-4 flex justify-between items-center">
-          <button
-            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-            className="px-4 py-2 border rounded text-sm"
-            disabled={currentPage === 1}
-          >
-            Previous
-          </button>
-          <span className="text-sm text-gray-600">
-            Page {currentPage}
-          </span>
-          <button
-            onClick={() => setCurrentPage(p => p + 1)}
-            className="px-4 py-2 border rounded text-sm"
-          >
-            Next
-          </button>
-        </div>
+        {showDialog && (
+          <div className="mt-4 flex justify-between items-center">
+            <button
+              onClick={() => setDialogStates(prev => ({
+                ...prev,
+                [showDialog]: {
+                  ...prev[showDialog],
+                  currentPage: Math.max(1, prev[showDialog].currentPage - 1)
+                }
+              }))}
+              className="px-4 py-2 border rounded text-sm"
+              disabled={dialogStates[showDialog].currentPage === 1}
+            >
+              Previous
+            </button>
+            <span className="text-sm text-gray-600">
+              Page {dialogStates[showDialog].currentPage}
+            </span>
+            <button
+              onClick={() => setDialogStates(prev => ({
+                ...prev,
+                [showDialog]: {
+                  ...prev[showDialog],
+                  currentPage: prev[showDialog].currentPage + 1
+                }
+              }))}
+              className="px-4 py-2 border rounded text-sm"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </Dialog>
     </Layout>
   );
