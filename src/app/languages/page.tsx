@@ -9,9 +9,22 @@ import { ArrowRight, Globe, Search, Filter, BookOpen, Sparkles, Users, Mic } fro
 export default function WorldLanguagesPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const languageData = {
-    Africa: {
-      "Eastern Africa": {
+  const [languageData, setLanguageData] = useState<any>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/languages')
+      .then(res => res.json())
+      .then(data => {
+        setLanguageData(data.data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
+  // Group languages by continent and region
+  const organizedData = {
         "Democratic Republic of the Congo": ["Kifuliiru", "Swahili", "Lingala", "Tshiluba"],
         "Tanzania": ["Swahili", "Sukuma", "Nyamwezi", "Haya", "Makonde"],
         "Kenya": ["Swahili", "Kikuyu", "Luo", "Kamba", "Meru"],
