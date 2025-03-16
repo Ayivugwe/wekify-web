@@ -208,8 +208,8 @@ export default function LanguagesPage() {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {isLoading ? (
-                    Array(10).fill(0).map((_, index) => (
-                      <tr key={index}>
+                    [...Array(10)].map((_, index) => (
+                      <tr key={`loading-row-${index}`}>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="h-4 bg-gray-200 rounded animate-pulse w-24"></div>
                         </td>
