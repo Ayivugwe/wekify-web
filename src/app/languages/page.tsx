@@ -3,59 +3,82 @@
 import React, { useEffect, useState } from "react";
 import Layout from "@/app/components/layout";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Globe, Search, Filter, BookOpen, Sparkles, Users, Mic } from "lucide-react";
+import { Globe, Search, ArrowRight, BookOpen, Sparkles, Users, Mic } from "lucide-react";
+
+interface Language {
+  name: string;
+  native_name: string;
+  speakers: number;
+  status: string;
+}
+
+interface Country {
+  name: string;
+  code: string;
+  languages: Language[];
+}
+
+interface Region {
+  name: string;
+  countries: Country[];
+}
+
+interface ContinentData {
+  [key: string]: Region[];
+}
 
 export default function WorldLanguagesPage() {
   const [searchTerm, setSearchTerm] = useState("");
-
-  const [languageData, setLanguageData] = useState<any>({});
+  const [languageData, setLanguageData] = useState<ContinentData>({});
   const [loading, setLoading] = useState(true);
 
-  if (loading) return <div>Loading...</div>;
-
-
   useEffect(() => {
-    fetch('/api/languages')
-      .then(res => res.json())
-      .then(data => {
-        setLanguageData(data.data);
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/languages');
+        const data = await response.json();
+        setLanguageData(data);
         setLoading(false);
-      });
+      } catch (error) {
+        console.error('Error fetching language data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  if (loading) {
-    return (
-      <Layout>
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-lg">Loading languages...</div>
-        </div>
-      </Layout>
-    );
-  }
+  const getCountryFlag = (countryCode: string) => {
+    return `https://flagcdn.com/${countryCode.toLowerCase()}.svg`;
+  };
 
   const renderLanguages = () => {
     return Object.entries(languageData).map(([continent, regions]) => (
       <div key={continent} className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">{continent}</h2>
-        {Object.entries(regions).map(([region, countries]) => (
-          <div key={region} className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">{region}</h3>
+        {regions.map((region) => (
+          <div key={region.name} className="mb-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">{region.name}</h3>
             <div className="space-y-6">
-              {Object.entries(countries).map(([country, languages]) => (
-                <div key={country} className="bg-white rounded-xl shadow-sm p-6">
+              {region.countries.map((country) => (
+                <div key={country.name} className="bg-white rounded-xl shadow-sm p-6">
                   <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                    <Globe className="w-5 h-5 mr-2 text-primary" />
-                    {country}
+                    <img 
+                      src={getCountryFlag(country.code)} 
+                      alt={`${country.name} flag`}
+                      className="w-6 h-4 mr-2"
+                    />
+                    {country.name}
                   </h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                    {languages.map((language) => (
+                    {country.languages.map((language) => (
                       <Link
-                        key={language}
-                        href={`/languages/${language.toLowerCase().replace(/\s+/g, '-')}`}
+                        key={language.name}
+                        href={`/languages/${language.name.toLowerCase().replace(/\s+/g, '-')}`}
                         className="inline-flex items-center px-3 py-2 bg-gray-50 hover:bg-primary/10 rounded-lg text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
                       >
-                        {language}
+                        <span>{language.name}</span>
+                        <span className="text-xs text-gray-500 ml-2">({language.native_name})</span>
                       </Link>
                     ))}
                   </div>
@@ -67,6 +90,16 @@ export default function WorldLanguagesPage() {
       </div>
     ));
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-lg">Loading languages...</div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
