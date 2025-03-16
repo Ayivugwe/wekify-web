@@ -53,14 +53,15 @@ export default function WorldLanguagesPage() {
   };
 
   const renderLanguages = () => {
-    return Object.entries(languageData).map(([continent, regions]) => (
+    return Object.entries(languageData).map(([continent, regions]: [string, Region[]]) => (
       <div key={continent} className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">{continent}</h2>
-        {regions.map((region) => (
-          <div key={region.name} className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">{region.name}</h3>
-            <div className="space-y-6">
-              {region.countries.map((country) => (
+        <div className="space-y-6">
+          {Array.isArray(regions) && regions.map((region) => (
+            <div key={region.name} className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">{region.name}</h3>
+              <div className="space-y-6">
+                {region.countries.map((country) => (
                 <div key={country.name} className="bg-white rounded-xl shadow-sm p-6">
                   <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
                     <img 
