@@ -7,6 +7,13 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "10");
+    
+    if (!pool) {
+      return NextResponse.json(
+        { error: "Database connection not initialized" },
+        { status: 500 }
+      );
+    }
     const search = searchParams.get("search") || "";
     const continent = searchParams.get("continent");
     const region = searchParams.get("region");
@@ -70,8 +77,9 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("Error fetching languages:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to fetch languages";
     return NextResponse.json(
-      { error: "Failed to fetch languages" },
+      { error: errorMessage },
       { status: 500 }
     );
   }
