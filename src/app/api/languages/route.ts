@@ -14,7 +14,6 @@ export async function GET(request: Request) {
         l.id,
         l.name,
         l.code,
-        c.name,
         
         string_agg(DISTINCT c.name, ', ') as countries
       FROM languages l

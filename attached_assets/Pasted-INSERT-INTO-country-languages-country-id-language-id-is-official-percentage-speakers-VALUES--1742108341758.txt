@@ -1,0 +1,754 @@
+INSERT INTO country_languages (country_id, language_id, is_official, percentage_speakers) VALUES
+-- Afghanistan
+(1, (SELECT id FROM languages WHERE code = 'ps' LIMIT 1), true, 50.00),  -- Pashto (official)
+(1, (SELECT id FROM languages WHERE code = 'fa' LIMIT 1), true, 35.00),  -- Persian/Dari (official)
+
+-- Albania
+(2, (SELECT id FROM languages WHERE code = 'sq' LIMIT 1), true, 98.00),  -- Albanian (official)
+
+-- Algeria
+(3, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 90.00),  -- Arabic (official)
+(3, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), false, 50.00),  -- French
+
+-- American Samoa
+(4, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 90.00),  -- English (official)
+(4, (SELECT id FROM languages WHERE code = 'sm' LIMIT 1), true, 95.00),  -- Samoan (official)
+
+-- Andorra
+(5, (SELECT id FROM languages WHERE code = 'ca' LIMIT 1), true, 85.00),  -- Catalan (official)
+(5, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), false, 45.00),  -- Spanish
+(5, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), false, 25.00),  -- French
+
+-- Angola
+(6, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 70.00),  -- Portuguese (official)
+
+-- Anguilla
+(7, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+
+-- Antigua and Barbuda
+(8, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 96.00),  -- English (official)
+
+-- Argentina
+(9, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 98.00),  -- Spanish (official)
+
+-- Armenia
+(10, (SELECT id FROM languages WHERE code = 'hy' LIMIT 1), true, 96.00),  -- Armenian (official)
+(10, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 40.00),  -- Russian
+
+-- Aruba
+(11, (SELECT id FROM languages WHERE code = 'nl' LIMIT 1), true, 70.00),  -- Dutch (official)
+(11, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), false, 50.00),  -- Spanish
+
+-- Australia
+(12, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 97.00),  -- English (official)
+
+-- Austria
+(13, (SELECT id FROM languages WHERE code = 'de' LIMIT 1), true, 96.00),  -- German (official)
+
+-- Azerbaijan
+(14, (SELECT id FROM languages WHERE code = 'az' LIMIT 1), true, 92.00),  -- Azerbaijani (official)
+(14, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 25.00),  -- Russian
+
+-- Bahamas
+(15, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+
+-- Bahrain
+(16, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 95.00),  -- Arabic (official)
+(16, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 40.00),  -- English
+
+-- Bangladesh
+(17, (SELECT id FROM languages WHERE code = 'bn' LIMIT 1), true, 98.00),  -- Bengali (official)
+(17, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 18.00),  -- English
+
+-- Barbados
+(18, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 99.00),  -- English (official)
+
+-- Belarus
+(19, (SELECT id FROM languages WHERE code = 'be' LIMIT 1), true, 70.00),  -- Belarusian (official)
+(19, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), true, 85.00),  -- Russian (official)
+
+-- Belgium
+(20, (SELECT id FROM languages WHERE code = 'nl' LIMIT 1), true, 60.00),  -- Dutch (official)
+(20, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 40.00),  -- French (official)
+(20, (SELECT id FROM languages WHERE code = 'de' LIMIT 1), true, 1.00),   -- German (official in small regions)
+
+-- Belize
+(21, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 63.00),  -- English (official)
+(21, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), false, 56.00),  -- Spanish
+
+-- Benin
+(22, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 35.00),  -- French (official)
+
+-- Bermuda
+(23, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 97.00),  -- English (official)
+
+-- Bhutan
+(24, (SELECT id FROM languages WHERE code = 'dz' LIMIT 1), true, 80.00),  -- Dzongkha (official)
+
+-- Bolivia
+(25, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 70.00),  -- Spanish (official)
+(25, (SELECT id FROM languages WHERE code = 'qu' LIMIT 1), true, 21.00),  -- Quechua (official)
+(25, (SELECT id FROM languages WHERE code = 'ay' LIMIT 1), true, 15.00),  -- Aymara (official)
+
+-- Bosnia and Herzegovina
+(26, (SELECT id FROM languages WHERE code = 'bs' LIMIT 1), true, 50.00),  -- Bosnian (official)
+(26, (SELECT id FROM languages WHERE code = 'hr' LIMIT 1), true, 30.00),  -- Croatian (official)
+(26, (SELECT id FROM languages WHERE code = 'sr' LIMIT 1), true, 20.00),  -- Serbian (official)
+
+-- Botswana
+(27, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 40.00),  -- English (official)
+(27, (SELECT id FROM languages WHERE code = 'tn' LIMIT 1), true, 80.00),  -- Tswana (national)
+
+-- Brazil
+(28, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 99.00),  -- Portuguese (official)
+
+-- Brunei
+(29, (SELECT id FROM languages WHERE code = 'ms' LIMIT 1), true, 82.00),  -- Malay (official)
+(29, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 38.00),  -- English (official)
+
+-- Bulgaria
+(30, (SELECT id FROM languages WHERE code = 'bg' LIMIT 1), true, 96.00),  -- Bulgarian (official)
+
+-- Burkina Faso
+(31, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 40.00),  -- French (official)
+
+-- Burundi
+(32, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 10.00),  -- French (official)
+(32, (SELECT id FROM languages WHERE code = 'rw' LIMIT 1), true, 85.00),  -- Kinyarwanda (official)
+
+-- Cambodia
+(33, (SELECT id FROM languages WHERE code = 'km' LIMIT 1), true, 95.00),  -- Khmer (official)
+
+-- Cameroon
+(34, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 35.00),  -- English (official)
+(34, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 65.00),  -- French (official)
+
+-- Canada
+(35, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 85.00),  -- English (official)
+(35, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 22.00),  -- French (official)
+
+-- Cape Verde
+(36, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 95.00),  -- Portuguese (official)
+
+-- Cayman Islands
+(37, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+
+-- Central African Republic
+(38, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 30.00),  -- French (official)
+(38, (SELECT id FROM languages WHERE code = 'sg' LIMIT 1), true, 90.00),  -- Sango (national)
+
+-- Chad
+(39, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 20.00),  -- French (official)
+(39, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 15.00),  -- Arabic (official)
+
+-- Chile
+(40, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 99.00),  -- Spanish (official)
+
+-- China
+(41, (SELECT id FROM languages WHERE code = 'zh' LIMIT 1), true, 92.00),  -- Mandarin Chinese (official)
+
+-- Colombia
+(42, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 99.00),  -- Spanish (official)
+
+-- Comoros
+(43, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 30.00),  -- Arabic (official)
+(43, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 20.00),  -- French (official)
+
+-- Congo (Republic)
+(44, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 60.00),  -- French (official)
+
+-- Congo (Democratic Republic)
+(45, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 35.00),  -- French (official)
+
+-- Cook Islands
+(46, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 86.00),  -- English (official)
+(46, (SELECT id FROM languages WHERE code = 'mi' LIMIT 1), true, 65.00),  -- Cook Islands Maori (official)
+
+-- Costa Rica
+(47, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 97.00),  -- Spanish (official)
+
+-- Croatia
+(48, (SELECT id FROM languages WHERE code = 'hr' LIMIT 1), true, 96.00),  -- Croatian (official)
+
+-- Cuba
+(49, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 98.00),  -- Spanish (official)
+
+-- Cyprus
+(50, (SELECT id FROM languages WHERE code = 'el' LIMIT 1), true, 80.00),  -- Greek (official)
+(50, (SELECT id FROM languages WHERE code = 'tr' LIMIT 1), true, 18.00),  -- Turkish (official)
+(50, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 76.00),  -- English
+
+-- Czech Republic
+(51, (SELECT id FROM languages WHERE code = 'cs' LIMIT 1), true, 98.00),  -- Czech (official)
+
+-- Denmark
+(52, (SELECT id FROM languages WHERE code = 'da' LIMIT 1), true, 98.00),  -- Danish (official)
+(52, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 86.00),  -- English
+
+-- Djibouti
+(53, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 7.00),  -- French (official)
+(53, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 11.00),  -- Arabic (official)
+
+-- Dominica
+(54, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 94.00),  -- English (official)
+
+-- Dominican Republic
+(55, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 98.00),  -- Spanish (official)
+
+-- Ecuador
+(56, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 93.00),  -- Spanish (official)
+(56, (SELECT id FROM languages WHERE code = 'qu' LIMIT 1), true, 5.00),   -- Quechua (official)
+
+-- Egypt
+(57, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 99.00),  -- Arabic (official)
+(57, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 35.00),  -- English
+
+-- El Salvador
+(58, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 99.00),  -- Spanish (official)
+
+-- Equatorial Guinea
+(59, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 70.00),  -- Spanish (official)
+(59, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 10.00),  -- French (official)
+(59, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 4.00),   -- Portuguese (official)
+
+-- Eritrea
+(60, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 30.00),  -- English
+(60, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), false, 10.00),  -- Arabic
+(60, (SELECT id FROM languages WHERE code = 'ti' LIMIT 1), false, 55.00),  -- Tigrinya
+
+-- Estonia
+(61, (SELECT id FROM languages WHERE code = 'et' LIMIT 1), true, 70.00),  -- Estonian (official)
+(61, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 30.00),  -- Russian
+
+-- Ethiopia
+(62, (SELECT id FROM languages WHERE code = 'am' LIMIT 1), true, 33.00),  -- Amharic (official)
+
+-- Falkland Islands
+(63, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+
+-- Faroe Islands
+(64, (SELECT id FROM languages WHERE code = 'fo' LIMIT 1), true, 94.00),  -- Faroese (official)
+(64, (SELECT id FROM languages WHERE code = 'da' LIMIT 1), true, 58.00),  -- Danish (official)
+
+-- Fiji
+(65, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 80.00),  -- English (official)
+(65, (SELECT id FROM languages WHERE code = 'fj' LIMIT 1), true, 35.00),  -- Fijian (official)
+(65, (SELECT id FROM languages WHERE code = 'hi' LIMIT 1), true, 38.00),  -- Hindi (official)
+
+-- Finland
+(66, (SELECT id FROM languages WHERE code = 'fi' LIMIT 1), true, 88.00),  -- Finnish (official)
+(66, (SELECT id FROM languages WHERE code = 'sv' LIMIT 1), true, 5.00),   -- Swedish (official)
+
+-- France
+(67, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 95.00),  -- French (official)
+
+-- French Guiana
+(68, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 83.00),  -- French (official)
+
+-- French Polynesia
+(69, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 70.00),  -- French (official)
+(69, (SELECT id FROM languages WHERE code = 'ty' LIMIT 1), false, 85.00),  -- Tahitian
+
+-- Gabon
+(70, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 80.00),  -- French (official)
+
+-- Gambia
+(71, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 35.00),  -- English (official)
+
+-- Georgia
+(72, (SELECT id FROM languages WHERE code = 'ka' LIMIT 1), true, 87.00),  -- Georgian (official)
+
+-- Germany
+(73, (SELECT id FROM languages WHERE code = 'de' LIMIT 1), true, 95.00),  -- German (official)
+
+-- Ghana
+(74, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 65.00),  -- English (official)
+
+-- Gibraltar
+(75, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 88.00),  -- English (official)
+(75, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), false, 50.00),  -- Spanish
+
+-- Greece
+(76, (SELECT id FROM languages WHERE code = 'el' LIMIT 1), true, 99.00),  -- Greek (official)
+
+-- Greenland
+(77, (SELECT id FROM languages WHERE code = 'kl' LIMIT 1), true, 88.00),  -- Kalaallisut (official)
+(77, (SELECT id FROM languages WHERE code = 'da' LIMIT 1), true, 12.00),  -- Danish (official)
+
+-- Grenada
+(78, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 99.00),  -- English (official)
+
+-- Guadeloupe
+(79, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 99.00),  -- French (official)
+
+-- Guam
+(80, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 43.00),  -- English (official)
+(80, (SELECT id FROM languages WHERE code = 'ch' LIMIT 1), true, 25.00),  -- Chamorro (official)
+
+-- Guatemala
+(81, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 93.00),  -- Spanish (official)
+
+-- Guinea
+(82, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 35.00),  -- French (official)
+
+-- Guinea-Bissau
+(83, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 15.00),  -- Portuguese (official)
+
+-- Guyana
+(84, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+
+-- Haiti
+(85, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 42.00),  -- French (official)
+(85, (SELECT id FROM languages WHERE code = 'ht' LIMIT 1), true, 100.00),  -- Haitian Creole (official)
+
+-- Honduras
+(86, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 99.00),  -- Spanish (official)
+
+-- Hong Kong
+(87, (SELECT id FROM languages WHERE code = 'zh' LIMIT 1), true, 89.00),  -- Chinese/Cantonese (official)
+(87, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 46.00),  -- English (official)
+
+-- Hungary
+(88, (SELECT id FROM languages WHERE code = 'hu' LIMIT 1), true, 99.00),  -- Hungarian (official)
+
+-- Iceland
+(89, (SELECT id FROM languages WHERE code = 'is' LIMIT 1), true, 98.00),  -- Icelandic (official)
+
+-- India
+(90, (SELECT id FROM languages WHERE code = 'hi' LIMIT 1), true, 44.00),  -- Hindi (official)
+(90, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 12.00),  -- English (official)
+
+-- Indonesia
+(91, (SELECT id FROM languages WHERE code = 'id' LIMIT 1), true, 85.00),  -- Indonesian (official)
+
+-- Iran
+(92, (SELECT id FROM languages WHERE code = 'fa' LIMIT 1), true, 65.00),  -- Persian (official)
+
+-- Iraq
+(93, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 80.00),  -- Arabic (official)
+(93, (SELECT id FROM languages WHERE code = 'ku' LIMIT 1), true, 15.00),  -- Kurdish (official)
+
+-- Ireland
+(94, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 99.00),  -- English (official)
+(94, (SELECT id FROM languages WHERE code = 'ga' LIMIT 1), true, 11.00),  -- Irish (official)
+
+-- Israel
+(95, (SELECT id FROM languages WHERE code = 'he' LIMIT 1), true, 83.00),  -- Hebrew (official)
+(95, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 20.00),  -- Arabic (official)
+
+-- Italy
+(96, (SELECT id FROM languages WHERE code = 'it' LIMIT 1), true, 97.00),  -- Italian (official)
+
+-- Jamaica
+(97, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+
+-- Japan
+(98, (SELECT id FROM languages WHERE code = 'ja' LIMIT 1), true, 99.00),  -- Japanese (official)
+
+-- Jordan
+(99, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 98.00),  -- Arabic (official)
+(99, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 35.00),  -- English
+
+-- Kazakhstan
+(100, (SELECT id FROM languages WHERE code = 'kk' LIMIT 1), true, 60.00),  -- Kazakh (official)
+(100, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), true, 85.00),  -- Russian (official)
+
+-- Kenya
+(101, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 85.20),  -- English (official)
+(101, (SELECT id FROM languages WHERE code = 'sw' LIMIT 1), true, 87.00),  -- Swahili (official)
+
+-- Kiribati
+(102, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 97.00),  -- English (official)
+
+-- Kuwait
+(103, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 98.00),  -- Arabic (official)
+(103, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 45.00),  -- English
+
+-- Kyrgyzstan
+(104, (SELECT id FROM languages WHERE code = 'ky' LIMIT 1), true, 64.00),  -- Kyrgyz (official)
+(104, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), true, 30.00),  -- Russian (official)
+
+-- Laos
+(105, (SELECT id FROM languages WHERE code = 'lo' LIMIT 1), true, 92.00),  -- Lao (official)
+
+-- Latvia
+(106, (SELECT id FROM languages WHERE code = 'lv' LIMIT 1), true, 62.00),  -- Latvian (official)
+(106, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 37.00),  -- Russian
+
+-- Lebanon
+(107, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 95.00),  -- Arabic (official)
+(107, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), false, 45.00),  -- French
+(107, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 30.00),  -- English
+
+-- Lesotho
+(108, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 30.00),  -- English (official)
+(108, (SELECT id FROM languages WHERE code = 'st' LIMIT 1), true, 95.00),  -- Sesotho (official)
+
+-- Liberia
+(109, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 20.00),  -- English (official)
+
+-- Libya
+(110, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 96.00),  -- Arabic (official)
+(110, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 6.00),   -- English
+
+-- Liechtenstein
+(111, (SELECT id FROM languages WHERE code = 'de' LIMIT 1), true, 95.00),  -- German (official)
+
+-- Lithuania
+(112, (SELECT id FROM languages WHERE code = 'lt' LIMIT 1), true, 82.00),  -- Lithuanian (official)
+(112, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 8.00),   -- Russian
+
+-- Luxembourg
+(113, (SELECT id FROM languages WHERE code = 'lb' LIMIT 1), true, 77.00),  -- Luxembourgish (official)
+(113, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 98.00),  -- French (official)
+(113, (SELECT id FROM languages WHERE code = 'de' LIMIT 1), true, 80.00),  -- German (official)
+
+-- Macao
+(114, (SELECT id FROM languages WHERE code = 'zh' LIMIT 1), true, 90.00),  -- Chinese (official)
+(114, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 4.00),   -- Portuguese (official)
+(114, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 27.00),  -- English
+
+-- Madagascar
+(115, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 20.00),  -- French (official)
+(115, (SELECT id FROM languages WHERE code = 'mg' LIMIT 1), true, 98.00),  -- Malagasy (official)
+
+-- Malawi
+(116, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 30.00),  -- English (official)
+(116, (SELECT id FROM languages WHERE code = 'ny' LIMIT 1), true, 65.00),  -- Chichewa (official)
+
+-- Malaysia
+(117, (SELECT id FROM languages WHERE code = 'ms' LIMIT 1), true, 88.00),  -- Malay (official)
+(117, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 50.00),  -- English
+(117, (SELECT id FROM languages WHERE code = 'zh' LIMIT 1), false, 24.00),  -- Chinese
+
+-- Maldives
+(118, (SELECT id FROM languages WHERE code = 'dv' LIMIT 1), true, 100.00),  -- Dhivehi (official)
+(118, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 10.00),   -- English
+
+-- Mali
+(119, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 35.00),  -- French (official)
+
+-- Malta
+(120, (SELECT id FROM languages WHERE code = 'mt' LIMIT 1), true, 90.00),  -- Maltese (official)
+(120, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 88.00),  -- English (official)
+
+-- Marshall Islands
+(121, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+(121, (SELECT id FROM languages WHERE code = 'mh' LIMIT 1), true, 98.00),  -- Marshallese (official)
+
+-- Martinique
+(122, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 99.00),  -- French (official)
+
+-- Mauritania
+(123, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 99.00),  -- Arabic (official)
+(123, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), false, 7.00),   -- French
+
+-- Mauritius
+(124, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 95.00),  -- English (official)
+(124, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 73.00),  -- French (de facto official)
+
+-- Mexico
+(125, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 95.00),  -- Spanish (official)
+
+-- Micronesia
+(126, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 25.00),  -- English (official)
+
+-- Moldova
+(127, (SELECT id FROM languages WHERE code = 'ro' LIMIT 1), true, 75.00),  -- Romanian/Moldovan (official)
+(127, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 16.00),  -- Russian
+
+-- Monaco
+(128, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 95.00),  -- French (official)
+
+-- Mongolia
+(129, (SELECT id FROM languages WHERE code = 'mn' LIMIT 1), true, 95.00),  -- Mongolian (official)
+
+-- Montenegro
+(130, (SELECT id FROM languages WHERE code = 'sr' LIMIT 1), true, 63.00),  -- Montenegrin/Serbian (official)
+
+-- Morocco
+(131, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 88.00),  -- Arabic (official)
+(131, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), false, 33.00),  -- French
+
+-- Mozambique
+(132, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 50.00),  -- Portuguese (official)
+
+-- Myanmar (Burma)
+(133, (SELECT id FROM languages WHERE code = 'my' LIMIT 1), true, 80.00),  -- Burmese (official)
+
+-- Namibia
+(134, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 7.00),   -- English (official)
+(134, (SELECT id FROM languages WHERE code = 'af' LIMIT 1), false, 10.00),  -- Afrikaans
+
+-- Nepal
+(135, (SELECT id FROM languages WHERE code = 'ne' LIMIT 1), true, 45.00),  -- Nepali (official)
+
+-- Netherlands
+(136, (SELECT id FROM languages WHERE code = 'nl' LIMIT 1), true, 98.00),  -- Dutch (official)
+(136, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 90.00),  -- English
+
+-- New Zealand
+(137, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+(137, (SELECT id FROM languages WHERE code = 'mi' LIMIT 1), true, 4.00),   -- Māori (official)
+
+-- Nicaragua
+(138, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 95.00),  -- Spanish (official)
+
+-- Niger
+(139, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 15.00),  -- French (official)
+
+-- Nigeria
+(140, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 60.00),  -- English (official)
+
+-- North Korea
+(141, (SELECT id FROM languages WHERE code = 'ko' LIMIT 1), true, 100.00),  -- Korean (official)
+
+-- Norway
+(142, (SELECT id FROM languages WHERE code = 'no' LIMIT 1), true, 95.00),  -- Norwegian (official)
+(142, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 90.00),  -- English
+
+-- Oman
+(143, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 95.00),  -- Arabic (official)
+(143, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 40.00),  -- English
+
+-- Pakistan
+(144, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 48.00),  -- English (official)
+(144, (SELECT id FROM languages WHERE code = 'ur' LIMIT 1), true, 8.00),   -- Urdu (official)
+
+-- Palau
+(145, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 62.00),  -- English (official)
+(145, (SELECT id FROM languages WHERE code = 'ja' LIMIT 1), false, 15.00),  -- Japanese
+
+-- Panama
+(146, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 93.00),  -- Spanish (official)
+(146, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 14.00),  -- English
+
+-- Papua New Guinea
+(147, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 2.00),  -- English (official)
+(147, (SELECT id FROM languages WHERE code = 'ho' LIMIT 1), true, 4.00),  -- Hiri Motu (official)
+(147, (SELECT id FROM languages WHERE code = 'tpi' LIMIT 1), true, 4.00),  -- Tok Pisin (official)
+
+-- Paraguay
+(148, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 87.00),  -- Spanish (official)
+(148, (SELECT id FROM languages WHERE code = 'gn' LIMIT 1), true, 77.00),  -- Guaraní (official)
+
+-- Peru
+(149, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 84.00),  -- Spanish (official)
+(149, (SELECT id FROM languages WHERE code = 'qu' LIMIT 1), true, 13.00),  -- Quechua (official)
+
+-- Philippines
+(150, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 64.00),  -- English (official)
+(150, (SELECT id FROM languages WHERE code = 'tl' LIMIT 1), true, 90.00),  -- Filipino/Tagalog (official)
+
+-- Poland
+(151, (SELECT id FROM languages WHERE code = 'pl' LIMIT 1), true, 98.00),  -- Polish (official)
+(151, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 33.00),  -- English
+
+-- Portugal
+(152, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 99.00),  -- Portuguese (official)
+
+-- Puerto Rico
+(153, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 94.00),  -- Spanish (official)
+(153, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 60.00),  -- English (official)
+
+-- Qatar
+(154, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 40.00),  -- Arabic (official)
+(154, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 66.00),  -- English
+
+-- Romania
+(155, (SELECT id FROM languages WHERE code = 'ro' LIMIT 1), true, 91.00),  -- Romanian (official)
+(155, (SELECT id FROM languages WHERE code = 'hu' LIMIT 1), false, 6.00),  -- Hungarian
+
+-- Russia
+(156, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), true, 85.00),  -- Russian (official)
+
+-- Rwanda
+(157, (SELECT id FROM languages WHERE code = 'rw' LIMIT 1), true, 93.00),  -- Kinyarwanda (official)
+(157, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 15.00),  -- English (official)
+(157, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 5.00),   -- French (official)
+
+-- Saudi Arabia
+(158, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 95.00),  -- Arabic (official)
+(158, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 35.00),  -- English
+
+-- Senegal
+(159, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 29.00),  -- French (official)
+(159, (SELECT id FROM languages WHERE code = 'wo' LIMIT 1), false, 40.00),  -- Wolof
+
+-- Serbia
+(160, (SELECT id FROM languages WHERE code = 'sr' LIMIT 1), true, 88.00),  -- Serbian (official)
+
+-- Seychelles
+(161, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 60.00),  -- English (official)
+(161, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 33.00),  -- French (official)
+(161, (SELECT id FROM languages WHERE code = 'se' LIMIT 1), true, 90.00),  -- Seychellois Creole (official)
+
+-- Sierra Leone
+(162, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 84.00),  -- English (official)
+
+-- Singapore
+(163, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 36.90),  -- English (official)
+(163, (SELECT id FROM languages WHERE code = 'zh' LIMIT 1), true, 34.90),  -- Mandarin Chinese (official)
+(163, (SELECT id FROM languages WHERE code = 'ms' LIMIT 1), true, 10.70),  -- Malay (official)
+(163, (SELECT id FROM languages WHERE code = 'ta' LIMIT 1), true, 3.30),   -- Tamil (official)
+
+-- Slovakia
+(164, (SELECT id FROM languages WHERE code = 'sk' LIMIT 1), true, 78.60),  -- Slovak (official)
+(164, (SELECT id FROM languages WHERE code = 'hu' LIMIT 1), false, 9.40),   -- Hungarian
+
+-- Slovenia
+(165, (SELECT id FROM languages WHERE code = 'sl' LIMIT 1), true, 91.10),  -- Slovene (official)
+
+-- Solomon Islands
+(166, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 1.60),   -- English (official)
+(166, (SELECT id FROM languages WHERE code = 'pis' LIMIT 1), false, 74.00),  -- Pijin
+
+-- Somalia
+(167, (SELECT id FROM languages WHERE code = 'so' LIMIT 1), true, 95.00),  -- Somali (official)
+(167, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 15.00),  -- Arabic (official)
+(167, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 5.00),   -- English
+
+-- South Africa
+(168, (SELECT id FROM languages WHERE code = 'zu' LIMIT 1), true, 22.70),  -- Zulu (official)
+(168, (SELECT id FROM languages WHERE code = 'xh' LIMIT 1), true, 16.00),  -- Xhosa (official)
+(168, (SELECT id FROM languages WHERE code = 'af' LIMIT 1), true, 13.50),  -- Afrikaans (official)
+(168, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 9.60),   -- English (official)
+
+-- South Korea
+(169, (SELECT id FROM languages WHERE code = 'ko' LIMIT 1), true, 100.00),  -- Korean (official)
+
+-- Spain
+(170, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 74.00),  -- Spanish/Castilian (official)
+(170, (SELECT id FROM languages WHERE code = 'ca' LIMIT 1), true, 17.00),  -- Catalan (official in Catalonia)
+(170, (SELECT id FROM languages WHERE code = 'gl' LIMIT 1), true, 7.00),   -- Galician (official in Galicia)
+(170, (SELECT id FROM languages WHERE code = 'eu' LIMIT 1), true, 2.00),   -- Basque (official in Basque Country)
+
+-- Sri Lanka
+(171, (SELECT id FROM languages WHERE code = 'si' LIMIT 1), true, 74.00),  -- Sinhala (official)
+(171, (SELECT id FROM languages WHERE code = 'ta' LIMIT 1), true, 18.00),  -- Tamil (official)
+(171, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 10.00),  -- English (link language)
+
+-- Sudan
+(172, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 70.00),  -- Arabic (official)
+(172, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 5.00),   -- English (official)
+
+-- Suriname
+(173, (SELECT id FROM languages WHERE code = 'nl' LIMIT 1), true, 60.00),  -- Dutch (official)
+(173, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 20.00),  -- English
+
+-- Swaziland
+(174, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 10.00),  -- English (official)
+(174, (SELECT id FROM languages WHERE code = 'ss' LIMIT 1), true, 90.00),  -- Swazi/Swati (official)
+
+-- Sweden
+(175, (SELECT id FROM languages WHERE code = 'sv' LIMIT 1), true, 88.00),  -- Swedish (official)
+(175, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 86.00),  -- English
+
+-- Switzerland
+(176, (SELECT id FROM languages WHERE code = 'de' LIMIT 1), true, 63.00),  -- German (official)
+(176, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 22.70),  -- French (official)
+(176, (SELECT id FROM languages WHERE code = 'it' LIMIT 1), true, 8.10),   -- Italian (official)
+(176, (SELECT id FROM languages WHERE code = 'rm' LIMIT 1), true, 0.50),   -- Romansh (official)
+
+-- Syria
+(177, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 90.00),  -- Arabic (official)
+(177, (SELECT id FROM languages WHERE code = 'ku' LIMIT 1), false, 9.00),   -- Kurdish
+(177, (SELECT id FROM languages WHERE code = 'hy' LIMIT 1), false, 4.00),   -- Armenian
+
+-- Taiwan
+(178, (SELECT id FROM languages WHERE code = 'zh' LIMIT 1), true, 83.50),  -- Mandarin Chinese (official)
+(178, (SELECT id FROM languages WHERE code = 'zh' LIMIT 1), false, 81.90),  -- Taiwanese Hokkien/Min Nan
+(178, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 28.50),  -- English
+
+-- Tajikistan
+(179, (SELECT id FROM languages WHERE code = 'tg' LIMIT 1), true, 80.00),  -- Tajik (official)
+(179, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 50.00),  -- Russian (interethnic communication)
+
+-- Tanzania
+(180, (SELECT id FROM languages WHERE code = 'sw' LIMIT 1), true, 95.00),  -- Swahili (official)
+(180, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 10.00),  -- English (official)
+
+-- Thailand
+(181, (SELECT id FROM languages WHERE code = 'th' LIMIT 1), true, 90.00),  -- Thai (official)
+(181, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 27.00),  -- English
+
+-- Timor-Leste
+(182, (SELECT id FROM languages WHERE code = 'pt' LIMIT 1), true, 36.00),  -- Portuguese (official)
+(182, (SELECT id FROM languages WHERE code = 'tet' LIMIT 1), true, 90.00),  -- Tetum (official)
+(182, (SELECT id FROM languages WHERE code = 'id' LIMIT 1), false, 40.00),  -- Indonesian
+(182, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 15.00),  -- English
+
+-- Togo
+(183, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 40.00),  -- French (official)
+
+-- Tonga
+(184, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 30.00),  -- English (official)
+(184, (SELECT id FROM languages WHERE code = 'to' LIMIT 1), true, 95.00),  -- Tongan (official)
+
+-- Trinidad and Tobago
+(185, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 95.00),  -- English (official)
+
+-- Tunisia
+(186, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 98.00),  -- Arabic (official)
+(186, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), false, 63.60),  -- French
+
+-- Turkey
+(187, (SELECT id FROM languages WHERE code = 'tr' LIMIT 1), true, 85.54),  -- Turkish (official)
+(187, (SELECT id FROM languages WHERE code = 'ku' LIMIT 1), false, 12.00),  -- Kurdish
+
+-- Turkmenistan
+(188, (SELECT id FROM languages WHERE code = 'tk' LIMIT 1), true, 72.00),  -- Turkmen (official)
+(188, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), true, 12.00),  -- Russian (official)
+
+-- Tuvalu
+(189, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.50),  -- English (official)
+(189, (SELECT id FROM languages WHERE code = 'tvl' LIMIT 1), true, 94.00),  -- Tuvaluan
+
+-- Uganda
+(190, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 65.00),  -- English (official)
+(190, (SELECT id FROM languages WHERE code = 'sw' LIMIT 1), false, 50.00),  -- Swahili
+
+-- Ukraine
+(191, (SELECT id FROM languages WHERE code = 'uk' LIMIT 1), true, 67.50),  -- Ukrainian (official)
+(191, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 29.60),  -- Russian
+
+-- United Arab Emirates
+(192, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 42.00),  -- Arabic (official)
+(192, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 75.00),  -- English
+
+-- United Kingdom
+(193, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 98.00),  -- English (official)
+
+-- United States
+(194, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 78.20),  -- English (de facto official)
+(194, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), false, 13.40),  -- Spanish
+
+-- Uruguay
+(195, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 98.40),  -- Spanish (official)
+
+-- Uzbekistan
+(196, (SELECT id FROM languages WHERE code = 'uz' LIMIT 1), true, 74.30),  -- Uzbek (official)
+(196, (SELECT id FROM languages WHERE code = 'ru' LIMIT 1), false, 14.20),  -- Russian
+
+-- Vanuatu
+(197, (SELECT id FROM languages WHERE code = 'bi' LIMIT 1), true, 33.70),  -- Bislama (official)
+(197, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 2.00),   -- English (official)
+(197, (SELECT id FROM languages WHERE code = 'fr' LIMIT 1), true, 0.60),   -- French (official)
+
+-- Venezuela
+(198, (SELECT id FROM languages WHERE code = 'es' LIMIT 1), true, 96.90),  -- Spanish (official)
+
+-- Vietnam
+(199, (SELECT id FROM languages WHERE code = 'vi' LIMIT 1), true, 87.70),  -- Vietnamese (official)
+(199, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), false, 7.00),   -- English
+
+-- Yemen
+(200, (SELECT id FROM languages WHERE code = 'ar' LIMIT 1), true, 99.60),  -- Arabic (official)
+
+-- Zambia
+(201, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 1.70),  -- English (official)
+
+-- Zimbabwe
+(202, (SELECT id FROM languages WHERE code = 'en' LIMIT 1), true, 89.00),  -- English (official)
+(202, (SELECT id FROM languages WHERE code = 'sn' LIMIT 1), false, 82.00),  -- Shona
+(202, (SELECT id FROM languages WHERE code = 'nd' LIMIT 1), false, 17.00);  -- Ndebele
