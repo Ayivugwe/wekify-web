@@ -8,8 +8,8 @@ interface Language {
   id: number;
   name: string;
   code: string;
-  id_country: number;
-  country_name: string;
+  status: string;
+  countries: string;
 }
 
 interface PaginatedResponse {
@@ -111,7 +111,7 @@ export default function LanguagesPage() {
                     <tr key={language.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{language.name}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-gray-500">{language.code}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-500">{language.country_name || 'N/A'}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-500">{language.countries || 'N/A'}</td>
                     </tr>
                   ))
                 )}

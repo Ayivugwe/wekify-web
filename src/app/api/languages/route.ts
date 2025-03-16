@@ -10,12 +10,17 @@ export async function GET(request: Request) {
     const offset = (page - 1) * limit;
 
     const result = await pool.query(`
-      SELECT 
-        id,
-        name,
-        code
-      FROM languages
-      ORDER BY name
+      SELECT DISTINCT ON (l.name)
+        l.id,
+        l.name,
+        l.code,
+        l.status,
+        string_agg(DISTINCT c.name, ', ') as countries
+      FROM languages l
+      LEFT JOIN country_languages cl ON l.id = cl.language_id
+      LEFT JOIN countries c ON cl.country_id = c.id
+      GROUP BY l.id, l.name, l.code, l.status
+      ORDER BY l.name
       LIMIT $1 OFFSET $2
     `, [limit, offset]);
 
