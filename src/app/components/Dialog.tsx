@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
+import React from 'react';
 
 interface DialogProps {
   isOpen: boolean;
@@ -25,7 +26,7 @@ export default function Dialog({ isOpen, onClose, title, children }: DialogProps
     }
   }, [isOpen]);
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setSearchTerm(e.target.value);
   };
 
