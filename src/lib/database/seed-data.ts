@@ -5,33 +5,16 @@ export const continentsData = [
   { name: 'Asia', code: 'AS' },
   { name: 'North America', code: 'NA' },
   { name: 'South America', code: 'SA' },
-  { name: 'Oceania', code: 'OC' },
-  { name: 'Antarctica', code: 'AN' }
+  { name: 'Oceania', code: 'OC' }
 ];
 
 export const regionsData = [
-  { continent: 'Africa', name: 'Eastern Africa' },
-  { continent: 'Africa', name: 'Western Africa' },
-  { continent: 'Africa', name: 'Northern Africa' },
-  { continent: 'Africa', name: 'Southern Africa' },
-  { continent: 'Africa', name: 'Central Africa' },
-  { continent: 'Europe', name: 'Western Europe' },
-  { continent: 'Europe', name: 'Eastern Europe' },
-  { continent: 'Europe', name: 'Northern Europe' },
-  { continent: 'Europe', name: 'Southern Europe' },
-  { continent: 'Asia', name: 'Eastern Asia' },
-  { continent: 'Asia', name: 'Southern Asia' },
-  { continent: 'Asia', name: 'Southeast Asia' },
-  { continent: 'Asia', name: 'Central Asia' },
-  { continent: 'Asia', name: 'Western Asia' },
-  { continent: 'North America', name: 'Northern America' },
-  { continent: 'North America', name: 'Central America' },
-  { continent: 'North America', name: 'Caribbean' },
-  { continent: 'South America', name: 'South America' },
-  { continent: 'Oceania', name: 'Australasia' },
-  { continent: 'Oceania', name: 'Melanesia' },
-  { continent: 'Oceania', name: 'Micronesia' },
-  { continent: 'Oceania', name: 'Polynesia' }
+  { continent: 'Africa', regions: ['Eastern Africa', 'Western Africa', 'Southern Africa', 'Northern Africa', 'Central Africa'] },
+  { continent: 'Europe', regions: ['Western Europe', 'Eastern Europe', 'Northern Europe', 'Southern Europe'] },
+  { continent: 'Asia', regions: ['Eastern Asia', 'Southern Asia', 'Southeast Asia', 'Central Asia', 'Western Asia'] },
+  { continent: 'North America', regions: ['Northern America', 'Central America', 'Caribbean'] },
+  { continent: 'South America', regions: ['South America'] },
+  { continent: 'Oceania', regions: ['Australasia', 'Melanesia', 'Micronesia', 'Polynesia'] }
 ];
 
 export const countriesAndLanguagesData = [
@@ -48,11 +31,11 @@ export const countriesAndLanguagesData = [
         ]
       },
       {
-        name: 'Tanzania',
-        code: 'TZ',
+        name: 'Ethiopia',
+        code: 'ET',
         languages: [
-          { name: 'Swahili', native_name: 'Kiswahili', speakers: 45000000, status: 'official' },
-          { name: 'Sukuma', native_name: 'Sukuma', speakers: 5400000, status: 'regional' }
+          { name: 'Amharic', native_name: 'አማርኛ', speakers: 22000000, status: 'official' },
+          { name: 'Oromo', native_name: 'Afaan Oromoo', speakers: 25000000, status: 'regional' }
         ]
       }
     ]
@@ -65,8 +48,8 @@ export const countriesAndLanguagesData = [
         code: 'FR',
         languages: [
           { name: 'French', native_name: 'Français', speakers: 67000000, status: 'official' },
-          { name: 'Occitan', native_name: 'Occitan', speakers: 1500000, status: 'regional' },
-          { name: 'Breton', native_name: 'Brezhoneg', speakers: 200000, status: 'regional' }
+          { name: 'Breton', native_name: 'Brezhoneg', speakers: 200000, status: 'regional' },
+          { name: 'Occitan', native_name: 'Occitan', speakers: 1500000, status: 'regional' }
         ]
       },
       {
@@ -78,6 +61,27 @@ export const countriesAndLanguagesData = [
         ]
       }
     ]
+  },
+  {
+    region: 'Eastern Asia',
+    countries: [
+      {
+        name: 'China',
+        code: 'CN',
+        languages: [
+          { name: 'Mandarin Chinese', native_name: '普通话', speakers: 920000000, status: 'official' },
+          { name: 'Cantonese', native_name: '粵語', speakers: 80000000, status: 'regional' },
+          { name: 'Wu', native_name: '吴语', speakers: 80000000, status: 'regional' }
+        ]
+      },
+      {
+        name: 'Japan',
+        code: 'JP',
+        languages: [
+          { name: 'Japanese', native_name: '日本語', speakers: 125000000, status: 'official' },
+          { name: 'Ryukyuan', native_name: '琉球語', speakers: 1000000, status: 'regional' }
+        ]
+      }
+    ]
   }
-  // Add more regions and countries as needed
 ];
