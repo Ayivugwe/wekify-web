@@ -36,8 +36,8 @@ export default function WorldLanguagesPage() {
     const fetchData = async () => {
       try {
         const response = await fetch('/api/languages');
-        const data = await response.json();
-        setLanguageData(data);
+        const result = await response.json();
+        setLanguageData(result);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching language data:', error);
