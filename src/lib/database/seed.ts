@@ -61,3 +61,61 @@ async function seed() {
 }
 
 seed();
+import pool from './db';
+
+async function seed() {
+  try {
+    // Insert continents
+    await pool.query(`
+      INSERT INTO continents (name, code) VALUES
+      ('Africa', 'AF'),
+      ('Europe', 'EU'),
+      ('Asia', 'AS'),
+      ('North America', 'NA'),
+      ('South America', 'SA'),
+      ('Oceania', 'OC')
+      ON CONFLICT (code) DO NOTHING;
+    `);
+
+    // Insert regions (example for Africa)
+    const africaResult = await pool.query("SELECT id FROM continents WHERE code = 'AF'");
+    const africaId = africaResult.rows[0].id;
+
+    await pool.query(`
+      INSERT INTO regions (continent_id, name) VALUES
+      ($1, 'Eastern Africa'),
+      ($1, 'Western Africa'),
+      ($1, 'Central Africa'),
+      ($1, 'Southern Africa')
+      ON CONFLICT DO NOTHING;
+    `, [africaId]);
+
+    // Insert some initial languages and countries
+    const easternAfricaResult = await pool.query("SELECT id FROM regions WHERE name = 'Eastern Africa'");
+    const easternAfricaId = easternAfricaResult.rows[0].id;
+
+    await pool.query(`
+      INSERT INTO countries (region_id, name, code) VALUES
+      ($1, 'Kenya', 'KE'),
+      ($1, 'Tanzania', 'TZ'),
+      ($1, 'Uganda', 'UG')
+      ON CONFLICT (code) DO NOTHING;
+    `, [easternAfricaId]);
+
+    await pool.query(`
+      INSERT INTO languages (name, native_name, speakers, status) VALUES
+      ('Swahili', 'Kiswahili', 150000000, 'official'),
+      ('Kikuyu', 'Gĩkũyũ', 6600000, 'regional'),
+      ('Luganda', 'Oluganda', 4100000, 'regional')
+      ON CONFLICT DO NOTHING;
+    `);
+
+    console.log('Database seeded successfully');
+  } catch (error) {
+    console.error('Error seeding database:', error);
+  } finally {
+    await pool.end();
+  }
+}
+
+seed();
