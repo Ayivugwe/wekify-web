@@ -147,7 +147,9 @@ export default function OurStoryPage() {
         </section>
 
         {/* Vision for the Future */}
-        <section className="py-20 bg-gradient-to-r from-primary to-accent text-gray-900"> {/* Changed text color here */}
+        <section className="py-20 bg-gradient-to-r from-primary to-accent text-gray-900">
+          {" "}
+          {/* Changed text color here */}
           <div className="max-w-5xl mx-auto px-4">
             <h2 className="text-3xl font-bold mb-10 text-center">
               Our Vision for the Future
@@ -172,12 +174,15 @@ export default function OurStoryPage() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-gray-900"  {/*Added text-gray-900 here*/}
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-gray-900"
                 >
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900"> {/* Changed text color here */}
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                    {" "}
+                    {/* Changed text color here */}
                     {item.title}
                   </h3>
-                  <p className="text-gray-900">{item.description}</p> {/* Changed text color here */}
+                  <p className="text-gray-900">{item.description}</p>{" "}
+                  {/* Changed text color here */}
                 </div>
               ))}
             </div>
