@@ -39,22 +39,6 @@ export async function GET() {
           }
         ]
       }
-    ],
-    "Europe": [
-      {
-        name: "Western Europe",
-        countries: [
-          {
-            name: "France",
-            code: "FR",
-            languages: [
-              { name: "French", native_name: "Français", speakers: 67000000, status: "official" },
-              { name: "Occitan", native_name: "Occitan", speakers: 1500000, status: "regional" },
-              { name: "Breton", native_name: "Brezhoneg", speakers: 200000, status: "regional" }
-            ]
-          }
-        ]
-      }
     ]
   };
 
