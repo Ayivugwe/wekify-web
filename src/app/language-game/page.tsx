@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -88,7 +87,7 @@ export default function LanguageGame() {
   const handleAnswer = (selectedOption) => {
     const currentWord = selectedLanguage.words[currentWordIndex];
     const isCorrect = selectedOption === currentWord.meaning;
-    
+
     // Update streak
     if (isCorrect) {
       const newStreak = streakCount + 1;
@@ -181,23 +180,23 @@ export default function LanguageGame() {
                 <h3 className="text-xl font-semibold mb-3">How to Play</h3>
                 <ul className="space-y-2">
                   <li className="flex items-start">
-                    <span className="bg-primary text-white p-1 rounded-full mr-2 mt-0.5">1</span>
+                    <span className="bg-primary text-gray-900 p-1 rounded-full mr-2 mt-0.5">1</span>
                     <span>Choose a language you want to help preserve</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="bg-primary text-white p-1 rounded-full mr-2 mt-0.5">2</span>
+                    <span className="bg-primary text-gray-900 p-1 rounded-full mr-2 mt-0.5">2</span>
                     <span>Match words with their correct meanings</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="bg-primary text-white p-1 rounded-full mr-2 mt-0.5">3</span>
+                    <span className="bg-primary text-gray-900 p-1 rounded-full mr-2 mt-0.5">3</span>
                     <span>"Save" words to your personal collection for bonus points</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="bg-primary text-white p-1 rounded-full mr-2 mt-0.5">4</span>
+                    <span className="bg-primary text-gray-900 p-1 rounded-full mr-2 mt-0.5">4</span>
                     <span>Build streaks of correct answers for extra points</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="bg-primary text-white p-1 rounded-full mr-2 mt-0.5">5</span>
+                    <span className="bg-primary text-gray-900 p-1 rounded-full mr-2 mt-0.5">5</span>
                     <span>Complete the challenge before time runs out!</span>
                   </li>
                 </ul>
@@ -212,7 +211,7 @@ export default function LanguageGame() {
   // Render active game screen
   if (gameStarted && !gameOver) {
     const currentWord = selectedLanguage.words[currentWordIndex];
-    
+
     return (
       <Layout>
         <div className="min-h-screen pt-32 pb-16">
@@ -256,7 +255,7 @@ export default function LanguageGame() {
                       {savedWords.some(w => w.word === currentWord.word) ? "Saved" : "Save Word"}
                     </Button>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {currentWord.options.map((option, index) => (
                       <button
@@ -310,13 +309,13 @@ export default function LanguageGame() {
                 <h3 className="text-lg font-medium mb-1">Final Score</h3>
                 <p className="text-3xl font-bold text-primary-dark">{score}</p>
               </div>
-              
+
               <div className="bg-amber-50 p-6 rounded-xl text-center">
                 <Heart className="h-10 w-10 mx-auto mb-3 text-amber-500" />
                 <h3 className="text-lg font-medium mb-1">Words Saved</h3>
                 <p className="text-3xl font-bold text-amber-700">{savedWords.length}</p>
               </div>
-              
+
               <div className="bg-blue-50 p-6 rounded-xl text-center">
                 <Shuffle className="h-10 w-10 mx-auto mb-3 text-blue-500" />
                 <h3 className="text-lg font-medium mb-1">Highest Streak</h3>

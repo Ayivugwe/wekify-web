@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -30,7 +29,7 @@ export default function AIVisionPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
                 href="/contact" 
-                className="px-8 py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-all shadow-lg flex items-center"
+                className="px-8 py-3 bg-primary text-gray-900 rounded-xl font-medium hover:bg-primary/90 transition-all shadow-lg flex items-center"
               >
                 <Sparkles className="mr-2 h-5 w-5" /> Partner With Us
               </Link>
@@ -132,7 +131,7 @@ export default function AIVisionPage() {
                   Our NLP models are trained to understand the unique structures and features of indigenous languages, enabling accurate analysis and generation.
                 </p>
               </div>
-              
+
               <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
                   <Code className="h-6 w-6 text-purple-600" />
@@ -142,7 +141,7 @@ export default function AIVisionPage() {
                   We develop specialized language models that can work with limited datasets, making them ideal for low-resource languages.
                 </p>
               </div>
-              
+
               <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
                   <Globe className="h-6 w-6 text-green-600" />
@@ -313,7 +312,7 @@ export default function AIVisionPage() {
                   className="object-cover"
                 />
               </div>
-              
+
               <div>
                 <h3 className="text-2xl font-bold mb-4">Community Ownership</h3>
                 <p className="text-gray-600 mb-6">
@@ -349,10 +348,10 @@ export default function AIVisionPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-primary text-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-white text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-gray-900 text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4 mr-2" />
               Join Our Mission
             </div>
@@ -371,7 +370,7 @@ export default function AIVisionPage() {
               </Link>
               <Link
                 href="/solutions"
-                className="px-8 py-3 bg-transparent text-white rounded-xl font-medium border border-white/30 hover:bg-white/10 transition-all"
+                className="px-8 py-3 bg-transparent text-gray-900 rounded-xl font-medium border border-white/30 hover:bg-white/10 transition-all"
               >
                 Explore Solutions
               </Link>

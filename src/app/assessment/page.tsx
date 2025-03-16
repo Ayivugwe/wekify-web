@@ -175,7 +175,7 @@ export default function AssessmentPage() {
     return (
       <Layout>
         <div className="min-h-screen pt-32 pb-16">
-          <div className="max-w-4xl mx-auto px-4">
+          <div className="max-w-4xl mx-auto px-4 flex items-center justify-center min-h-[70vh]"> {/* Added flex and justify-center classes */}
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
               <h1 className="text-3xl md:text-4xl font-bold mb-6">Language Assessment</h1>
 

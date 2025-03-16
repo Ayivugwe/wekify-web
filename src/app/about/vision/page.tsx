@@ -1,4 +1,3 @@
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -71,7 +70,7 @@ export default function VisionPage() {
         </section>
 
         {/* Core Values */}
-        <section className="py-20 bg-gradient-to-r from-primary to-accent text-white">
+        <section className="py-20 bg-gradient-to-r from-primary to-accent text-gray-900"> {/* Changed text color here */}
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">
               Our Core Values
@@ -99,7 +98,7 @@ export default function VisionPage() {
                     {value.icon}
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                  <p className="text-white/80">{value.description}</p>
+                  <p className="text-gray-900"> {/* Changed text color here */} {value.description}</p>
                 </div>
               ))}
             </div>

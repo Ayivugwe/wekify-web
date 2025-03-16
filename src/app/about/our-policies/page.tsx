@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -103,7 +102,7 @@ export default function OurPoliciesPage() {
         </section>
 
         {/* Our Future */}
-        <section className="py-20 bg-gradient-to-r from-primary to-accent text-white">
+        <section className="py-20 bg-gradient-to-r from-primary to-accent text-gray-900"> {/* Changed text color here */}
           <div className="max-w-5xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-8">Our Future Vision</h2>
             <p className="text-xl mb-12 opacity-90 max-w-3xl mx-auto">
@@ -111,20 +110,20 @@ export default function OurPoliciesPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4 text-white">Global Language Network</h3>
-                <p className="text-white/80">Building an interconnected network of language communities, technologists, and advocates working together.</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Global Language Network</h3>
+                <p className="text-gray-900/80">Building an interconnected network of language communities, technologists, and advocates working together.</p>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4 text-white">Advanced AI Solutions</h3>
-                <p className="text-white/80">Developing next-generation AI tools specifically designed for low-resource languages.</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Advanced AI Solutions</h3>
+                <p className="text-gray-900/80">Developing next-generation AI tools specifically designed for low-resource languages.</p>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4 text-white">Educational Integration</h3>
-                <p className="text-white/80">Working with schools and educational institutions to integrate indigenous language learning.</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Educational Integration</h3>
+                <p className="text-gray-900/80">Working with schools and educational institutions to integrate indigenous language learning.</p>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4 text-white">Cultural Preservation</h3>
-                <p className="text-white/80">Expanding beyond language to document and preserve cultural practices, stories, and traditions.</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">Cultural Preservation</h3>
+                <p className="text-gray-900/80">Expanding beyond language to document and preserve cultural practices, stories, and traditions.</p>
               </div>
             </div>
           </div>

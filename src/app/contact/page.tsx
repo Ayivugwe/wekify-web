@@ -200,7 +200,7 @@ export default function ContactPage() {
                       
                       <button
                         type="submit"
-                        className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-all duration-200"
+                        className="inline-flex items-center px-6 py-3 bg-primary text-gray-900 hover:text-primary transition-colors rounded-xl hover:bg-primary/90 transition-all duration-200"
                       >
                         Send Message
                         <Send className="h-5 w-5 ml-2" />

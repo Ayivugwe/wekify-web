@@ -324,7 +324,7 @@ export default function ForumPage() {
         </section>
 
         {/* Forum Guidelines */}
-        <section className="py-16 bg-gradient-to-r from-primary to-accent text-white">
+        <section className="py-16 bg-gradient-to-r from-primary to-accent text-gray-900">
           <div className="max-w-5xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">Community Guidelines</h2>
             <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto">
