@@ -11,14 +11,11 @@ export async function GET(request: Request) {
 
     const result = await pool.query(`
       SELECT 
-        l.id,
-        l.name,
-        l.code,
-        l.id_country,
-        c.name as country_name
-      FROM languages l
-      LEFT JOIN countries c ON l.id_country = c.id
-      ORDER BY l.name
+        id,
+        name,
+        code
+      FROM languages
+      ORDER BY name
       LIMIT $1 OFFSET $2
     `, [limit, offset]);
 
