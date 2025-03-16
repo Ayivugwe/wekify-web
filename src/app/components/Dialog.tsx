@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import React from "react";
 
@@ -18,7 +18,6 @@ export default function Dialog({
   children,
 }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -30,27 +29,6 @@ export default function Dialog({
       }
     }
   }, [isOpen]);
-
-  const handleSearch = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const filteredChildren = React.Children.map(children, (child) => {
-    if (!React.isValidElement(child)) return child;
-
-    const element = child as React.ReactElement<{ children: string }>;
-    const content = element.props.children;
-
-    if (
-      typeof content === "string" &&
-      !content.toLowerCase().includes(searchTerm.toLowerCase())
-    ) {
-      return null;
-    }
-    return child;
-  });
 
   return (
     <dialog
@@ -69,14 +47,7 @@ export default function Dialog({
           </button>
         </div>
         <div className="p-4">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleSearch}
-            className="w-full p-2 border rounded-lg mb-4"
-          />
-          {filteredChildren}
+          {children}
         </div>
       </div>
     </dialog>
