@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/database/db";
 
@@ -10,32 +11,26 @@ export async function GET(request: Request) {
 
     const result = await pool.query(
       `
-      SELECT DISTINCT ON (l.name)
+      SELECT 
         l.id,
         l.name,
-        l.code,
-        
+        l.native_name,
+        l.status,
+        l.speakers,
         string_agg(DISTINCT c.name, ', ') as countries
       FROM languages l
       LEFT JOIN country_languages cl ON l.id = cl.language_id
       LEFT JOIN countries c ON cl.country_id = c.id
-      GROUP BY l.id, l.name, l.code
+      GROUP BY l.id, l.name, l.native_name, l.status, l.speakers
       ORDER BY l.name
       LIMIT $1 OFFSET $2
-    `,
-      [limit, offset],
+      `,
+      [limit, offset]
     );
 
     const countResult = await pool.query("SELECT COUNT(*) FROM languages");
     const totalItems = parseInt(countResult.rows[0].count);
     const totalPages = Math.ceil(totalItems / limit);
-
-    console.log("API Response:", {
-      rows: result.rows,
-      totalItems,
-      currentPage: page,
-      totalPages,
-    });
 
     return NextResponse.json({
       items: result.rows || [],
@@ -47,7 +42,7 @@ export async function GET(request: Request) {
     console.error("Error fetching languages:", error);
     return NextResponse.json(
       { error: "Failed to fetch languages" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

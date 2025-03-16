@@ -7,8 +7,9 @@ import { BookOpen, FileSpreadsheet, ArrowRight } from 'lucide-react';
 interface Language {
   id: number;
   name: string;
-  code: string;
+  native_name: string;
   status: string;
+  speakers: number;
   countries: string;
 }
 
@@ -81,8 +82,10 @@ export default function LanguagesPage() {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Country</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Native Name</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Speakers</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Countries</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -110,7 +113,9 @@ export default function LanguagesPage() {
                   languages.map((language) => (
                     <tr key={language.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{language.name}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-500">{language.code}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-500">{language.native_name || 'N/A'}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-500">{language.speakers?.toLocaleString() || 'N/A'}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-500">{language.status || 'N/A'}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-gray-500">{language.countries || 'N/A'}</td>
                     </tr>
                   ))
