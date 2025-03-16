@@ -40,6 +40,38 @@ const IconMap: Record<string, React.ElementType> = {
 };
 
 const megaMenuItems = {
+  Languages: [
+    {
+      name: "Languages Directory",
+      href: "/languages",
+      icon: "Languages",
+      description: "Browse our comprehensive language directory"
+    },
+    {
+      name: "Assessment",
+      href: "/assessment",
+      icon: "CheckCircle",
+      description: "Evaluate language resources and needs"
+    },
+    {
+      name: "Countries",
+      href: "/countries",
+      icon: "Globe",
+      description: "Explore languages by country"
+    },
+    {
+      name: "Continents",
+      href: "/continents",
+      icon: "Map",
+      description: "Browse languages by continent"
+    },
+    {
+      name: "Currencies",
+      href: "/currencies",
+      icon: "Dollar",
+      description: "Currency information by region"
+    }
+  ],
   Solutions: [
     {
       name: "Digital Content Platform",
