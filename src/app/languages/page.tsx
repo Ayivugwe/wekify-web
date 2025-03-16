@@ -35,6 +35,23 @@ export default function LanguagesPage() {
     region: '',
   });
   const [showDialog, setShowDialog] = useState<'continents' | 'countries' | 'currencies' | null>(null);
+  const [dialogData, setDialogData] = useState<any[]>([]);
+
+  const fetchDialogData = async (type: 'continents' | 'countries' | 'currencies') => {
+    try {
+      const response = await fetch(`/api/${type}`);
+      const data = await response.json();
+      setDialogData(data.items || []);
+    } catch (error) {
+      console.error(`Error fetching ${type}:`, error);
+    }
+  };
+
+  useEffect(() => {
+    if (showDialog) {
+      fetchDialogData(showDialog);
+    }
+  }, [showDialog]);
 
   useEffect(() => {
     fetchLanguages(currentPage);
@@ -220,6 +237,22 @@ export default function LanguagesPage() {
           </div>
         </div>
       </section>
+
+      <Dialog
+        isOpen={showDialog !== null}
+        onClose={() => setShowDialog(null)}
+        title={showDialog ? `${showDialog.charAt(0).toUpperCase()}${showDialog.slice(1)}` : ''}
+      >
+        <div className="max-h-[60vh] overflow-y-auto">
+          {dialogData.map((item: any) => (
+            <div key={item.id} className="py-2 border-b">
+              <h4 className="font-medium">{item.name}</h4>
+              {item.code && <p className="text-sm text-gray-600">Code: {item.code}</p>}
+              {item.symbol && <p className="text-sm text-gray-600">Symbol: {item.symbol}</p>}
+            </div>
+          ))}
+        </div>
+      </Dialog>
     </Layout>
   );
 }

@@ -1,5 +1,7 @@
 
 'use client';
+
+import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
 interface DialogProps {
@@ -10,29 +12,34 @@ interface DialogProps {
 }
 
 export default function Dialog({ isOpen, onClose, title, children }: DialogProps) {
-  if (!isOpen) return null;
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (dialog) {
+      if (isOpen) {
+        dialog.showModal();
+      } else {
+        dialog.close();
+      }
+    }
+  }, [isOpen]);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="flex min-h-screen items-center justify-center p-4">
-        <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onClick={onClose}></div>
-        
-        <div className="relative bg-white rounded-lg max-w-lg w-full mx-auto p-6">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-semibold">{title}</h3>
-            <button
-              onClick={onClose}
-              className="text-gray-400 hover:text-gray-500"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-          
-          <div className="overflow-y-auto max-h-[70vh]">
-            {children}
-          </div>
+    <dialog
+      ref={dialogRef}
+      className="backdrop:bg-black/50 p-0 bg-transparent"
+      onClose={onClose}
+    >
+      <div className="min-w-[300px] max-w-[500px] rounded-lg bg-white shadow-xl">
+        <div className="flex items-center justify-between border-b p-4">
+          <h3 className="text-lg font-semibold">{title}</h3>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+            <X className="h-5 w-5" />
+          </button>
         </div>
+        <div className="p-4">{children}</div>
       </div>
-    </div>
+    </dialog>
   );
 }

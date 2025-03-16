@@ -19,14 +19,10 @@ export async function GET(request: Request) {
         l.native_name,
         l.status,
         l.speakers,
-        string_agg(DISTINCT c.name, ', ') as countries,
-        r.name as region,
-        cont.name as continent
+        string_agg(DISTINCT c.name, ', ') as countries
       FROM languages l
       LEFT JOIN country_languages cl ON l.id = cl.language_id
       LEFT JOIN countries c ON cl.country_id = c.id
-      LEFT JOIN regions r ON c.region_id = r.id
-      LEFT JOIN continents cont ON r.continent_id = cont.id
       WHERE 1=1
     `;
 
@@ -52,7 +48,7 @@ export async function GET(request: Request) {
     }
 
     query += `
-      GROUP BY l.id, l.name, l.native_name, l.status, l.speakers, r.name, cont.name
+      GROUP BY l.id, l.name, l.native_name, l.status, l.speakers
       ORDER BY l.name
       LIMIT $1 OFFSET $2
     `;
