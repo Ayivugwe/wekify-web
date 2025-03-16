@@ -113,26 +113,7 @@ const megaMenuItems = {
       description: "Join our network of language preservation advocates",
     },
   ],
-  About: [
-    {
-      name: "Our Story",
-      href: "/about/our-story",
-      icon: "Book",
-      description: "Learn about our mission and journey",
-    },
-    {
-      name: "Vision",
-      href: "/about/vision",
-      icon: "Heart",
-      description: "Our future plans for language preservation",
-    },
-    {
-      name: "Our Policies",
-      href: "/about/our-policies",
-      icon: "Shield",
-      description: "Learn about our guiding principles and vision",
-    },
-  ],
+
   "AI & Us": [
     {
       name: "Our AI Approach",
@@ -167,6 +148,26 @@ const megaMenuItems = {
       description: "Evaluate your language's digital presence",
     },
   ],
+  About: [
+    {
+      name: "Our Story",
+      href: "/about/our-story",
+      icon: "Book",
+      description: "Learn about our mission and journey",
+    },
+    {
+      name: "Vision",
+      href: "/about/vision",
+      icon: "Heart",
+      description: "Our future plans for language preservation",
+    },
+    {
+      name: "Our Policies",
+      href: "/about/our-policies",
+      icon: "Shield",
+      description: "Learn about our guiding principles and vision",
+    },
+  ],
 };
 
 const Header = () => {
@@ -183,7 +184,7 @@ const Header = () => {
   };
 
   const toggleMenu = (menuName: string) => {
-    setIsOpen(prev => ({...prev, [menuName]: !prev[menuName]}));
+    setIsOpen((prev) => ({ ...prev, [menuName]: !prev[menuName] }));
   };
 
   const getIcon = (iconName: string, props: any) => {
@@ -222,7 +223,10 @@ const Header = () => {
               className="relative"
               onMouseEnter={() => handleMegaMenuHover(menuName)}
             >
-              <button className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300" onClick={() => handleMegaMenuToggle(menuName)}>
+              <button
+                className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300"
+                onClick={() => handleMegaMenuToggle(menuName)}
+              >
                 {menuName}
                 <ChevronDown
                   className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === menuName ? "rotate-180" : ""}`}
@@ -370,10 +374,14 @@ const Header = () => {
               Blog
             </Link>
             <div className="relative group">
-              <button className="flex items-center text-gray-700 hover:text-primary transition-colors font-medium w-full py-2"
-                onClick={() => toggleMenu("Languages")}>
+              <button
+                className="flex items-center text-gray-700 hover:text-primary transition-colors font-medium w-full py-2"
+                onClick={() => toggleMenu("Languages")}
+              >
                 Languages
-                <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isOpen.Languages ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  className={`ml-1 h-4 w-4 transition-transform ${isOpen.Languages ? "rotate-180" : ""}`}
+                />
               </button>
               {isOpen.Languages && (
                 <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-lg shadow-lg p-2 border border-gray-100 z-20">
