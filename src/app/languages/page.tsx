@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import Layout from '@/app/components/layout';
 
@@ -22,6 +21,7 @@ export default function LanguagesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchLanguages(currentPage);
@@ -29,31 +29,51 @@ export default function LanguagesPage() {
 
   const fetchLanguages = async (page: number) => {
     try {
+      setLoading(true);
+      setError(null);
       const response = await fetch(`/api/languages?page=${page}&limit=10`);
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
       const data: PaginatedResponse = await response.json();
-      setLanguages(data.items);
-      setTotalPages(data.totalPages);
-      setLoading(false);
+      setLanguages(data.items || []); // Ensure we set an empty array if items is undefined
+      setTotalPages(data.totalPages || 0);
     } catch (error) {
       console.error('Error fetching languages:', error);
+      setError('Failed to load languages. Please try again later.');
+      setLanguages([]); // Reset to empty array on error
+    } finally {
       setLoading(false);
     }
   };
 
-  if (loading) {
-    return (
-      <Layout>
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-lg">Loading languages...</div>
-        </div>
-      </Layout>
-    );
-  }
+  const getStatusBadgeClass = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'safe':
+        return 'bg-green-100 text-green-800';
+      case 'vulnerable':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'endangered':
+        return 'bg-orange-100 text-orange-800';
+      case 'critical':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
 
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Languages</h1>
+        <h1 className="text-3xl font-bold mb-6">Indigenous Languages</h1>
+
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {error}
+          </div>
+        )}
 
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
           <table className="min-w-full">
@@ -66,36 +86,67 @@ export default function LanguagesPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {languages.map((language) => (
-                <tr key={language.name}>
-                  <td className="px-6 py-4 whitespace-nowrap">{language.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{language.native_name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{language.speakers.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{language.status}</td>
+              {loading ? (
+                Array(10).fill(0).map((_, index) => (
+                  <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="h-4 bg-gray-200 rounded animate-pulse w-24"></div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="h-4 bg-gray-200 rounded animate-pulse w-32"></div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="h-4 bg-gray-200 rounded animate-pulse w-20"></div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="h-4 bg-gray-200 rounded animate-pulse w-16"></div>
+                    </td>
+                  </tr>
+                ))
+              ) : (languages || []).length === 0 ? (
+                <tr>
+                  <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
+                    No languages found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                (languages || []).map((language) => (
+                  <tr key={language.name} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium">{language.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{language.native_name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{language.speakers.toLocaleString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(language.status)}`}>
+                        {language.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
 
-        <div className="mt-4 flex justify-center space-x-2">
-          <button
-            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
-            className="px-4 py-2 border rounded-md disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="px-4 py-2">
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-            className="px-4 py-2 border rounded-md disabled:opacity-50"
-          >
-            Next
-          </button>
+        <div className="mt-6 flex justify-between items-center">
+          <div className="text-sm text-gray-700">
+            Showing page {currentPage} of {totalPages}
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1 || loading}
+              className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages || loading}
+              className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </Layout>
