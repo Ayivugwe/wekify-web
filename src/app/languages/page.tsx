@@ -31,6 +31,19 @@ export default function WorldLanguagesPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [languageData, setLanguageData] = useState<ContinentData>({});
   const [loading, setLoading] = useState(true);
+  const [selectedContinent, setSelectedContinent] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
+
+  const continents = Object.keys(languageData);
+  const regions = selectedContinent
+    ? languageData[selectedContinent]?.map(r => r.name) || []
+    : [];
+  const countries = selectedRegion
+    ? languageData[selectedContinent]
+        ?.find(r => r.name === selectedRegion)
+        ?.countries.map(c => c.name) || []
+    : [];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,14 +66,27 @@ export default function WorldLanguagesPage() {
   };
 
   const renderLanguages = () => {
-    return Object.entries(languageData).map(([continent, regions]) => (
+    return Object.entries(languageData)
+      .filter(([continent]) => !selectedContinent || continent === selectedContinent)
+      .map(([continent, regions]) => (
       <div key={continent} className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">{continent}</h2>
-        {regions.map((region) => (
+        {regions
+          .filter(region => !selectedRegion || region.name === selectedRegion)
+          .map((region) => (
           <div key={region.name} className="mb-8">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">{region.name}</h3>
             <div className="space-y-6">
-              {region.countries.map((country) => (
+              {region.countries
+                .filter(country => !selectedCountry || country.name === selectedCountry)
+                .filter(country => 
+                  !searchTerm || 
+                  country.languages.some(lang => 
+                    lang.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    lang.native_name.toLowerCase().includes(searchTerm.toLowerCase())
+                  )
+                )
+                .map((country) => (
                 <div key={country.name} className="bg-white rounded-xl shadow-sm p-6">
                   <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
                     <img 
@@ -119,15 +145,59 @@ export default function WorldLanguagesPage() {
               collective linguistic heritage for future generations.
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
-              <div className="relative flex-1 max-w-md mx-auto md:mx-0">
-                <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search languages..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
-                />
+              <div className="flex flex-col md:flex-row gap-4 w-full max-w-4xl mx-auto">
+                <select
+                  value={selectedContinent}
+                  onChange={(e) => {
+                    setSelectedContinent(e.target.value);
+                    setSelectedRegion("");
+                    setSelectedCountry("");
+                  }}
+                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
+                >
+                  <option value="">All Continents</option>
+                  {continents.map(continent => (
+                    <option key={continent} value={continent}>{continent}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={selectedRegion}
+                  onChange={(e) => {
+                    setSelectedRegion(e.target.value);
+                    setSelectedCountry("");
+                  }}
+                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
+                  disabled={!selectedContinent}
+                >
+                  <option value="">All Regions</option>
+                  {regions.map(region => (
+                    <option key={region} value={region}>{region}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={selectedCountry}
+                  onChange={(e) => setSelectedCountry(e.target.value)}
+                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
+                  disabled={!selectedRegion}
+                >
+                  <option value="">All Countries</option>
+                  {countries.map(country => (
+                    <option key={country} value={country}>{country}</option>
+                  ))}
+                </select>
+
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search languages..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
+                  />
+                </div>
               </div>
               <Link
                 href="/assessment"
