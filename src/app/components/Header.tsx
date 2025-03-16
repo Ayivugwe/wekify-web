@@ -40,38 +40,6 @@ const IconMap: Record<string, React.ElementType> = {
 };
 
 const megaMenuItems = {
-  Languages: [
-    {
-      name: "Languages Directory",
-      href: "/languages",
-      icon: "Languages",
-      description: "Browse our comprehensive language directory"
-    },
-    {
-      name: "Assessment",
-      href: "/assessment",
-      icon: "CheckCircle",
-      description: "Evaluate language resources and needs"
-    },
-    {
-      name: "Countries",
-      href: "/countries",
-      icon: "Globe",
-      description: "Explore languages by country"
-    },
-    {
-      name: "Continents",
-      href: "/continents",
-      icon: "Map",
-      description: "Browse languages by continent"
-    },
-    {
-      name: "Currencies",
-      href: "/currencies",
-      icon: "Dollar",
-      description: "Currency information by region"
-    }
-  ],
   Solutions: [
     {
       name: "Digital Content Platform",
@@ -166,18 +134,36 @@ const megaMenuItems = {
       description: "Our promise to ethical, community-focused AI",
     },
   ],
-  Languages: [
+  Atlas: [
     {
-      name: "World Languages",
+      name: "Languages Directory",
       href: "/languages",
-      icon: "Globe",
-      description: "Explore the diversity of world languages",
+      icon: "Languages",
+      description: "Browse our comprehensive language directory",
     },
     {
-      name: "Language Assessment",
+      name: "Assessment",
       href: "/assessment",
-      icon: "CheckSquare",
-      description: "Evaluate your language's digital presence",
+      icon: "CheckCircle",
+      description: "Evaluate language resources and needs",
+    },
+    {
+      name: "Countries",
+      href: "/countries",
+      icon: "Globe",
+      description: "Explore languages by country",
+    },
+    {
+      name: "Continents",
+      href: "/continents",
+      icon: "Map",
+      description: "Browse languages by continent",
+    },
+    {
+      name: "Currencies",
+      href: "/currencies",
+      icon: "Dollar",
+      description: "Currency information by region",
     },
   ],
   About: [
@@ -442,7 +428,7 @@ const Header = () => {
                           </div>
                         </div>
                       </Link>
-                    )
+                    );
                   })}
                 </div>
               )}

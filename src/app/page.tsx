@@ -21,7 +21,6 @@ import {
   Shield,
   Gamepad,
 } from "lucide-react";
-import AmbassadorSection from "./components/AmbassadorSection"; // Added import
 
 export const metadata: Metadata = {
   title: "Wekify - Language Preservation Platform",
