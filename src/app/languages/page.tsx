@@ -1,9 +1,8 @@
-
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Layout from '@/app/components/layout';
-import { BookOpen, FileSpreadsheet, ArrowRight, Search, X } from 'lucide-react';
+import { BookOpen, FileSpreadsheet, ArrowRight, Search, X, Globe2, Users, AlertTriangle } from 'lucide-react';
 import Dialog from '@/app/components/Dialog';
 
 interface Language {
@@ -101,7 +100,48 @@ export default function LanguagesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
               World Languages Directory
             </h1>
-            
+
+            {/* Language Stats Section */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+              <div className="bg-white rounded-xl shadow-md p-6">
+                <div className="flex items-center justify-center mb-4">
+                  <Globe2 className="h-8 w-8 text-blue-500" />
+                </div>
+                <h3 className="text-xl font-semibold text-center mb-2">7,151</h3>
+                <p className="text-gray-600 text-center">Known Languages</p>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-md p-6">
+                <div className="flex items-center justify-center mb-4">
+                  <Users className="h-8 w-8 text-green-500" />
+                </div>
+                <h3 className="text-xl font-semibold text-center mb-2">40%</h3>
+                <p className="text-gray-600 text-center">Endangered Languages</p>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-md p-6">
+                <div className="flex items-center justify-center mb-4">
+                  <AlertTriangle className="h-8 w-8 text-red-500" />
+                </div>
+                <h3 className="text-xl font-semibold text-center mb-2">1 Every 14 Days</h3>
+                <p className="text-gray-600 text-center">Language Loss Rate</p>
+              </div>
+            </div>
+
+            {/* Assessment CTA */}
+            <div className="bg-white rounded-xl shadow-md p-8 mb-10">
+              <h2 className="text-2xl font-bold mb-4">Assess Your Language</h2>
+              <p className="text-gray-600 mb-6">
+                Help us understand the digital presence and needs of your language. Our assessment tool provides insights and recommendations for language preservation and development.
+              </p>
+              <Link 
+                href="/assessment" 
+                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+              >
+                Start Assessment <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
+
             {/* Search and Filters */}
             <form onSubmit={handleSearch} className="mb-8">
               <div className="flex flex-wrap gap-4">
