@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <defs>
+    <linearGradient id="letterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E65C00" />
+      <stop offset="100%" stop-color="#F97316" />
+    </linearGradient>
+    
+    <!-- Circuit board pattern -->
+    <pattern id="circuitPattern" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="scale(0.5) rotate(0)">
+      <rect width="40" height="40" fill="white" fill-opacity="0.8"/>
+      <circle cx="10" cy="10" r="2" fill="white"/>
+      <circle cx="30" cy="10" r="2" fill="white"/>
+      <circle cx="10" cy="30" r="2" fill="white"/>
+      <circle cx="30" cy="30" r="2" fill="white"/>
+      <line x1="10" y1="10" x2="30" y2="10" stroke="white" stroke-width="1"/>
+      <line x1="10" y1="10" x2="10" y2="30" stroke="white" stroke-width="1"/>
+      <line x1="30" y1="10" x2="30" y2="30" stroke="white" stroke-width="1"/>
+      <line x1="10" y1="30" x2="30" y2="30" stroke="white" stroke-width="1"/>
+      <line x1="20" y1="0" x2="20" y2="10" stroke="white" stroke-width="1"/>
+      <line x1="0" y1="20" x2="10" y2="20" stroke="white" stroke-width="1"/>
+      <line x1="30" y1="20" x2="40" y2="20" stroke="white" stroke-width="1"/>
+      <line x1="20" y1="30" x2="20" y2="40" stroke="white" stroke-width="1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background card -->
+  <rect x="0" y="0" width="180" height="180" rx="30" ry="30" fill="url(#letterGradient)" />
+  
+  <!-- FH as a single unit, fully centered in the card with circuit pattern -->
+  <g transform="translate(25, 30)">
+    <!-- The letter F part with pattern -->
+    <path d="M0,0 H50 V30 H20 V55 H45 V85 H20 V120 H0 Z" fill="url(#circuitPattern)" />
+    
+    <!-- The letter H part with pattern -->
+    <path d="M60,0 H80 V55 H110 V0 H130 V120 H110 V85 H80 V120 H60 Z" fill="url(#circuitPattern)" />
+    
+    <!-- Outline to maintain letter shape -->
+    <path d="M0,0 H50 V30 H20 V55 H45 V85 H20 V120 H0 Z" fill="none" stroke="white" stroke-width="2" />
+    <path d="M60,0 H80 V55 H110 V0 H130 V120 H110 V85 H80 V120 H60 Z" fill="none" stroke="white" stroke-width="2" />
+  </g>
+</svg>
