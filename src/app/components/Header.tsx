@@ -20,6 +20,13 @@ import {
   Star,
   MessageSquare,
   Gamepad,
+  Brain,
+  Sparkles,
+  Lightbulb,
+  Map,
+  CircleCheck,
+  DollarSign,
+  Languages,
 } from "lucide-react";
 
 // Icon mapping for dynamic rendering
@@ -37,6 +44,13 @@ const IconMap: Record<string, React.ElementType> = {
   Star,
   MessageSquare,
   GameController: Gamepad,
+  Brain,
+  Sparkles,
+  Lightbulb,
+  Map,
+  CheckCircle: CircleCheck,
+  Dollar: DollarSign,
+  Languages,
 };
 
 const megaMenuItems = {
