@@ -1,6 +1,7 @@
+
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Globe, Share2, Code, BookOpen, Users } from "lucide-react";
+import { ArrowRight, Globe, Share2, Code, BookOpen, Users, Brain, Sparkles } from "lucide-react";
 import Layout from "../components/layout";
 import { Metadata } from "next";
 
@@ -76,6 +77,46 @@ export default function SolutionsPage() {
                   >
                     Learn More <ArrowRight className="ml-2 w-5 h-5" />
                   </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* AI Features Coming Soon */}
+        <section className="py-16 bg-gradient-to-r from-blue-50/50 to-purple-50/50">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <div className="inline-flex items-center px-4 py-2 bg-purple-500/10 rounded-full text-purple-700 text-sm font-medium mb-6">
+              Coming Soon
+            </div>
+            <h2 className="text-3xl font-bold mb-6">AI-Powered Language Solutions</h2>
+            <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+              We're working hard to bring you cutting-edge AI features that will revolutionize language preservation and learning. Stay tuned for these exciting developments.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: <Brain className="w-8 h-8" />,
+                  title: "Smart Translation",
+                  description: "Advanced AI-powered translation tools (Coming Q3 2024)"
+                },
+                {
+                  icon: <Sparkles className="w-8 h-8" />,
+                  title: "Adaptive Learning",
+                  description: "Personalized language learning paths (Coming Q4 2024)"
+                },
+                {
+                  icon: <Code className="w-8 h-8" />,
+                  title: "Automated Documentation",
+                  description: "AI-assisted language documentation (Coming Q4 2024)"
+                }
+              ].map((feature, index) => (
+                <div key={index} className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-purple-100">
+                  <div className="mb-4 p-3 bg-purple-50 rounded-lg w-fit mx-auto">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.description}</p>
                 </div>
               ))}
             </div>
