@@ -23,10 +23,10 @@ export const Card = ({
   
   // Variant styles
   const variantStyles = {
-    default: "bg-white shadow",
+    default: "bg-white border border-neutral-100",
     bordered: "bg-white border border-neutral-200",
-    elevated: "bg-white shadow-lg",
-    flat: "bg-neutral-50"
+    elevated: "bg-white border border-neutral-100 shadow-sm",
+    flat: "bg-neutral-50 border border-neutral-100"
   };
   
   // Padding styles
@@ -38,7 +38,7 @@ export const Card = ({
   };
   
   // Hover effects
-  const hoverStyles = hover ? "hover:shadow-lg hover:-translate-y-1" : "";
+  const hoverStyles = hover ? "hover:shadow-sm hover:border-neutral-200 hover:-translate-y-0.5" : "";
   
   return (
     <div

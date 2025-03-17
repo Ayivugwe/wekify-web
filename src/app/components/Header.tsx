@@ -225,7 +225,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <header className="bg-white/80 backdrop-blur-md border-b border-neutral-100 sticky top-0 z-50">
       <div className="container flex items-center justify-between py-3">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
