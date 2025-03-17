@@ -1,7 +1,5 @@
-
 import React from "react";
-import Link from "next/link";
-import { ArrowRight, Globe, Share2, Code, BookOpen, Users, Brain, Sparkles } from "lucide-react";
+import { Brain, Code, Globe, Server, Database, Mobile, Share2, BookOpen } from "lucide-react";
 import Layout from "../components/layout";
 import { Metadata } from "next";
 
@@ -15,165 +13,93 @@ export default function SolutionsPage() {
   return (
     <Layout>
       <div className="bg-gradient-to-b from-blue-50 to-white">
-        {/* Hero Section */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Preserve Your Language in the Digital Age
-            </h1>
-            <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              We provide comprehensive digital solutions to help communities document, teach, and revitalize their languages.
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold mb-6">Technology Solutions</h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We're a technology company pushing boundaries in software development, AI, and digital transformation. While we're proud of our language preservation work, our expertise spans multiple domains.
             </p>
           </div>
-        </section>
 
-        {/* Main Solutions */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                {
-                  icon: <Globe className="w-12 h-12" />,
-                  title: "Digital Content Platform",
-                  description: "A complete platform for managing and sharing your language content.",
-                  features: [
-                    "Digital Dictionary Management",
-                    "Audio/Video Content Library",
-                    "Learning Resources Portal",
-                    "Community Contribution Tools"
-                  ],
-                  link: "/solutions/digital-content"
-                },
-                {
-                  icon: <BookOpen className="w-12 h-12" />,
-                  title: "Language Documentation",
-                  description: "Professional tools for documenting and preserving your language.",
-                  features: [
-                    "Structured Documentation System",
-                    "Cultural Context Recording",
-                    "Multimedia Integration",
-                    "Version Control & Backup"
-                  ],
-                  link: "/solutions/language-preservation"
-                }
-              ].map((solution, index) => (
-                <div key={index} className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                  <div className="mb-6 p-4 bg-blue-50 rounded-xl w-fit">
-                    {solution.icon}
-                  </div>
-                  <h2 className="text-2xl font-bold mb-4">{solution.title}</h2>
-                  <p className="text-gray-600 mb-6">{solution.description}</p>
-                  <ul className="space-y-3 mb-8">
-                    {solution.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-700">
-                        <ArrowRight className="w-5 h-5 mr-3 text-blue-600" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={solution.link}
-                    className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all"
-                  >
-                    Learn More <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
-                </div>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Core Tech Services */}
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              <div className="bg-blue-50 p-3 rounded-lg w-fit mb-6">
+                <Code className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Custom Software Development</h3>
+              <p className="text-gray-600 mb-4">Enterprise-grade solutions, web applications, and specialized software tailored to your needs.</p>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              <div className="bg-purple-50 p-3 rounded-lg w-fit mb-6">
+                <Brain className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">AI & Machine Learning</h3>
+              <p className="text-gray-600 mb-4">Advanced AI solutions for process automation, data analysis, and intelligent systems.</p>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              <div className="bg-green-50 p-3 rounded-lg w-fit mb-6">
+                <Mobile className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Mobile Development</h3>
+              <p className="text-gray-600 mb-4">Cross-platform mobile applications with cutting-edge features and seamless user experience.</p>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              <div className="bg-orange-50 p-3 rounded-lg w-fit mb-6">
+                <Database className="w-8 h-8 text-orange-600" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Data Solutions</h3>
+              <p className="text-gray-600 mb-4">Big data processing, analytics, and intelligent database solutions for modern businesses.</p>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              <div className="bg-red-50 p-3 rounded-lg w-fit mb-6">
+                <Server className="w-8 h-8 text-red-600" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Cloud Infrastructure</h3>
+              <p className="text-gray-600 mb-4">Scalable cloud solutions, DevOps services, and infrastructure optimization.</p>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              <div className="bg-teal-50 p-3 rounded-lg w-fit mb-6">
+                <Globe className="w-8 h-8 text-teal-600" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Language Technology</h3>
+              <p className="text-gray-600 mb-4">Innovative solutions for language preservation and digital transformation of linguistic resources.</p>
             </div>
           </div>
-        </section>
 
-        {/* AI Features Coming Soon */}
-        <section className="py-16 bg-gradient-to-r from-blue-50/50 to-purple-50/50">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-purple-500/10 rounded-full text-purple-700 text-sm font-medium mb-6">
-              Coming Soon
-            </div>
-            <h2 className="text-3xl font-bold mb-6">AI-Powered Language Solutions</h2>
-            <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-              We're working hard to bring you cutting-edge AI features that will revolutionize language preservation and learning. Stay tuned for these exciting developments.
+          {/* Research & Innovation */}
+          <div className="mt-24 text-center">
+            <h2 className="text-3xl font-bold mb-8">Research & Innovation</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+              We're constantly exploring new technological frontiers through our R&D initiatives:
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: <Brain className="w-8 h-8" />,
-                  title: "Smart Translation",
-                  description: "Advanced AI-powered translation tools (Coming Q3 2024)"
-                },
-                {
-                  icon: <Sparkles className="w-8 h-8" />,
-                  title: "Adaptive Learning",
-                  description: "Personalized language learning paths (Coming Q4 2024)"
-                },
-                {
-                  icon: <Code className="w-8 h-8" />,
-                  title: "Automated Documentation",
-                  description: "AI-assisted language documentation (Coming Q4 2024)"
-                }
-              ].map((feature, index) => (
-                <div key={index} className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-purple-100">
-                  <div className="mb-4 p-3 bg-purple-50 rounded-lg w-fit mx-auto">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl">
+                <h3 className="text-xl font-bold mb-4">Current Research</h3>
+                <ul className="text-left space-y-3">
+                  <li className="flex items-center"><div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>Advanced AI Applications</li>
+                  <li className="flex items-center"><div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>Natural Language Processing</li>
+                  <li className="flex items-center"><div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>Distributed Systems</li>
+                  <li className="flex items-center"><div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>Edge Computing Solutions</li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl">
+                <h3 className="text-xl font-bold mb-4">Future Directions</h3>
+                <ul className="text-left space-y-3">
+                  <li className="flex items-center"><div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>Quantum Computing Applications</li>
+                  <li className="flex items-center"><div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>Advanced Cryptography</li>
+                  <li className="flex items-center"><div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>Sustainable Tech Solutions</li>
+                  <li className="flex items-center"><div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>Augmented Reality Systems</li>
+                </ul>
+              </div>
             </div>
           </div>
-        </section>
-
-        {/* Additional Services */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl font-bold mb-8 text-center">Additional Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: <Code className="w-8 h-8" />,
-                  title: "Custom Development",
-                  description: "Tailored solutions for your specific language needs"
-                },
-                {
-                  icon: <Share2 className="w-8 h-8" />,
-                  title: "Integration Services",
-                  description: "Connect your existing platforms and tools"
-                },
-                {
-                  icon: <Users className="w-8 h-8" />,
-                  title: "Community Training",
-                  description: "Expert guidance for your language team"
-                }
-              ].map((service, index) => (
-                <div key={index} className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-gray-100">
-                  <div className="mb-4 p-3 bg-blue-50 rounded-lg w-fit">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-blue-600 text-white">
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Start Preserving Your Language Today
-            </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Join other communities who are successfully preserving their languages with our digital solutions.
-            </p>
-            <Link 
-              href="/contact" 
-              className="inline-flex items-center px-8 py-4 bg-white text-blue-600 rounded-xl font-medium hover:bg-blue-50 transition-all"
-            >
-              Schedule a Consultation <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        </section>
+        </div>
       </div>
     </Layout>
   );
