@@ -1,13 +1,13 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Globe, Database, Code, Settings, Cloud, Lock, Zap } from "lucide-react";
+import { ArrowRight, Globe, Share2, Code, BookOpen, Brain } from "lucide-react";
 import Layout from "../components/layout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Digital Solutions | Wekify",
-  description: "Innovative technology designed to preserve, promote, and revitalize languages across all communities.",
+  title: "Solutions | Wekify",
+  description: "Technology solutions for language preservation and cultural revitalization",
   keywords: ["language preservation", "digital solutions", "technology", "indigenous languages"],
 };
 
@@ -22,21 +22,17 @@ export default function SolutionsPage() {
               Digital Solutions for Language Preservation
             </h1>
             <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              Innovative technology designed to preserve, promote, and revitalize languages 
-              across all communities.
+              Empowering communities with technology to preserve, promote, and revitalize their languages.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="btn-primary">
-                Get Started
-              </Link>
-              <Link href="/about" className="btn-secondary">
-                Learn More
+              <Link href="/contact" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                Get Started <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Core Solutions Grid */}
+        {/* Solutions Grid */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -45,7 +41,7 @@ export default function SolutionsPage() {
                   icon: <Globe className="w-8 h-8" />,
                   title: "Digital Content Platform",
                   description:
-                    "Build and manage digital content platforms with our scalable solution. Perfect for languages, cultural content, and educational materials.",
+                    "Build and manage digital content platforms for language preservation and cultural content.",
                   features: [
                     "Content Management System",
                     "User Management",
@@ -55,10 +51,10 @@ export default function SolutionsPage() {
                   link: "/solutions/digital-content",
                 },
                 {
-                  icon: <Database className="w-8 h-8" />,
+                  icon: <Share2 className="w-8 h-8" />,
                   title: "Integration Services",
                   description:
-                    "Connect and extend your platforms with our robust API and integration services. Build seamless digital experiences.",
+                    "Connect and extend your platforms with our robust API and integration services.",
                   features: [
                     "RESTful APIs",
                     "Custom Integrations",
@@ -71,7 +67,7 @@ export default function SolutionsPage() {
                   icon: <Code className="w-8 h-8" />,
                   title: "Custom Solutions",
                   description:
-                    "Tailored technology solutions designed for your specific needs. From concept to implementation.",
+                    "Tailored technology solutions designed for your specific language preservation needs.",
                   features: [
                     "Custom Development",
                     "Platform Optimization",
@@ -81,43 +77,30 @@ export default function SolutionsPage() {
                   link: "/solutions/custom",
                 },
                 {
-                  icon: <Settings className="w-8 h-8" />,
+                  icon: <BookOpen className="w-8 h-8" />,
                   title: "Language Preservation",
                   description:
                     "Specialized tools for documenting, archiving, and revitalizing endangered languages.",
                   features: [
                     "Digital Dictionaries",
                     "Audio/Video Archives",
-                    "Language Learning Tools",
+                    "Learning Tools",
                     "Cultural Documentation",
                   ],
                   link: "/solutions/language-preservation",
                 },
                 {
-                  icon: <Cloud className="w-8 h-8" />,
-                  title: "Cloud Infrastructure",
+                  icon: <Brain className="w-8 h-8" />,
+                  title: "AI & Language Vision",
                   description:
-                    "Reliable, secure, and scalable cloud infrastructure for hosting language and cultural platforms.",
+                    "Advanced AI tools for language analysis, translation, and preservation.",
                   features: [
-                    "Managed Hosting",
-                    "Automatic Scaling",
-                    "Backups & Recovery",
-                    "24/7 Monitoring",
-                  ],
-                  link: "/solutions/cloud",
-                },
-                {
-                  icon: <Zap className="w-8 h-8" />,
-                  title: "AI & Machine Learning",
-                  description:
-                    "Advanced AI tools for language analysis, translation, and content generation.",
-                  features: [
-                    "Automated Translation",
-                    "Content Analysis",
-                    "Pattern Recognition",
+                    "AI-Powered Analysis",
                     "Language Models",
+                    "Pattern Recognition",
+                    "Preservation Strategy",
                   ],
-                  link: "/solutions/ai-ml",
+                  link: "/solutions/ai-vision",
                 },
               ].map((solution, index) => (
                 <div
@@ -159,7 +142,7 @@ export default function SolutionsPage() {
         <section className="py-20 bg-blue-600 text-white">
           <div className="max-w-5xl mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Start Your Language Preservation Journey?
+              Ready to Preserve Your Language?
             </h2>
             <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto">
               Contact our team today to discuss your language preservation goals and discover 
