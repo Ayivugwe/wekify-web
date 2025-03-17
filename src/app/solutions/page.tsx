@@ -44,45 +44,84 @@ export default function SolutionsPage() {
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">Current Solutions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="group hover:scale-105 transition-all duration-300">
-                <div className="bg-white rounded-2xl p-8 h-full border border-gray-100 hover:border-blue-200 transition-all">
-                  <div className="bg-blue-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-blue-100 transition-all">
-                    <Globe className="w-8 h-8 text-blue-600" />
+            <div className="grid grid-cols-1 gap-12">
+              {/* Digital Documentation */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+                <div className="flex items-start gap-8">
+                  <div className="bg-blue-50 p-4 rounded-xl">
+                    <Globe className="w-12 h-12 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold mb-4">Digital Documentation</h3>
-                  <div className="space-y-3 text-gray-600">
-                    <p>• Dictionary creation and management</p>
-                    <p>• Grammar documentation tools</p>
-                    <p>• Cultural materials archive</p>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-4 text-blue-600">Digital Documentation Solutions</h3>
+                    <p className="text-gray-600 mb-6">We're developing comprehensive digital tools to capture, preserve, and manage language documentation effectively.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="p-6 bg-blue-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Dictionary Management</h4>
+                        <p className="text-gray-600">Advanced tools for creating, organizing, and maintaining comprehensive digital dictionaries with audio support.</p>
+                      </div>
+                      <div className="p-6 bg-blue-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Grammar Documentation</h4>
+                        <p className="text-gray-600">Structured systems for documenting language grammar, syntax, and linguistic features.</p>
+                      </div>
+                      <div className="p-6 bg-blue-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Cultural Archive</h4>
+                        <p className="text-gray-600">Digital preservation of cultural materials, stories, and traditional knowledge.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="group hover:scale-105 transition-all duration-300">
-                <div className="bg-white rounded-2xl p-8 h-full border border-gray-100 hover:border-green-200 transition-all">
-                  <div className="bg-green-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-green-100 transition-all">
-                    <Users className="w-8 h-8 text-green-600" />
+              {/* Community Engagement */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+                <div className="flex items-start gap-8">
+                  <div className="bg-green-50 p-4 rounded-xl">
+                    <Users className="w-12 h-12 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-bold mb-4">Community Engagement</h3>
-                  <div className="space-y-3 text-gray-600">
-                    <p>• Collaboration platforms</p>
-                    <p>• Knowledge sharing tools</p>
-                    <p>• Community forums</p>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-4 text-green-600">Community Engagement Platform</h3>
+                    <p className="text-gray-600 mb-6">Building robust platforms that enable active community participation in language preservation efforts.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="p-6 bg-green-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Collaboration Tools</h4>
+                        <p className="text-gray-600">Interactive platforms for community members to contribute and collaborate on language documentation.</p>
+                      </div>
+                      <div className="p-6 bg-green-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Knowledge Exchange</h4>
+                        <p className="text-gray-600">Systems for sharing linguistic knowledge and cultural wisdom between generations.</p>
+                      </div>
+                      <div className="p-6 bg-green-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Community Forums</h4>
+                        <p className="text-gray-600">Dedicated spaces for discussions, queries, and collaborative problem-solving.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="group hover:scale-105 transition-all duration-300">
-                <div className="bg-white rounded-2xl p-8 h-full border border-gray-100 hover:border-purple-200 transition-all">
-                  <div className="bg-purple-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-purple-100 transition-all">
-                    <Library className="w-8 h-8 text-purple-600" />
+              {/* Digital Literacy */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+                <div className="flex items-start gap-8">
+                  <div className="bg-purple-50 p-4 rounded-xl">
+                    <Library className="w-12 h-12 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-bold mb-4">Digital Literacy</h3>
-                  <div className="space-y-3 text-gray-600">
-                    <p>• Training resources</p>
-                    <p>• Online presence guidance</p>
-                    <p>• Digital asset management</p>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-4 text-purple-600">Digital Literacy & Training</h3>
+                    <p className="text-gray-600 mb-6">Developing comprehensive programs to enhance digital skills within language communities.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="p-6 bg-purple-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Training Resources</h4>
+                        <p className="text-gray-600">Curated learning materials for digital tools and language documentation techniques.</p>
+                      </div>
+                      <div className="p-6 bg-purple-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Online Presence</h4>
+                        <p className="text-gray-600">Guidance and tools for establishing and maintaining effective digital presence.</p>
+                      </div>
+                      <div className="p-6 bg-purple-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3">Asset Management</h4>
+                        <p className="text-gray-600">Systems for organizing and managing digital language resources effectively.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
