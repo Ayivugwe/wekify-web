@@ -126,7 +126,12 @@ export default {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
         'slide-down': 'slideDown 0.5s ease-out',
-        'spin-slow': 'spin 20s linear infinite',
+        'spin-slow': 'spin 60s linear infinite',
+        'float-1': 'float 8s ease-in-out infinite',
+        'float-2': 'float 10s ease-in-out infinite',
+        'float-3': 'float 12s ease-in-out infinite',
+        'float-4': 'float 14s ease-in-out infinite',
+        'float-5': 'float 16s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -140,6 +145,10 @@ export default {
         slideDown: {
           '0%': { transform: 'translateY(-20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
         },
       },
     },
