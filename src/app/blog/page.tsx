@@ -1,6 +1,5 @@
 "use client";
 
-import { Metadata } from "next";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,18 +12,14 @@ import {
   Globe,
   Users,
   Code,
-  Sparkles
+  Sparkles,
+  Search,
+  Filter,
 } from "lucide-react";
 import Layout from "../components/layout";
 import { Button } from "../components/Button";
 import { FadeIn } from "../components/FadeIn";
-import { cn } from "@/lib/utils";
-
-export const metadata: Metadata = {
-  title: "Platform Insights - Wekify Blog",
-  description: "Explore insights about language preservation platforms, implementation stories, and digital transformation strategies.",
-  keywords: "platform blog, language technology, digital preservation, implementation stories",
-};
+import { BlogPost, BlogCategory } from "@/types/blog";
 
 const featuredPosts = [
   {
