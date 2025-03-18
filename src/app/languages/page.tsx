@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Layout from '@/app/components/layout';
 import { BookOpen, FileSpreadsheet, ArrowRight, Search, X, Globe2, Users, AlertTriangle } from 'lucide-react';
-import Dialog from '@/app/components/Dialog';
+import { Dialog } from '@/app/components/Dialog';
 
 interface Language {
   id: number;
