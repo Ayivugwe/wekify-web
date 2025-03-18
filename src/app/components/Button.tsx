@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { Slot } from "@radix-ui/react-slot";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline" | "secondary" | "ghost" | "primary" | "link" | "danger" | "success";
@@ -16,7 +17,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, children, variant = "default", size = "default", isLoading = false, leftIcon, rightIcon, fullWidth = false, disabled, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? reactSlot.Slot : "button";
+    const Comp = asChild ? Slot : "button";
     // Base button styles
     const baseStyles = "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2";
 
@@ -45,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Width styles
     const widthStyles = fullWidth ? "w-full" : "";
-    
+
     return (
       <Comp
         className={cn(
