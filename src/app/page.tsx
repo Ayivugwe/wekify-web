@@ -187,14 +187,14 @@ export default function HomePage() {
                     description: "Tailored digital solutions that respect cultural context and community needs.",
                   },
                   {
-                    icon: Zap,
-                    title: "AI & ML Integration",
-                    description: "Smart features for language learning, content organization, and cultural preservation.",
-                  },
-                  {
                     icon: Users,
                     title: "Community Management",
                     description: "Tools for community engagement, content moderation, and collaborative learning.",
+                  },
+                  {
+                    icon: Shield,
+                    title: "Data Sovereignty",
+                    description: "Ensuring communities maintain full control and ownership of their language data.",
                   },
                 ].map((capability) => (
                   <FadeIn key={capability.title}>
@@ -217,14 +217,14 @@ export default function HomePage() {
         </section>
 
         {/* FuliiruHub Case Study */}
-        <section className="py-32 bg-gradient-to-b from-white to-slate-50">
+        <section className="py-32">
           <div className="container mx-auto px-4">
             <FadeIn className="max-w-7xl mx-auto">
               <div className="text-center mb-20">
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-primary-800 mb-4">
                   Success Story: FuliiruHub
                 </h2>
-                <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                <p className="text-xl text-primary-700/70 max-w-3xl mx-auto">
                   See how we helped the Bafuliiru community create their digital language platform
                 </p>
               </div>
@@ -264,9 +264,9 @@ export default function HomePage() {
                     description: "Developing a comprehensive plan for content organization and management.",
                   },
                   {
-                    icon: Zap,
+                    icon: Code,
                     title: "Platform Development",
-                    description: "Building your custom platform with cutting-edge technology and cultural sensitivity.",
+                    description: "Building your custom platform with modern technology and cultural sensitivity.",
                   },
                 ].map((step) => (
                   <FadeIn key={step.title}>
@@ -366,8 +366,8 @@ export default function HomePage() {
                     <p className="text-white/90 mb-4">
                       Connect with language advocates from around the world dedicated to preservation efforts.
                     </p>
-                    <Button variant="secondary" asChild>
-                      <Link href="/ambassador">
+                    <Button variant="outline" asChild>
+                      <Link href="/ambassador-program">
                         Learn More
                       </Link>
                     </Button>
@@ -422,7 +422,7 @@ export default function HomePage() {
                       </p>
                     </li>
                   </ul>
-                  <Button variant="ghost" className="mt-8" asChild>
+                  <Button variant="outline" asChild>
                     <Link href="/about/vision">
                       Learn More About Our Vision <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
@@ -465,7 +465,7 @@ export default function HomePage() {
                       </p>
                     </li>
                   </ul>
-                  <Button variant="ghost" className="mt-8" asChild>
+                  <Button variant="outline" asChild>
                     <Link href="/about/our-policies">
                       Review Our Policies <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
@@ -492,7 +492,7 @@ export default function HomePage() {
               Join the Bafuliiru community who are successfully revitalizing their language with our digital preservation platform.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" variant="secondary" asChild>
+              <Button size="lg" variant="outline" asChild>
                 <Link href="/assessment">
                   Start Your Free Assessment
                 </Link>

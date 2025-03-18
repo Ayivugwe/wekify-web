@@ -1,19 +1,21 @@
-
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
-  Brain,
-  Code,
   Globe,
   BookOpen,
   Users,
-  Sparkles,
   Library,
   Share2,
   ArrowRight,
+  Shield,
+  Code,
+  Database,
+  FileText,
 } from "lucide-react";
 import Layout from "../components/layout";
 import { Metadata } from "next";
+import { Button } from "../components/Button";
 
 export const metadata: Metadata = {
   title: "Solutions | Wekify",
@@ -24,102 +26,109 @@ export const metadata: Metadata = {
 export default function SolutionsPage() {
   return (
     <Layout>
-      <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
+      <div className="bg-gradient-to-b from-primary-50 to-white min-h-screen">
         {/* Hero Section */}
         <section className="py-16 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center relative z-10">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary-800">
                 Language Preservation Solutions
               </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We're developing comprehensive digital solutions to support language preservation, 
-                focusing on both technological tools and community empowerment.
+              <p className="text-xl text-primary-700/70 max-w-3xl mx-auto">
+                Comprehensive digital solutions designed with and for language communities, 
+                focusing on cultural authenticity and community empowerment.
               </p>
+              <div className="mt-8">
+                <Button size="lg" asChild>
+                  <Link href="/contact">
+                    Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Current Solutions */}
+        {/* Core Solutions */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12 text-center">Current Solutions</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center text-primary-800">Core Solutions</h2>
             <div className="grid grid-cols-1 gap-12">
-              {/* Digital Documentation */}
-              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+              {/* Language Documentation */}
+              <div className="bg-white rounded-2xl p-8 border border-primary-100">
                 <div className="flex items-start gap-8">
-                  <div className="bg-blue-50 p-4 rounded-xl">
-                    <Globe className="w-12 h-12 text-blue-600" />
+                  <div className="bg-primary-50 p-4 rounded-xl">
+                    <BookOpen className="w-12 h-12 text-primary-600" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-4 text-blue-600">Digital Documentation Solutions</h3>
-                    <p className="text-gray-600 mb-6">We're developing comprehensive digital tools to capture, preserve, and manage language documentation effectively.</p>
+                    <h3 className="text-2xl font-bold mb-4 text-primary-800">Language Documentation</h3>
+                    <p className="text-primary-700/70 mb-6">Comprehensive tools for capturing, organizing, and preserving language materials with cultural context.</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="p-6 bg-blue-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Dictionary Management</h4>
-                        <p className="text-gray-600">Advanced tools for creating, organizing, and maintaining comprehensive digital dictionaries with audio support.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Digital Dictionaries</h4>
+                        <p className="text-primary-700/70">Create and maintain comprehensive digital dictionaries with audio support and cultural context.</p>
                       </div>
-                      <div className="p-6 bg-blue-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Grammar Documentation</h4>
-                        <p className="text-gray-600">Structured systems for documenting language grammar, syntax, and linguistic features.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Grammar Documentation</h4>
+                        <p className="text-primary-700/70">Structured systems for documenting language grammar, syntax, and linguistic features.</p>
                       </div>
-                      <div className="p-6 bg-blue-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Cultural Archive</h4>
-                        <p className="text-gray-600">Digital preservation of cultural materials, stories, and traditional knowledge.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Cultural Archive</h4>
+                        <p className="text-primary-700/70">Digital preservation of cultural materials, stories, and traditional knowledge.</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Community Engagement */}
-              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+              {/* Community Platform */}
+              <div className="bg-white rounded-2xl p-8 border border-primary-100">
                 <div className="flex items-start gap-8">
-                  <div className="bg-green-50 p-4 rounded-xl">
-                    <Users className="w-12 h-12 text-green-600" />
+                  <div className="bg-primary-50 p-4 rounded-xl">
+                    <Users className="w-12 h-12 text-primary-600" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-4 text-green-600">Community Engagement Platform</h3>
-                    <p className="text-gray-600 mb-6">Building robust platforms that enable active community participation in language preservation efforts.</p>
+                    <h3 className="text-2xl font-bold mb-4 text-primary-800">Community Platform</h3>
+                    <p className="text-primary-700/70 mb-6">Engaging platforms that enable active community participation in language preservation.</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="p-6 bg-green-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Collaboration Tools</h4>
-                        <p className="text-gray-600">Interactive platforms for community members to contribute and collaborate on language documentation.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Collaboration Tools</h4>
+                        <p className="text-primary-700/70">Interactive features for community members to contribute and collaborate effectively.</p>
                       </div>
-                      <div className="p-6 bg-green-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Knowledge Exchange</h4>
-                        <p className="text-gray-600">Systems for sharing linguistic knowledge and cultural wisdom between generations.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Knowledge Exchange</h4>
+                        <p className="text-primary-700/70">Systems for sharing linguistic knowledge and cultural wisdom between generations.</p>
                       </div>
-                      <div className="p-6 bg-green-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Community Forums</h4>
-                        <p className="text-gray-600">Dedicated spaces for discussions, queries, and collaborative problem-solving.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Community Forums</h4>
+                        <p className="text-primary-700/70">Dedicated spaces for discussions, queries, and collaborative problem-solving.</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Digital Literacy */}
-              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+              {/* Digital Resources */}
+              <div className="bg-white rounded-2xl p-8 border border-primary-100">
                 <div className="flex items-start gap-8">
-                  <div className="bg-purple-50 p-4 rounded-xl">
-                    <Library className="w-12 h-12 text-purple-600" />
+                  <div className="bg-primary-50 p-4 rounded-xl">
+                    <Library className="w-12 h-12 text-primary-600" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-4 text-purple-600">Digital Literacy & Training</h3>
-                    <p className="text-gray-600 mb-6">Developing comprehensive programs to enhance digital skills within language communities.</p>
+                    <h3 className="text-2xl font-bold mb-4 text-primary-800">Digital Resources</h3>
+                    <p className="text-primary-700/70 mb-6">Comprehensive digital tools and resources for language learning and teaching.</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="p-6 bg-purple-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Training Resources</h4>
-                        <p className="text-gray-600">Curated learning materials for digital tools and language documentation techniques.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Learning Materials</h4>
+                        <p className="text-primary-700/70">Curated resources for teaching and learning endangered languages.</p>
                       </div>
-                      <div className="p-6 bg-purple-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Online Presence</h4>
-                        <p className="text-gray-600">Guidance and tools for establishing and maintaining effective digital presence.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Media Library</h4>
+                        <p className="text-primary-700/70">Organized collection of audio, video, and text resources.</p>
                       </div>
-                      <div className="p-6 bg-purple-50/50 rounded-xl">
-                        <h4 className="font-semibold mb-3">Asset Management</h4>
-                        <p className="text-gray-600">Systems for organizing and managing digital language resources effectively.</p>
+                      <div className="p-6 bg-primary-50/50 rounded-xl">
+                        <h4 className="font-semibold mb-3 text-primary-800">Resource Management</h4>
+                        <p className="text-primary-700/70">Tools for organizing and managing digital language resources.</p>
                       </div>
                     </div>
                   </div>
@@ -129,74 +138,98 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        {/* Next Steps */}
-        <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        {/* Key Features */}
+        <section className="py-20 bg-gradient-to-b from-white to-primary-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-6">Next Steps</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                As we continue to grow, these are the key areas we're actively developing:
+              <h2 className="text-3xl font-bold mb-6 text-primary-800">Key Features</h2>
+              <p className="text-xl text-primary-700/70 max-w-3xl mx-auto">
+                Essential features that make our solutions effective and community-focused
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-100">
-                <h3 className="text-2xl font-bold mb-6 text-blue-600">AI & Language Technology</h3>
+              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-100">
+                <h3 className="text-2xl font-bold mb-6 text-primary-800">Community First</h3>
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-xl">
-                    <Brain className="w-5 h-5 text-blue-600 mt-1" />
+                  <div className="flex items-start gap-3 p-4 bg-primary-50 rounded-xl">
+                    <Users className="w-5 h-5 text-primary-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Language Processing</h4>
-                      <p className="text-gray-600">Advanced tools for analyzing and processing indigenous languages</p>
+                      <h4 className="font-semibold text-primary-800">Community Control</h4>
+                      <p className="text-primary-700/70">Full ownership and control of language data and content</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-xl">
-                    <Sparkles className="w-5 h-5 text-blue-600 mt-1" />
+                  <div className="flex items-start gap-3 p-4 bg-primary-50 rounded-xl">
+                    <Share2 className="w-5 h-5 text-primary-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Automated Transcription</h4>
-                      <p className="text-gray-600">Smart transcription services for language documentation</p>
+                      <h4 className="font-semibold text-primary-800">Collaborative Tools</h4>
+                      <p className="text-primary-700/70">Features designed for community collaboration and contribution</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-xl">
-                    <Code className="w-5 h-5 text-blue-600 mt-1" />
+                  <div className="flex items-start gap-3 p-4 bg-primary-50 rounded-xl">
+                    <Shield className="w-5 h-5 text-primary-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Pattern Recognition</h4>
-                      <p className="text-gray-600">Machine learning applications for language patterns</p>
+                      <h4 className="font-semibold text-primary-800">Data Sovereignty</h4>
+                      <p className="text-primary-700/70">Secure and private data management respecting community rights</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-100">
-                <h3 className="text-2xl font-bold mb-6 text-green-600">Community Development</h3>
+              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-100">
+                <h3 className="text-2xl font-bold mb-6 text-primary-800">Technical Excellence</h3>
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3 p-4 bg-green-50 rounded-xl">
-                    <Share2 className="w-5 h-5 text-green-600 mt-1" />
+                  <div className="flex items-start gap-3 p-4 bg-primary-50 rounded-xl">
+                    <Code className="w-5 h-5 text-primary-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Collaboration Platform</h4>
-                      <p className="text-gray-600">Tools for cross-community collaboration and knowledge sharing</p>
+                      <h4 className="font-semibold text-primary-800">Modern Technology</h4>
+                      <p className="text-primary-700/70">Built with reliable, scalable, and maintainable technology</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3 p-4 bg-green-50 rounded-xl">
-                    <BookOpen className="w-5 h-5 text-green-600 mt-1" />
+                  <div className="flex items-start gap-3 p-4 bg-primary-50 rounded-xl">
+                    <Database className="w-5 h-5 text-primary-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Educational Resources</h4>
-                      <p className="text-gray-600">Comprehensive materials for language learning and teaching</p>
+                      <h4 className="font-semibold text-primary-800">Robust Storage</h4>
+                      <p className="text-primary-700/70">Secure and efficient storage for all language resources</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3 p-4 bg-green-50 rounded-xl">
-                    <Users className="w-5 h-5 text-green-600 mt-1" />
+                  <div className="flex items-start gap-3 p-4 bg-primary-50 rounded-xl">
+                    <FileText className="w-5 h-5 text-primary-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold">Cultural Preservation</h4>
-                      <p className="text-gray-600">Initiatives for preserving cultural context alongside language</p>
+                      <h4 className="font-semibold text-primary-800">Content Management</h4>
+                      <p className="text-primary-700/70">Intuitive tools for organizing and managing language content</p>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 bg-primary-800 text-white">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">
+              Ready to Start Your Language Preservation Project?
+            </h2>
+            <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+              Our team will work with you to develop a customized solution that meets your community's needs.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button size="lg" variant="secondary" asChild>
+                <Link href="/contact">
+                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/solutions/custom">
+                  Learn More About Custom Solutions
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
