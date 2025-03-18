@@ -23,31 +23,43 @@ import { BlogPost, BlogCategory } from "@/types/blog";
 
 const featuredPosts = [
   {
+    id: "1",
     title: "Building Scalable Language Platforms",
     description: "Learn how we architect platforms that can handle multiple languages and communities while maintaining performance.",
-    image: "/blog/platform-architecture.png",
+    content: "",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
     category: "Platform Development",
     date: "March 15, 2024",
     author: "Sarah Chen",
-    slug: "building-scalable-language-platforms"
+    slug: "building-scalable-language-platforms",
+    readingTime: "5 min read",
+    tags: ["Platform Development", "Architecture", "Scalability"],
   },
   {
+    id: "2",
     title: "Community-Driven Platform Design",
     description: "Discover our approach to designing platforms that truly serve community needs and cultural contexts.",
-    image: "/blog/community-design.png",
+    content: "",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
     category: "Design",
     date: "March 10, 2024",
     author: "Michael Okonjo",
-    slug: "community-driven-platform-design"
+    slug: "community-driven-platform-design",
+    readingTime: "4 min read",
+    tags: ["Design", "Community", "UX"],
   },
   {
+    id: "3",
     title: "AI in Language Preservation",
     description: "Exploring our vision for future AI integration in language preservation platforms while maintaining data sovereignty.",
-    image: "/blog/ai-preservation.png",
+    content: "",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
     category: "Technology",
     date: "March 5, 2024",
     author: "Dr. Lisa Wong",
-    slug: "ai-in-language-preservation"
+    slug: "ai-in-language-preservation",
+    readingTime: "6 min read",
+    tags: ["Technology", "AI", "Future Vision"],
   }
 ];
 
