@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,145 +11,175 @@ import {
   Shield,
   Code,
   Sparkles,
+  Building2,
+  Rocket,
+  Target,
 } from "lucide-react";
 import Layout from "../components/layout";
+import { Button } from "../components/Button";
+import { FadeIn } from "../components/FadeIn";
+import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "About Wekify - Platform for Language Preservation",
+  description: "Learn about our mission to empower communities with custom digital platforms for language preservation and revitalization.",
+};
 
 export default function AboutPage() {
   return (
     <Layout>
-      <div className="bg-gradient-to-b from-blue-50 to-white">
+      <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Building Digital Platforms for Language Preservation
+        <section className="py-24 bg-gradient-to-b from-primary-50 to-white">
+          <FadeIn className="max-w-7xl mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Building the Future of Language Preservation
             </h1>
             <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              We help communities create custom digital platforms to preserve and revitalize their languages through innovative technology solutions.
+              We create powerful digital platforms that empower communities to preserve, teach, and celebrate their linguistic heritage.
             </p>
-          </div>
+            <div className="flex justify-center gap-4">
+              <Button asChild size="lg">
+                <Link href="/contact">Start Your Platform <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/solutions">View Solutions</Link>
+              </Button>
+            </div>
+          </FadeIn>
         </section>
 
-        {/* Vision and Mission */}
-        <section className="py-16 bg-white">
+        {/* Mission Section */}
+        <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-              <div>
+              <FadeIn>
                 <Image
-                  src="/ayivugwe.png"
-                  alt="Wekify Vision"
-                  width={500}
-                  height={500}
-                  className="rounded-lg"
+                  src="/platform-showcase.png"
+                  alt="Wekify Platform"
+                  width={600}
+                  height={600}
+                  className="rounded-2xl shadow-2xl"
                 />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Our Vision
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  We envision a world where every language community has access to custom digital platforms that enable them to preserve, teach, and celebrate their linguistic heritage.
-                </p>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-10">
+              </FadeIn>
+              <FadeIn className="space-y-6">
+                <h2 className="text-3xl font-bold text-gray-900">
                   Our Mission
                 </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  To empower communities with the digital tools and expertise they need to build and maintain their own language preservation platforms, ensuring cultural authenticity and community ownership.
+                <p className="text-lg text-gray-600">
+                  We believe every language deserves a digital future. Our mission is to provide communities with powerful, customizable platforms that make language preservation accessible, engaging, and sustainable.
                 </p>
-                <Link
-                  href="/about/our-story"
-                  className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors"
-                >
-                  Read Our Full Story <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </div>
+                <div className="space-y-4">
+                  {[
+                    {
+                      icon: Building2,
+                      title: "Custom Platforms",
+                      description: "Tailored digital solutions for each community's unique needs"
+                    },
+                    {
+                      icon: Rocket,
+                      title: "Innovation",
+                      description: "Cutting-edge technology for effective language preservation"
+                    },
+                    {
+                      icon: Target,
+                      title: "Impact",
+                      description: "Measurable results in language documentation and learning"
+                    }
+                  ].map((item) => (
+                    <div key={item.title} className="flex items-start gap-4">
+                      <div className="mt-1 p-2 rounded-lg bg-primary-50">
+                        <item.icon className="h-5 w-5 text-primary-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-gray-900">{item.title}</h3>
+                        <p className="text-gray-600">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
             </div>
           </div>
         </section>
 
-        {/* Platform Capabilities */}
-        <section className="py-20 bg-gray-50">
+        {/* Values Section */}
+        <section className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-16">
-              Our Platform-Building Expertise
-            </h2>
+            <FadeIn className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Our Platform Values
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Built on principles that ensure sustainable language preservation through digital innovation.
+              </p>
+            </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Custom Development",
-                  description: "Tailored platform solutions that respect cultural context and community needs",
-                  icon: <Code className="w-8 h-8" />,
-                  href: "/solutions",
-                },
-                {
-                  title: "AI & ML Integration",
-                  description: "Smart features for language learning and content organization",
-                  icon: <Sparkles className="w-8 h-8" />,
-                  href: "/solutions",
-                },
-                {
-                  title: "Community Tools",
-                  description: "Engagement features for active community participation",
-                  icon: <Users className="w-8 h-8" />,
-                  href: "/solutions",
-                },
-                {
-                  title: "Cultural Preservation",
-                  description: "Tools for documenting and sharing cultural knowledge",
-                  icon: <Globe className="w-8 h-8" />,
-                  href: "/solutions",
-                },
-                {
-                  title: "Learning Resources",
-                  description: "Interactive tools for language teaching and learning",
-                  icon: <BookOpen className="w-8 h-8" />,
-                  href: "/solutions",
-                },
-                {
+                  icon: Shield,
                   title: "Data Sovereignty",
-                  description: "Ensuring communities retain ownership of their language data",
-                  icon: <Shield className="w-8 h-8" />,
-                  href: "/about/our-policies",
+                  description: "Communities maintain full control over their language data"
                 },
-              ].map((item, index) => (
-                <Link
-                  href={item.href}
-                  key={index}
-                  className="group p-8 bg-white rounded-lg border border-gray-100 hover:border-blue-200 transition-colors"
-                >
-                  <div className="mb-6 p-3 bg-blue-50 rounded-lg w-fit">
-                    {item.icon}
+                {
+                  icon: Users,
+                  title: "Community-Driven",
+                  description: "Platforms designed with and for the community"
+                },
+                {
+                  icon: Sparkles,
+                  title: "Innovation",
+                  description: "Advanced technology made accessible and practical"
+                },
+                {
+                  icon: Heart,
+                  title: "Cultural Respect",
+                  description: "Preservation of cultural context alongside language"
+                },
+                {
+                  icon: Globe,
+                  title: "Accessibility",
+                  description: "Platforms that work for everyone, everywhere"
+                },
+                {
+                  icon: BookOpen,
+                  title: "Education",
+                  description: "Effective tools for language learning and teaching"
+                }
+              ].map((value) => (
+                <FadeIn key={value.title}>
+                  <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="p-3 rounded-lg bg-primary-50 w-fit mb-4">
+                      <value.icon className="h-6 w-6 text-primary-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {value.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {value.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6">{item.description}</p>
-                  <span className="inline-flex items-center text-blue-600 font-medium">
-                    Learn More{" "}
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
+                </FadeIn>
               ))}
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-blue-600 text-white">
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Start Your Platform Project
+        <section className="py-24 bg-primary-900 text-white">
+          <FadeIn className="max-w-7xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">
+              Ready to Build Your Language Platform?
             </h2>
-            <p className="text-xl mb-10 text-blue-100 max-w-3xl mx-auto">
-              Let's discuss how we can help your community build a custom digital platform for language preservation.
+            <p className="text-xl text-primary-100 mb-10 max-w-2xl mx-auto">
+              Join us in creating a digital future for your language. Let's build something amazing together.
             </p>
-            <Link
-              href="/contact"
-              className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors"
-            >
-              Get Started
-            </Link>
-          </div>
+            <Button size="lg" variant="secondary" asChild>
+              <Link href="/contact">
+                Get Started <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </FadeIn>
         </section>
       </div>
     </Layout>
