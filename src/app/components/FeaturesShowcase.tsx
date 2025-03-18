@@ -1,4 +1,3 @@
-
 import React from "react";
 import { 
   BookOpen, Database, Layers, Globe, Users, 
@@ -7,6 +6,7 @@ import {
 } from "lucide-react";
 import { FadeIn } from "./FadeIn";
 import Link from "next/link";
+import { Card } from "./Card";
 
 export default function FeaturesShowcase() {
   const features = [
@@ -87,23 +87,24 @@ export default function FeaturesShowcase() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <div 
-                key={index} 
-                className="bg-slate-700/70 backdrop-blur-sm p-6 rounded-xl border border-slate-600 hover:border-indigo-500 transition-all duration-300 group"
+              <Card
+                key={index}
+                className="bg-slate-700/70 backdrop-blur-sm border-slate-600 hover:border-indigo-500"
+                hover
               >
-                <div className="bg-slate-800 p-4 rounded-xl inline-block mb-6 group-hover:bg-indigo-600/30 transition-colors">
+                <div className="bg-slate-800 p-4 rounded-lg inline-block mb-6 group-hover:bg-indigo-600/30 transition-colors">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
                 <p className="text-slate-300">{feature.description}</p>
-              </div>
+              </Card>
             ))}
           </div>
           
           <div className="mt-16 text-center">
             <Link 
               href="/solutions" 
-              className="inline-flex items-center px-8 py-4 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition-all shadow-lg transform hover:-translate-y-1"
+              className="inline-flex items-center px-8 py-4 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
             >
               Explore All Solutions
             </Link>

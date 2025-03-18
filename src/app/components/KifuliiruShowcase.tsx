@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -6,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, BookOpen, Volume, MessageCircle, Sparkles } from "lucide-react";
 import { FadeIn } from "./FadeIn";
+import { Card } from "./Card";
 
 export default function KifuliiruShowcase() {
   const [activeTab, setActiveTab] = useState("words");
@@ -31,7 +31,7 @@ export default function KifuliiruShowcase() {
           </FadeIn>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <Card className="overflow-hidden">
           {/* Navigation Tabs */}
           <div className="flex border-b">
             {["words", "phrases", "culture"].map((tab) => (
@@ -134,14 +134,14 @@ export default function KifuliiruShowcase() {
               </div>
             )}
           </div>
-        </div>
+        </Card>
 
         <div className="mt-12 text-center">
           <Link 
             href="https://fuliiruHub.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition-all shadow-lg"
+            className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
           >
             Visit FuliiruHub.com <ChevronRight className="ml-2 h-5 w-5" />
           </Link>

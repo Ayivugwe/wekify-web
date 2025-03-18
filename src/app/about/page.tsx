@@ -8,6 +8,8 @@ import {
   Heart,
   Users,
   Shield,
+  Code,
+  Sparkles,
 } from "lucide-react";
 import Layout from "../components/layout";
 
@@ -19,11 +21,10 @@ export default function AboutPage() {
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              About Wekify
+              Building Digital Platforms for Language Preservation
             </h1>
             <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              Our mission is to preserve and revitalize indigenous languages
-              through innovative technology solutions.
+              We help communities create custom digital platforms to preserve and revitalize their languages through innovative technology solutions.
             </p>
           </div>
         </section>
@@ -38,7 +39,7 @@ export default function AboutPage() {
                   alt="Wekify Vision"
                   width={500}
                   height={500}
-                  className="rounded-2xl shadow-xl"
+                  className="rounded-lg"
                 />
               </div>
               <div>
@@ -46,21 +47,17 @@ export default function AboutPage() {
                   Our Vision
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  We envision a world where every language, no matter how small,
-                  has the digital tools and resources needed to thrive in the
-                  modern era.
+                  We envision a world where every language community has access to custom digital platforms that enable them to preserve, teach, and celebrate their linguistic heritage.
                 </p>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-10">
                   Our Mission
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  To build bridges between ancient wisdom and modern technology,
-                  creating innovative solutions that empower communities to
-                  preserve, teach, and celebrate their linguistic heritage.
+                  To empower communities with the digital tools and expertise they need to build and maintain their own language preservation platforms, ensuring cultural authenticity and community ownership.
                 </p>
                 <Link
                   href="/about/our-story"
-                  className="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors"
+                  className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors"
                 >
                   Read Our Full Story <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
@@ -69,35 +66,47 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* About Navigation Cards */}
+        {/* Platform Capabilities */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-16">
-              Learn More About Us
+              Our Platform-Building Expertise
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Our Story",
-                  description: "Learn about our founding journey and mission",
-                  icon: <BookOpen className="w-8 h-8" />,
-                  href: "/about/our-story",
+                  title: "Custom Development",
+                  description: "Tailored platform solutions that respect cultural context and community needs",
+                  icon: <Code className="w-8 h-8" />,
+                  href: "/solutions",
                 },
                 {
-                  title: "Our Team",
-                  description: "Meet the passionate people behind Wekify",
+                  title: "AI & ML Integration",
+                  description: "Smart features for language learning and content organization",
+                  icon: <Sparkles className="w-8 h-8" />,
+                  href: "/solutions",
+                },
+                {
+                  title: "Community Tools",
+                  description: "Engagement features for active community participation",
                   icon: <Users className="w-8 h-8" />,
-                  href: "/about/team",
+                  href: "/solutions",
                 },
                 {
-                  title: "Our Culture",
-                  description: "Discover our values and what drives us",
-                  icon: <Heart className="w-8 h-8" />,
-                  href: "/about/culture",
+                  title: "Cultural Preservation",
+                  description: "Tools for documenting and sharing cultural knowledge",
+                  icon: <Globe className="w-8 h-8" />,
+                  href: "/solutions",
                 },
                 {
-                  title: "Our Policies",
-                  description: "Learn about our guiding principles and vision",
+                  title: "Learning Resources",
+                  description: "Interactive tools for language teaching and learning",
+                  icon: <BookOpen className="w-8 h-8" />,
+                  href: "/solutions",
+                },
+                {
+                  title: "Data Sovereignty",
+                  description: "Ensuring communities retain ownership of their language data",
                   icon: <Shield className="w-8 h-8" />,
                   href: "/about/our-policies",
                 },
@@ -105,20 +114,16 @@ export default function AboutPage() {
                 <Link
                   href={item.href}
                   key={index}
-                  className="group p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl 
-                    transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+                  className="group p-8 bg-white rounded-lg border border-gray-100 hover:border-blue-200 transition-colors"
                 >
-                  <div
-                    className="mb-6 p-3 bg-blue-50 rounded-xl w-fit 
-                    group-hover:bg-blue-100 transition-all duration-300"
-                  >
+                  <div className="mb-6 p-3 bg-blue-50 rounded-lg w-fit">
                     {item.icon}
                   </div>
                   <h3 className="text-xl font-semibold mb-4 text-gray-900">
                     {item.title}
                   </h3>
                   <p className="text-gray-600 mb-6">{item.description}</p>
-                  <span className="inline-flex items-center text-primary font-medium">
+                  <span className="inline-flex items-center text-blue-600 font-medium">
                     Learn More{" "}
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -129,21 +134,19 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-primary text-white">
+        <section className="py-20 bg-blue-600 text-white">
           <div className="max-w-5xl mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Join Our Mission
+              Start Your Platform Project
             </h2>
-            <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto">
-              Whether you're a language expert, developer, or someone passionate
-              about cultural preservation, there's a place for you in our
-              community.
+            <p className="text-xl mb-10 text-blue-100 max-w-3xl mx-auto">
+              Let's discuss how we can help your community build a custom digital platform for language preservation.
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors"
+              className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors"
             >
-              Get in Touch
+              Get Started
             </Link>
           </div>
         </section>

@@ -46,11 +46,10 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Powerful Language Tools
+                Platform Capabilities
               </h2>
               <p className="text-xl text-teal-100 max-w-3xl mx-auto">
-                Our platform offers comprehensive tools to document, teach, and
-                celebrate languages for generations to come.
+                Our platform-building solutions provide everything communities need to create comprehensive language preservation platforms.
               </p>
             </div>
 
@@ -58,28 +57,28 @@ export default function Home() {
               {[
                 {
                   icon: <Globe className="h-10 w-10 text-teal-300" />,
-                  title: "Digital Dictionary",
+                  title: "Custom Platform Development",
                   description:
-                    "Create comprehensive dictionaries with audio recordings, images, and cultural context.",
+                    "Tailored digital solutions that respect cultural context and community needs.",
                 },
                 {
                   icon: <Zap className="h-10 w-10 text-teal-300" />,
-                  title: "Learning Tools",
+                  title: "AI & ML Integration",
                   description:
-                    "Interactive modules for teaching vocabulary, grammar, and conversational skills.",
+                    "Smart features for language learning, content organization, and cultural preservation.",
                 },
                 {
                   icon: <Users className="h-10 w-10 text-teal-300" />,
-                  title: "Community Building",
+                  title: "Community Management",
                   description:
-                    "Connect speakers and learners through collaborative features and forums.",
+                    "Tools for community engagement, content moderation, and collaborative learning.",
                 },
               ].map((benefit, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 backdrop-blur-lg p-8 rounded-xl hover:bg-white/20 transition-all duration-300 text-white"
+                  className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 hover:border-white/30 transition-colors duration-300 text-white"
                 >
-                  <div className="bg-white/20 p-4 rounded-full inline-block mb-6">
+                  <div className="bg-white/20 p-4 rounded-lg inline-block mb-6">
                     {benefit.icon}
                   </div>
                   <h3 className="text-xl font-semibold mb-4">
@@ -92,19 +91,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FuliiruHub Case Study */}
-        <FuliiruHubShowcase />
+        {/* FuliiruHub Case Study - Move it up and enhance visibility */}
+        <section className="py-24 bg-gradient-to-b from-white to-slate-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+                Success Story: FuliiruHub
+              </h2>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                See how we helped the Bafuliiru community create their digital language platform
+              </p>
+            </div>
+            <FuliiruHubShowcase />
+          </div>
+        </section>
 
-        {/* Assessment Features Section */}
+        {/* Assessment Features Section - Reframe as Solutions */}
         <section className="py-24 bg-gradient-to-b from-indigo-50 to-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">
-                Language Readiness Assessment
+                Our Platform-Building Process
               </h2>
               <p className="text-xl text-indigo-700/70 max-w-3xl mx-auto">
-                Evaluate your language preservation needs with our comprehensive
-                assessment tools.
+                A comprehensive approach to creating your community's digital platform
               </p>
             </div>
 
@@ -112,34 +122,34 @@ export default function Home() {
               {[
                 {
                   icon: <Clipboard className="h-10 w-10 text-indigo-600" />,
-                  title: "Current Status Evaluation",
+                  title: "Discovery & Planning",
                   description:
-                    "Assess the vitality of your language based on UNESCO's framework for language endangerment.",
+                    "Understanding your community's needs and planning the perfect platform solution.",
                 },
                 {
                   icon: <Users className="h-10 w-10 text-indigo-600" />,
-                  title: "Speaker Demographics",
+                  title: "Community Integration",
                   description:
-                    "Analyze speaker population, age distribution, and intergenerational transmission patterns.",
+                    "Engaging with your community to ensure cultural authenticity and relevance.",
                 },
                 {
                   icon: <BookOpen className="h-10 w-10 text-indigo-600" />,
-                  title: "Resource Inventory",
+                  title: "Content Strategy",
                   description:
-                    "Identify existing documentation, educational materials, and digital resources for your language.",
+                    "Developing a comprehensive plan for content organization and management.",
                 },
                 {
                   icon: <Zap className="h-10 w-10 text-indigo-600" />,
-                  title: "Custom Roadmap",
+                  title: "Platform Development",
                   description:
-                    "Receive a tailored preservation strategy based on your assessment results.",
+                    "Building your custom platform with cutting-edge technology and cultural sensitivity.",
                 },
               ].map((feature, index) => (
                 <div
                   key={index}
-                  className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-indigo-100"
+                  className="bg-white p-8 rounded-lg border border-indigo-100 hover:border-indigo-200 transition-colors duration-300"
                 >
-                  <div className="bg-indigo-100 p-4 rounded-full inline-block mb-6">
+                  <div className="bg-indigo-50 p-4 rounded-lg inline-block mb-6">
                     {feature.icon}
                   </div>
                   <h3 className="text-xl font-semibold mb-4 text-indigo-800">
@@ -152,10 +162,10 @@ export default function Home() {
 
             <div className="text-center mt-12">
               <Link
-                href="/assessment"
-                className="px-8 py-3 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg inline-flex items-center"
+                href="/contact"
+                className="px-8 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors inline-flex items-center"
               >
-                Take the Assessment <ArrowRight className="ml-2 h-5 w-5" />
+                Start Your Platform Project <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </div>
           </div>

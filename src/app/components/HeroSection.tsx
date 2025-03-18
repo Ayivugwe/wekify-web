@@ -158,24 +158,23 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
-              Preserving Languages Through Digital Innovation
+              Building Digital Platforms for Language Preservation
             </h1>
             <p className="text-xl text-white/90 mb-8">
-              Wekify empowers communities to document, learn, and celebrate
-              their languages with cutting-edge technology solutions.
+              Wekify helps communities create powerful digital platforms to preserve, teach, and celebrate their languages. We combine cutting-edge technology with cultural sensitivity to build solutions that matter.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/solutions"
-                className="bg-white text-blue-700 px-6 py-3 rounded-xl font-medium hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center"
+                className="bg-white text-blue-700 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors duration-300 flex items-center"
               >
-                Explore Solutions <ArrowRight className="ml-2 h-5 w-5" />
+                See Our Solutions <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href="/contact"
-                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-xl font-medium hover:bg-white hover:text-blue-700 transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1"
+                className="bg-transparent border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-700 transition-colors duration-300"
               >
-                Contact Us
+                Start Your Project
               </Link>
             </div>
           </div>

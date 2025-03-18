@@ -1,4 +1,3 @@
-
 import React from "react";
 import { cn } from "@/lib/utils";
 
@@ -6,7 +5,7 @@ interface CardProps {
   className?: string;
   children: React.ReactNode;
   hover?: boolean;
-  variant?: "default" | "bordered" | "elevated" | "flat";
+  variant?: "default" | "bordered" | "flat";
   padding?: "none" | "sm" | "md" | "lg";
 }
 
@@ -19,13 +18,12 @@ export const Card = ({
   ...props
 }: CardProps) => {
   // Base card styles
-  const baseStyles = "rounded-xl transition-all duration-300 overflow-hidden";
+  const baseStyles = "rounded-lg transition-colors duration-200 overflow-hidden";
   
   // Variant styles
   const variantStyles = {
     default: "bg-white border border-neutral-100",
     bordered: "bg-white border border-neutral-200",
-    elevated: "bg-white border border-neutral-100 shadow-sm",
     flat: "bg-neutral-50 border border-neutral-100"
   };
   
@@ -37,8 +35,8 @@ export const Card = ({
     lg: "p-8"
   };
   
-  // Hover effects
-  const hoverStyles = hover ? "hover:shadow-sm hover:border-neutral-200 hover:-translate-y-0.5" : "";
+  // Hover effects - only subtle border color change
+  const hoverStyles = hover ? "hover:border-neutral-200" : "";
   
   return (
     <div
