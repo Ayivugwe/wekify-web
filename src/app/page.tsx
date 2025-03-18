@@ -93,14 +93,16 @@ export default function HomePage() {
                   <p className="text-xl text-gray-600 mb-10">
                     Empowering communities with powerful digital platforms to preserve, teach, and celebrate their linguistic heritage.
                   </p>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap justify-center gap-4">
                     <Button size="lg" asChild>
                       <Link href="/contact">
-                        Start Your Platform <ArrowRight className="ml-2 h-4 w-4" />
+                        Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
-                    <Button variant="outline" size="lg" asChild>
-                      <Link href="/solutions">View Solutions</Link>
+                    <Button size="lg" variant="outline" asChild>
+                      <Link href="/solutions">
+                        Learn More About Our Vision
+                      </Link>
                     </Button>
                   </div>
                 </div>
@@ -483,27 +485,27 @@ export default function HomePage() {
         <FAQSection faqs={faqData} />
 
         {/* CTA Section */}
-        <section className="py-32 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
-          <FadeIn className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <section className="py-32 bg-primary-900 text-white">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">
               Ready to Start Preserving Your Language?
             </h2>
-            <p className="text-xl text-primary-100 mb-10 max-w-3xl mx-auto">
-              Join the Bafuliiru community who are successfully revitalizing their language with our digital preservation platform.
+            <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+              Our team will work with you to develop a customized solution that meets your community's needs.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/assessment">
-                  Start Your Free Assessment
+              <Button size="lg" variant="secondary" asChild>
+                <Link href="/contact">
+                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">
-                  Schedule a Demo
+                <Link href="/solutions/custom">
+                  Learn More About Custom Solutions
                 </Link>
               </Button>
             </div>
-          </FadeIn>
+          </div>
         </section>
       </div>
     </Layout>
