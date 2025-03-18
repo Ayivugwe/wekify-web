@@ -1,34 +1,23 @@
 "use client";
 
-import { Metadata } from "next";
 import React from "react";
-import Layout from "@/app/components/layout";
-import Link from "next/link";
 import Image from "next/image";
-import { 
-  Sparkles, 
-  Brain, 
-  Globe, 
-  Zap, 
-  Code, 
-  Users, 
-  Database, 
-  ArrowRight, 
-  FileCode, 
-  Share2, 
-  MessageSquare, 
-  Lightbulb,
+import Link from "next/link";
+import {
+  ArrowRight,
+  Brain,
   Shield,
-  Cpu
+  Globe,
+  Cpu,
+  Users,
+  Database,
+  Sparkles,
+  CheckCircle2,
 } from "lucide-react";
+import Layout from "@/app/components/layout";
 import { Button } from "@/app/components/Button";
 import { FadeIn } from "@/app/components/FadeIn";
 import { cn } from "@/lib/utils";
-
-export const metadata: Metadata = {
-  title: "Our Platform Vision - Wekify",
-  description: "Learn about our vision for building powerful language preservation platforms and our future plans for AI integration.",
-};
 
 export default function AIAndUsPage() {
   return (
