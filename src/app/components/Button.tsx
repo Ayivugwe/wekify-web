@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "link" | "danger" | "success";
-  size?: "sm" | "md" | "lg" | "xl";
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "default" | "outline" | "secondary" | "ghost" | "primary" | "link" | "danger" | "success";
+  size?: "default" | "sm" | "lg" | "md" | "xl";
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -15,22 +15,9 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      children,
-      variant = "primary",
-      size = "md",
-      isLoading = false,
-      leftIcon,
-      rightIcon,
-      fullWidth = false,
-      disabled,
-      ...props
-    },
-    ref
-  ) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, children, variant = "default", size = "default", isLoading = false, leftIcon, rightIcon, fullWidth = false, disabled, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
     // Base button styles
     const baseStyles = "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2";
 
@@ -61,7 +48,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const widthStyles = fullWidth ? "w-full" : "";
     
     return (
-      <button
+      <Comp
         className={cn(
           baseStyles,
           variantStyles[variant],
@@ -84,9 +71,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {!isLoading && rightIcon && (
           <span className="ml-2">{rightIcon}</span>
         )}
-      </button>
+      </Comp>
     );
   }
 );
-
 Button.displayName = "Button";
+
+export { Button };

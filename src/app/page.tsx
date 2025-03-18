@@ -14,23 +14,48 @@ import {
   FileText,
   Terminal,
   ExternalLink,
+  ChevronDown,
 } from "lucide-react";
 import Layout from "./components/layout";
 import { Button } from "./components/Button";
 import { FadeIn } from "./components/FadeIn";
+import { useState } from "react";
+
+const languages = [
+  "Kifuliiru",
+  "Swahili",
+  "Yoruba",
+  "Quechua",
+  "Navajo",
+  "Māori",
+  "Hawaiian",
+  "Welsh",
+  "Sámi",
+];
 
 export default function HomePage() {
+  const [randomLanguage, setRandomLanguage] = useState(languages[0]);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * languages.length);
+      setRandomLanguage(languages[randomIndex]);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Layout>
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative py-24 bg-gradient-to-b from-primary-50/50 to-white">
+        <section className="relative min-h-[90vh] py-24 bg-gradient-to-b from-primary-50/50 to-white">
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
           </div>
-          <FadeIn className="container mx-auto px-4 relative z-10">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <FadeIn className="container mx-auto px-4 relative z-10 h-full">
+            <div className="max-w-7xl mx-auto h-full">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
                 <div>
                   <div className="inline-flex items-center px-4 py-2 bg-primary-100 rounded-full text-primary-800 text-sm font-medium mb-6">
                     <Globe className="w-4 h-4 mr-2" />
@@ -53,16 +78,17 @@ export default function HomePage() {
                     </Button>
                   </div>
                 </div>
-                <div className="relative">
+                <div className="relative h-[600px]">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-primary-600/20 rounded-3xl blur-3xl"></div>
-                  <div className="relative">
-                    <Image
-                      src="/globe.png"
-                      alt="Language Preservation"
-                      width={600}
-                      height={600}
-                      className="rounded-3xl shadow-2xl"
-                    />
+                  <div className="relative h-full flex items-center justify-center">
+                    <div className="relative w-[400px] h-[400px] animate-spin-slow">
+                      <div className="absolute inset-0 rounded-full border-4 border-primary-200/50"></div>
+                      <div className="absolute inset-0 rounded-full border-4 border-primary-400/30"></div>
+                      <div className="absolute inset-0 rounded-full border-4 border-primary-600/20"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-2xl font-bold text-primary-600">{randomLanguage}</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -71,10 +97,10 @@ export default function HomePage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-24 bg-white">
+        <section className="py-32 bg-white">
           <div className="container mx-auto px-4">
             <FadeIn className="max-w-7xl mx-auto">
-              <div className="text-center mb-16">
+              <div className="text-center mb-20">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
                   Platform Features
                 </h2>
@@ -82,7 +108,7 @@ export default function HomePage() {
                   Everything you need to build a powerful language preservation platform.
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 {[
                   {
                     icon: Users,
@@ -101,14 +127,14 @@ export default function HomePage() {
                   }
                 ].map((feature) => (
                   <FadeIn key={feature.title}>
-                    <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                      <div className="p-3 rounded-lg bg-primary-50 w-fit mb-4">
-                        <feature.icon className="h-6 w-6 text-primary-600" />
+                    <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                      <div className="p-4 rounded-lg bg-primary-50 w-fit mb-6">
+                        <feature.icon className="h-8 w-8 text-primary-600" />
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                         {feature.title}
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-lg text-gray-600">
                         {feature.description}
                       </p>
                     </div>
@@ -120,10 +146,10 @@ export default function HomePage() {
         </section>
 
         {/* Solutions Section */}
-        <section className="py-24 bg-gradient-to-b from-primary-50/30 to-white">
+        <section className="py-32 bg-gradient-to-b from-primary-50/30 to-white">
           <div className="container mx-auto px-4">
             <FadeIn className="max-w-7xl mx-auto">
-              <div className="text-center mb-16">
+              <div className="text-center mb-20">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
                   Platform Solutions
                 </h2>
@@ -131,7 +157,7 @@ export default function HomePage() {
                   Comprehensive solutions for language preservation and revitalization.
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 {[
                   {
                     icon: BookOpen,
@@ -155,14 +181,14 @@ export default function HomePage() {
                   }
                 ].map((solution) => (
                   <FadeIn key={solution.title}>
-                    <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                      <div className="p-3 rounded-lg bg-primary-50 w-fit mb-4">
-                        <solution.icon className="h-6 w-6 text-primary-600" />
+                    <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                      <div className="p-4 rounded-lg bg-primary-50 w-fit mb-6">
+                        <solution.icon className="h-8 w-8 text-primary-600" />
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                         {solution.title}
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-lg text-gray-600">
                         {solution.description}
                       </p>
                     </div>
@@ -173,8 +199,55 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <section className="py-32 bg-white">
+          <div className="container mx-auto px-4">
+            <FadeIn className="max-w-7xl mx-auto">
+              <div className="text-center mb-20">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Common questions about our language preservation platforms.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {[
+                  {
+                    question: "What is a language preservation platform?",
+                    answer: "A digital platform designed to help communities document, teach, and maintain their language through various tools and features."
+                  },
+                  {
+                    question: "How long does it take to build a platform?",
+                    answer: "Timeline varies based on community needs, but typically 3-6 months for initial launch with ongoing development."
+                  },
+                  {
+                    question: "Do we own our language data?",
+                    answer: "Yes, communities maintain full ownership and control of their language data and content."
+                  },
+                  {
+                    question: "What kind of support do you provide?",
+                    answer: "We offer comprehensive support including training, documentation, and ongoing technical assistance."
+                  }
+                ].map((faq, index) => (
+                  <FadeIn key={index}>
+                    <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                        {faq.question}
+                      </h3>
+                      <p className="text-gray-600">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+
         {/* CTA Section */}
-        <section className="py-24 bg-primary-900 text-white">
+        <section className="py-32 bg-primary-900 text-white">
           <FadeIn className="max-w-7xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">
               Ready to Build Your Language Platform?
