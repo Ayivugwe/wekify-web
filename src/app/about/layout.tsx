@@ -2,8 +2,15 @@ import { Metadata } from "next";
 import AboutPage from "./page";
 
 export const metadata: Metadata = {
-  title: "About Us - Wekify - Platform for Language Preservation",
-  description: "Learn about our mission to empower communities with custom digital platforms for language preservation and revitalization.",
+  title: "About Us | Wekify",
+  description: "Learn about Wekify's mission to preserve and celebrate indigenous languages through innovative digital solutions.",
+  keywords: "language preservation, indigenous languages, digital solutions, cultural heritage, language technology, AI in language preservation",
+  openGraph: {
+    title: "About Us | Wekify",
+    description: "Learn about Wekify's mission to preserve and celebrate indigenous languages through innovative digital solutions.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function AboutLayout() {

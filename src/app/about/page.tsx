@@ -6,13 +6,7 @@ import { Button } from "@/app/components/Button";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Globe, BookOpen, Shield, Users, Building2, Rocket, Target, Heart } from "lucide-react";
 import Image from "next/image";
-import { Metadata } from "next";
 import { cn } from "@/lib/utils";
-
-export const metadata: Metadata = {
-  title: "About Us - Wekify - Platform for Language Preservation",
-  description: "Learn about our mission to empower communities with custom digital platforms for language preservation and revitalization.",
-};
 
 export default function AboutUsPage() {
   return (
