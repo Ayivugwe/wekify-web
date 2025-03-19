@@ -30,10 +30,13 @@ import {
   Info,
   Target,
   Users2,
+  Database,
+  BarChart,
+  LucideIcon,
 } from "lucide-react";
 
 // Icon mapping for dynamic rendering
-const IconMap: Record<string, React.ElementType> = {
+const IconMap: Record<string, LucideIcon> = {
   Globe,
   Share2,
   Code,
@@ -57,165 +60,82 @@ const IconMap: Record<string, React.ElementType> = {
   Info,
   Target,
   Users2,
+  Database,
+  BarChart,
 };
 
-const megaMenuItems = {
-  Solutions: [
-    {
-      name: "Digital Content Platform",
-      href: "/solutions/digital-content",
-      icon: "Globe",
-      description:
-        "Build scalable content platforms for language and cultural content",
-    },
-    {
-      name: "Integration Services",
-      href: "/solutions/integration-services",
-      icon: "Share2",
-      description: "Connect your platforms with powerful APIs and integrations",
-    },
-    {
-      name: "Custom Solutions",
-      href: "/solutions/custom",
-      icon: "Code",
-      description: "Tailored development for your specific language needs",
-    },
-    {
-      name: "Language Preservation",
-      href: "/solutions/language-preservation",
-      icon: "BookOpen",
-      description: "Tools for documenting and preserving endangered languages",
-    },
-    {
-      name: "AI & Language Vision",
-      href: "/solutions/ai-vision",
-      icon: "Code",
-      description:
-        "Our approach to using AI for language revitalization and preservation.",
-    },
-  ],
+type MenuItem = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  link: string;
+};
 
-  Resources: [
+const megaMenuItems: Record<string, MenuItem[]> = {
+  solutions: [
     {
-      name: "Case Studies",
-      href: "/case-studies",
-      icon: "FileText",
-      description: "See how our solutions work with the Bafuliiru community",
+      title: "Language Learning",
+      description: "Interactive platforms for teaching and learning indigenous languages",
+      icon: BookOpen,
+      link: "/solutions#learning",
     },
     {
-      name: "Getting Started",
-      href: "/resources/getting-started",
-      icon: "BookOpen",
-      description: "Essential guides for new users",
+      title: "Digital Archives",
+      description: "Secure storage and management of language resources",
+      icon: Database,
+      link: "/solutions#archives",
     },
     {
-      name: "Documentation",
-      href: "/resources/documentation",
-      icon: "Book",
-      description: "Technical documentation and implementation guides",
-    },
-    {
-      name: "Language Game",
-      href: "/language-game",
-      icon: "GameController",
-      description: "Interactive language learning through gamification",
-    },
-    {
-      name: "Community Forum",
-      href: "/resources/forum",
-      icon: "Users",
-      description: "Currently focused on supporting the Bafuliiru community",
-    },
-    {
-      name: "Become An Ambassador",
-      href: "/ambassador",
-      icon: "Award",
-      description: "Join our network of language preservation advocates",
+      title: "Community Tools",
+      description: "Tools for community engagement and collaboration",
+      icon: Users,
+      link: "/solutions#community",
     },
   ],
-
-  "AI & Us": [
+  about: [
     {
-      name: "Our AI Approach",
-      href: "/ai-and-us",
-      icon: "Sparkles",
-      description: "How we're using AI to empower language communities",
+      title: "About Us",
+      description: "Learn about our mission and vision for language preservation",
+      icon: Globe,
+      link: "/about-us",
     },
     {
-      name: "Current AI Projects",
-      href: "/ai-and-us#ai-approach",
-      icon: "Brain",
-      description: "Our ongoing AI initiatives for languages",
+      title: "Our Mission",
+      description: "Understanding our commitment to language preservation",
+      icon: Target,
+      link: "/about-us#mission",
     },
     {
-      name: "AI Commitment",
-      href: "/ai-and-us#ai-approach",
-      icon: "Lightbulb",
-      description: "Our promise to ethical, community-focused AI",
-    },
-  ],
-  Atlas: [
-    {
-      name: "Languages Directory",
-      href: "/languages",
-      icon: "Languages",
-      description: "Browse our comprehensive language directory",
+      title: "AI & Us",
+      description: "How we use AI to enhance language preservation",
+      icon: Brain,
+      link: "/about-us#ai-and-us",
     },
     {
-      name: "Assessment",
-      href: "/assessment",
-      icon: "CheckCircle",
-      description: "Evaluate language resources and needs",
-    },
-    {
-      name: "Countries",
-      href: "/countries",
-      icon: "Globe",
-      description: "Explore languages by country",
-    },
-    {
-      name: "Continents",
-      href: "/continents",
-      icon: "Map",
-      description: "Browse languages by continent",
-    },
-    {
-      name: "Currencies",
-      href: "/currencies",
-      icon: "Dollar",
-      description: "Currency information by region",
+      title: "Our Team",
+      description: "Meet the people behind Wekify",
+      icon: Users,
+      link: "/about-us#team",
     },
   ],
-  "About Us": [
+  resources: [
     {
-      name: "Our Story",
-      href: "/about/our-story",
-      icon: "BookOpen",
-      description: "Discover our journey and the story behind Wekify",
+      title: "Blog",
+      description: "Insights and updates about language preservation",
+      icon: BookOpen,
+      link: "/blog",
     },
     {
-      name: "Our Mission",
-      href: "/about/mission",
-      icon: "Target",
-      description: "Learn about our mission to preserve indigenous languages",
+      title: "Documentation",
+      description: "Guides and resources for language preservation",
+      icon: FileText,
+      link: "/resources",
     },
     {
-      name: "Overview",
-      href: "/about",
-      icon: "Users",
-      description: "Who we are and what we do",
-    },
-    {
-      name: "AI Vision",
-      href: "/about#ai-vision",
-      icon: "Sparkles",
-      description: "How we use AI for language preservation",
-    },
-    {
-      name: "Our Team",
-      href: "/about#team",
-      icon: "Users2",
-      description: "Meet the people behind our mission",
+      title: "Case Studies",
+      description: "Success stories from language communities",
+      icon: BarChart,
+      link: "/case-studies",
     },
   ],
 };
@@ -293,11 +213,11 @@ const Header = () => {
                   <div className="grid grid-cols-2 gap-3">
                     {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
                       (item) => {
-                        const Icon = item.icon ? IconMap[item.icon] : null;
+                        const Icon = item.icon;
                         return (
                           <Link
-                            key={item.name}
-                            href={item.href}
+                            key={item.title}
+                            href={item.link}
                             className="group block p-3 hover:bg-gray-50 rounded-lg text-text-primary hover:text-primary transition-all duration-300"
                           >
                             <div className="flex items-start">
@@ -308,7 +228,7 @@ const Header = () => {
                               )}
                               <div>
                                 <div className="font-medium group-hover:translate-x-1 transition-transform duration-300">
-                                  {item.name}
+                                  {item.title}
                                 </div>
                                 {item.description && (
                                   <div className="text-xs text-gray-500 mt-1 pr-4 group-hover:text-primary/70 transition-colors duration-300">
@@ -384,11 +304,11 @@ const Header = () => {
                   <div className="pl-4 space-y-3 mt-2 border-l-2 border-gray-100">
                     {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
                       (item) => {
-                        const Icon = item.icon ? IconMap[item.icon] : null;
+                        const Icon = item.icon;
                         return (
                           <Link
-                            key={item.name}
-                            href={item.href}
+                            key={item.title}
+                            href={item.link}
                             className="group block py-2 text-text-primary hover:text-primary transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
@@ -399,7 +319,7 @@ const Header = () => {
                                 </div>
                               )}
                               <div>
-                                <div className="font-medium">{item.name}</div>
+                                <div className="font-medium">{item.title}</div>
                                 {item.description && (
                                   <div className="text-xs text-gray-500 mt-1 pr-4">
                                     {item.description}
@@ -424,14 +344,7 @@ const Header = () => {
               Blog
             </Link>
             <Link
-              href="/ai-and-us"
-              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              AI and Us
-            </Link>
-            <Link
-              href="/about"
+              href="/about-us"
               className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
               onClick={() => setMobileMenuOpen(false)}
             >
