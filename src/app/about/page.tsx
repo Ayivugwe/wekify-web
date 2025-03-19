@@ -2,9 +2,9 @@
 
 import Layout from "@/app/components/layout";
 import { FadeIn } from "@/app/components/FadeIn";
-import { Button } from "@/app/components/ui/button";
+import { Button } from "@/app/components/Button";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Globe, BookOpen, Shield, Users, Building2, Rocket, Target } from "lucide-react";
+import { ArrowRight, Sparkles, Globe, BookOpen, Shield, Users, Building2, Rocket, Target, Heart } from "lucide-react";
 import Image from "next/image";
 import { Metadata } from "next";
 import { cn } from "@/lib/utils";
@@ -27,10 +27,10 @@ export default function AboutUsPage() {
             We create powerful digital platforms that empower communities to preserve, teach, and celebrate their linguistic heritage.
           </p>
           <div className="flex justify-center gap-4">
-            <Button asChild size="lg">
+            <Button asChild>
               <Link href="/contact">Start Your Platform <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button asChild>
               <Link href="/solutions">View Solutions</Link>
             </Button>
           </div>
@@ -200,7 +200,7 @@ export default function AboutUsPage() {
           <p className="text-xl text-primary-100 mb-10 max-w-2xl mx-auto">
             Join us in creating a digital future for your language. Let's build something amazing together.
           </p>
-          <Button size="lg" variant="secondary" asChild>
+          <Button asChild>
             <Link href="/contact">
               Get Started <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
