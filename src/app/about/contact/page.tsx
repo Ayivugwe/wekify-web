@@ -8,10 +8,10 @@ export default function ContactPage() {
   return (
     <Layout>
       <Head>
-        <title>Wekify - Contact Us</title>
+        <title>Wekify LLC - Contact Us</title>
         <meta
           name="description"
-          content="Wekify provides innovative technology solutions for digital content management, language preservation, and cultural heritage. Transform your digital presence with our cutting-edge platforms."
+          content="Wekify LLC provides innovative technology solutions for digital content management, language preservation, and cultural heritage. Transform your digital presence with our cutting-edge platforms."
         />
         <meta
           name="keywords"
@@ -19,7 +19,7 @@ export default function ContactPage() {
         />
         <meta
           property="og:title"
-          content="Wekify - Building Digital Solutions for Global Content"
+          content="Wekify LLC - Building Digital Solutions for Global Content"
         />
         <meta
           property="og:description"

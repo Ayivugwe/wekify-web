@@ -72,7 +72,7 @@ const Footer = () => {
             <Link href="/" className="inline-block mb-6">
               <Image
                 src="/logo.png"
-                alt="Wekify Logo"
+                alt="Wekify LLC Logo"
                 width={150}
                 height={46}
                 className="h-10 w-auto"
@@ -134,7 +134,7 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            © {currentYear} Wekify. All rights reserved.
+            © {currentYear} Wekify LLC. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <Link

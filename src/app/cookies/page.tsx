@@ -30,7 +30,7 @@ export default function CookiesPage() {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">How We Use Cookies</h2>
                 <p className="text-gray-600 mb-4">
-                  We use cookies for the following purposes:
+                  Wekify LLC uses cookies for the following purposes:
                 </p>
                 <ul className="list-disc pl-6 text-gray-600 mb-4">
                   <li>Essential cookies: Required for the website to function properly</li>

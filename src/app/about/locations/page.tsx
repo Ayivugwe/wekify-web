@@ -38,7 +38,7 @@ export default function CompanyPage() {
                 Our Locations
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Wekify is a global company with offices in multiple locations.
+                Wekify LLC is a global company with offices in multiple locations.
                 Find out where we&apos;re located and how you can join our team.
               </p>
             </div>
@@ -155,7 +155,7 @@ export default function CompanyPage() {
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Whether you&apos;re a developer, linguist, or passionate about
-              language preservation, there&apos;s a place for you at Wekify.
+              language preservation, there&apos;s a place for you at Wekify LLC.
             </p>
             <a
               href="https://ayivugwekabemba.com/contact"

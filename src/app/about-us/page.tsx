@@ -42,10 +42,10 @@ export default function AboutUsPage() {
           <div className="max-w-4xl mx-auto">
             <FadeIn className="text-center mb-16">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                About Wekify
+                About Wekify LLC
               </h2>
               <p className="text-lg text-gray-600">
-                Wekify is a technology company focused on building digital platforms that empower communities to preserve, teach, and celebrate their languages. Our solutions combine cutting-edge technology with cultural sensitivity to create meaningful impact.
+                Wekify LLC is a technology company focused on building digital platforms that empower communities to preserve, teach, and celebrate their languages. Our solutions combine cutting-edge technology with cultural sensitivity to create meaningful impact.
               </p>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

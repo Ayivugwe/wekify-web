@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
                 <p className="text-gray-600 mb-4">
-                  At Wekify, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language preservation platform.
+                  At Wekify LLC, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language preservation platform.
                 </p>
                 <p className="text-gray-600">
                   Please read this privacy policy carefully. By using our platform, you consent to the practices described in this policy.

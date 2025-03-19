@@ -23,14 +23,14 @@ export default function TermsOfServicePage() {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Agreement to Terms</h2>
                 <p className="text-gray-600 mb-4">
-                  By accessing or using Wekify's language preservation platform, you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access our platform.
+                  By accessing or using Wekify LLC's language preservation platform, you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access our platform.
                 </p>
               </section>
 
               <section className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Description of Service</h2>
                 <p className="text-gray-600 mb-4">
-                  Wekify provides a platform for language preservation, including but not limited to:
+                  Wekify LLC provides a platform for language preservation, including but not limited to:
                 </p>
                 <ul className="list-disc pl-6 text-gray-600 mb-4">
                   <li>Digital language documentation tools</li>
@@ -56,7 +56,7 @@ export default function TermsOfServicePage() {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Intellectual Property</h2>
                 <p className="text-gray-600 mb-4">
-                  The platform and its original content, features, and functionality are owned by Wekify and are protected by international copyright, trademark, and other intellectual property laws.
+                  The platform and its original content, features, and functionality are owned by Wekify LLC and are protected by international copyright, trademark, and other intellectual property laws.
                 </p>
               </section>
 
@@ -97,7 +97,7 @@ export default function TermsOfServicePage() {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Limitation of Liability</h2>
                 <p className="text-gray-600 mb-4">
-                  Wekify shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the platform.
+                  Wekify LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the platform.
                 </p>
               </section>
 
