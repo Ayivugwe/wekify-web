@@ -177,23 +177,9 @@ const megaMenuItems: Record<string, MenuItem[]> = {
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
-  const [isOpen, setIsOpen] = useState<Record<string, boolean>>({ Languages: false });
 
   const handleMegaMenuHover = (menuName: string | null) => {
     setActiveMegaMenu(menuName);
-  };
-
-  const handleMegaMenuToggle = (menuName: string) => {
-    setActiveMegaMenu(activeMegaMenu === menuName ? null : menuName);
-  };
-
-  const toggleMenu = (menuName: string) => {
-    setIsOpen((prev) => ({ ...prev, [menuName]: !prev[menuName] }));
-  };
-
-  const getIcon = (iconName: string, props: any) => {
-    const Icon = IconMap[iconName] || (() => null); // Handle missing icons
-    return <Icon {...props} />;
   };
 
   return (
@@ -214,30 +200,142 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/solutions"
-              className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+            <div
+              className="relative"
+              onMouseEnter={() => handleMegaMenuHover("solutions")}
+              onMouseLeave={() => handleMegaMenuHover(null)}
             >
-              Solutions
-            </Link>
-            <Link
-              href="/about-us"
-              className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              <Link
+                href="/solutions"
+                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              >
+                Solutions
+              </Link>
+              {activeMegaMenu === "solutions" && (
+                <div className="absolute top-full left-0 w-[400px] bg-white rounded-xl shadow-lg border border-gray-100 p-6 mt-2">
+                  <div className="grid grid-cols-1 gap-4">
+                    {megaMenuItems.solutions.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.link}
+                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
+                          <item.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-gray-900">{item.title}</h3>
+                          <p className="text-sm text-gray-600">{item.description}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => handleMegaMenuHover("about")}
+              onMouseLeave={() => handleMegaMenuHover(null)}
             >
-              About Us
-            </Link>
-            <Link
-              href="/languages"
-              className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              <Link
+                href="/about-us"
+                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              >
+                About Us
+              </Link>
+              {activeMegaMenu === "about" && (
+                <div className="absolute top-full left-0 w-[400px] bg-white rounded-xl shadow-lg border border-gray-100 p-6 mt-2">
+                  <div className="grid grid-cols-1 gap-4">
+                    {megaMenuItems.about.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.link}
+                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
+                          <item.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-gray-900">{item.title}</h3>
+                          <p className="text-sm text-gray-600">{item.description}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => handleMegaMenuHover("atlas")}
+              onMouseLeave={() => handleMegaMenuHover(null)}
             >
-              Atlas
-            </Link>
-            <Link
-              href="/resources"
-              className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              <Link
+                href="/languages"
+                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              >
+                Atlas
+              </Link>
+              {activeMegaMenu === "atlas" && (
+                <div className="absolute top-full left-0 w-[400px] bg-white rounded-xl shadow-lg border border-gray-100 p-6 mt-2">
+                  <div className="grid grid-cols-1 gap-4">
+                    {megaMenuItems.atlas.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.link}
+                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
+                          <item.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-gray-900">{item.title}</h3>
+                          <p className="text-sm text-gray-600">{item.description}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => handleMegaMenuHover("resources")}
+              onMouseLeave={() => handleMegaMenuHover(null)}
             >
-              Resources
-            </Link>
+              <Link
+                href="/resources"
+                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              >
+                Resources
+              </Link>
+              {activeMegaMenu === "resources" && (
+                <div className="absolute top-full left-0 w-[400px] bg-white rounded-xl shadow-lg border border-gray-100 p-6 mt-2">
+                  <div className="grid grid-cols-1 gap-4">
+                    {megaMenuItems.resources.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.link}
+                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
+                          <item.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-gray-900">{item.title}</h3>
+                          <p className="text-sm text-gray-600">{item.description}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link
               href="/contact"
               className="group relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-white bg-primary-600 rounded-full hover:bg-primary-700 transition-all duration-300 overflow-hidden"
