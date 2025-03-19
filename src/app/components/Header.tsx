@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "../components/Button";
 import {
   Menu,
   X,
@@ -33,6 +34,7 @@ import {
   Database,
   BarChart,
   LucideIcon,
+  ArrowRight,
 } from "lucide-react";
 
 // Icon mapping for dynamic rendering
@@ -236,9 +238,16 @@ const Header = () => {
             >
               Resources
             </Link>
-            <Button asChild>
-              <Link href="/contact">Contact Us</Link>
-            </Button>
+            <Link
+              href="/contact"
+              className="group relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-white bg-primary-600 rounded-full hover:bg-primary-700 transition-all duration-300 overflow-hidden"
+            >
+              <span className="relative z-10 flex items-center">
+                Contact Us
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
