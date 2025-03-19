@@ -1,175 +1,62 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import {
-  Check,
-  ArrowRight,
-  Star,
-  Globe,
-  Heart,
-  Award,
-  Users,
-  Clock,
-  Shield,
-  Sparkles,
-  Target,
-  MessageSquare
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Metadata } from "next";
+import { Users, Globe, Award, ArrowRight } from "lucide-react";
 import Layout from "../components/layout";
 import { Button } from "../components/Button";
 import { FadeIn } from "../components/FadeIn";
 
-export const metadata: Metadata = {
-  title: "Platform Ambassadors - Wekify",
-  description: "Join our ambassador program to help communities build and maintain their language preservation platforms.",
-  keywords: "platform ambassador, language technology, community leader, digital platform",
-};
-
 export default function AmbassadorPage() {
   return (
     <Layout>
-      <div className="min-h-screen">
+      <div className="bg-gradient-to-b from-primary-50 to-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-primary-50 to-white py-24">
-          <FadeIn className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center px-4 py-2 bg-primary-100 rounded-full text-primary-800 text-sm font-medium mb-6">
-                <Star className="w-4 h-4 mr-2" />
-                Platform Ambassador Program
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Lead Your Community's Digital Future
+        <section className="py-32">
+          <div className="max-w-6xl mx-auto px-4 text-center">
+            <FadeIn>
+              <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+                Become a Platform Ambassador
               </h1>
-              <p className="text-xl text-gray-600 mb-10">
-                Help communities build and maintain powerful digital platforms for language preservation.
+              <p className="text-xl text-neutral-600 mb-10 max-w-3xl mx-auto">
+                Join our network of community leaders and help preserve languages through technology.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" asChild>
-                  <Link href="#apply">
-                    Apply Now <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="#learn-more">Learn More</Link>
-                </Button>
-              </div>
-            </div>
-          </FadeIn>
-        </section>
-
-        {/* Role Overview */}
-        <section className="py-24 bg-white" id="learn-more">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-              <FadeIn>
-                <Image
-                  src="/ambassador-platform.png"
-                  alt="Platform Ambassador"
-                  width={600}
-                  height={600}
-                  className="rounded-2xl shadow-2xl"
-                />
-              </FadeIn>
-              <FadeIn className="space-y-6">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Platform Ambassador Role
-                </h2>
-                <p className="text-lg text-gray-600">
-                  As a Platform Ambassador, you'll help communities harness the power of digital platforms for language preservation. You'll be the bridge between technology and cultural heritage.
-                </p>
-                <div className="space-y-4">
-                  {[
-                    {
-                      icon: Target,
-                      title: "Platform Guidance",
-                      description: "Help communities choose and customize their platforms"
-                    },
-                    {
-                      icon: Users,
-                      title: "Community Training",
-                      description: "Train users on platform features and best practices"
-                    },
-                    {
-                      icon: Shield,
-                      title: "Cultural Integration",
-                      description: "Ensure platforms respect cultural values and practices"
-                    }
-                  ].map((item) => (
-                    <div key={item.title} className="flex items-start gap-4">
-                      <div className="mt-1 p-2 rounded-lg bg-primary-50">
-                        <item.icon className="h-5 w-5 text-primary-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-gray-900">{item.title}</h3>
-                        <p className="text-gray-600">{item.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </FadeIn>
-            </div>
+              <Button size="lg" asChild>
+                <a href="#apply">
+                  Apply Now <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </FadeIn>
           </div>
         </section>
 
-        {/* Benefits */}
-        <section className="py-24 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <FadeIn className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Ambassador Benefits
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join our program and get access to exclusive resources and opportunities.
-              </p>
-            </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {/* Benefits Section */}
+        <section className="py-32">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  icon: Star,
-                  title: "Platform Training",
-                  description: "Comprehensive training on our platform features and capabilities"
+                  icon: <Users className="w-8 h-8 text-primary-600" />,
+                  title: "Community Impact",
+                  description: "Make a real difference in your community by helping preserve and promote your language."
                 },
                 {
-                  icon: Globe,
+                  icon: <Globe className="w-8 h-8 text-primary-600" />,
                   title: "Global Network",
-                  description: "Connect with platform ambassadors worldwide"
+                  description: "Connect with other ambassadors and language preservation experts worldwide."
                 },
                 {
-                  icon: Award,
-                  title: "Certification",
-                  description: "Official platform ambassador certification"
-                },
-                {
-                  icon: Sparkles,
-                  title: "Early Access",
-                  description: "Preview and test new platform features"
-                },
-                {
-                  icon: MessageSquare,
-                  title: "Direct Support",
-                  description: "Priority access to our technical team"
-                },
-                {
-                  icon: Heart,
-                  title: "Impact",
-                  description: "Make a real difference in language preservation"
+                  icon: <Award className="w-8 h-8 text-primary-600" />,
+                  title: "Recognition",
+                  description: "Get recognized for your contributions to language preservation."
                 }
-              ].map((benefit) => (
-                <FadeIn key={benefit.title}>
-                  <div className="bg-white p-6 rounded-xl border border-gray-100 hover:border-primary-100 transition-colors">
-                    <div className="p-3 rounded-lg bg-primary-50 w-fit mb-4">
-                      <benefit.icon className="h-6 w-6 text-primary-600" />
+              ].map((benefit, index) => (
+                <FadeIn key={index} delay={index * 0.1}>
+                  <div className="p-6 bg-white rounded-xl border border-neutral-100 hover:border-neutral-200 transition-colors">
+                    <div className="mb-4 p-3 bg-primary-50 rounded-lg w-fit">
+                      {benefit.icon}
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-600">
-                      {benefit.description}
-                    </p>
+                    <h3 className="text-xl font-semibold mb-3 text-neutral-900">{benefit.title}</h3>
+                    <p className="text-neutral-600">{benefit.description}</p>
                   </div>
                 </FadeIn>
               ))}
@@ -177,68 +64,66 @@ export default function AmbassadorPage() {
           </div>
         </section>
 
-        {/* Application Process */}
-        <section className="py-24 bg-white" id="apply">
-          <div className="container mx-auto px-4">
-            <FadeIn className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Become an Ambassador
+        {/* Application Section */}
+        <section id="apply" className="py-32 bg-gradient-to-b from-white to-primary-50">
+          <div className="max-w-3xl mx-auto px-4">
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-center mb-12 text-neutral-900">
+                Apply to Become an Ambassador
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join us in building the future of language preservation platforms.
-              </p>
-            </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                {
-                  step: "1",
-                  title: "Apply",
-                  description: "Fill out our ambassador application form"
-                },
-                {
-                  step: "2",
-                  title: "Interview",
-                  description: "Meet with our team to discuss your goals"
-                },
-                {
-                  step: "3",
-                  title: "Training",
-                  description: "Complete our platform ambassador training"
-                }
-              ].map((step) => (
-                <FadeIn key={step.title}>
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="text-xl font-bold text-primary-600">{step.step}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600">
-                      {step.description}
-                    </p>
+              <div className="bg-white p-8 rounded-xl border border-neutral-100">
+                <form className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-1">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                      placeholder="Your full name"
+                    />
                   </div>
-                </FadeIn>
-              ))}
-            </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="community" className="block text-sm font-medium text-neutral-700 mb-1">
+                      Language Community
+                    </label>
+                    <input
+                      type="text"
+                      id="community"
+                      className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                      placeholder="Your language community"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-1">
+                      Why do you want to become an ambassador?
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                      placeholder="Tell us about your motivation and experience..."
+                    />
+                  </div>
+                  <Button type="submit" className="w-full">
+                    Submit Application
+                  </Button>
+                </form>
+              </div>
+            </FadeIn>
           </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-24 bg-primary-900 text-white">
-          <FadeIn className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6">
-              Ready to Make an Impact?
-            </h2>
-            <p className="text-xl text-primary-100 mb-10 max-w-2xl mx-auto">
-              Join our ambassador program and help communities preserve their languages through digital platforms.
-            </p>
-            <Button size="lg" variant="secondary" asChild>
-              <Link href="/contact">
-                Apply Now <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </FadeIn>
         </section>
       </div>
     </Layout>
