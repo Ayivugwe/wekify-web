@@ -188,22 +188,22 @@ const megaMenuItems = {
   ],
   "About Us": [
     {
-      name: "Introduction",
-      href: "/about#intro",
-      icon: "Info",
-      description: "Learn about our mission and values",
+      name: "Our Story",
+      href: "/about/our-story",
+      icon: "BookOpen",
+      description: "Discover our journey and the story behind Wekify",
+    },
+    {
+      name: "Our Mission",
+      href: "/about/mission",
+      icon: "Target",
+      description: "Learn about our mission to preserve indigenous languages",
     },
     {
       name: "About Us",
-      href: "/about#about",
+      href: "/about",
       icon: "Users",
       description: "Who we are and what we do",
-    },
-    {
-      name: "Mission & Vision",
-      href: "/about#mission-vision",
-      icon: "Target",
-      description: "Our goals and aspirations",
     },
     {
       name: "AI Vision",
@@ -223,7 +223,7 @@ const megaMenuItems = {
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
-  const [isOpen, setIsOpen] = useState({ Languages: false }); // Added state for Languages dropdown
+  const [isOpen, setIsOpen] = useState<Record<string, boolean>>({ Languages: false });
 
   const handleMegaMenuHover = (menuName: string | null) => {
     setActiveMegaMenu(menuName);
