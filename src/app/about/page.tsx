@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,11 +20,6 @@ import Layout from "../components/layout";
 import { Button } from "../components/Button";
 import { FadeIn } from "../components/FadeIn";
 import { cn } from "@/lib/utils";
-
-export const metadata: Metadata = {
-  title: "About Wekify - Platform for Language Preservation",
-  description: "Learn about our mission to empower communities with custom digital platforms for language preservation and revitalization.",
-};
 
 export default function AboutPage() {
   return (

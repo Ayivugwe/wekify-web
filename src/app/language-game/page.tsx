@@ -5,10 +5,29 @@ import { ArrowRight, Award, Clock, Heart, Save, Shuffle } from "lucide-react";
 import Layout from "@/app/components/layout";
 import { Button } from "@/app/components/Button";
 import Link from "next/link";
-import { Metadata } from "next";
+
+interface Word {
+  word: string;
+  meaning: string;
+  options: string[];
+}
+
+interface Language {
+  id: string;
+  name: string;
+  difficulty: "easy" | "medium" | "hard";
+  words: Word[];
+}
+
+interface UserAnswer {
+  word: string;
+  correct: boolean;
+  userChoice: string;
+  correctAnswer: string;
+}
 
 // Sample game data - in a real implementation this would come from an API
-const sampleLanguages = [
+const sampleLanguages: Language[] = [
   {
     id: "swahili",
     name: "Swahili",
@@ -49,12 +68,12 @@ const sampleLanguages = [
 
 export default function LanguageGame() {
   const [gameStarted, setGameStarted] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(60);
-  const [userAnswers, setUserAnswers] = useState([]);
-  const [savedWords, setSavedWords] = useState([]);
+  const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
+  const [savedWords, setSavedWords] = useState<Word[]>([]);
   const [gameOver, setGameOver] = useState(false);
   const [streakCount, setStreakCount] = useState(0);
   const [highestStreak, setHighestStreak] = useState(0);
@@ -71,7 +90,7 @@ export default function LanguageGame() {
     }
   }, [gameStarted, timeLeft, gameOver]);
 
-  const startGame = (language) => {
+  const startGame = (language: Language) => {
     setSelectedLanguage(language);
     setGameStarted(true);
     setCurrentWordIndex(0);
@@ -84,7 +103,9 @@ export default function LanguageGame() {
     setHighestStreak(0);
   };
 
-  const handleAnswer = (selectedOption) => {
+  const handleAnswer = (selectedOption: string) => {
+    if (!selectedLanguage) return;
+    
     const currentWord = selectedLanguage.words[currentWordIndex];
     const isCorrect = selectedOption === currentWord.meaning;
 
@@ -123,6 +144,8 @@ export default function LanguageGame() {
   };
 
   const saveWord = useCallback(() => {
+    if (!selectedLanguage) return;
+    
     const currentWord = selectedLanguage.words[currentWordIndex];
     if (!savedWords.some(w => w.word === currentWord.word)) {
       setSavedWords([...savedWords, currentWord]);
@@ -209,7 +232,7 @@ export default function LanguageGame() {
   }
 
   // Render active game screen
-  if (gameStarted && !gameOver) {
+  if (gameStarted && !gameOver && selectedLanguage) {
     const currentWord = selectedLanguage.words[currentWordIndex];
 
     return (
@@ -248,20 +271,17 @@ export default function LanguageGame() {
                       variant="secondary" 
                       size="sm" 
                       onClick={saveWord}
-                      disabled={savedWords.some(w => w.word === currentWord.word)}
-                      className="flex items-center"
                     >
-                      <Save className="h-4 w-4 mr-1" />
-                      {savedWords.some(w => w.word === currentWord.word) ? "Saved" : "Save Word"}
+                      <Save className="h-4 w-4 mr-2" />
+                      Save Word
                     </Button>
                   </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4">
                     {currentWord.options.map((option, index) => (
                       <button
                         key={index}
                         onClick={() => handleAnswer(option)}
-                        className="p-4 bg-white border border-gray-200 rounded-lg text-left hover:bg-primary-50 hover:border-primary transition-colors font-medium"
+                        className="p-4 bg-white border border-gray-200 rounded-xl hover:border-primary-200 hover:bg-primary-50 transition-colors text-left"
                       >
                         {option}
                       </button>
@@ -291,82 +311,32 @@ export default function LanguageGame() {
   }
 
   // Render game over screen
-  return (
-    <Layout>
-      <div className="min-h-screen pt-32 pb-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">Game Complete!</h1>
-              <p className="text-lg text-gray-700">
-                You've contributed to preserving the {selectedLanguage.name} language!
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-primary-50 p-6 rounded-xl text-center">
-                <Award className="h-10 w-10 mx-auto mb-3 text-primary" />
-                <h3 className="text-lg font-medium mb-1">Final Score</h3>
-                <p className="text-3xl font-bold text-primary-dark">{score}</p>
+  if (gameOver && selectedLanguage) {
+    return (
+      <Layout>
+        <div className="min-h-screen pt-32 pb-16">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
+              <h1 className="text-3xl md:text-4xl font-bold mb-6">Game Over!</h1>
+              <div className="mb-8">
+                <p className="text-xl text-gray-600 mb-4">Final Score: {score}</p>
+                <p className="text-lg text-gray-600">Highest Streak: {highestStreak}</p>
+                <p className="text-lg text-gray-600">Words Saved: {savedWords.length}</p>
               </div>
-
-              <div className="bg-amber-50 p-6 rounded-xl text-center">
-                <Heart className="h-10 w-10 mx-auto mb-3 text-amber-500" />
-                <h3 className="text-lg font-medium mb-1">Words Saved</h3>
-                <p className="text-3xl font-bold text-amber-700">{savedWords.length}</p>
-              </div>
-
-              <div className="bg-blue-50 p-6 rounded-xl text-center">
-                <Shuffle className="h-10 w-10 mx-auto mb-3 text-blue-500" />
-                <h3 className="text-lg font-medium mb-1">Highest Streak</h3>
-                <p className="text-3xl font-bold text-blue-700">{highestStreak}</p>
-              </div>
-            </div>
-
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-3">Your Answers</h3>
-              <div className="bg-gray-50 rounded-lg p-4">
-                <ul className="divide-y divide-gray-200">
-                  {userAnswers.map((answer, idx) => (
-                    <li key={idx} className="py-3 flex items-center justify-between">
-                      <div>
-                        <span className="font-medium">{answer.word}</span>
-                        <span className="text-gray-600 ml-2">→</span>
-                        <span className={`ml-2 ${answer.correct ? "text-green-600" : "text-red-600"}`}>
-                          {answer.userChoice}
-                        </span>
-                      </div>
-                      <div>
-                        {answer.correct ? (
-                          <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Correct</span>
-                        ) : (
-                          <span className="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">
-                            Should be: {answer.correctAnswer}
-                          </span>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <Button onClick={() => startGame(selectedLanguage)} className="justify-center">
-                Play Again
-              </Button>
-              <Button variant="secondary" onClick={() => setGameStarted(false)} className="justify-center">
-                Choose Another Language
-              </Button>
-              <Link href="/assessment">
-                <Button variant="outline" className="justify-center w-full md:w-auto">
-                  Language Assessment
+              <div className="space-y-4">
+                <Button onClick={() => startGame(selectedLanguage)} className="w-full md:w-auto">
+                  Play Again
                 </Button>
-              </Link>
+                <Button variant="outline" onClick={() => setGameStarted(false)} className="w-full md:w-auto ml-4">
+                  Choose Different Language
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Layout>
-  );
+      </Layout>
+    );
+  }
+
+  return null;
 }

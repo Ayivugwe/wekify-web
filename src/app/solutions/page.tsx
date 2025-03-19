@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,14 +16,7 @@ import {
   FileText,
 } from "lucide-react";
 import Layout from "../components/layout";
-import { Metadata } from "next";
 import { Button } from "../components/Button";
-
-export const metadata: Metadata = {
-  title: "Solutions | Wekify",
-  description: "Digital solutions for language preservation and cultural revitalization",
-  keywords: ["language preservation", "digital solutions", "technology", "indigenous languages"],
-};
 
 export default function SolutionsPage() {
   return (

@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+
 import React from "react";
 import {
   ArrowRight,
@@ -12,17 +13,6 @@ import {
 } from "lucide-react";
 import Layout from "../components/layout";
 import { Button } from "../components/Button";
-
-export const metadata: Metadata = {
-  title: "Platform Resources - Wekify",
-  description:
-    "Access comprehensive documentation and resources for building and managing your language preservation platform.",
-  openGraph: {
-    title: "Platform Resources - Wekify",
-    description:
-      "Everything you need to build and manage your language preservation platform.",
-  },
-};
 
 interface ResourceLink {
   icon: React.ReactNode;
