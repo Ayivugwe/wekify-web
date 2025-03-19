@@ -37,26 +37,17 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   // Reuse the same menu structure as Header
-  const footerMenuItems = {
+  const footerLinks = {
     Solutions: [
-      { name: "Digital Content Platform", href: "/solutions/digital-content" },
-      { name: "Integration Services", href: "/solutions/integration-services" },
-      { name: "Custom Solutions", href: "/solutions/custom" },
-      { name: "Language Preservation", href: "/solutions/language-preservation" },
-      { name: "AI & Language Vision", href: "/solutions/ai-vision" },
+      { name: "Language Learning", href: "/solutions#learning" },
+      { name: "Digital Archives", href: "/solutions#archives" },
+      { name: "Community Tools", href: "/solutions#community" },
     ],
-    Resources: [
-      { name: "Case Studies", href: "/case-studies" },
-      { name: "Getting Started", href: "/resources/getting-started" },
-      { name: "Documentation", href: "/resources/documentation" },
-      { name: "Language Game", href: "/language-game" },
-      { name: "Community Forum", href: "/resources/forum" },
-      { name: "Become An Ambassador", href: "/ambassador" },
-    ],
-    "AI & Us": [
-      { name: "Our AI Approach", href: "/ai-and-us" },
-      { name: "Current AI Projects", href: "/ai-and-us#ai-approach" },
-      { name: "AI Commitment", href: "/ai-and-us#ai-approach" },
+    "About Us": [
+      { name: "Overview", href: "/about-us" },
+      { name: "Our Mission", href: "/about-us#mission" },
+      { name: "AI & Us", href: "/about-us#ai-and-us" },
+      { name: "Our Team", href: "/about-us#team" },
     ],
     Atlas: [
       { name: "Languages Directory", href: "/languages" },
@@ -65,12 +56,10 @@ const Footer = () => {
       { name: "Continents", href: "/continents" },
       { name: "Currencies", href: "/currencies" },
     ],
-    "About Us": [
-      { name: "Our Story", href: "/about/our-story" },
-      { name: "Our Mission", href: "/about/mission" },
-      { name: "Overview", href: "/about" },
-      { name: "AI Vision", href: "/about#ai-vision" },
-      { name: "Our Team", href: "/about#team" },
+    Resources: [
+      { name: "Blog", href: "/blog" },
+      { name: "Documentation", href: "/resources" },
+      { name: "Case Studies", href: "/case-studies" },
     ],
   };
 
@@ -122,7 +111,7 @@ const Footer = () => {
           </div>
 
           {/* Menu Sections */}
-          {Object.entries(footerMenuItems).map(([section, items]) => (
+          {Object.entries(footerLinks).map(([section, items]) => (
             <div key={section}>
               <h3 className="text-lg font-semibold mb-4">{section}</h3>
               <ul className="space-y-3">
