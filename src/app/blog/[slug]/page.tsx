@@ -1,6 +1,5 @@
 "use client";
 
-import { Metadata } from "next";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,11 +25,6 @@ interface BlogPostPageProps {
     slug: string;
   };
 }
-
-export const metadata: Metadata = {
-  title: "Blog Post - Wekify",
-  description: "Read our latest insights about language preservation platforms.",
-};
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
   // This would typically come from your CMS or database
@@ -63,7 +57,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     category: "Platform Development",
     date: "March 15, 2024",
     author: "Sarah Chen",
-    slug: "building-scalable-language-platforms",
+    slug: params.slug,
     readingTime: "5 min read",
     tags: ["Platform Development", "Architecture", "Scalability"],
   };

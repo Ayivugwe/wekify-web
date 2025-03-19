@@ -66,9 +66,9 @@ const Footer = () => {
       { name: "Currencies", href: "/currencies" },
     ],
     "About Us": [
-      { name: "Introduction", href: "/about#intro" },
-      { name: "About Us", href: "/about#about" },
-      { name: "Mission & Vision", href: "/about#mission-vision" },
+      { name: "Our Story", href: "/about/our-story" },
+      { name: "Our Mission", href: "/about/mission" },
+      { name: "Overview", href: "/about" },
       { name: "AI Vision", href: "/about#ai-vision" },
       { name: "Our Team", href: "/about#team" },
     ],

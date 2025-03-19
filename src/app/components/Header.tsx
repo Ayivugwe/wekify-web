@@ -200,7 +200,7 @@ const megaMenuItems = {
       description: "Learn about our mission to preserve indigenous languages",
     },
     {
-      name: "About Us",
+      name: "Overview",
       href: "/about",
       icon: "Users",
       description: "Who we are and what we do",
