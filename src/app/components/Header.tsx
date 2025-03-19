@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "../components/Button";
 import {
   Menu,
   X,
@@ -33,12 +32,10 @@ import {
   Users2,
   Database,
   BarChart,
-  LucideIcon,
-  ArrowRight,
 } from "lucide-react";
 
 // Icon mapping for dynamic rendering
-const IconMap: Record<string, LucideIcon> = {
+const IconMap: Record<string, React.ElementType> = {
   Globe,
   Share2,
   Code,
@@ -66,110 +63,118 @@ const IconMap: Record<string, LucideIcon> = {
   BarChart,
 };
 
-type MenuItem = {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-  link: string;
-};
-
-const megaMenuItems: Record<string, MenuItem[]> = {
-  solutions: [
+const megaMenuItems = {
+  Solutions: [
     {
-      title: "Language Learning",
+      name: "Language Learning",
+      href: "/solutions#learning",
+      icon: "BookOpen",
       description: "Interactive platforms for teaching and learning indigenous languages",
-      icon: BookOpen,
-      link: "/solutions#learning",
     },
     {
-      title: "Digital Archives",
+      name: "Digital Archives",
+      href: "/solutions#archives",
+      icon: "Database",
       description: "Secure storage and management of language resources",
-      icon: Database,
-      link: "/solutions#archives",
     },
     {
-      title: "Community Tools",
+      name: "Community Tools",
+      href: "/solutions#community",
+      icon: "Users",
       description: "Tools for community engagement and collaboration",
-      icon: Users,
-      link: "/solutions#community",
+    },
+    {
+      name: "AI & Language Vision",
+      href: "/solutions#ai-vision",
+      icon: "Brain",
+      description: "Our approach to using AI for language revitalization",
     },
   ],
-  about: [
+
+  Resources: [
     {
-      title: "About Us",
-      description: "Learn about our mission and vision for language preservation",
-      icon: Globe,
-      link: "/about-us",
-    },
-    {
-      title: "Our Mission",
-      description: "Understanding our commitment to language preservation",
-      icon: Target,
-      link: "/about-us#mission",
-    },
-    {
-      title: "AI & Us",
-      description: "How we use AI to enhance language preservation",
-      icon: Brain,
-      link: "/about-us#ai-and-us",
-    },
-    {
-      title: "Our Team",
-      description: "Meet the people behind Wekify",
-      icon: Users,
-      link: "/about-us#team",
-    },
-  ],
-  atlas: [
-    {
-      title: "Languages Directory",
-      description: "Browse our comprehensive language directory",
-      icon: Languages,
-      link: "/languages",
-    },
-    {
-      title: "Assessment",
-      description: "Evaluate language resources and needs",
-      icon: CircleCheck,
-      link: "/assessment",
-    },
-    {
-      title: "Countries",
-      description: "Explore languages by country",
-      icon: Globe,
-      link: "/countries",
-    },
-    {
-      title: "Continents",
-      description: "Browse languages by continent",
-      icon: Map,
-      link: "/continents",
-    },
-    {
-      title: "Currencies",
-      description: "Currency information by region",
-      icon: DollarSign,
-      link: "/currencies",
-    },
-  ],
-  resources: [
-    {
-      title: "Blog",
+      name: "Blog",
+      href: "/blog",
+      icon: "BookOpen",
       description: "Insights and updates about language preservation",
-      icon: BookOpen,
-      link: "/blog",
     },
     {
-      title: "Documentation",
-      description: "Guides and resources for language preservation",
-      icon: FileText,
-      link: "/resources",
+      name: "Documentation",
+      href: "/resources",
+      icon: "FileText",
+      description: "Technical documentation and implementation guides",
     },
     {
-      title: "Case Studies",
+      name: "Case Studies",
+      href: "/case-studies",
+      icon: "BarChart",
       description: "Success stories from language communities",
-      icon: BarChart,
-      link: "/case-studies",
+    },
+    {
+      name: "Community Forum",
+      href: "/resources#forum",
+      icon: "Users",
+      description: "Connect with language preservation advocates",
+    },
+  ],
+
+  Atlas: [
+    {
+      name: "Languages Directory",
+      href: "/languages",
+      icon: "Languages",
+      description: "Browse our comprehensive language directory",
+    },
+    {
+      name: "Assessment",
+      href: "/assessment",
+      icon: "CheckCircle",
+      description: "Evaluate language resources and needs",
+    },
+    {
+      name: "Countries",
+      href: "/countries",
+      icon: "Globe",
+      description: "Explore languages by country",
+    },
+    {
+      name: "Continents",
+      href: "/continents",
+      icon: "Map",
+      description: "Browse languages by continent",
+    },
+    {
+      name: "Currencies",
+      href: "/currencies",
+      icon: "Dollar",
+      description: "Currency information by region",
+    },
+  ],
+
+  "About Us": [
+    {
+      name: "About Us",
+      href: "/about-us",
+      icon: "Info",
+      description: "Learn about our mission and values",
+    },
+    {
+      name: "Our Mission",
+      href: "/about-us#mission",
+      icon: "Target",
+      description: "Understanding our commitment to language preservation",
+    },
+    {
+      name: "AI & Us",
+      href: "/ai-and-us",
+      icon: "Brain",
+      description: "How we use AI to enhance language preservation",
+    },
+    {
+      name: "Our Team",
+      href: "/about-us#team",
+      icon: "Users2",
+      description: "Meet the people behind Wekify",
     },
   ],
 };
@@ -182,224 +187,192 @@ const Header = () => {
     setActiveMegaMenu(menuName);
   };
 
+  const handleMegaMenuToggle = (menuName: string) => {
+    setActiveMegaMenu(activeMegaMenu === menuName ? null : menuName);
+  };
+
+  const getIcon = (iconName: string, props: any) => {
+    const Icon = IconMap[iconName] || (() => null);
+    return <Icon {...props} />;
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <nav className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+    <header className="bg-white/80 backdrop-blur-md border-b border-neutral-100 sticky top-0 z-50">
+      <div className="container flex items-center justify-between py-3">
+        <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.png"
-              alt="Wekify"
-              width={32}
-              height={32}
-              className="w-8 h-8"
+              alt="Wekify LLC Logo"
+              width={180}
+              height={56}
+              className="h-12 w-auto"
+              priority
             />
-            <span className="ml-2 text-xl font-bold text-gray-900">Wekify</span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link
+            href="/"
+            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
+          >
+            Home
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {Object.keys(megaMenuItems).map((menuName) => (
             <div
+              key={menuName}
               className="relative"
-              onMouseEnter={() => handleMegaMenuHover("solutions")}
-              onMouseLeave={() => handleMegaMenuHover(null)}
+              onMouseEnter={() => handleMegaMenuHover(menuName)}
             >
-              <Link
-                href="/solutions"
-                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
+              <button
+                className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300"
+                onClick={() => handleMegaMenuToggle(menuName)}
               >
-                Solutions
-              </Link>
-              {activeMegaMenu === "solutions" && (
-                <div className="absolute top-full left-0 w-[400px] bg-white rounded-xl shadow-lg border border-gray-100 p-6 mt-2">
-                  <div className="grid grid-cols-1 gap-4">
-                    {megaMenuItems.solutions.map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.link}
-                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                      >
-                        <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-gray-900">{item.title}</h3>
-                          <p className="text-sm text-gray-600">{item.description}</p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+                {menuName}
+                <ChevronDown
+                  className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === menuName ? "rotate-180" : ""}`}
+                />
+              </button>
 
-            <div
-              className="relative"
-              onMouseEnter={() => handleMegaMenuHover("about")}
-              onMouseLeave={() => handleMegaMenuHover(null)}
-            >
-              <Link
-                href="/about-us"
-                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
-              >
-                About Us
-              </Link>
-              {activeMegaMenu === "about" && (
-                <div className="absolute top-full left-0 w-[400px] bg-white rounded-xl shadow-lg border border-gray-100 p-6 mt-2">
-                  <div className="grid grid-cols-1 gap-4">
-                    {megaMenuItems.about.map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.link}
-                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                      >
-                        <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-gray-900">{item.title}</h3>
-                          <p className="text-sm text-gray-600">{item.description}</p>
-                        </div>
-                      </Link>
-                    ))}
+              {activeMegaMenu === menuName && (
+                <div
+                  className="absolute top-full left-0 mt-2 w-[600px] bg-white rounded-lg shadow-xl p-5 border border-gray-100 animate-fadeIn z-50"
+                  style={{ transform: "translateX(calc(-50% + 50px))" }}
+                  onMouseEnter={() => handleMegaMenuHover(menuName)}
+                  onMouseLeave={() => handleMegaMenuHover(null)}
+                >
+                  <div className="grid grid-cols-2 gap-3">
+                    {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
+                      (item) => {
+                        const Icon = item.icon ? IconMap[item.icon] : null;
+                        return (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="group block p-3 hover:bg-gray-50 rounded-lg text-text-primary hover:text-primary transition-all duration-300"
+                          >
+                            <div className="flex items-start">
+                              {Icon && (
+                                <div className="icon-container mr-3 mt-1 p-2 bg-gray-50 rounded-lg group-hover:bg-primary/10 transition-all duration-300">
+                                  <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110 group-hover:rotate-6" />
+                                </div>
+                              )}
+                              <div>
+                                <div className="font-medium group-hover:translate-x-1 transition-transform duration-300">
+                                  {item.name}
+                                </div>
+                                {item.description && (
+                                  <div className="text-xs text-gray-500 mt-1 pr-4 group-hover:text-primary/70 transition-colors duration-300">
+                                    {item.description}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      },
+                    )}
                   </div>
                 </div>
               )}
             </div>
+          ))}
 
-            <div
-              className="relative"
-              onMouseEnter={() => handleMegaMenuHover("atlas")}
-              onMouseLeave={() => handleMegaMenuHover(null)}
-            >
-              <Link
-                href="/languages"
-                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
-              >
-                Atlas
-              </Link>
-              {activeMegaMenu === "atlas" && (
-                <div className="absolute top-full left-0 w-[400px] bg-white rounded-xl shadow-lg border border-gray-100 p-6 mt-2">
-                  <div className="grid grid-cols-1 gap-4">
-                    {megaMenuItems.atlas.map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.link}
-                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                      >
-                        <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-gray-900">{item.title}</h3>
-                          <p className="text-sm text-gray-600">{item.description}</p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+          <Link
+            href="/contact"
+            className="px-6 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
+          >
+            Contact Us
+          </Link>
+        </nav>
 
-            <div
-              className="relative"
-              onMouseEnter={() => handleMegaMenuHover("resources")}
-              onMouseLeave={() => handleMegaMenuHover(null)}
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          className="md:hidden text-text-primary"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? (
+            <X className="h-6 w-6" aria-hidden="true" />
+          ) : (
+            <Menu className="h-6 w-6" aria-hidden="true" />
+          )}
+        </button>
+      </div>
+
+      {/* Mobile Navigation */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200">
+          <div className="container py-4 space-y-4">
+            <Link
+              href="/"
+              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              <Link
-                href="/resources"
-                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
-              >
-                Resources
-              </Link>
-              {activeMegaMenu === "resources" && (
-                <div className="absolute top-full left-0 w-[400px] bg-white rounded-xl shadow-lg border border-gray-100 p-6 mt-2">
-                  <div className="grid grid-cols-1 gap-4">
-                    {megaMenuItems.resources.map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.link}
-                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                      >
-                        <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-gray-900">{item.title}</h3>
-                          <p className="text-sm text-gray-600">{item.description}</p>
-                        </div>
-                      </Link>
-                    ))}
+              Home
+            </Link>
+
+            {Object.keys(megaMenuItems).map((menuName) => (
+              <div key={menuName} className="space-y-2">
+                <button
+                  onClick={() => handleMegaMenuToggle(menuName)}
+                  className="flex items-center justify-between w-full text-text-primary hover:text-primary font-medium transition-colors duration-300"
+                >
+                  {menuName}
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${activeMegaMenu === menuName ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                {activeMegaMenu === menuName && (
+                  <div className="pl-4 space-y-3 mt-2 border-l-2 border-gray-100">
+                    {megaMenuItems[menuName as keyof typeof megaMenuItems].map(
+                      (item) => {
+                        const Icon = item.icon ? IconMap[item.icon] : null;
+                        return (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="group block py-2 text-text-primary hover:text-primary transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <div className="flex items-start">
+                              {Icon && (
+                                <div className="icon-container mr-3">
+                                  <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110" />
+                                </div>
+                              )}
+                              <div>
+                                <div className="font-medium">{item.name}</div>
+                                {item.description && (
+                                  <div className="text-xs text-gray-500 mt-1 pr-4">
+                                    {item.description}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      },
+                    )}
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            ))}
 
             <Link
               href="/contact"
-              className="group relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-white bg-primary-600 rounded-full hover:bg-primary-700 transition-all duration-300 overflow-hidden"
+              className="block text-center px-6 py-3 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors shadow-md"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="relative z-10 flex items-center">
-                Contact Us
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              Contact Us
             </Link>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <Menu className="h-6 w-6 text-gray-600" />
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden py-4">
-            <div className="space-y-4">
-              <Link
-                href="/solutions"
-                className="block text-gray-600 hover:text-primary-600 font-medium transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Solutions
-              </Link>
-              <Link
-                href="/about-us"
-                className="block text-gray-600 hover:text-primary-600 font-medium transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About Us
-              </Link>
-              <Link
-                href="/languages"
-                className="block text-gray-600 hover:text-primary-600 font-medium transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Atlas
-              </Link>
-              <Link
-                href="/resources"
-                className="block text-gray-600 hover:text-primary-600 font-medium transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Resources
-              </Link>
-              <Link
-                href="/contact"
-                className="block text-center px-6 py-3 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        )}
-      </nav>
+      )}
     </header>
   );
 };
