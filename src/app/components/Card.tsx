@@ -18,7 +18,7 @@ export const Card = ({
   ...props
 }: CardProps) => {
   // Base card styles
-  const baseStyles = "rounded-lg transition-colors duration-200 overflow-hidden";
+  const baseStyles = "rounded-xl transition-colors duration-200 overflow-hidden";
   
   // Variant styles
   const variantStyles = {
@@ -83,7 +83,7 @@ export const CardTitle = ({
   return (
     <Component 
       className={cn(
-        "text-xl font-semibold text-neutral-800",
+        "text-xl font-semibold text-neutral-900",
         className
       )}
     >
