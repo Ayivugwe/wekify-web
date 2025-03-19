@@ -11,6 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import Layout from "../components/layout";
+import { Button } from "../components/Button";
 
 export const metadata: Metadata = {
   title: "Platform Resources - Wekify",
@@ -123,22 +124,22 @@ const ResourcesPage: React.FC = () => {
   const renderQuickLink = (resource: ResourceLink, index: number) => (
     <div
       key={index}
-      className="p-8 bg-white rounded-lg border border-gray-100 hover:border-blue-200 transition-colors"
+      className="p-8 bg-white rounded-xl border border-primary-100 hover:border-primary-200 transition-colors"
     >
-      <div className="mb-6 p-3 bg-blue-50 rounded-lg w-fit">
+      <div className="mb-6 p-3 bg-primary-50 rounded-lg w-fit">
         {resource.icon}
       </div>
-      <h3 className="text-xl font-semibold mb-3 text-gray-900">
+      <h3 className="text-xl font-semibold mb-3 text-primary-800">
         {resource.title}
       </h3>
-      <p className="text-gray-600 mb-6">{resource.description}</p>
+      <p className="text-primary-700/70 mb-6">{resource.description}</p>
       <a
         href={resource.link}
         target={resource.link.startsWith("http") ? "_blank" : undefined}
         rel={
           resource.link.startsWith("http") ? "noopener noreferrer" : undefined
         }
-        className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 
+        className="inline-flex items-center gap-2 text-primary-600 font-medium hover:text-primary-700 
           transition-colors"
       >
         {resource.linkText}
@@ -153,25 +154,25 @@ const ResourcesPage: React.FC = () => {
   ) => (
     <div
       key={index}
-      className="group p-6 bg-white rounded-lg border border-gray-100 hover:border-blue-200 
+      className="group p-6 bg-white rounded-xl border border-primary-100 hover:border-primary-200 
         transition-colors"
     >
       <div
-        className="mb-4 p-2 bg-blue-50 rounded-lg w-fit group-hover:bg-blue-100 
+        className="mb-4 p-2 bg-primary-50 rounded-lg w-fit group-hover:bg-primary-100 
         transition-colors"
       >
         {category.icon}
       </div>
-      <h3 className="text-xl font-semibold mb-4 text-gray-900">
+      <h3 className="text-xl font-semibold mb-4 text-primary-800">
         {category.title}
       </h3>
       <ul className="space-y-2">
         {category.items.map((item, idx) => (
-          <li key={idx} className="flex items-center text-gray-600 gap-2">
-            <ArrowRight className="w-4 h-4 text-blue-600" />
+          <li key={idx} className="flex items-center text-primary-700/70 gap-2">
+            <ArrowRight className="w-4 h-4 text-primary-600" />
             <a
               href={item.href}
-              className="hover:text-blue-600 transition-colors"
+              className="hover:text-primary-600 transition-colors"
             >
               {item.title}
             </a>
@@ -182,33 +183,30 @@ const ResourcesPage: React.FC = () => {
   );
 
   const renderSupportLink = (link: SupportLink) => (
-    <a
+    <Button
       key={link.title}
-      href={link.href}
-      className={`px-8 py-4 rounded-lg font-medium transition-colors 
-        inline-flex items-center justify-center gap-2 
-        ${
-          link.style === "primary"
-            ? "bg-white text-blue-600 hover:bg-blue-50"
-            : "bg-white/10 text-white hover:bg-white/20"
-        }`}
+      size="lg"
+      variant={link.style === "primary" ? "default" : "outline"}
+      asChild
     >
-      {link.title}
-      {link.icon}
-    </a>
+      <a href={link.href}>
+        {link.title}
+        {link.icon}
+      </a>
+    </Button>
   );
 
   return (
     <Layout>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white">
         {/* Hero Section */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
+        <section className="pt-32 pb-16">
           <div className="max-w-6xl mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary-800">
                 Platform Resources
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl text-primary-700/70 leading-relaxed">
                 Comprehensive documentation and resources for building and managing your language preservation platform
               </p>
             </div>
@@ -216,7 +214,7 @@ const ResourcesPage: React.FC = () => {
         </section>
 
         {/* Quick Links */}
-        <section className="py-20">
+        <section className="py-32">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {quickLinks.map((resource, index) =>
@@ -227,9 +225,9 @@ const ResourcesPage: React.FC = () => {
         </section>
 
         {/* Resources Grid */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-32 bg-gradient-to-b from-white to-primary-50">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+            <h2 className="text-3xl font-bold text-center mb-16 text-primary-800">
               Documentation Library
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -241,15 +239,15 @@ const ResourcesPage: React.FC = () => {
         </section>
 
         {/* Help & Support */}
-        <section className="py-20">
+        <section className="py-32">
           <div className="max-w-4xl mx-auto px-4">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-12 text-center text-white">
+            <div className="bg-primary-900 rounded-xl p-12 text-center text-white">
               <h2 className="text-3xl font-bold mb-6">Need Platform Support?</h2>
               <p className="text-xl mb-8 opacity-90">
                 Our team is here to help you build and manage your language preservation platform
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                {supportLinks.map(renderSupportLink)}
+              <div className="flex flex-wrap justify-center gap-4">
+                {supportLinks.map((link) => renderSupportLink(link))}
               </div>
             </div>
           </div>
@@ -257,6 +255,6 @@ const ResourcesPage: React.FC = () => {
       </div>
     </Layout>
   );
-}
+};
 
 export default ResourcesPage;
