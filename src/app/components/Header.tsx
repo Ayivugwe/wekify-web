@@ -27,6 +27,9 @@ import {
   CircleCheck,
   DollarSign,
   Languages,
+  Info,
+  Target,
+  Users2,
 } from "lucide-react";
 
 // Icon mapping for dynamic rendering
@@ -51,6 +54,9 @@ const IconMap: Record<string, React.ElementType> = {
   CheckCircle: CircleCheck,
   Dollar: DollarSign,
   Languages,
+  Info,
+  Target,
+  Users2,
 };
 
 const megaMenuItems = {
@@ -180,24 +186,36 @@ const megaMenuItems = {
       description: "Currency information by region",
     },
   ],
-  About: [
+  "About Us": [
     {
-      name: "Our Story",
-      href: "/about/our-story",
-      icon: "Book",
-      description: "Learn about our mission and journey",
+      name: "Introduction",
+      href: "/about#intro",
+      icon: "Info",
+      description: "Learn about our mission and values",
     },
     {
-      name: "Vision",
-      href: "/about/vision",
-      icon: "Heart",
-      description: "Our future plans for language preservation",
+      name: "About Us",
+      href: "/about#about",
+      icon: "Users",
+      description: "Who we are and what we do",
     },
     {
-      name: "Our Policies",
-      href: "/about/our-policies",
-      icon: "Shield",
-      description: "Learn about our guiding principles and vision",
+      name: "Mission & Vision",
+      href: "/about#mission-vision",
+      icon: "Target",
+      description: "Our goals and aspirations",
+    },
+    {
+      name: "AI Vision",
+      href: "/about#ai-vision",
+      icon: "Sparkles",
+      description: "How we use AI for language preservation",
+    },
+    {
+      name: "Our Team",
+      href: "/about#team",
+      icon: "Users2",
+      description: "Meet the people behind our mission",
     },
   ],
 };
@@ -405,49 +423,6 @@ const Header = () => {
             >
               Blog
             </Link>
-            <div className="relative group">
-              <button
-                className="flex items-center text-gray-700 hover:text-primary transition-colors font-medium w-full py-2"
-                onClick={() => handleMegaMenuToggle("Languages")}
-              >
-                Languages
-                <ChevronDown
-                  className={`ml-1 h-4 w-4 transition-transform ${activeMegaMenu === "Languages" ? "rotate-180" : ""}`}
-                />
-              </button>
-              {activeMegaMenu === "Languages" && (
-                <div className="pl-4 space-y-3 mt-2 border-l-2 border-gray-100">
-                  {megaMenuItems.Languages.map((item) => {
-                    const Icon = item.icon ? IconMap[item.icon] : null;
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="group block py-2 text-text-primary hover:text-primary transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <div className="flex items-start">
-                          {Icon && (
-                            <div className="icon-container mr-3">
-                              <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110" />
-                            </div>
-                          )}
-                          <div>
-                            <div className="font-medium">{item.name}</div>
-                            {item.description && (
-                              <div className="text-xs text-gray-500 mt-1 pr-4">
-                                {item.description}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
             <Link
               href="/ai-and-us"
               className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
@@ -460,7 +435,7 @@ const Header = () => {
               className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About
+              About Us
             </Link>
             <Link
               href="/contact"
