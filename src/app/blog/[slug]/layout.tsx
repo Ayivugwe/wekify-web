@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   description: "Read our latest insights about language preservation platforms.",
 };
 
-export default function BlogPostLayout() {
-  return <BlogPostPage />;
+export default function BlogPostLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { slug: string };
+}) {
+  return <BlogPostPage params={params} />;
 } 

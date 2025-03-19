@@ -4,10 +4,21 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+type BubbleLanguages = {
+  topLeft: string;
+  topRight: string;
+  middleRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+  middleLeft: string;
+  topMiddle: string;
+  bottomMiddle: string;
+};
+
 const HeroSection = () => {
   const [rotation, setRotation] = useState(0);
   const [activeLanguage, setActiveLanguage] = useState("Kifuliiru");
-  const [bubbleLanguages, setBubbleLanguages] = useState({
+  const [bubbleLanguages, setBubbleLanguages] = useState<BubbleLanguages>({
     topLeft: "",
     topRight: "",
     middleRight: "",
@@ -49,9 +60,18 @@ const HeroSection = () => {
   ];
 
   // Function to get random languages for bubbles
-  const getRandomLanguages = () => {
+  const getRandomLanguages = (): BubbleLanguages => {
     const selectedLanguages = [...languages];
-    const result = {};
+    const result: BubbleLanguages = {
+      topLeft: "",
+      topRight: "",
+      middleRight: "",
+      bottomRight: "",
+      bottomLeft: "",
+      middleLeft: "",
+      topMiddle: "",
+      bottomMiddle: "",
+    };
 
     // Remove the currently active language
     const activeIndex = selectedLanguages.indexOf(activeLanguage);
@@ -60,7 +80,7 @@ const HeroSection = () => {
     }
 
     // Randomly assign languages to each position
-    const positions = [
+    const positions: (keyof BubbleLanguages)[] = [
       "topLeft",
       "topRight",
       "middleRight",
@@ -73,7 +93,6 @@ const HeroSection = () => {
 
     positions.forEach((position) => {
       if (selectedLanguages.length === 0) return;
-
       const randomIndex = Math.floor(Math.random() * selectedLanguages.length);
       result[position] = selectedLanguages[randomIndex];
       selectedLanguages.splice(randomIndex, 1);
@@ -84,10 +103,10 @@ const HeroSection = () => {
 
   // Rotate the globe effect with smoother animation using requestAnimationFrame
   useEffect(() => {
-    let animationFrameId;
-    let startTime;
+    let animationFrameId: number;
+    let startTime: number;
 
-    const animate = (timestamp) => {
+    const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const elapsed = timestamp - startTime;
 
@@ -124,7 +143,7 @@ const HeroSection = () => {
 
     // Sequential update for bubble languages with much longer delays
     let currentPosition = 0;
-    const positions = [
+    const positions: (keyof BubbleLanguages)[] = [
       "topLeft",
       "topRight",
       "middleRight",
@@ -136,7 +155,7 @@ const HeroSection = () => {
     ];
 
     const updateInterval = setInterval(() => {
-      const position = positions[currentPosition];
+      const position = positions[currentPosition] as keyof BubbleLanguages;
 
       // Get new languages but only update the current position
       const newLanguages = getRandomLanguages();
