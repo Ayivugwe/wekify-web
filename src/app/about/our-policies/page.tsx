@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Lightbulb, Globe, Heart, Shield } from "lucide-react";
+import { Lightbulb, Globe, Heart, Shield } from "lucide-react";
 import Layout from "../../components/layout";
 
 export default function OurPoliciesPage() {
@@ -16,7 +15,8 @@ export default function OurPoliciesPage() {
               Our Policies
             </h1>
             <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              Our guiding principles, what we're working on, and our vision for the future of language preservation.
+              Our guiding principles, what we're working on, and our vision for
+              the future of language preservation.
             </p>
           </div>
         </section>
@@ -34,24 +34,46 @@ export default function OurPoliciesPage() {
                 </h2>
               </div>
               <p className="text-lg text-gray-700 mb-8">
-                We are developing cutting-edge technologies designed to help languages prevail and not disappear. Our focus is on creating accessible digital tools that empower communities to document, teach, and preserve their linguistic heritage for future generations.
+                We are developing cutting-edge technologies designed to help
+                languages prevail and not disappear. Our focus is on creating
+                accessible digital tools that empower communities to document,
+                teach, and preserve their linguistic heritage for future
+                generations.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
                 <div className="bg-blue-50 p-6 rounded-xl">
-                  <h3 className="text-xl font-semibold mb-4">Digital Documentation</h3>
-                  <p>Creating comprehensive digital dictionaries, grammar resources, and cultural archives.</p>
+                  <h3 className="text-xl font-semibold mb-4">
+                    Digital Documentation
+                  </h3>
+                  <p>
+                    Creating comprehensive digital dictionaries, grammar
+                    resources, and cultural archives.
+                  </p>
                 </div>
                 <div className="bg-blue-50 p-6 rounded-xl">
-                  <h3 className="text-xl font-semibold mb-4">Learning Platforms</h3>
-                  <p>Developing interactive language learning tools that make learning engaging and accessible.</p>
+                  <h3 className="text-xl font-semibold mb-4">
+                    Learning Platforms
+                  </h3>
+                  <p>
+                    Developing interactive language learning tools that make
+                    learning engaging and accessible.
+                  </p>
                 </div>
                 <div className="bg-blue-50 p-6 rounded-xl">
                   <h3 className="text-xl font-semibold mb-4">AI Translation</h3>
-                  <p>Implementing AI-powered translation tools to bridge communication gaps.</p>
+                  <p>
+                    Implementing AI-powered translation tools to bridge
+                    communication gaps.
+                  </p>
                 </div>
                 <div className="bg-blue-50 p-6 rounded-xl">
-                  <h3 className="text-xl font-semibold mb-4">Community Support</h3>
-                  <p>Creating platforms for language communities to connect, share resources, and collaborate.</p>
+                  <h3 className="text-xl font-semibold mb-4">
+                    Community Support
+                  </h3>
+                  <p>
+                    Creating platforms for language communities to connect,
+                    share resources, and collaborate.
+                  </p>
                 </div>
               </div>
             </div>
@@ -61,7 +83,9 @@ export default function OurPoliciesPage() {
         {/* What We Believe */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">What We Believe</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">
+              What We Believe
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
@@ -88,13 +112,13 @@ export default function OurPoliciesPage() {
                   className="p-6 bg-white rounded-xl border border-gray-200 hover:border-blue-200 
                   transition-all duration-300 hover:shadow-lg"
                 >
-                  <div className="flex justify-center mb-4">
-                    {belief.icon}
-                  </div>
+                  <div className="flex justify-center mb-4">{belief.icon}</div>
                   <h3 className="text-xl font-semibold mb-4 text-center text-gray-900">
                     {belief.title}
                   </h3>
-                  <p className="text-gray-600 text-center">{belief.description}</p>
+                  <p className="text-gray-600 text-center">
+                    {belief.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -102,28 +126,53 @@ export default function OurPoliciesPage() {
         </section>
 
         {/* Our Future */}
-        <section className="py-20 bg-gradient-to-r from-primary to-accent text-gray-900"> {/* Changed text color here */}
+        <section className="py-20 bg-gradient-to-r from-primary to-accent text-gray-900">
+          {" "}
+          {/* Changed text color here */}
           <div className="max-w-5xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-8">Our Future Vision</h2>
             <p className="text-xl mb-12 opacity-90 max-w-3xl mx-auto">
-              We believe that the future is bright. With continued collaboration, innovation, and community engagement, we envision a world where every language has the digital resources it needs to thrive.
+              We believe that the future is bright. With continued
+              collaboration, innovation, and community engagement, we envision a
+              world where every language has the digital resources it needs to
+              thrive.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Global Language Network</h3>
-                <p className="text-gray-900/80">Building an interconnected network of language communities, technologists, and advocates working together.</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                  Global Language Network
+                </h3>
+                <p className="text-gray-900/80">
+                  Building an interconnected network of language communities,
+                  technologists, and advocates working together.
+                </p>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Advanced AI Solutions</h3>
-                <p className="text-gray-900/80">Developing next-generation AI tools specifically designed for low-resource languages.</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                  Advanced AI Solutions
+                </h3>
+                <p className="text-gray-900/80">
+                  Developing next-generation AI tools specifically designed for
+                  low-resource languages.
+                </p>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Educational Integration</h3>
-                <p className="text-gray-900/80">Working with schools and educational institutions to integrate indigenous language learning.</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                  Educational Integration
+                </h3>
+                <p className="text-gray-900/80">
+                  Working with schools and educational institutions to integrate
+                  indigenous language learning.
+                </p>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Cultural Preservation</h3>
-                <p className="text-gray-900/80">Expanding beyond language to document and preserve cultural practices, stories, and traditions.</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                  Cultural Preservation
+                </h3>
+                <p className="text-gray-900/80">
+                  Expanding beyond language to document and preserve cultural
+                  practices, stories, and traditions.
+                </p>
               </div>
             </div>
           </div>
@@ -134,17 +183,19 @@ export default function OurPoliciesPage() {
           <div className="max-w-5xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">Join Our Mission</h2>
             <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
-              Whether you're a language speaker, a technologist, or simply passionate about preserving cultural heritage, there are many ways to get involved.
+              Whether you're a language speaker, a technologist, or simply
+              passionate about preserving cultural heritage, there are many ways
+              to get involved.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="inline-block bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors"
               >
                 Contact Us
               </Link>
-              <Link 
-                href="/about/team" 
+              <Link
+                href="/about/team"
                 className="inline-block bg-gray-100 text-gray-800 px-8 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
               >
                 Meet Our Team
