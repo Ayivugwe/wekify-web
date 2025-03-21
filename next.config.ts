@@ -19,6 +19,11 @@ const nextConfig = {
         destination: '/about',
         permanent: true,
       },
+      {
+        source: '/about-us/:path*',
+        destination: '/about/:path*',
+        permanent: true,
+      }
     ];
   },
 };
