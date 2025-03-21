@@ -482,7 +482,31 @@ export default function HomePage() {
         <FeaturesShowcase />
 
         {/* FAQ Section */}
-        <FAQSection faqs={faqData} />
+        <section className="py-32 bg-gradient-to-b from-primary-50/30 to-white">
+          <div className="container mx-auto px-4">
+            <FadeIn className="max-w-7xl mx-auto">
+              <div className="text-center mb-20">
+                <h2 className="text-3xl md:text-4xl font-bold text-primary-800 mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-xl text-primary-700/70 max-w-3xl mx-auto">
+                  Find answers to common questions about our platform and services
+                </p>
+              </div>
+              <FAQSection faqs={faqData} />
+              <div className="text-center mt-12">
+                <p className="text-gray-600 mb-6">
+                  Still have questions? Check out our comprehensive FAQ page
+                </p>
+                <Button size="lg" variant="outline" asChild>
+                  <Link href="/faq">
+                    View All FAQs <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
 
         {/* CTA Section */}
         <section className="py-32 bg-primary-900 text-white">

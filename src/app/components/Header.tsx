@@ -186,7 +186,7 @@ const megaMenuItems = {
       name: "Locations",
       href: "/about/locations",
       icon: "Map",
-      description: "Our presence in Congo Kinshasa",
+      description: "Our presence in the world",
     },
     {
       name: "Contact",
@@ -213,6 +213,14 @@ const Header = () => {
     const Icon = IconMap[iconName] || (() => null);
     return <Icon {...props} />;
   };
+
+  const navigation = [
+    { name: "About", href: "/about" },
+    { name: "Features", href: "/features" },
+    { name: "Blog", href: "/blog" },
+    { name: "FAQ", href: "/faq" },
+    { name: "Contact", href: "/contact" },
+  ];
 
   return (
     <header className="bg-white/80 backdrop-blur-md border-b border-neutral-100 sticky top-0 z-50">
