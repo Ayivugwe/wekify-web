@@ -16,7 +16,8 @@ import {
   Lightbulb,
   Rocket,
   MapPin,
-  Home
+  Home,
+  User
 } from "lucide-react";
 
 const timelineItems: TimelineItem[] = [
@@ -81,6 +82,12 @@ export default function OurStoryPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn className="text-left">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
+                  <User className="h-5 w-5" />
+                </div>
+                <span className="text-primary-600 font-medium">Founded by Ayivugwe Kabemba</span>
+              </div>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                 Our <span className="text-primary-600">Story</span>
               </h1>
@@ -112,10 +119,10 @@ export default function OurStoryPage() {
           <div className="max-w-3xl mx-auto">
             <FadeIn className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                The Founder's Journey
+                Meet Ayivugwe Kabemba
               </h2>
               <p className="text-lg text-gray-600">
-                A story of resilience, determination, and the power of technology to preserve heritage
+                Founder of Wekify LLC - A story of resilience, determination, and the power of technology to preserve heritage
               </p>
             </FadeIn>
             <div className="space-y-8">
