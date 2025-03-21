@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import AboutPage from "./page";
 
 export const metadata: Metadata = {
   title: "About Us | Wekify",
@@ -13,6 +12,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutLayout() {
-  return <AboutPage />;
+export default function AboutLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return children;
 } 
