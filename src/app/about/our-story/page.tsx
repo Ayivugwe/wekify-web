@@ -1,39 +1,70 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Layout from "@/app/components/layout";
 import { FadeIn } from "@/app/components/FadeIn";
 import { Timeline, TimelineItem } from "@/app/components/Timeline";
-import { BookOpen, Code, Globe, Heart, Lightbulb, Users } from "lucide-react";
+import { 
+  GraduationCap, 
+  Code, 
+  Building2, 
+  Heart, 
+  Globe, 
+  Users,
+  BookOpen,
+  Lightbulb,
+  Rocket
+} from "lucide-react";
 
 const timelineItems: TimelineItem[] = [
   {
-    year: "2022",
-    title: "The Beginning",
-    description: "Wekify LLC was founded with a vision to bridge technology and cultural preservation.",
-    icon: <Lightbulb className="w-6 h-6" />,
-    details: "Our journey began with a simple yet powerful idea: to create digital solutions that would help preserve and promote indigenous languages and cultures. Founded by Ayivugwe Kabemba, Wekify LLC emerged from a deep understanding of the urgent need to protect linguistic diversity in our increasingly digital world."
+    year: "2014",
+    title: "The First Vision",
+    description: "Started with ARCIN project at Ngozi University, laying the foundation for future ideas.",
+    icon: <GraduationCap className="w-6 h-6" />,
+    details: "Created the initial vision document while studying at Ngozi University in Burundi. This project, called Agence pour le Renforcement des Connaissances Intellectuelles et Naturelles (ARCIN), planted the seeds for future developments.",
+    phase: "education"
   },
   {
-    year: "2023",
-    title: "Building the Foundation",
-    description: "Development of core technology and establishment of community partnerships.",
+    year: "2015",
+    title: "Technical Journey Begins",
+    description: "First laptop and initial technical projects at university.",
     icon: <Code className="w-6 h-6" />,
-    details: "Throughout 2023, we focused on developing our core technology platform while building strong relationships with indigenous communities. We began creating tools that would make it easier for communities to digitize and preserve their languages, starting with innovative solutions for language documentation and learning."
+    details: "Received first laptop from twin brother. Worked on BujaSAT project, a mobile app for Bujumbura city guide, while facing technical challenges and learning mobile development from scratch.",
+    phase: "technical"
   },
   {
-    year: "2024",
-    title: "Global Impact",
-    description: "Expanding our reach and launching new initiatives for language preservation.",
-    icon: <Globe className="w-6 h-6" />,
-    details: "In 2024, we're expanding our impact globally, working with more communities and launching new initiatives. Our focus is on creating sustainable solutions that empower communities to preserve their linguistic heritage while embracing modern technology."
+    year: "2017",
+    title: "Professional Growth",
+    description: "Started software development career and completed university.",
+    icon: <Building2 className="w-6 h-6" />,
+    details: "Secured first software development job and successfully presented the BujaSAT project, marking the beginning of professional growth.",
+    phase: "professional"
   },
   {
-    year: "Future",
-    title: "Vision Ahead",
-    description: "Continuing our mission to preserve and promote linguistic diversity worldwide.",
+    year: "2018-2019",
+    title: "Memory Preservation",
+    description: "Started Nikumbuke Weka Kumbukumbu project.",
     icon: <Heart className="w-6 h-6" />,
-    details: "Looking ahead, we remain committed to our mission of preserving linguistic diversity. We envision a future where every language has a digital presence, where communities can easily create and share resources in their native languages, and where technology serves as a bridge between tradition and innovation."
+    details: "Inspired by personal loss, created Nikumbuke Weka Kumbukumbu (Remember Keep Records) project, later renamed to Weka Gasorwe, focusing on preserving memories of the refugee camp community.",
+    phase: "community"
+  },
+  {
+    year: "2020",
+    title: "Language Preservation Vision",
+    description: "Birth of the Kifuliiru language preservation initiative.",
+    icon: <Globe className="w-6 h-6" />,
+    details: "Discovered the absence of Ibufuliiru information online, leading to the creation of Ibufuliiru website and the broader vision of language preservation.",
+    phase: "language"
+  },
+  {
+    year: "2025",
+    title: "Wekify LLC",
+    description: "Establishment of Wekify LLC in the United States.",
+    icon: <Rocket className="w-6 h-6" />,
+    details: "Founded Wekify LLC, combining the Swahili word 'Weka' (to keep) with '-ify' suffix, representing our commitment to preserving linguistic and cultural heritage.",
+    phase: "company"
   }
 ];
 
@@ -45,34 +76,93 @@ export default function OurStoryPage() {
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
         </div>
-        <FadeIn className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Our <span className="text-primary-600">Story</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-10">
-              From a vision of preserving linguistic diversity to creating innovative digital solutions,
-              discover the journey that shaped Wekify LLC and our commitment to empowering communities
-              through technology.
-            </p>
-            <div className="flex justify-center">
-              <div className="w-24 h-1 bg-primary-600 rounded-full"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <FadeIn className="text-left">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                Our <span className="text-primary-600">Story</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                From a vision at university to a global mission of language preservation.
+                Discover the journey that shaped Wekify LLC.
+              </p>
+              <div className="flex items-center space-x-4">
+                <div className="w-24 h-1 bg-primary-600 rounded-full"></div>
+                <span className="text-gray-500">Est. 2025</span>
+              </div>
+            </FadeIn>
+            <FadeIn className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/images/office-workspace.jpg"
+                alt="Modern office workspace"
+                fill
+                className="object-cover"
+                priority
+              />
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Introduction Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <FadeIn className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Our Journey
+              </h2>
+              <p className="text-lg text-gray-600">
+                From a university project to a global mission, our story is one of passion, innovation, and commitment to preserving linguistic heritage.
+              </p>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <FadeIn className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="p-3 rounded-lg bg-primary-50 text-primary-600 w-fit mb-4">
+                  <GraduationCap className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  The Beginning
+                </h3>
+                <p className="text-gray-600">
+                  Our journey started at Ngozi University with the ARCIN project, where we first envisioned the potential of technology in preserving cultural knowledge.
+                </p>
+              </FadeIn>
+              <FadeIn className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="p-3 rounded-lg bg-primary-50 text-primary-600 w-fit mb-4">
+                  <Globe className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  The Vision
+                </h3>
+                <p className="text-gray-600">
+                  Today, we're working with the Bafuliiru Community to preserve the Kifuliiru language, combining traditional knowledge with modern technology.
+                </p>
+              </FadeIn>
             </div>
           </div>
-        </FadeIn>
+        </div>
       </section>
 
       {/* Timeline Section */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <FadeIn className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Our Timeline
+              </h2>
+              <p className="text-lg text-gray-600">
+                A journey of growth, innovation, and commitment to language preservation
+              </p>
+            </div>
             <Timeline items={timelineItems} />
           </FadeIn>
         </div>
       </section>
 
       {/* Mission Statement */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <FadeIn className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">
