@@ -121,6 +121,7 @@ export default function OurStoryPage() {
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 The Founder's Journey: Meet Ayivugwe Kabemba
               </h2>
+
               <p className="text-lg text-gray-600">
                 Founder of Wekify LLC - A story of resilience, determination, and the power of technology to preserve heritage
               </p>
@@ -132,7 +133,7 @@ export default function OurStoryPage() {
                     <MapPin className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900">From Congo to Burundi</h3>
+                    <h3 className="text-xl font-semibold text-gray-900">From Congo-Kinshasa to Burundi</h3>
                     <p className="text-sm text-gray-500">A Journey of Hope</p>
                   </div>
                 </div>
