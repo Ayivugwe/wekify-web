@@ -119,7 +119,7 @@ export default function OurStoryPage() {
           <div className="max-w-3xl mx-auto">
             <FadeIn className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Meet Ayivugwe Kabemba
+                The Founder's Journey: Meet Ayivugwe Kabemba
               </h2>
               <p className="text-lg text-gray-600">
                 Founder of Wekify LLC - A story of resilience, determination, and the power of technology to preserve heritage
