@@ -159,6 +159,12 @@ const megaMenuItems = {
       description: "Learn about Wekify LLC and our journey",
     },
     {
+      name: "Our Story",
+      href: "/about/our-story",
+      icon: "BookOpen",
+      description: "The journey from vision to reality - how Wekify LLC was born",
+    },
+    {
       name: "Our Mission",
       href: "/about/mission",
       icon: "Target",

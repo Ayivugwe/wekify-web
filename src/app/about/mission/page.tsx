@@ -3,112 +3,115 @@
 import React from "react";
 import Layout from "@/app/components/layout";
 import { FadeIn } from "@/app/components/FadeIn";
-import { Globe, BookOpen, Users, Target, Heart, Brain } from "lucide-react";
+import { Globe, BookOpen, Users, Brain, Target } from "lucide-react";
+import { Accordion } from "@/app/components/Accordion";
+
+const missionFAQs = [
+  {
+    title: "What is Wekify LLC's mission?",
+    content: "Our mission is to empower the Bafuliiru community to preserve and revitalize the Kifuliiru language through innovative digital solutions, making language resources accessible while respecting cultural sovereignty.",
+    icon: <Target className="h-5 w-5" />
+  },
+  {
+    title: "How do we approach language preservation?",
+    content: "We combine community engagement with digital innovation, working closely with the Bafuliiru community to develop tools that meet their specific needs while preserving cultural authenticity.",
+    icon: <BookOpen className="h-5 w-5" />
+  },
+  {
+    title: "What makes our approach unique?",
+    content: "Our community-first approach ensures that the Bafuliiru community maintains full control over their language resources while leveraging technology to make preservation more effective.",
+    icon: <Users className="h-5 w-5" />
+  }
+];
 
 export default function MissionPage() {
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white pt-32">
-        <div className="max-w-4xl mx-auto px-4">
-          <FadeIn className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Mission
+      {/* Hero Section */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-b from-primary-50 to-white">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
+        </div>
+        <FadeIn className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              Our <span className="text-primary-600">Mission</span>
             </h1>
-            <p className="text-xl text-gray-600">
-              Empowering the Bafuliiru community to preserve and revitalize the Kifuliiru language through innovative digital solutions.
+            <p className="text-xl text-gray-600 mb-10">
+              To empower the Bafuliiru community to preserve and revitalize the Kifuliiru language through innovative digital solutions.
             </p>
-          </FadeIn>
+          </div>
+        </FadeIn>
+      </section>
 
-          <div className="prose prose-lg max-w-none">
+      {/* Mission Details Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: "Community First",
+                  description: "We believe in putting the Bafuliiru community at the center of our language preservation efforts, ensuring they have full control over their digital resources.",
+                  icon: Users,
+                  color: "bg-blue-50 text-blue-600"
+                },
+                {
+                  title: "Digital Innovation",
+                  description: "Leveraging technology to create powerful tools that make Kifuliiru language preservation more accessible and effective.",
+                  icon: Brain,
+                  color: "bg-purple-50 text-purple-600"
+                },
+                {
+                  title: "Cultural Respect",
+                  description: "Approaching our work with deep respect for Bafuliiru cultural traditions and community values.",
+                  icon: Globe,
+                  color: "bg-green-50 text-green-600"
+                },
+                {
+                  title: "Future Growth",
+                  description: "Building a foundation that can support future expansion to other languages and communities.",
+                  icon: Target,
+                  color: "bg-orange-50 text-orange-600"
+                }
+              ].map((item) => (
+                <FadeIn key={item.title}>
+                  <div className="bg-white p-6 rounded-xl border border-gray-100 hover:border-primary-100 transition-all duration-300">
+                    <div className={`p-3 rounded-lg ${item.color} w-fit mb-4`}>
+                      <item.icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {item.description}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <FadeIn className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-gray-600">
+                Learn more about our mission and approach.
+              </p>
+            </FadeIn>
             <FadeIn>
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h2>
-                <p className="text-gray-600 mb-4">
-                  At Wekify LLC, we envision a world where the Kifuliiru language thrives in the digital age. We believe that technology can be a powerful ally in preserving linguistic diversity and cultural heritage, starting with our work with the Bafuliiru community in Congo Kinshasa.
-                </p>
-              </section>
-
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Approach</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-white p-6 rounded-lg border border-gray-100">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-primary-50 rounded-lg mr-3">
-                        <Globe className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Local Focus</h3>
-                    </div>
-                    <p className="text-gray-600">
-                      Working closely with the Bafuliiru community in Congo Kinshasa to understand their specific needs and cultural context.
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg border border-gray-100">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-primary-50 rounded-lg mr-3">
-                        <BookOpen className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Language Preservation</h3>
-                    </div>
-                    <p className="text-gray-600">
-                      Creating digital tools and resources to document and preserve the Kifuliiru language.
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg border border-gray-100">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-primary-50 rounded-lg mr-3">
-                        <Users className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Community First</h3>
-                    </div>
-                    <p className="text-gray-600">
-                      Ensuring the Bafuliiru community has full control over their language resources and digital content.
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg border border-gray-100">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-primary-50 rounded-lg mr-3">
-                        <Brain className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Innovation</h3>
-                    </div>
-                    <p className="text-gray-600">
-                      Leveraging technology to create powerful tools for language learning and documentation.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Impact</h2>
-                <p className="text-gray-600 mb-4">
-                  Starting with the Bafuliiru community, we're creating comprehensive digital platforms that preserve the Kifuliiru language and connect community members. Our goal is to ensure the language has the digital tools and resources it needs to thrive in the modern world.
-                </p>
-              </section>
-
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Get Involved</h2>
-                <p className="text-gray-600 mb-4">
-                  Join us in our mission to preserve and revitalize the Kifuliiru language. Whether you're a member of the Bafuliiru community or passionate about language preservation, there's a place for you at Wekify LLC.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <a
-                    href="/contact"
-                    className="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
-                  >
-                    Contact Us
-                  </a>
-                  <a
-                    href="/join"
-                    className="inline-block bg-white text-primary-600 border-2 border-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors"
-                  >
-                    Join Our Team
-                  </a>
-                </div>
-              </section>
+              <Accordion items={missionFAQs} variant="bordered" />
             </FadeIn>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 } 

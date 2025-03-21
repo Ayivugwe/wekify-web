@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,84 +11,106 @@ import {
   Users,
   Lightbulb,
   RefreshCw,
+  Globe,
+  Target,
 } from "lucide-react";
 import Layout from "../../components/layout";
+import { FadeIn } from "@/app/components/FadeIn";
+import { Accordion } from "@/app/components/Accordion";
+
+const cultureFAQs = [
+  {
+    title: "What is Wekify LLC's culture?",
+    content: "Our culture is built on respect, innovation, and community-first values. We believe in empowering communities to preserve their languages while leveraging technology responsibly.",
+    icon: <Heart className="h-5 w-5" />
+  },
+  {
+    title: "How do we work with communities?",
+    content: "We work directly with communities through field programs, educational initiatives, and technology workshops, ensuring they have full control over their language resources.",
+    icon: <Users className="h-5 w-5" />
+  },
+  {
+    title: "What makes our culture unique?",
+    content: "Our commitment to cultural preservation, combined with technological innovation, creates a unique environment where tradition meets modern solutions.",
+    icon: <Globe className="h-5 w-5" />
+  }
+];
 
 export default function CulturePage() {
   return (
     <Layout>
       <div className="bg-gradient-to-b from-blue-50 to-white">
         {/* Hero Section */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Culture
-            </h1>
-            <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              The values, principles, and working environment that makes Wekify
-              unique.
-            </p>
+        <section className="relative py-24 overflow-hidden bg-gradient-to-b from-primary-50 to-white">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
           </div>
+          <FadeIn className="container mx-auto px-4 relative z-10">
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                Our <span className="text-primary-600">Culture</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-10">
+                Building bridges between tradition and technology in language preservation.
+              </p>
+            </div>
+          </FadeIn>
         </section>
 
         {/* Core Values */}
         <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-16">
-              Our Core Values
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: <Heart className="w-8 h-8 text-primary" />,
-                  title: "Compassion",
-                  description:
-                    "We approach our work with deep empathy for the communities we serve, recognizing the cultural importance of language preservation.",
-                },
-                {
-                  icon: <Shield className="w-8 h-8 text-primary" />,
-                  title: "Integrity",
-                  description:
-                    "We commit to ethical practices in all aspects of our work, ensuring that communities maintain ownership of their linguistic data.",
-                },
-                {
-                  icon: <Lightbulb className="w-8 h-8 text-primary" />,
-                  title: "Innovation",
-                  description:
-                    "We continuously seek creative solutions to complex language preservation challenges through technology and design.",
-                },
-                {
-                  icon: <Users className="w-8 h-8 text-primary" />,
-                  title: "Collaboration",
-                  description:
-                    "We believe in the power of working together with communities, linguists, developers, and institutions to achieve our mission.",
-                },
-                {
-                  icon: <Star className="w-8 h-8 text-primary" />,
-                  title: "Excellence",
-                  description:
-                    "We strive for the highest quality in our technology, methodology, and community engagement.",
-                },
-                {
-                  icon: <RefreshCw className="w-8 h-8 text-primary" />,
-                  title: "Adaptability",
-                  description:
-                    "We remain flexible in our approaches, adapting to the unique needs of each language community we serve.",
-                },
-              ].map((value, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="mb-6 p-3 bg-blue-50 rounded-xl inline-block">
-                    {value.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                    {value.title}
-                  </h3>
-                  <p className="text-gray-600">{value.description}</p>
-                </div>
-              ))}
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <FadeIn className="text-center mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Our Core Values
+                </h2>
+                <p className="text-lg text-gray-600">
+                  The principles that guide everything we do.
+                </p>
+              </FadeIn>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {[
+                  {
+                    title: "Community First",
+                    description: "We believe in putting communities at the center of our work, ensuring they have full control over their language resources.",
+                    icon: Users,
+                    color: "bg-blue-50 text-blue-600"
+                  },
+                  {
+                    title: "Cultural Respect",
+                    description: "We approach our work with deep respect for cultural traditions and community values.",
+                    icon: Heart,
+                    color: "bg-red-50 text-red-600"
+                  },
+                  {
+                    title: "Innovation",
+                    description: "We leverage technology to create powerful tools for language preservation while respecting cultural authenticity.",
+                    icon: Target,
+                    color: "bg-purple-50 text-purple-600"
+                  },
+                  {
+                    title: "Global Impact",
+                    description: "We're building solutions that can help preserve languages worldwide while maintaining local control.",
+                    icon: Globe,
+                    color: "bg-green-50 text-green-600"
+                  }
+                ].map((item) => (
+                  <FadeIn key={item.title}>
+                    <div className="bg-white p-6 rounded-xl border border-gray-100 hover:border-primary-100 transition-all duration-300">
+                      <div className={`p-3 rounded-lg ${item.color} w-fit mb-4`}>
+                        <item.icon className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -246,6 +270,25 @@ export default function CulturePage() {
             >
               View Open Positions
             </Link>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <FadeIn className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Learn more about our culture and values.
+                </p>
+              </FadeIn>
+              <FadeIn>
+                <Accordion items={cultureFAQs} variant="bordered" />
+              </FadeIn>
+            </div>
           </div>
         </section>
       </div>

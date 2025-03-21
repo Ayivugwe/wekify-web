@@ -12,26 +12,25 @@ export interface DropdownItem {
   onClick?: () => void;
 }
 
-export interface DropdownProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface DropdownProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   items: DropdownItem[];
   value?: string;
-  onChange?: (value: string) => void;
+  onValueChange?: (value: string) => void; // Renamed from onChange to onValueChange
   disabled?: boolean;
   error?: string;
   size?: "sm" | "md" | "lg";
   icon?: React.ReactNode;
 }
 
-export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
+export const Dropdown = React.forwardRef<HTMLButtonElement, DropdownProps>(
   (
     {
       className,
       label,
       items,
       value,
-      onChange,
+      onValueChange, // Updated property name
       disabled,
       error,
       size = "md",
@@ -125,8 +124,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                   onClick={() => {
                     if (item.onClick) {
                       item.onClick();
-                    } else if (onChange) {
-                      onChange(item.value);
+                    } else if (onValueChange) { // Updated to use onValueChange
+                      onValueChange(item.value);
                     }
                     setIsOpen(false);
                   }}
@@ -149,4 +148,4 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
   }
 );
 
-Dropdown.displayName = "Dropdown"; 
+Dropdown.displayName = "Dropdown";

@@ -3,117 +3,115 @@
 import React from "react";
 import Layout from "@/app/components/layout";
 import { FadeIn } from "@/app/components/FadeIn";
-import { Lightbulb, Globe, Target, Users, Brain, ArrowRight } from "lucide-react";
+import { Globe, Brain, Target, Sparkles } from "lucide-react";
+import { Accordion } from "@/app/components/Accordion";
+
+const visionFAQs = [
+  {
+    title: "What is Wekify LLC's vision?",
+    content: "We envision a world where the Kifuliiru language thrives in the digital age, serving as a model for preserving other indigenous languages through innovative technology solutions.",
+    icon: <Target className="h-5 w-5" />
+  },
+  {
+    title: "How will we achieve our vision?",
+    content: "Through a combination of community engagement, digital innovation, and strategic partnerships, we're building scalable solutions that can be adapted for other languages and communities.",
+    icon: <Sparkles className="h-5 w-5" />
+  },
+  {
+    title: "What's next for Wekify LLC?",
+    content: "We're laying the groundwork for future expansion, developing AI-powered tools for language preservation, and building partnerships with other language communities.",
+    icon: <Brain className="h-5 w-5" />
+  }
+];
 
 export default function VisionPage() {
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white pt-32">
-        <div className="max-w-4xl mx-auto px-4">
-          <FadeIn className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Vision
+      {/* Hero Section */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-b from-primary-50 to-white">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
+        </div>
+        <FadeIn className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              Our <span className="text-primary-600">Vision</span>
             </h1>
-            <p className="text-xl text-gray-600">
-              Building a digital future for the Kifuliiru language while laying the groundwork for broader language preservation efforts.
+            <p className="text-xl text-gray-600 mb-10">
+              A world where every language has the digital resources it needs to thrive in the modern age.
             </p>
-          </FadeIn>
+          </div>
+        </FadeIn>
+      </section>
 
-          <div className="prose prose-lg max-w-none">
+      {/* Vision Details Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: "Digital Language Preservation",
+                  description: "Creating comprehensive digital platforms that make language preservation accessible and effective for communities worldwide.",
+                  icon: Globe,
+                  color: "bg-blue-50 text-blue-600"
+                },
+                {
+                  title: "AI Integration",
+                  description: "Developing AI-powered tools that enhance language learning and preservation while respecting cultural authenticity.",
+                  icon: Brain,
+                  color: "bg-purple-50 text-purple-600"
+                },
+                {
+                  title: "Global Impact",
+                  description: "Expanding our reach to support other indigenous languages and communities beyond Kifuliiru.",
+                  icon: Target,
+                  color: "bg-green-50 text-green-600"
+                },
+                {
+                  title: "Innovation Hub",
+                  description: "Building a center of excellence for language preservation technology and community engagement.",
+                  icon: Sparkles,
+                  color: "bg-orange-50 text-orange-600"
+                }
+              ].map((item) => (
+                <FadeIn key={item.title}>
+                  <div className="bg-white p-6 rounded-xl border border-gray-100 hover:border-primary-100 transition-all duration-300">
+                    <div className={`p-3 rounded-lg ${item.color} w-fit mb-4`}>
+                      <item.icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {item.description}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <FadeIn className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-gray-600">
+                Learn more about our vision for the future.
+              </p>
+            </FadeIn>
             <FadeIn>
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Current Focus</h2>
-                <p className="text-gray-600 mb-4">
-                  Our immediate vision is centered on creating a robust digital platform for the Kifuliiru language in partnership with the Bafuliiru community. We're developing comprehensive tools for language documentation, learning, and preservation, ensuring that the language thrives in the digital age.
-                </p>
-              </section>
-
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Future Expansion</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-white p-6 rounded-lg border border-gray-100">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-primary-50 rounded-lg mr-3">
-                        <Globe className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Beyond Kifuliiru</h3>
-                    </div>
-                    <p className="text-gray-600">
-                      While our current focus is on Kifuliiru, we're building our platform with scalability in mind. Our goal is to create a model that can be adapted for other indigenous languages in the future.
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg border border-gray-100">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-primary-50 rounded-lg mr-3">
-                        <Brain className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">AI Integration</h3>
-                    </div>
-                    <p className="text-gray-600">
-                      We're laying the groundwork for future AI partnerships that will enhance language learning and preservation, always in close collaboration with the communities we serve.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Goals</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-white p-6 rounded-lg border border-gray-100">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-primary-50 rounded-lg mr-3">
-                        <Target className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Short-term Goals</h3>
-                    </div>
-                    <ul className="text-gray-600 space-y-2">
-                      <li>• Complete the Kifuliiru digital platform</li>
-                      <li>• Establish strong community partnerships</li>
-                      <li>• Document and preserve language resources</li>
-                      <li>• Create effective learning tools</li>
-                    </ul>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg border border-gray-100">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-primary-50 rounded-lg mr-3">
-                        <Lightbulb className="h-6 w-6 text-primary-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Long-term Vision</h3>
-                    </div>
-                    <ul className="text-gray-600 space-y-2">
-                      <li>• Expand to other indigenous languages</li>
-                      <li>• Develop advanced AI capabilities</li>
-                      <li>• Build a global network of language communities</li>
-                      <li>• Create sustainable preservation models</li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Get Involved</h2>
-                <p className="text-gray-600 mb-4">
-                  Join us in shaping the future of language preservation. Whether you're a member of the Bafuliiru community, a developer, or passionate about language preservation, there's a place for you in our vision.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <a
-                    href="/contact"
-                    className="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
-                  >
-                    Contact Us <ArrowRight className="ml-2 h-4 w-4 inline" />
-                  </a>
-                  <a
-                    href="/careers"
-                    className="inline-block bg-white text-primary-600 border-2 border-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors"
-                  >
-                    View Careers
-                  </a>
-                </div>
-              </section>
+              <Accordion items={visionFAQs} variant="bordered" />
             </FadeIn>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }

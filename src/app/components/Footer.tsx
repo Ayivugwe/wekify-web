@@ -45,6 +45,7 @@ const Footer = () => {
     ],
     "About Us": [
       { name: "About Us", href: "/about" },
+      { name: "Our Story", href: "/about/our-story" },
       { name: "Our Mission", href: "/about/mission" },
       { name: "Our Vision", href: "/about/vision" },
       { name: "Our Team", href: "/about/team" },
