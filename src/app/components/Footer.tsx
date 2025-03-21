@@ -44,10 +44,13 @@ const Footer = () => {
       { name: "Community Tools", href: "/solutions#community" },
     ],
     "About Us": [
-      { name: "Overview", href: "/about-us" },
-      { name: "Our Mission", href: "/about-us#mission" },
-      { name: "AI & Us", href: "/about-us#ai-and-us" },
-      { name: "Our Team", href: "/about-us#team" },
+      { name: "About Us", href: "/about" },
+      { name: "Our Mission", href: "/about/mission" },
+      { name: "Our Vision", href: "/about/vision" },
+      { name: "Our Team", href: "/about/team" },
+      { name: "Our Culture", href: "/about/culture" },
+      { name: "Locations", href: "/about/locations" },
+      { name: "Contact", href: "/about/contact" },
     ],
     Atlas: [
       { name: "Languages Directory", href: "/languages" },

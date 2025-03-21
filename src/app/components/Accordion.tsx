@@ -15,7 +15,7 @@ export interface AccordionProps
   extends React.HTMLAttributes<HTMLDivElement> {
   items: AccordionItem[];
   defaultOpen?: string;
-  onChange?: (value: string) => void;
+  onValueChange?: (value: string) => void;
   variant?: "default" | "bordered";
   size?: "sm" | "md" | "lg";
 }
@@ -26,7 +26,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       className,
       items,
       defaultOpen,
-      onChange,
+      onValueChange,
       variant = "default",
       size = "md",
       ...props
@@ -59,7 +59,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     const handleToggle = (title: string) => {
       const newValue = openItem === title ? undefined : title;
       setOpenItem(newValue);
-      onChange?.(newValue || "");
+      onValueChange?.(newValue || "");
     };
 
     return (
