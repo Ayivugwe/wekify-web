@@ -14,7 +14,9 @@ import {
   Users,
   BookOpen,
   Lightbulb,
-  Rocket
+  Rocket,
+  MapPin,
+  Home
 } from "lucide-react";
 
 const timelineItems: TimelineItem[] = [
@@ -83,7 +85,7 @@ export default function OurStoryPage() {
                 Our <span className="text-primary-600">Story</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                From a vision at university to a global mission of language preservation.
+                From a refugee camp to a global mission of language preservation.
                 Discover the journey that shaped Wekify LLC.
               </p>
               <div className="flex items-center space-x-4">
@@ -93,8 +95,8 @@ export default function OurStoryPage() {
             </FadeIn>
             <FadeIn className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/office-workspace.jpg"
-                alt="Modern office workspace"
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
+                alt="Modern office workspace with computer"
                 fill
                 className="object-cover"
                 priority
@@ -104,39 +106,69 @@ export default function OurStoryPage() {
         </div>
       </section>
 
-      {/* Introduction Section */}
+      {/* Founder's Story Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <FadeIn className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Our Journey
+                The Founder's Journey
               </h2>
               <p className="text-lg text-gray-600">
-                From a university project to a global mission, our story is one of passion, innovation, and commitment to preserving linguistic heritage.
+                A story of resilience, determination, and the power of technology to preserve heritage
               </p>
             </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <FadeIn className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="p-3 rounded-lg bg-primary-50 text-primary-600 w-fit mb-4">
-                  <GraduationCap className="h-6 w-6" />
+            <div className="space-y-8">
+              <FadeIn className="bg-white p-6 rounded-lg border border-gray-200 hover:border-primary-500 transition-colors">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 rounded-lg bg-primary-50 text-primary-600">
+                    <MapPin className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">From Congo to Burundi</h3>
+                    <p className="text-sm text-gray-500">A Journey of Hope</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  The Beginning
-                </h3>
                 <p className="text-gray-600">
-                  Our journey started at Ngozi University with the ARCIN project, where we first envisioned the potential of technology in preserving cultural knowledge.
+                  Born in the Democratic Republic of Congo, I fled the war-torn region with my family, 
+                  seeking safety in Burundi. This experience of displacement and cultural adaptation 
+                  deeply influenced my understanding of the importance of preserving cultural heritage 
+                  and language.
                 </p>
               </FadeIn>
-              <FadeIn className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="p-3 rounded-lg bg-primary-50 text-primary-600 w-fit mb-4">
-                  <Globe className="h-6 w-6" />
+
+              <FadeIn className="bg-white p-6 rounded-lg border border-gray-200 hover:border-primary-500 transition-colors">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 rounded-lg bg-primary-50 text-primary-600">
+                    <Home className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">Life in the Refugee Camp</h3>
+                    <p className="text-sm text-gray-500">Building Community</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  The Vision
-                </h3>
                 <p className="text-gray-600">
-                  Today, we're working with the Bafuliiru Community to preserve the Kifuliiru language, combining traditional knowledge with modern technology.
+                  Growing up in a refugee camp taught me the value of community and the power of 
+                  shared experiences. It was here that I first recognized how technology could be 
+                  used to preserve and share our stories, traditions, and language.
+                </p>
+              </FadeIn>
+
+              <FadeIn className="bg-white p-6 rounded-lg border border-gray-200 hover:border-primary-500 transition-colors">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 rounded-lg bg-primary-50 text-primary-600">
+                    <GraduationCap className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">Education and Growth</h3>
+                    <p className="text-sm text-gray-500">The Path to Innovation</p>
+                  </div>
+                </div>
+                <p className="text-gray-600">
+                  At Ngozi University, I discovered my passion for technology and its potential to 
+                  bridge cultural gaps. The ARCIN project became my first step in combining 
+                  technology with cultural preservation, setting the foundation for what would 
+                  become Wekify LLC.
                 </p>
               </FadeIn>
             </div>
