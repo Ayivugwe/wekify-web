@@ -40,40 +40,60 @@ const timelineItems: TimelineItem[] = [
 export default function OurStoryPage() {
   return (
     <Layout>
-      <div className="relative isolate overflow-hidden bg-white">
-        {/* Hero Section */}
-        <FadeIn className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Our Story
+      {/* Hero Section */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-b from-primary-50 to-white">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
+        </div>
+        <FadeIn className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              Our <span className="text-primary-600">Story</span>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="text-xl text-gray-600 mb-10">
               From a vision of preserving linguistic diversity to creating innovative digital solutions,
               discover the journey that shaped Wekify LLC and our commitment to empowering communities
               through technology.
             </p>
+            <div className="flex justify-center">
+              <div className="w-24 h-1 bg-primary-600 rounded-full"></div>
+            </div>
           </div>
         </FadeIn>
+      </section>
 
-        {/* Timeline Section */}
-        <FadeIn className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
-          <Timeline items={timelineItems} />
-        </FadeIn>
+      {/* Timeline Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <FadeIn className="max-w-5xl mx-auto">
+            <Timeline items={timelineItems} />
+          </FadeIn>
+        </div>
+      </section>
 
-        {/* Mission Statement */}
-        <FadeIn className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      {/* Mission Statement */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <FadeIn className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">
               Join Us on Our Journey
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="text-lg leading-8 text-gray-600">
               As we continue to grow and evolve, our commitment to preserving linguistic diversity
               remains unwavering. We invite you to be part of our story and help us create a future
               where every language thrives in the digital age.
             </p>
-          </div>
-        </FadeIn>
-      </div>
+            <div className="mt-8 flex justify-center gap-4">
+              <button className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                Get Involved
+              </button>
+              <button className="px-6 py-3 border border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-colors">
+                Learn More
+              </button>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
     </Layout>
   );
 } 
