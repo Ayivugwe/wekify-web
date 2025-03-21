@@ -10,6 +10,7 @@ export interface TimelineItem {
   description: string;
   icon: React.ReactNode;
   details: string;
+  phase: string;
 }
 
 interface TimelineProps {
