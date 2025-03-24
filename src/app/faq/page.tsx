@@ -142,9 +142,11 @@ const faqCategories = [
         content: "We ensure that all language data and cultural content remains the intellectual property of the respective communities."
       }
     ]
-  }
-        content: "Our focus on Kifuliiru stems from our founder's connection to the Bafuliiru community and the urgent need to preserve this language in the digital age. We're creating a model that can be adapted for other indigenous languages in the future."
-      },
+  },
+  {
+    title: "Why focus on Kifuliiru specifically?",
+    content: "Our focus on Kifuliiru stems from our founder's connection to the Bafuliiru community and the urgent need to preserve this language in the digital age. We're creating a model that can be adapted for other indigenous languages in the future."
+  },
       {
         title: "How are you working with the Bafuliiru community?",
         content: "We maintain close partnerships with the Bafuliiru community, ensuring their active participation in our platform's development. This includes community input on language documentation, learning materials, and cultural representation."
