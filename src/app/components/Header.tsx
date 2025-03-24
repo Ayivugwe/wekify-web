@@ -69,7 +69,8 @@ const megaMenuItems = {
       name: "Language Learning",
       href: "/solutions#learning",
       icon: "BookOpen",
-      description: "Interactive platforms for teaching and learning indigenous languages",
+      description:
+        "Interactive platforms for teaching and learning indigenous languages",
     },
     {
       name: "Digital Archives",
@@ -162,7 +163,8 @@ const megaMenuItems = {
       name: "Our Story",
       href: "/about/our-story",
       icon: "BookOpen",
-      description: "The journey from vision to reality - how Wekify LLC was born",
+      description:
+        "The journey from vision to reality - how Wekify LLC was born",
     },
     {
       name: "Our Mission",
@@ -312,6 +314,13 @@ const Header = () => {
               )}
             </div>
           ))}
+
+          <Link
+            href="/faq"
+            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
+          >
+            FAQ
+          </Link>
 
           <Link
             href="/contact"
