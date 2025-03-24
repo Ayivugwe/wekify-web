@@ -58,7 +58,7 @@ export default function HomePage() {
     const interval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * languages.length);
       setActiveLanguage(languages[randomIndex]);
-      
+
       // Update bubble languages
       const newBubbleLanguages = { ...bubbleLanguages };
       Object.keys(newBubbleLanguages).forEach(key => {
@@ -106,7 +106,7 @@ export default function HomePage() {
                     </Button>
                   </div>
                 </div>
-                <div className="relative h-[600px]">
+                <div className="relative w-full h-[500px] lg:h-[600px] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-primary-600/20 rounded-3xl blur-3xl"></div>
                   <div className="relative h-full flex items-center justify-center">
                     {/* Simplified orbiting elements with slower animation */}
