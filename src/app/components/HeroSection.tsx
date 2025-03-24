@@ -204,7 +204,7 @@ const HeroSection = () => {
 
               {/* Simplified Globe with cleaner visuals */}
               <div
-                className="absolute inset-0 flex items-center justify-center"
+                className="absolute inset-0 flex items-center justify-center overflow-hidden"
                 style={{
                   transform: `rotateY(${rotation}deg)`,
                   transformStyle: "preserve-3d",
