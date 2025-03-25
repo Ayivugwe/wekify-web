@@ -204,7 +204,7 @@ const HeroSection = () => {
 
               {/* Simplified Globe with cleaner visuals */}
               <div
-                className="absolute inset-0 flex items-center justify-center md:overflow-visible overflow-hidden"
+                className="absolute inset-0 flex items-center justify-center"
                 style={{
                   transform: `rotateY(${rotation}deg)`,
                   transformStyle: "preserve-3d",
@@ -212,40 +212,25 @@ const HeroSection = () => {
               >
                 <div
                   className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden shadow-xl"
-                  style={{ 
-                    transformStyle: "preserve-3d",
-                    background: "radial-gradient(circle at 30% 30%, #4299e1, #1e40af)",
-                    boxShadow: "inset -30px -30px 60px rgba(0,0,0,0.4)"
-                  }}
+                  style={{ transformStyle: "preserve-3d" }}
                 >
-                  {/* Globe grid pattern */}
-                  <div 
-                    className="absolute inset-0"
-                    style={{
-                      background: `
-                        linear-gradient(0deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%),
-                        linear-gradient(90deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%)
-                      `,
-                      backgroundSize: '40px 40px',
-                      opacity: 0.5
-                    }}
-                  ></div>
+                  {/* Base layer with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-indigo-800 opacity-90 rounded-full"></div>
 
-                  {/* Highlight effect */}
-                  <div 
-                    className="absolute inset-0"
-                    style={{
-                      background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 60%)"
-                    }}
-                  ></div>
+                  {/* Simplified continents layer */}
+                  <div className="absolute inset-0 rounded-full">
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        backgroundImage:
+                          "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 1px, transparent 1px)",
+                        backgroundSize: "20px 20px",
+                      }}
+                    ></div>
+                  </div>
 
-                  {/* Depth shadow */}
-                  <div 
-                    className="absolute inset-0"
-                    style={{
-                      background: "radial-gradient(circle at 70% 70%, transparent 0%, rgba(0,0,0,0.4) 100%)"
-                    }}
-                  ></div>
+                  {/* Simple highlight */}
+                  <div className="absolute inset-[5%] -top-[20%] -left-[10%] bg-white opacity-5 rounded-full blur-md"></div>
                 </div>
               </div>
 

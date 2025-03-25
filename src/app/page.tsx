@@ -61,8 +61,9 @@ export default function HomePage() {
 
       // Update bubble languages
       const newBubbleLanguages = { ...bubbleLanguages };
-      Object.keys(newBubbleLanguages).forEach(key => {
-        const randomLang = languages[Math.floor(Math.random() * languages.length)];
+      Object.keys(newBubbleLanguages).forEach((key) => {
+        const randomLang =
+          languages[Math.floor(Math.random() * languages.length)];
         newBubbleLanguages[key as keyof typeof newBubbleLanguages] = randomLang;
       });
       setBubbleLanguages(newBubbleLanguages);
@@ -88,25 +89,26 @@ export default function HomePage() {
                     Language Preservation
                   </div>
                   <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                    Building Digital Platforms for Language <span className="text-primary-600">Preservation</span>
+                    Building Digital Platforms for Language{" "}
+                    <span className="text-primary-600">Preservation</span>
                   </h1>
                   <p className="text-xl text-gray-600 mb-10">
-                    Empowering communities with powerful digital platforms to preserve, teach, and celebrate their linguistic heritage.
+                    Empowering communities with powerful digital platforms to
+                    preserve, teach, and celebrate their linguistic heritage.
                   </p>
                   <div className="flex flex-wrap justify-center gap-4">
                     <Button size="lg" asChild>
                       <Link href="/contact">
-                        Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
+                        Start Your Project{" "}
+                        <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
                     <Button size="lg" variant="outline" asChild>
-                      <Link href="/solutions">
-                        Learn More About Our Vision
-                      </Link>
+                      <Link href="/solutions">Learn More About Our Vision</Link>
                     </Button>
                   </div>
                 </div>
-                <div className="relative w-full h-[500px] lg:h-[600px] overflow-hidden">
+                <div className="relative h-[600px]">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-primary-600/20 rounded-3xl blur-3xl"></div>
                   <div className="relative h-full flex items-center justify-center">
                     {/* Simplified orbiting elements with slower animation */}
@@ -177,7 +179,8 @@ export default function HomePage() {
                   Platform Capabilities
                 </h2>
                 <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-                  Our platform-building solutions provide everything communities need to create comprehensive language preservation platforms.
+                  Our platform-building solutions provide everything communities
+                  need to create comprehensive language preservation platforms.
                 </p>
               </div>
 
@@ -186,17 +189,20 @@ export default function HomePage() {
                   {
                     icon: Globe,
                     title: "Custom Platform Development",
-                    description: "Tailored digital solutions that respect cultural context and community needs.",
+                    description:
+                      "Tailored digital solutions that respect cultural context and community needs.",
                   },
                   {
                     icon: Users,
                     title: "Community Management",
-                    description: "Tools for community engagement, content moderation, and collaborative learning.",
+                    description:
+                      "Tools for community engagement, content moderation, and collaborative learning.",
                   },
                   {
                     icon: Shield,
                     title: "Data Sovereignty",
-                    description: "Ensuring communities maintain full control and ownership of their language data.",
+                    description:
+                      "Ensuring communities maintain full control and ownership of their language data.",
                   },
                 ].map((capability) => (
                   <FadeIn key={capability.title}>
@@ -227,7 +233,8 @@ export default function HomePage() {
                   Success Story: FuliiruHub
                 </h2>
                 <p className="text-xl text-primary-700/70 max-w-3xl mx-auto">
-                  See how we helped the Bafuliiru community create their digital language platform
+                  See how we helped the Bafuliiru community create their digital
+                  language platform
                 </p>
               </div>
               <FuliiruHubShowcase />
@@ -244,7 +251,8 @@ export default function HomePage() {
                   Our Platform-Building Process
                 </h2>
                 <p className="text-xl text-primary-700/70 max-w-3xl mx-auto">
-                  A comprehensive approach to creating your community's digital platform
+                  A comprehensive approach to creating your community's digital
+                  platform
                 </p>
               </div>
 
@@ -253,22 +261,26 @@ export default function HomePage() {
                   {
                     icon: Clipboard,
                     title: "Discovery & Planning",
-                    description: "Understanding your community's needs and planning the perfect platform solution.",
+                    description:
+                      "Understanding your community's needs and planning the perfect platform solution.",
                   },
                   {
                     icon: Users,
                     title: "Community Integration",
-                    description: "Engaging with your community to ensure cultural authenticity and relevance.",
+                    description:
+                      "Engaging with your community to ensure cultural authenticity and relevance.",
                   },
                   {
                     icon: BookOpen,
                     title: "Content Strategy",
-                    description: "Developing a comprehensive plan for content organization and management.",
+                    description:
+                      "Developing a comprehensive plan for content organization and management.",
                   },
                   {
                     icon: Code,
                     title: "Platform Development",
-                    description: "Building your custom platform with modern technology and cultural sensitivity.",
+                    description:
+                      "Building your custom platform with modern technology and cultural sensitivity.",
                   },
                 ].map((step) => (
                   <FadeIn key={step.title}>
@@ -279,9 +291,7 @@ export default function HomePage() {
                       <h3 className="text-2xl font-semibold text-primary-800 mb-4">
                         {step.title}
                       </h3>
-                      <p className="text-primary-700/70">
-                        {step.description}
-                      </p>
+                      <p className="text-primary-700/70">{step.description}</p>
                     </div>
                   </FadeIn>
                 ))}
@@ -290,7 +300,8 @@ export default function HomePage() {
               <div className="text-center mt-16">
                 <Button size="lg" asChild>
                   <Link href="/contact">
-                    Start Your Platform Project <ArrowRight className="ml-2 h-4 w-4" />
+                    Start Your Platform Project{" "}
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
@@ -310,7 +321,8 @@ export default function HomePage() {
                   Supporting Languages Worldwide
                 </h2>
                 <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  Our platform is designed to support indigenous and endangered languages from every continent.
+                  Our platform is designed to support indigenous and endangered
+                  languages from every continent.
                 </p>
               </div>
 
@@ -325,12 +337,14 @@ export default function HomePage() {
                     </h3>
                   </div>
                   <p className="text-slate-600 mb-6">
-                    Browse our extensive catalog of languages organized by region, language family, and vitality status.
+                    Browse our extensive catalog of languages organized by
+                    region, language family, and vitality status.
                   </p>
                   <ul className="space-y-3 mb-8">
                     <li className="flex items-center text-slate-700">
                       <span className="w-2 h-2 bg-slate-700 rounded-full mr-2"></span>
-                      African languages including Kifuliiru, Swahili, Yoruba, and more
+                      African languages including Kifuliiru, Swahili, Yoruba,
+                      and more
                     </li>
                     <li className="flex items-center text-slate-700">
                       <span className="w-2 h-2 bg-slate-700 rounded-full mr-2"></span>
@@ -347,7 +361,8 @@ export default function HomePage() {
                   </ul>
                   <Button variant="outline" asChild>
                     <Link href="/languages">
-                      Explore All Languages <ArrowRight className="ml-2 h-4 w-4" />
+                      Explore All Languages{" "}
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
@@ -366,12 +381,11 @@ export default function HomePage() {
                       Join Our Ambassador Program
                     </h3>
                     <p className="text-white/90 mb-4">
-                      Connect with language advocates from around the world dedicated to preservation efforts.
+                      Connect with language advocates from around the world
+                      dedicated to preservation efforts.
                     </p>
                     <Button variant="outline" asChild>
-                      <Link href="/ambassador-program">
-                        Learn More
-                      </Link>
+                      <Link href="/ambassador-program">Learn More</Link>
                     </Button>
                   </div>
                 </div>
@@ -389,7 +403,8 @@ export default function HomePage() {
                   Our Vision & Guiding Principles
                 </h2>
                 <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-                  We're committed to ethical language preservation that empowers communities.
+                  We're committed to ethical language preservation that empowers
+                  communities.
                 </p>
               </div>
 
@@ -402,31 +417,37 @@ export default function HomePage() {
                     <h3 className="text-2xl font-bold ml-4">Our Vision</h3>
                   </div>
                   <p className="text-primary-100 mb-6">
-                    We envision a world where every language is valued, documented, and actively used across generations, preserving the unique cultural knowledge and perspectives they contain.
+                    We envision a world where every language is valued,
+                    documented, and actively used across generations, preserving
+                    the unique cultural knowledge and perspectives they contain.
                   </p>
                   <ul className="space-y-4">
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-primary-300 rounded-full mr-3 mt-2"></span>
                       <p className="text-primary-100">
-                        Empowering communities to lead their own language preservation efforts
+                        Empowering communities to lead their own language
+                        preservation efforts
                       </p>
                     </li>
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-primary-300 rounded-full mr-3 mt-2"></span>
                       <p className="text-primary-100">
-                        Making language technology accessible to all communities regardless of resources
+                        Making language technology accessible to all communities
+                        regardless of resources
                       </p>
                     </li>
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-primary-300 rounded-full mr-3 mt-2"></span>
                       <p className="text-primary-100">
-                        Creating sustainable models for ongoing language development
+                        Creating sustainable models for ongoing language
+                        development
                       </p>
                     </li>
                   </ul>
                   <Button variant="outline" asChild>
                     <Link href="/about/vision">
-                      Learn More About Our Vision <ArrowRight className="ml-2 h-4 w-4" />
+                      Learn More About Our Vision{" "}
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
@@ -439,19 +460,22 @@ export default function HomePage() {
                     <h3 className="text-2xl font-bold ml-4">Our Policies</h3>
                   </div>
                   <p className="text-primary-100 mb-6">
-                    Our work is guided by strong ethical principles that respect community ownership and cultural sensitivity.
+                    Our work is guided by strong ethical principles that respect
+                    community ownership and cultural sensitivity.
                   </p>
                   <ul className="space-y-4">
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-primary-300 rounded-full mr-3 mt-2"></span>
                       <p className="text-primary-100">
-                        Community-driven development that centers indigenous priorities
+                        Community-driven development that centers indigenous
+                        priorities
                       </p>
                     </li>
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-primary-300 rounded-full mr-3 mt-2"></span>
                       <p className="text-primary-100">
-                        Data sovereignty ensuring communities retain ownership of their language data
+                        Data sovereignty ensuring communities retain ownership
+                        of their language data
                       </p>
                     </li>
                     <li className="flex items-start">
@@ -469,7 +493,8 @@ export default function HomePage() {
                   </ul>
                   <Button variant="outline" asChild>
                     <Link href="/about/our-policies">
-                      Review Our Policies <ArrowRight className="ml-2 h-4 w-4" />
+                      Review Our Policies{" "}
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
@@ -490,7 +515,8 @@ export default function HomePage() {
                   Frequently Asked Questions
                 </h2>
                 <p className="text-xl text-primary-700/70 max-w-3xl mx-auto">
-                  Find answers to common questions about our platform and services
+                  Find answers to common questions about our platform and
+                  services
                 </p>
               </div>
               <FAQSection faqs={faqData} />
@@ -515,7 +541,8 @@ export default function HomePage() {
               Ready to Start Preserving Your Language?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-              Our team will work with you to develop a customized solution that meets your community's needs.
+              Our team will work with you to develop a customized solution that
+              meets your community's needs.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" variant="secondary" asChild>
