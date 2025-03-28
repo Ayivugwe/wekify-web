@@ -318,7 +318,7 @@ export const faqData: FAQ[] = [
   },
   // Technology & Tools (20 questions)
   {
-    id: "tech-1",
+    id: "tech-8",
     question: "What technological solutions does Wekify offer?",
     answer:
       "We provide digital dictionaries, interactive learning tools, and AI-powered translation assistance, all designed specifically for indigenous language preservation.",
