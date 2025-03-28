@@ -63,24 +63,27 @@ export default function SecurityPage() {
 
           <FadeIn>
             <div className="bg-primary-50 rounded-2xl p-8 md:p-12 mb-16">
-              <h2 className="text-3xl font-bold mb-6 text-center">Our Security Commitment</h2>
+              <h2 className="text-3xl font-bold mb-6 text-center">Our Security Roadmap</h2>
+              <div className="text-center mb-8 text-gray-600">
+                <p>We are actively working to build a robust security infrastructure to protect your language data. While we're in the early stages, security remains a top priority for our development.</p>
+              </div>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold">Infrastructure Security</h3>
+                  <h3 className="text-xl font-semibold">Current Status</h3>
                   <ul className="list-disc pl-5 text-gray-600 space-y-2">
-                    <li>Regular security audits and updates</li>
-                    <li>DDoS protection</li>
-                    <li>24/7 monitoring</li>
-                    <li>Secure data centers</li>
+                    <li>Leveraging trusted cloud service providers</li>
+                    <li>Basic security measures implementation</li>
+                    <li>Regular security practice reviews</li>
+                    <li>Community feedback integration</li>
                   </ul>
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold">Data Privacy</h3>
+                  <h3 className="text-xl font-semibold">Future Goals</h3>
                   <ul className="list-disc pl-5 text-gray-600 space-y-2">
-                    <li>GDPR compliance</li>
-                    <li>Data encryption at rest and in transit</li>
-                    <li>Privacy-first design</li>
-                    <li>Transparent data practices</li>
+                    <li>Working towards GDPR compliance</li>
+                    <li>Enhanced data protection measures</li>
+                    <li>Dedicated security infrastructure</li>
+                    <li>Advanced monitoring systems</li>
                   </ul>
                 </div>
               </div>
