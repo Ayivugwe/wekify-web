@@ -1,5 +1,6 @@
 
-import { Globe, Code, Users, Book, Shield, Heart, MessageCircle, Brain, Target, Sparkles, BookOpen, Zap, Languages, FileText, Settings, Cloud, Tool, Clock, Star } from "lucide-react";
+import { Globe, Code, Users, Book, Shield, Heart, MessageCircle, Brain, Target, Sparkles, BookOpen, Zap, Languages, FileText, Settings, Cloud, Clock, Star } from "lucide-react";
+import { BsTools } from "react-icons/bs";
 
 export interface FAQ {
   id: string;
@@ -69,7 +70,7 @@ export const faqData: FAQ[] = [
     question: "What tools does Wekify offer?",
     answer: "We offer digital dictionaries, learning platforms, documentation tools, and cultural preservation solutions. Our tools are designed to be user-friendly and culturally appropriate.",
     category: "Technology",
-    icon: Tool,
+    icon: BsTools,
     relatedLink: "/tools"
   },
   {
@@ -159,7 +160,7 @@ export const faqData: FAQ[] = [
     category: "Support",
     icon: Clock,
     relatedLink: "/support/implementation"
-  }
+  },
   // ... [Adding first 20 FAQs about Wekify]
 
   // Language Preservation (20 questions)
