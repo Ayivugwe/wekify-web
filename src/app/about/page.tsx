@@ -83,21 +83,27 @@ export default function AboutPage() {
           <FadeIn>
             <h2 className="text-3xl font-bold text-center mb-12">Learn More About Us</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <Languages className="h-10 w-10 text-primary-600 mb-4" />
-                <h3 className="text-xl font-semibold mb-3">Focus Language</h3>
-                <p className="text-gray-600">Currently focused on preserving and digitizing the Kifuliiru language, with plans to expand to other indigenous languages.</p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <Users className="h-10 w-10 text-primary-600 mb-4" />
-                <h3 className="text-xl font-semibold mb-3">Our Community</h3>
-                <p className="text-gray-600">Working closely with the Bafuliiru people while planning expansion to support other indigenous communities.</p>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <Book className="h-10 w-10 text-primary-600 mb-4" />
-                <h3 className="text-xl font-semibold mb-3">Resources</h3>
-                <p className="text-gray-600">Developing comprehensive digital tools and educational resources for language preservation.</p>
-              </div>
+              <Link href="/about/mission" className="block">
+                <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <Target className="h-10 w-10 text-primary-600 mb-4" />
+                  <h3 className="text-xl font-semibold mb-3">Our Mission</h3>
+                  <p className="text-gray-600">Discover our core mission and values in preserving indigenous languages.</p>
+                </div>
+              </Link>
+              <Link href="/about/vision" className="block">
+                <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <Sparkles className="h-10 w-10 text-primary-600 mb-4" />
+                  <h3 className="text-xl font-semibold mb-3">Our Vision</h3>
+                  <p className="text-gray-600">Learn about our future plans and goals for language preservation.</p>
+                </div>
+              </Link>
+              <Link href="/about/team" className="block">
+                <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <Users className="h-10 w-10 text-primary-600 mb-4" />
+                  <h3 className="text-xl font-semibold mb-3">Our Team</h3>
+                  <p className="text-gray-600">Meet the passionate individuals behind Wekify's mission.</p>
+                </div>
+              </Link>
             </div>
           </FadeIn>
         </div>
