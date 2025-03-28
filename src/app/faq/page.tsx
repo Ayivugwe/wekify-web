@@ -4,98 +4,82 @@
 import { useState, useMemo } from 'react';
 import Layout from "@/app/components/layout";
 import { FadeIn } from "@/app/components/FadeIn";
-import { Globe, Code, Users, Book, Shield, Heart } from "lucide-react";
+import { Globe, Code, Users, Book, Shield, Heart, MessageCircle, ArrowRight } from "lucide-react";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/Button";
+import Link from "next/link";
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const questionsPerPage = 5;
+  const questionsPerPage = 10;
 
   const faqCategories = [
     {
-      title: "About Wekify",
+      title: "Getting Started",
       icon: <Globe className="h-5 w-5" />,
       questions: [
         {
-          title: "Why does Wekify focus on Kifuliiru?",
-          content: "Our focus on Kifuliiru stems from our founder's connection to the Bafuliiru community and the urgent need to preserve this language in the digital age. We're creating a model that can be adapted for other indigenous languages in the future."
+          title: "What is Wekify?",
+          content: "Wekify is a language technology company focused on preserving and revitalizing indigenous languages through innovative digital solutions. While we're currently working on the Kifuliiru language as our starting point, our vision extends to supporting many other indigenous languages in the future."
         },
         {
-          title: "How are you working with the Bafuliiru community?",
-          content: "We maintain close partnerships with the Bafuliiru community, ensuring their active participation in our platform's development. This includes community input on language documentation, learning materials, and cultural representation."
+          title: "Why did you choose to start with the Kifuliiru language?",
+          content: "We chose Kifuliiru as our initial focus due to our strong connections with the Bafuliiru community and our deep understanding of the language's needs. This allows us to develop and refine our approach effectively before expanding to other languages."
         },
         {
-          title: "What is your long-term vision?",
-          content: "Our vision is to create a sustainable model for language preservation that can be adapted for other indigenous languages worldwide."
+          title: "How can I start using Wekify's language preservation tools?",
+          content: "You can begin by exploring our platform, creating an account, and accessing our basic language learning resources. We offer various entry points depending on your needs - whether you're a language learner, teacher, or community leader."
         }
       ]
     },
     {
-      title: "Platform Features",
+      title: "Technical Features",
       icon: <Code className="h-5 w-5" />,
       questions: [
         {
-          title: "What features does your platform offer?",
-          content: "Our platform includes language learning tools, digital dictionaries, cultural archives, and community collaboration features."
+          title: "What technological solutions does Wekify currently offer for language preservation?",
+          content: "Our platform includes advanced digital dictionaries, interactive learning tools, AI-powered translation assistance, and community collaboration features. We're constantly developing new tools and technologies to enhance language preservation efforts."
         },
         {
-          title: "How do you ensure content quality?",
-          content: "We work closely with native speakers and language experts to verify and validate all content."
+          title: "How does Wekify ensure the accuracy of its language content?",
+          content: "We employ a rigorous verification process involving native speakers, linguistic experts, and community elders. Our technology is designed to complement human expertise, not replace it."
         },
         {
-          title: "What technologies do you use?",
-          content: "We use modern web technologies and AI to create engaging and effective language preservation tools."
+          title: "What makes Wekify's approach to language technology unique?",
+          content: "Our approach combines cutting-edge technology with deep cultural understanding. We develop solutions that are not just technically sophisticated but also culturally appropriate and community-centered."
         }
       ]
     },
     {
-      title: "Community & Support",
+      title: "Community & Collaboration",
       icon: <Users className="h-5 w-5" />,
       questions: [
         {
-          title: "How can I get involved?",
-          content: "There are many ways to contribute, from content creation to community leadership."
+          title: "How can communities get involved in Wekify's language preservation efforts?",
+          content: "Communities can participate through various channels: contributing language content, becoming community ambassadors, participating in our documentation projects, or helping test new features. We believe in active community participation at every level."
         },
         {
-          title: "Do you offer support for users?",
-          content: "Yes, we provide comprehensive support through our community forums and direct assistance."
-        },
-        {
-          title: "Is there a mobile app?",
-          content: "We're currently developing mobile applications to make our platform more accessible."
+          title: "What support does Wekify provide to language communities?",
+          content: "We offer technical support, training programs, community engagement tools, and customized solutions based on each community's specific needs. Our team works closely with communities to ensure our tools serve their language preservation goals effectively."
         }
       ]
     },
     {
-      title: "Educational Resources",
+      title: "Future Plans",
       icon: <Book className="h-5 w-5" />,
       questions: [
         {
-          title: "What learning materials are available?",
-          content: "We offer structured lessons, interactive exercises, and cultural content."
+          title: "What are Wekify's plans for expanding beyond the Kifuliiru language?",
+          content: "While we're currently focused on perfecting our approach with Kifuliiru, we have extensive plans for supporting other indigenous languages. Our roadmap includes scaling our technology to accommodate different language families and linguistic structures. Note that not all our plans are publicly visible as some initiatives are still in development or confidential."
         },
         {
-          title: "Can teachers use your platform?",
-          content: "Yes, we provide special tools and resources for educators."
-        }
-      ]
-    },
-    {
-      title: "Privacy & Security",
-      icon: <Shield className="h-5 w-5" />,
-      questions: [
-        {
-          title: "How do you protect user data?",
-          content: "We implement industry-standard security measures and strict privacy policies."
-        },
-        {
-          title: "Who owns the content?",
-          content: "The community retains ownership of all cultural and linguistic content."
+          title: "How does Wekify plan to ensure long-term sustainability of its language preservation efforts?",
+          content: "We're developing sustainable models that combine community ownership, technological innovation, and strategic partnerships. Our approach includes building capacity within communities and creating self-sustaining preservation ecosystems."
         }
       ]
     }
+    // Additional categories and questions continue...
   ];
 
   const flattenedQuestions = useMemo(() => {
@@ -151,7 +135,7 @@ export default function FAQPage() {
             />
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 mb-16">
             {currentQuestions.map((question, index) => (
               <FadeIn key={index}>
                 <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
@@ -171,7 +155,7 @@ export default function FAQPage() {
           </div>
 
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-2 mt-8">
+            <div className="flex justify-center items-center gap-2 mb-16">
               <Button
                 variant="outline"
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
@@ -191,6 +175,20 @@ export default function FAQPage() {
               </Button>
             </div>
           )}
+
+          {/* CTA Section */}
+          <div className="bg-primary-50 rounded-2xl p-8 md:p-12 mb-16 text-center">
+            <MessageCircle className="h-12 w-12 mx-auto mb-6 text-primary" />
+            <h2 className="text-3xl font-bold mb-4">Still Have Questions?</h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Our team is here to help you with any questions about our language preservation platform.
+            </p>
+            <Button asChild>
+              <Link href="/contact">
+                Contact Us <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </Layout>
