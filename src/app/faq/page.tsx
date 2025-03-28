@@ -7,7 +7,7 @@ import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/Button";
 import Link from "next/link";
 import { faqData, FAQ } from "@/app/lib/data/faqData";
-import {MessageCircle, ArrowRight} from "lucide-react";
+import {MessageCircle, ArrowRight, ArrowLeft} from "lucide-react";
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -90,24 +90,43 @@ export default function FAQPage() {
           </div>
 
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-2 mb-16">
-              <Button
-                variant="outline"
-                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                disabled={currentPage === 1}
-              >
-                Previous
-              </Button>
-              <span className="text-gray-600">
-                Page {currentPage} of {totalPages}
-              </span>
-              <Button
-                variant="outline"
-                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </Button>
+            <div className="flex flex-col items-center gap-4 mb-16">
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 flex items-center gap-2 hover:bg-primary-50"
+                >
+                  <ArrowLeft className="h-4 w-4" /> Previous
+                </Button>
+                <div className="flex items-center">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                    <button
+                      key={pageNum}
+                      onClick={() => setCurrentPage(pageNum)}
+                      className={`mx-1 min-w-[2.5rem] h-10 rounded-lg transition-colors ${
+                        currentPage === pageNum
+                          ? "bg-primary text-white"
+                          : "bg-gray-100 hover:bg-primary-50 text-gray-700"
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  ))}
+                </div>
+                <Button
+                  variant="outline"
+                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 flex items-center gap-2 hover:bg-primary-50"
+                >
+                  Next <ArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
+              <div className="text-sm text-gray-500">
+                Showing page {currentPage} of {totalPages}
+              </div>
             </div>
           )}
           {/* CTA Section */}

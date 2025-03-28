@@ -161,10 +161,62 @@ export const faqData: FAQ[] = [
     icon: Clock,
     relatedLink: "/support/implementation"
   },
-  // ... [Adding first 20 FAQs about Wekify]
-
-  // Language Preservation (20 questions)
   {
+    id: "tech-4",
+    question: "What languages do your tools support?",
+    answer: "Our platform currently focuses on Kifuliiru, but our infrastructure is designed to support multiple indigenous languages. We're constantly expanding our language support capabilities.",
+    category: "Technology",
+    icon: Languages,
+    relatedLink: "/languages"
+  },
+  {
+    id: "tech-5",
+    question: "How do you handle different writing systems?",
+    answer: "Our platform supports various writing systems and character sets, ensuring accurate representation of indigenous languages with unique alphabets or writing conventions.",
+    category: "Technology",
+    icon: FileText,
+    relatedLink: "/features/writing-systems"
+  },
+  {
+    id: "education-3",
+    question: "Do you offer teacher training?",
+    answer: "Yes, we provide comprehensive training programs for educators who want to use our platform effectively in their language preservation efforts.",
+    category: "Education",
+    icon: Book,
+    relatedLink: "/education/training"
+  },
+  {
+    id: "education-4",
+    question: "How do you make learning engaging?",
+    answer: "We incorporate interactive elements, cultural stories, and gamification to make language learning both engaging and culturally relevant.",
+    category: "Education",
+    icon: Sparkles,
+    relatedLink: "/education/methods"
+  },
+  {
+    id: "community-3",
+    question: "Can communities customize the platform?",
+    answer: "Yes, our platform is highly customizable to meet specific community needs, including custom vocabulary, cultural content, and learning paths.",
+    category: "Community",
+    icon: Settings,
+    relatedLink: "/customization"
+  },
+  {
+    id: "community-4",
+    question: "How do you ensure cultural authenticity?",
+    answer: "We work directly with community elders and cultural experts to ensure all content accurately represents the community's traditions and values.",
+    category: "Community",
+    icon: Star,
+    relatedLink: "/community/authenticity"
+  },
+  {
+    id: "preservation-4",
+    question: "What makes your approach unique?",
+    answer: "Our approach combines traditional knowledge with modern technology, creating solutions that respect cultural heritage while leveraging digital innovation.",
+    category: "Language Preservation",
+    icon: Zap,
+    relatedLink: "/approach"
+  },
     id: "preservation-1",
     question: "Why is language preservation important?",
     answer: "Language preservation is crucial because languages carry cultural heritage, unique worldviews, and traditional knowledge. When a language disappears, we lose not just words but entire ways of understanding the world.",
