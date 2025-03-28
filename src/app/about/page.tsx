@@ -1,4 +1,3 @@
-
 "use client";
 
 import Layout from "@/app/components/layout";
@@ -6,7 +5,18 @@ import { FadeIn } from "@/app/components/FadeIn";
 import { Button } from "@/app/components/Button";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Globe, Heart, Users, Target, Brain, MapPin, Languages, Book } from "lucide-react";
+import {
+  ArrowRight,
+  Globe,
+  Heart,
+  Sparkles,
+  Users,
+  Target,
+  Brain,
+  MapPin,
+  Languages,
+  Book,
+} from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -81,27 +91,37 @@ export default function AboutPage() {
       <section className="py-20 bg-gradient-to-r from-primary-50 to-white">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <h2 className="text-3xl font-bold text-center mb-12">Learn More About Us</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Learn More About Us
+            </h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <Link href="/about/mission" className="block">
                 <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                   <Target className="h-10 w-10 text-primary-600 mb-4" />
                   <h3 className="text-xl font-semibold mb-3">Our Mission</h3>
-                  <p className="text-gray-600">Discover our core mission and values in preserving indigenous languages.</p>
+                  <p className="text-gray-600">
+                    Discover our core mission and values in preserving
+                    indigenous languages.
+                  </p>
                 </div>
               </Link>
               <Link href="/about/vision" className="block">
                 <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                   <Sparkles className="h-10 w-10 text-primary-600 mb-4" />
                   <h3 className="text-xl font-semibold mb-3">Our Vision</h3>
-                  <p className="text-gray-600">Learn about our future plans and goals for language preservation.</p>
+                  <p className="text-gray-600">
+                    Learn about our future plans and goals for language
+                    preservation.
+                  </p>
                 </div>
               </Link>
               <Link href="/about/team" className="block">
                 <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                   <Users className="h-10 w-10 text-primary-600 mb-4" />
                   <h3 className="text-xl font-semibold mb-3">Our Team</h3>
-                  <p className="text-gray-600">Meet the passionate individuals behind Wekify's mission.</p>
+                  <p className="text-gray-600">
+                    Meet the passionate individuals behind Wekify's mission.
+                  </p>
                 </div>
               </Link>
             </div>
@@ -114,19 +134,39 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">
+                Frequently Asked Questions
+              </h2>
               <div className="space-y-6">
                 <div className="bg-white rounded-lg shadow-sm p-6">
-                  <h3 className="text-lg font-semibold mb-3">What is Wekify's primary focus?</h3>
-                  <p className="text-gray-600">We are currently focused on preserving and digitizing the Kifuliiru language, creating digital tools and resources for the Bafuliiru community.</p>
+                  <h3 className="text-lg font-semibold mb-3">
+                    What is Wekify's primary focus?
+                  </h3>
+                  <p className="text-gray-600">
+                    We are currently focused on preserving and digitizing the
+                    Kifuliiru language, creating digital tools and resources for
+                    the Bafuliiru community.
+                  </p>
                 </div>
                 <div className="bg-white rounded-lg shadow-sm p-6">
-                  <h3 className="text-lg font-semibold mb-3">How do you work with communities?</h3>
-                  <p className="text-gray-600">We collaborate directly with language speakers, cultural leaders, and educators to develop solutions that meet their specific needs and respect their cultural values.</p>
+                  <h3 className="text-lg font-semibold mb-3">
+                    How do you work with communities?
+                  </h3>
+                  <p className="text-gray-600">
+                    We collaborate directly with language speakers, cultural
+                    leaders, and educators to develop solutions that meet their
+                    specific needs and respect their cultural values.
+                  </p>
                 </div>
                 <div className="bg-white rounded-lg shadow-sm p-6">
-                  <h3 className="text-lg font-semibold mb-3">Do you plan to support other languages?</h3>
-                  <p className="text-gray-600">Yes, while our current focus is on Kifuliiru, we are designing our platform to be adaptable for other indigenous languages in the future.</p>
+                  <h3 className="text-lg font-semibold mb-3">
+                    Do you plan to support other languages?
+                  </h3>
+                  <p className="text-gray-600">
+                    Yes, while our current focus is on Kifuliiru, we are
+                    designing our platform to be adaptable for other indigenous
+                    languages in the future.
+                  </p>
                 </div>
               </div>
               <div className="text-center mt-8">
