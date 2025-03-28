@@ -3,21 +3,11 @@
 import { useState, useMemo } from "react";
 import Layout from "@/app/components/layout";
 import { FadeIn } from "@/app/components/FadeIn";
-import {
-  Globe,
-  Code,
-  Users,
-  Book,
-  Shield,
-  Heart,
-  MessageCircle,
-  ArrowRight,
-} from "lucide-react";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/Button";
 import Link from "next/link";
-
-import { faqData, faqCategories } from "@/app/lib/data/faqData";
+import { faqData, FAQ } from "@/app/lib/data/faqData";
+import {MessageCircle, ArrowRight} from "lucide-react";
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,15 +19,14 @@ export default function FAQPage() {
     let filtered = faqData;
 
     if (selectedCategory !== "all") {
-      filtered = filtered.filter((faq) => faq.category === selectedCategory);
+      filtered = filtered.filter(faq => faq.category === selectedCategory);
     }
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (faq) =>
-          faq.question.toLowerCase().includes(query) ||
-          faq.answer.toLowerCase().includes(query),
+      filtered = filtered.filter(faq => 
+        faq.question.toLowerCase().includes(query) || 
+        faq.answer.toLowerCase().includes(query)
       );
     }
 
@@ -47,35 +36,7 @@ export default function FAQPage() {
   const totalPages = Math.ceil(filteredFAQs.length / questionsPerPage);
   const currentFAQs = filteredFAQs.slice(
     (currentPage - 1) * questionsPerPage,
-    currentPage * questionsPerPage,
-  );
-
-  const flattenedQuestions = useMemo(() => {
-    return faqCategories.flatMap((category) =>
-      category.questions.map((q) => ({
-        ...q,
-        category: category.title,
-        icon: category.icon,
-      })),
-    );
-  }, []);
-
-  const filteredQuestions = useMemo(() => {
-    if (!searchQuery) return flattenedQuestions;
-
-    const query = searchQuery.toLowerCase();
-    return flattenedQuestions.filter(
-      (q) =>
-        q.title.toLowerCase().includes(query) ||
-        q.content.toLowerCase().includes(query) ||
-        q.category.toLowerCase().includes(query),
-    );
-  }, [searchQuery, flattenedQuestions]);
-
-  const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
-  const currentQuestions = filteredQuestions.slice(
-    (currentPage - 1) * questionsPerPage,
-    currentPage * questionsPerPage,
+    currentPage * questionsPerPage
   );
 
   return (
@@ -87,8 +48,7 @@ export default function FAQPage() {
               Frequently Asked Questions
             </h1>
             <p className="text-xl text-gray-600">
-              Find answers to common questions about Wekify and our language
-              preservation platform
+              Find answers to common questions about Wekify and our language preservation platform
             </p>
           </FadeIn>
 
@@ -106,23 +66,24 @@ export default function FAQPage() {
           </div>
 
           <div className="space-y-6 mb-16">
-            {currentQuestions.map((question, index) => (
-              <FadeIn key={index}>
+            {currentFAQs.map((faq) => (
+              <FadeIn key={faq.id}>
                 <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="p-2 rounded-lg bg-primary-50">
-                      {question.icon}
+                      {faq.icon && <faq.icon className="h-5 w-5" />}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">
-                        {question.title}
-                      </h3>
-                      <p className="text-sm text-gray-500">
-                        {question.category}
-                      </p>
+                      <h3 className="font-semibold text-lg">{faq.question}</h3>
+                      <p className="text-sm text-gray-500">{faq.category}</p>
                     </div>
                   </div>
-                  <p className="text-gray-600">{question.content}</p>
+                  <p className="text-gray-600">{faq.answer}</p>
+                  {faq.relatedLink && (
+                    <Link href={faq.relatedLink} className="text-primary hover:underline mt-2 inline-block">
+                      Learn more
+                    </Link>
+                  )}
                 </div>
               </FadeIn>
             ))}
@@ -142,16 +103,13 @@ export default function FAQPage() {
               </span>
               <Button
                 variant="outline"
-                onClick={() =>
-                  setCurrentPage((p) => Math.min(totalPages, p + 1))
-                }
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
               >
                 Next
               </Button>
             </div>
           )}
-
           {/* CTA Section */}
           <div className="bg-primary-50 rounded-2xl p-8 md:p-12 mb-16 text-center">
             <MessageCircle className="h-12 w-12 mx-auto mb-6 text-primary" />
