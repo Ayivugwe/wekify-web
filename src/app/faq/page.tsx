@@ -9,12 +9,37 @@ import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/Button";
 import Link from "next/link";
 
+import { faqData, faqCategories } from "@/app/lib/data/faqData";
+
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const questionsPerPage = 10;
 
-  const faqCategories = [
+  const filteredFAQs = useMemo(() => {
+    let filtered = faqData;
+    
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(faq => faq.category === selectedCategory);
+    }
+
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(faq => 
+        faq.question.toLowerCase().includes(query) || 
+        faq.answer.toLowerCase().includes(query)
+      );
+    }
+
+    return filtered;
+  }, [searchQuery, selectedCategory]);
+
+  const totalPages = Math.ceil(filteredFAQs.length / questionsPerPage);
+  const currentFAQs = filteredFAQs.slice(
+    (currentPage - 1) * questionsPerPage,
+    currentPage * questionsPerPage
+  );
     {
       title: "Getting Started",
       icon: <Globe className="h-5 w-5" />,

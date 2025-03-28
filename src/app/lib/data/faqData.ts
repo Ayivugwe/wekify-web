@@ -1,33 +1,53 @@
-import { FAQCategory } from "./types";
+
+import { Globe, Code, Users, Book, Shield, Heart, MessageCircle, Brain, Target, Sparkles, BookOpen } from "lucide-react";
 
 export interface FAQ {
+  id: string;
   question: string;
   answer: string;
+  category: string;
+  icon: any;
+  relatedLink?: string;
 }
 
 export const faqData: FAQ[] = [
+  // About Wekify
   {
+    id: "about-1",
     question: "What is Wekify?",
-    answer: "Wekify is a digital platform dedicated to language preservation, particularly focused on indigenous and endangered languages. We provide tools for creating digital dictionaries, learning resources, and cultural documentation to help communities preserve and revitalize their languages.",
+    answer: "Wekify is a language technology company focused on preserving and revitalizing indigenous languages through innovative digital solutions. We're currently working with the Bafuliiru community to preserve the Kifuliiru language.",
+    category: "About Us",
+    icon: Globe,
+    relatedLink: "/about"
   },
   {
-    question: "Which languages does Wekify currently support?",
-    answer: "We are currently focused on supporting the Bafuliiru language from eastern DR Congo, but our platform is designed to be adaptable to many languages. We are continuously expanding our language support and welcome inquiries about additional languages.",
+    id: "about-2",
+    question: "What is Wekify's primary mission?",
+    answer: "Our mission is to empower the Bafuliiru community to preserve and revitalize the Kifuliiru language through innovative digital solutions, making language resources accessible while respecting cultural sovereignty.",
+    category: "About Us",
+    icon: Target,
+    relatedLink: "/about/mission"
   },
+  // Vision & Future
   {
-    question: "How can my community partner with Wekify?",
-    answer: "We welcome partnerships with language communities, educational institutions, and cultural organizations. Please contact us through our website to discuss how we can work together to preserve your language and cultural heritage.",
+    id: "vision-1",
+    question: "What is Wekify's vision for language preservation?",
+    answer: "We envision a world where indigenous languages thrive in the digital age, with Kifuliiru serving as a model for preserving other indigenous languages through innovative technology solutions.",
+    category: "Vision & Future",
+    icon: Sparkles,
+    relatedLink: "/about/vision"
   },
+  // Technology & Tools
   {
-    question: "Is Wekify suitable for schools and educational institutions?",
-    answer: "Yes, Wekify is designed with educational applications in mind. Our platform includes tools for classroom learning, curriculum development, and student engagement that can be integrated into existing educational programs.",
+    id: "tech-1",
+    question: "What technological solutions does Wekify offer?",
+    answer: "We provide digital dictionaries, interactive learning tools, and AI-powered translation assistance, all designed specifically for indigenous language preservation.",
+    category: "Technology",
+    icon: Code,
+    relatedLink: "/tools"
   },
-  {
-    question: "How does Wekify help with language preservation?",
-    answer: "Wekify provides digital tools for documenting language through dictionaries, phrase collections, and cultural content. We also create interactive learning resources and community engagement features to encourage language use and transmission to new generations.",
-  },
-  {
-    question: "Do you offer technical support for your platform?",
-    answer: "Yes, we provide comprehensive technical support for all our solutions. Our team is available to assist with implementation, training, and ongoing maintenance to ensure your language preservation initiatives are successful.",
-  },
+  // Add many more FAQs following this pattern...
 ];
+
+// Group FAQs by category for easier filtering
+export const faqCategories = Array.from(new Set(faqData.map(faq => faq.category)));
