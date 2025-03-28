@@ -106,6 +106,12 @@ const megaMenuItems = {
       description: "Technical documentation and implementation guides",
     },
     {
+      name: "Security",
+      href: "/security",
+      icon: "Shield",
+      description: "Learn about our security and privacy measures",
+    },
+    {
       name: "Case Studies",
       href: "/case-studies",
       icon: "BarChart",
