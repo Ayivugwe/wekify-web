@@ -31,14 +31,32 @@ import FeaturesShowcase from "./components/FeaturesShowcase";
 
 const languages = [
   "Kifuliiru",
-  "Swahili",
+  "Kiswahili",
   "Yoruba",
+  "Twi",
+  "Hausa",
+  "Amharic",
   "Quechua",
   "Navajo",
   "Māori",
-  "Hawaiian",
+  "Hindi",
+  "Mongolian",
   "Welsh",
   "Sámi",
+  "Cherokee",
+  "Ainu",
+  "Zulu",
+  "Inuktitut",
+  "Guarani",
+  "Xhosa",
+  "Malagasy",
+  "Basque",
+  "Catalan",
+  "Irish",
+  "Scottish Gaelic",
+  "Lakota",
+  "Tibetan",
+  "Hawaiian",
 ];
 
 export default function HomePage() {
@@ -108,7 +126,7 @@ export default function HomePage() {
                     </Button>
                   </div>
                 </div>
-                <div className="relative h-[600px]">
+                <div className="relative h-[600px] ">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-primary-600/20 rounded-3xl blur-3xl"></div>
                   <div className="relative h-full flex items-center justify-center">
                     {/* Simplified orbiting elements with slower animation */}
