@@ -7,10 +7,11 @@ import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/Button";
 import Link from "next/link";
 import { faqData, FAQ } from "@/app/lib/data/faqData";
-import {MessageCircle, ArrowRight, ArrowLeft} from "lucide-react";
+import {MessageCircle, ArrowRight, ArrowLeft, ChevronDown} from "lucide-react";
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [expandedFaqs, setExpandedFaqs] = useState<Set<string>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const questionsPerPage = 10;
@@ -69,21 +70,43 @@ export default function FAQPage() {
             {currentFAQs.map((faq) => (
               <FadeIn key={faq.id}>
                 <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 rounded-lg bg-primary-50">
-                      {faq.icon && <faq.icon className="h-5 w-5" />}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg">{faq.question}</h3>
-                      <p className="text-sm text-gray-500">{faq.category}</p>
+                  <div 
+                    className="cursor-pointer" 
+                    onClick={() => {
+                      const newExpandedState = new Set(expandedFaqs);
+                      if (newExpandedState.has(faq.id)) {
+                        newExpandedState.delete(faq.id);
+                      } else {
+                        newExpandedState.add(faq.id);
+                      }
+                      setExpandedFaqs(newExpandedState);
+                    }}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="p-2 rounded-lg bg-primary-50">
+                        {faq.icon && <faq.icon className="h-5 w-5" />}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-lg">{faq.question}</h3>
+                        <p className="text-sm text-gray-500">{faq.category}</p>
+                      </div>
+                      <div className={`transform transition-transform duration-200 ${expandedFaqs.has(faq.id) ? 'rotate-180' : ''}`}>
+                        <ChevronDown className="h-5 w-5 text-gray-400" />
+                      </div>
                     </div>
                   </div>
-                  <p className="text-gray-600">{faq.answer}</p>
-                  {faq.relatedLink && (
-                    <Link href={faq.relatedLink} className="text-primary hover:underline mt-2 inline-block">
-                      Learn more
-                    </Link>
-                  )}
+                  <div className={`overflow-hidden transition-all duration-200 ease-in-out ${expandedFaqs.has(faq.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <p className="text-gray-600 mb-4">{faq.answer}</p>
+                    {faq.relatedLink && (
+                      <Link 
+                        href={faq.relatedLink} 
+                        className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors mt-2 mb-4"
+                      >
+                        Learn more
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </FadeIn>
             ))}

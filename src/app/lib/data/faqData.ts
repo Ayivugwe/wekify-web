@@ -268,8 +268,54 @@ export const faqData: FAQ[] = [
     icon: Heart,
     relatedLink: "/about/importance",
   },
-  // ... [Adding 20 FAQs about language preservation]
-
+  {
+    id: "preservation-5",
+    question: "How does digital archiving help preserve languages?",
+    answer: "Digital archiving creates permanent records of language materials, making them accessible to future generations and protecting them from physical degradation or loss.",
+    category: "Language Preservation",
+    icon: Cloud,
+    relatedLink: "/preservation/digital-archiving"
+  },
+  {
+    id: "preservation-6",
+    question: "What role do elders play in language preservation?",
+    answer: "Elders are vital knowledge holders who provide authentic pronunciation, cultural context, and traditional usage of language. They bridge past and present generations.",
+    category: "Language Preservation",
+    icon: Users,
+    relatedLink: "/community/elders"
+  },
+  {
+    id: "tech-6",
+    question: "How do you ensure accessibility of digital tools?",
+    answer: "Our tools are designed to work on various devices and internet conditions, with offline capabilities and user-friendly interfaces suitable for all age groups.",
+    category: "Technology",
+    icon: Sparkles,
+    relatedLink: "/accessibility"
+  },
+  {
+    id: "tech-7",
+    question: "What security measures protect language data?",
+    answer: "We implement end-to-end encryption, secure cloud storage, and regular backups to protect sensitive cultural and linguistic information.",
+    category: "Technology",
+    icon: Shield,
+    relatedLink: "/security"
+  },
+  {
+    id: "community-5",
+    question: "How can schools integrate language preservation tools?",
+    answer: "Schools can use our digital resources in curriculum planning, cultural education programs, and interactive language learning activities.",
+    category: "Community",
+    icon: Book,
+    relatedLink: "/education/schools"
+  },
+  {
+    id: "community-6",
+    question: "What support do you offer to language teachers?",
+    answer: "We provide training workshops, teaching materials, and ongoing technical support to help educators effectively use our language preservation tools.",
+    category: "Community",
+    icon: Heart,
+    relatedLink: "/support/teachers"
+  },
   // Technology & Tools (20 questions)
   {
     id: "tech-1",
