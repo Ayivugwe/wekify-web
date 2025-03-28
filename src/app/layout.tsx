@@ -6,14 +6,19 @@ import { inter, lexend, jetbrainsMono } from "./fonts";
 const interFont = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Wekify",
-  description: "A modern web application",
+  title: "Wekify - Digital Language Preservation Platform",
+  description: "Empowering indigenous communities through digital language preservation. Specializing in Kifuliiru language preservation with cutting-edge technology solutions.",
   keywords: [
     "language preservation",
     "digital platform",
     "indigenous languages",
     "Kifuliiru",
-    "technology",
+    "language technology",
+    "cultural preservation",
+    "digital dictionary",
+    "language learning",
+    "Bafuliiru community",
+    "African languages",
   ],
   authors: [{ name: "Ayivugwe Kabemba" }],
   creator: "Wekify LLC",

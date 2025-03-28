@@ -1,16 +1,6 @@
-# Allow all crawlers
+
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemaps
 Sitemap: https://wekify.com/sitemap.xml
-
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /private/
-Disallow: /api/
-Disallow: /_next/
-Disallow: /static/
-
-# Crawl-delay for all bots
-Crawl-delay: 10
