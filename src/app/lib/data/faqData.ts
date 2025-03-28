@@ -33,9 +33,9 @@ export const faqData: FAQ[] = [
   // About Wekify
   {
     id: "about-1",
-    question: "What is Wekify?",
+    question: "What is Wekify (Wekify LLC)?",
     answer:
-      "Wekify is a language technology company focused on preserving and revitalizing indigenous languages through innovative digital solutions. We're currently working with the Bafuliiru community to preserve the Kifuliiru language.",
+      "Wekify (Wekify LLC) is a language technology company focused on preserving and revitalizing indigenous languages through innovative digital solutions. We're currently working with the Bafuliiru community to preserve the Kifuliiru language.",
     category: "About Us",
     icon: Globe,
     relatedLink: "/about",
