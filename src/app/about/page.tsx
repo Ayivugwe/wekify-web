@@ -34,9 +34,7 @@ export default function AboutPage() {
                   About <span className="text-primary-600">Wekify LLC</span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-10">
-                  Pioneering language preservation through innovative technology
-                  solutions, starting with the Kifuliiru language and expanding
-                  to serve indigenous communities worldwide.
+                  Pioneering technology solutions that enable communities to preserve their languages. We help build and maintain digital platforms, starting with our partnership with the Kifuliiru community.
                 </p>
                 <div className="flex items-center gap-2 text-gray-600">
                   <MapPin className="h-5 w-5 text-primary-600" />

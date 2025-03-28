@@ -6,8 +6,8 @@ import { inter, lexend, jetbrainsMono } from "./fonts";
 const interFont = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Wekify - Digital Language Preservation Platform",
-  description: "Empowering indigenous communities through digital language preservation. Specializing in Kifuliiru language preservation with cutting-edge technology solutions.",
+  title: "Wekify - Technology Solutions for Language Preservation",
+  description: "Empowering communities to build digital language preservation platforms. Providing technology solutions and expertise for indigenous language initiatives.",
   keywords: [
     "language preservation",
     "digital platform",

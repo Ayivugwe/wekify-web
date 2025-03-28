@@ -14,10 +14,10 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto">
             <FadeIn className="text-center">
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Preserving Languages, Empowering Communities
+                Building Technology for Language Preservation
               </h1>
               <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                Wekify is dedicated to preserving endangered languages through innovative technology and community engagement.
+                Wekify empowers communities to build and maintain their own language preservation platforms through innovative technology solutions and expert support.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
