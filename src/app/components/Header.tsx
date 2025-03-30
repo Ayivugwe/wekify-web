@@ -328,13 +328,15 @@ const Header = () => {
             FAQ
           </Link>
 
-          <Link
-            href="/contact"
-            className="px-6 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
-          >
-            Contact Us
-          </Link>
+         
         </nav>
+
+        <Link
+          href="/contact"
+          className="px-6 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
+        >
+          Contact Us
+        </Link>
 
         {/* Mobile menu button */}
         <button
