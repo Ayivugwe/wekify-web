@@ -1,99 +1,122 @@
+
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { IconMap } from "@/app/lib/icons";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
-
-  const handleMegaMenuHover = (menuName: string | null) => {
-    setActiveMegaMenu(menuName);
-  };
-
-  const handleMegaMenuToggle = (menuName: string) => {
-    setActiveMegaMenu(activeMegaMenu === menuName ? null : menuName);
-  };
-
-  const getIcon = (iconName: string, props: any) => {
-    const Icon = IconMap[iconName] || (() => null);
-    return <Icon {...props} />;
-  };
 
   const navigation = [
+    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Features", href: "/features" },
-    { name: "Blog", href: "/blog" },
-    { name: "FAQ", href: "/faq" },
+    { name: "Languages", href: "/languages" },
+    { name: "Team", href: "/about/team" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <header className="bg-white/80 backdrop-blur-md border-b border-neutral-100 sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-sm">
+      <nav
+        className="flex items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
+        <div className="flex lg:flex-1">
+          <Link href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">Wekify</span>
             <Image
+              className="h-8 w-auto"
               src="/logo.png"
-              alt="Wekify LLC Logo"
-              width={180}
-              height={56}
-              className="h-12 w-auto"
-              priority
+              alt="Wekify Logo"
+              width={32}
+              height={32}
             />
           </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex md:space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+        </div>
+        <div className="flex lg:hidden">
+          <button
+            type="button"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <span className="sr-only">Open main menu</span>
+            <Menu className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
+        <div className="hidden lg:flex lg:gap-x-12">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <Link
+            href="/login"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary"
+          >
+            Log in <span aria-hidden="true">&rarr;</span>
+          </Link>
+        </div>
+      </nav>
+      <div
+        className={`lg:hidden ${
+          mobileMenuOpen ? "fixed inset-0 z-50" : "hidden"
+        }`}
+      >
+        <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="-m-1.5 p-1.5">
+              <span className="sr-only">Wekify</span>
+              <Image
+                className="h-8 w-auto"
+                src="/logo.png"
+                alt="Wekify Logo"
+                width={32}
+                height={32}
+              />
+            </Link>
             <button
               type="button"
-              className="text-gray-600 hover:text-gray-900"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Open main menu</span>
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              <span className="sr-only">Close menu</span>
+              <X className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="md:hidden py-2">
-            <div className="space-y-1">
-              {navigation.map((item) => (
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="space-y-2 py-6">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="py-6">
                 <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50 rounded-md"
+                  href="/login"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item.name}
+                  Log in
                 </Link>
-              ))}
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
