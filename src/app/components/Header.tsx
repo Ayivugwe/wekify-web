@@ -1,9 +1,10 @@
+
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,17 +14,24 @@ const Header = () => {
     setActiveMegaMenu(menuName);
   };
 
-  const handleMegaMenuToggle = (menuName: string) => {
-    setActiveMegaMenu(activeMegaMenu === menuName ? null : menuName);
+  const navigation = {
+    Solutions: [
+      { name: "Language Learning", href: "/solutions#learning" },
+      { name: "Digital Archives", href: "/solutions#archives" },
+      { name: "Community Tools", href: "/solutions#community" },
+    ],
+    Resources: [
+      { name: "Documentation", href: "/documentation" },
+      { name: "Blog", href: "/blog" },
+      { name: "Case Studies", href: "/case-studies" },
+      { name: "FAQ", href: "/faq" },
+    ],
+    Company: [
+      { name: "About", href: "/about" },
+      { name: "Team", href: "/about/team" },
+      { name: "Contact", href: "/contact" },
+    ],
   };
-
-  const navigation = [
-    { name: "About", href: "/about" },
-    { name: "Features", href: "/features" },
-    { name: "Blog", href: "/blog" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Contact", href: "/contact" },
-  ];
 
   return (
     <header className="bg-white/80 backdrop-blur-md border-b border-neutral-100 sticky top-0 z-50">
@@ -42,15 +50,31 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex md:space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium"
+          <nav className="hidden md:flex space-x-8">
+            {Object.entries(navigation).map(([category, items]) => (
+              <div
+                key={category}
+                className="relative"
+                onMouseEnter={() => handleMegaMenuHover(category)}
+                onMouseLeave={() => handleMegaMenuHover(null)}
               >
-                {item.name}
-              </Link>
+                <button className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium">
+                  {category}
+                </button>
+                {activeMegaMenu === category && (
+                  <div className="absolute top-full left-0 w-48 bg-white shadow-lg rounded-lg py-2">
+                    {items.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -74,18 +98,21 @@ const Header = () => {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden py-2">
-            <div className="space-y-1">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50 rounded-md"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+            {Object.entries(navigation).map(([category, items]) => (
+              <div key={category} className="space-y-1">
+                <div className="px-3 py-2 font-medium text-gray-900">{category}</div>
+                {items.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-primary hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            ))}
           </div>
         )}
       </div>
