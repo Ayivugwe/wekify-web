@@ -29,14 +29,15 @@ export default function TeamPage() {
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="w-48 h-48 relative rounded-full overflow-hidden">
                   <Image
-                    src="/founder.jpg"
-                    alt="Wekify Founder"
+                    src="/ayivugwe.png"
+                    alt="Ayivugwe Kabemba Mukome"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-bold mb-2">Founder & Visionary</h3>
+                  <h3 className="text-2xl font-bold mb-2">Ayivugwe Kabemba Mukome</h3>
+                  <p className="text-gray-600 mb-2">Founder and Lead Developer</p>
                   <p className="text-gray-600 mb-4">
                     Leading Wekify's mission to preserve indigenous languages through innovative technology solutions.
                     Passionate about combining cultural preservation with modern digital tools.

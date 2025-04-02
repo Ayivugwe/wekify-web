@@ -33,9 +33,23 @@ export default function AboutPage() {
                 <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                   About <span className="text-primary-600">Wekify LLC</span>
                 </h1>
-                <p className="text-xl text-gray-600 mb-10">
-                  Pioneering technology solutions that enable communities to preserve their languages. We help build and maintain digital platforms, starting with our partnership with the Kifuliiru community.
+                <p className="text-xl text-gray-600 mb-6">
+                  Pioneering technology solutions that enable communities to preserve their languages. Founded by Ayivugwe Kabemba Mukome, we help build and maintain digital platforms, starting with our partnership with the Kifuliiru community.
                 </p>
+                <div className="flex items-center gap-4 mb-10">
+                  <div className="w-16 h-16 relative rounded-full overflow-hidden">
+                    <Image
+                      src="/ayivugwe.png"
+                      alt="Ayivugwe Kabemba Mukome"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-900">Ayivugwe Kabemba Mukome</h2>
+                    <p className="text-gray-600">Founder and Lead Developer</p>
+                  </div>
+                </div>
                 <div className="flex items-center gap-2 text-gray-600">
                   <MapPin className="h-5 w-5 text-primary-600" />
                   <span>Spokane, Washington</span>
