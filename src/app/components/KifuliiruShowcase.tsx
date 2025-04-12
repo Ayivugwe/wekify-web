@@ -70,7 +70,7 @@ export default function KifuliiruShowcase() {
                   ))}
                 </div>
                 <div className="mt-8 text-center">
-                  <Link href="/dictionary" className="inline-flex items-center text-neutral-600 font-medium hover:text-neutral-900">
+                  <Link href="/atlas/dictionary" className="inline-flex items-center text-neutral-600 font-medium hover:text-neutral-900">
                     Explore the full Kifuliiru dictionary <ChevronRight className="ml-1 h-4 w-4" />
                   </Link>
                 </div>
@@ -102,7 +102,7 @@ export default function KifuliiruShowcase() {
                     </li>
                   </ul>
                 </div>
-                <Link href="/phrases" className="block text-center text-neutral-600 font-medium hover:text-neutral-900">
+                <Link href="/atlas/phrases" className="block text-center text-neutral-600 font-medium hover:text-neutral-900">
                   Learn more common phrases <ChevronRight className="inline ml-1 h-4 w-4" />
                 </Link>
               </div>

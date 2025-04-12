@@ -11,7 +11,7 @@ export default function GamePromoSection() {
         <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
           Learn about endangered languages and help preserve them by playing our fun and engaging game.
         </p>
-        <Link href="/game" className="btn-primary">
+        <Link href="/games" className="btn-primary">
           Play Now
         </Link>
       </div>

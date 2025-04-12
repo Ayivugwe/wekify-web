@@ -57,7 +57,7 @@ const DictionarySection = () => {
             </div>
 
             <div className="mt-8">
-              <Link href="/solutions/digital-dictionary" className="btn-primary">
+              <Link href="/solutions" className="btn-primary">
                 Explore the Dictionary
               </Link>
             </div>

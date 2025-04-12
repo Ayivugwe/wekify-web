@@ -14,6 +14,7 @@ import {
 import Layout from "../components/layout";
 import { Button } from "../components/Button";
 import { toast } from "sonner";
+import Link from "next/link";
 
 interface ResourceLink {
   icon: React.ReactNode;
@@ -157,12 +158,12 @@ const ResourcesPage: React.FC = () => {
         {category.items.map((item, idx) => (
           <li key={idx} className="flex items-center text-primary-700/70 gap-2">
             <ArrowRight className="w-4 h-4 text-primary-600" />
-            <a
+            <Link
               href={item.href}
               className="hover:text-primary-600 transition-colors"
             >
               {item.title}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

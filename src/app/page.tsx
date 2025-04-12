@@ -116,6 +116,7 @@ export default function HomePage() {
                   </p>
                   <div className="flex flex-wrap gap-4 max-w-3xl mx-auto">
                     <Button 
+                      size="lg"
                       className="px-8 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 text-white hover:text-white shadow-sm transition-colors duration-200"
                       asChild
                     >
@@ -124,7 +125,12 @@ export default function HomePage() {
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
-                    <Button size="lg" variant="outline" asChild>
+                    <Button 
+                      size="lg"
+                      variant="outline"
+                      className="px-8 py-3 text-base font-medium border-primary-600 text-primary-600 hover:bg-primary-50"
+                      asChild
+                    >
                       <Link href="/solutions">Learn More About Our Vision</Link>
                     </Button>
                   </div>
@@ -351,8 +357,8 @@ export default function HomePage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div className="p-8 rounded-xl bg-white shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-6">
+                <div className="p-8 rounded-xl bg-white shadow-lg border border-slate-200 h-[400px] flex flex-col">
+                  <div className="flex items-center mb-4">
                     <div className="bg-slate-100 p-4 rounded-full">
                       <Languages className="h-8 w-8 text-slate-700" />
                     </div>
@@ -360,11 +366,11 @@ export default function HomePage() {
                       Global Language Directory
                     </h3>
                   </div>
-                  <p className="text-slate-600 mb-6">
+                  <p className="text-slate-600 mb-4">
                     Browse our extensive catalog of languages organized by
                     region, language family, and vitality status.
                   </p>
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-2 mb-4">
                     <li className="flex items-center text-slate-700">
                       <span className="w-2 h-2 bg-slate-700 rounded-full mr-2"></span>
                       African languages including Kifuliiru, Swahili, Yoruba,
@@ -383,12 +389,18 @@ export default function HomePage() {
                       European endangered languages including Welsh and Sámi
                     </li>
                   </ul>
-                  <Button variant="outline" asChild>
-                    <Link href="/languages">
-                      Explore All Languages{" "}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <div className="mt-auto">
+                    <Button 
+                      variant="outline" 
+                      className="w-full px-6 py-3 text-base font-medium border-primary-600 text-primary-600 hover:bg-primary-50"
+                      asChild
+                    >
+                      <Link href="/languages">
+                        Explore All Languages{" "}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
 
                 <div className="relative rounded-xl overflow-hidden h-[400px] shadow-lg">
@@ -408,8 +420,15 @@ export default function HomePage() {
                       Connect with language advocates from around the world
                       dedicated to preservation efforts.
                     </p>
-                    <Button variant="outline" asChild>
-                      <Link href="/ambassador-program">Learn More</Link>
+                    <Button 
+                      variant="outline" 
+                      className="w-full px-6 py-3 text-base font-medium border-white text-white hover:bg-white hover:text-slate-900 transition-colors duration-200"
+                      asChild
+                    >
+                      <Link href="/ambassador-program">
+                        Join the Program{" "}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </Button>
                   </div>
                 </div>
@@ -549,7 +568,7 @@ export default function HomePage() {
                   services
                 </p>
               </div>
-              <FAQSection faqs={faqData} />
+              <FAQSection faqs={faqData.slice(0, 10)} />
               <div className="text-center mt-12">
                 <p className="text-gray-600 mb-6">
                   Still have questions? Check out our comprehensive FAQ page
@@ -590,7 +609,7 @@ export default function HomePage() {
                 className="px-8 py-3 text-base font-medium bg-white/10 hover:bg-white/20 text-white hover:text-white border border-white/20 shadow-sm transition-colors duration-200"
                 asChild
               >
-                <Link href="/solutions/custom">
+                <Link href="/solutions">
                   Learn More About Custom Solutions
                 </Link>
               </Button>

@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -23,7 +22,7 @@ const AmbassadorSection = () => {
             </p>
             <Link
               href="/ambassador"
-              className="inline-flex items-center px-6 py-3 bg-white text-blue-700 rounded-xl font-medium hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="btn-primary"
             >
               Become an Ambassador <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

@@ -96,7 +96,7 @@ export const faqData: FAQ[] = [
       "We offer digital dictionaries, learning platforms, documentation tools, and cultural preservation solutions. Our tools are designed to be user-friendly and culturally appropriate.",
     category: "Technology",
     icon: BsTools,
-    relatedLink: "/tools",
+    relatedLink: "/solutions",
   },
   {
     id: "tech-2",
@@ -113,8 +113,8 @@ export const faqData: FAQ[] = [
     answer:
       "Many of our tools have offline capabilities, ensuring communities can access and use resources even without constant internet connectivity.",
     category: "Technology",
-    icon: Cloud,
-    relatedLink: "/tools/offline",
+    icon: BsTools,
+    relatedLink: "/solutions",
   },
 
   // Community & Culture
@@ -323,8 +323,8 @@ export const faqData: FAQ[] = [
     answer:
       "We provide digital dictionaries, interactive learning tools, and AI-powered translation assistance, all designed specifically for indigenous language preservation.",
     category: "Technology",
-    icon: Code,
-    relatedLink: "/tools",
+    icon: BsTools,
+    relatedLink: "/solutions"
   },
   // ... [Adding 20 FAQs about technology]
 
