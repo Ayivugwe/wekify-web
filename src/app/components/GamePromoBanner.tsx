@@ -64,7 +64,7 @@ export default function GamePromoBanner() {
               </div>
               
               <Link 
-                href="/game" 
+                href="/games" 
                 className="inline-flex items-center px-6 py-3 bg-white text-indigo-600 rounded-xl font-medium hover:bg-opacity-90 transition-all shadow-lg transform hover:-translate-y-1"
               >
                 Play Now

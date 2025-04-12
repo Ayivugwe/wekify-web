@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Layout from "../components/layout";
 import { Button } from "../components/Button";
+import { toast } from "sonner";
 
 interface ResourceLink {
   icon: React.ReactNode;
@@ -44,21 +45,21 @@ const ResourcesPage: React.FC = () => {
       icon: <FileCode className="w-8 h-8" />,
       title: "Platform Documentation",
       description: "Comprehensive guides for building and managing your platform",
-      link: "https://docs.wekify.com",
+      link: "#",
       linkText: "View Documentation",
     },
     {
       icon: <Video className="w-8 h-8" />,
       title: "Platform Tutorials",
       description: "Step-by-step guides for platform development and management",
-      link: "/tutorials",
+      link: "#",
       linkText: "Watch Tutorials",
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "Community Support",
       description: "Connect with other platform developers and share knowledge",
-      link: "/community",
+      link: "#",
       linkText: "Join Discussion",
     },
   ];
@@ -68,30 +69,30 @@ const ResourcesPage: React.FC = () => {
       icon: <BookOpen className="w-6 h-6" />,
       title: "Platform Development",
       items: [
-        { title: "Platform Architecture", href: "/docs/architecture" },
-        { title: "Development Guide", href: "/docs/development" },
-        { title: "API Reference", href: "/docs/api" },
-        { title: "Deployment Guide", href: "/docs/deployment" },
+        { title: "Platform Architecture", href: "/docs#platform-architecture" },
+        { title: "Development Guide", href: "/docs#development-guide" },
+        { title: "API Reference", href: "/docs#api-reference" },
+        { title: "Deployment Guide", href: "/docs#deployment-guide" },
       ],
     },
     {
       icon: <FileText className="w-6 h-6" />,
       title: "Platform Management",
       items: [
-        { title: "Content Management", href: "/docs/content" },
-        { title: "User Administration", href: "/docs/users" },
-        { title: "Security Settings", href: "/docs/security" },
-        { title: "Performance Guide", href: "/docs/performance" },
+        { title: "Content Management", href: "/docs#content-management" },
+        { title: "User Administration", href: "/docs#user-administration" },
+        { title: "Security Settings", href: "/docs#security-settings" },
+        { title: "Performance Guide", href: "/docs#performance-guide" },
       ],
     },
     {
       icon: <Book className="w-6 h-6" />,
       title: "Platform Features",
       items: [
-        { title: "Language Tools", href: "/docs/language-tools" },
-        { title: "Community Features", href: "/docs/community" },
-        { title: "Analytics Dashboard", href: "/docs/analytics" },
-        { title: "Integration Guide", href: "/docs/integration" },
+        { title: "Language Tools", href: "/docs#language-tools" },
+        { title: "Community Features", href: "/docs#community-features" },
+        { title: "Analytics Dashboard", href: "/docs#analytics-dashboard" },
+        { title: "Integration Guide", href: "/docs#integration-guide" },
       ],
     },
   ];
@@ -123,18 +124,14 @@ const ResourcesPage: React.FC = () => {
         {resource.title}
       </h3>
       <p className="text-primary-700/70 mb-6">{resource.description}</p>
-      <a
-        href={resource.link}
-        target={resource.link.startsWith("http") ? "_blank" : undefined}
-        rel={
-          resource.link.startsWith("http") ? "noopener noreferrer" : undefined
-        }
+      <button
+        onClick={() => toast.info("Coming soon!")}
         className="inline-flex items-center gap-2 text-primary-600 font-medium hover:text-primary-700 
           transition-colors"
       >
         {resource.linkText}
         <ExternalLink className="w-4 h-4" />
-      </a>
+      </button>
     </div>
   );
 

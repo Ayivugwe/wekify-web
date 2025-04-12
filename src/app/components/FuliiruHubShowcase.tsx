@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { FadeIn } from "./FadeIn";
 import { Button } from "./Button";
 
@@ -44,15 +44,16 @@ export default function FuliiruHubShowcase() {
                 </div>
                 
                 <div className="flex flex-wrap gap-4">
-                  <Button size="lg" asChild>
-                    <Link 
-                      href="https://fuliiruHub.com" 
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  <div className="flex justify-center">
+                    <Button
+                      className="px-8 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 text-white hover:text-white shadow-sm transition-colors duration-200"
+                      asChild
                     >
-                      Visit FuliiruHub.com <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
+                      <Link href="https://fuliiruhub.com" target="_blank" rel="noopener noreferrer">
+                        Visit FuliiruHub.com <ExternalLink className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
                   <Button size="lg" variant="outline" asChild>
                     <Link href="/case-studies/fuliiru">
                       View Case Study

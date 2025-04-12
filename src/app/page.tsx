@@ -114,8 +114,11 @@ export default function HomePage() {
                     Empowering communities with powerful digital platforms to
                     preserve, teach, and celebrate their linguistic heritage.
                   </p>
-                  <div className="flex flex-wrap justify-center gap-4">
-                    <Button size="lg" asChild>
+                  <div className="flex flex-wrap gap-4 max-w-3xl mx-auto">
+                    <Button 
+                      className="px-8 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 text-white hover:text-white shadow-sm transition-colors duration-200"
+                      asChild
+                    >
                       <Link href="/contact">
                         Start Your Project{" "}
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -316,7 +319,10 @@ export default function HomePage() {
               </div>
 
               <div className="text-center mt-16">
-                <Button size="lg" asChild>
+                <Button 
+                  className="px-8 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 text-white hover:text-white shadow-sm transition-colors duration-200"
+                  asChild
+                >
                   <Link href="/contact">
                     Start Your Platform Project{" "}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -462,7 +468,10 @@ export default function HomePage() {
                       </p>
                     </li>
                   </ul>
-                  <Button variant="outline" asChild>
+                  <Button 
+                    className="px-8 py-3 text-base font-medium bg-white/10 hover:bg-white/20 text-white hover:text-white border border-white/20 shadow-sm transition-colors duration-200"
+                    asChild
+                  >
                     <Link href="/about/vision">
                       Learn More About Our Vision{" "}
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -509,7 +518,10 @@ export default function HomePage() {
                       </p>
                     </li>
                   </ul>
-                  <Button variant="outline" asChild>
+                  <Button 
+                    className="px-8 py-3 text-base font-medium bg-white/10 hover:bg-white/20 text-white hover:text-white border border-white/20 shadow-sm transition-colors duration-200"
+                    asChild
+                  >
                     <Link href="/about/our-policies">
                       Review Our Policies{" "}
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -542,7 +554,10 @@ export default function HomePage() {
                 <p className="text-gray-600 mb-6">
                   Still have questions? Check out our comprehensive FAQ page
                 </p>
-                <Button size="lg" variant="outline" asChild>
+                <Button 
+                  className="px-8 py-3 text-base font-medium bg-white hover:bg-gray-100 text-primary-900 hover:text-primary-900 border border-primary-200 shadow-sm transition-colors duration-200"
+                  asChild
+                >
                   <Link href="/faq">
                     View All FAQs <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -563,12 +578,18 @@ export default function HomePage() {
               meets your community's needs.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" variant="secondary" asChild>
+              <Button 
+                className="px-8 py-3 text-base font-medium bg-white hover:bg-gray-100 text-primary-900 hover:text-primary-900 border border-white/20 shadow-sm transition-colors duration-200"
+                asChild
+              >
                 <Link href="/contact">
                   Get Started <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button 
+                className="px-8 py-3 text-base font-medium bg-white/10 hover:bg-white/20 text-white hover:text-white border border-white/20 shadow-sm transition-colors duration-200"
+                asChild
+              >
                 <Link href="/solutions/custom">
                   Learn More About Custom Solutions
                 </Link>

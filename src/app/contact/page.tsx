@@ -30,7 +30,7 @@ export default function ContactPage() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <FadeIn className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <FadeIn className="bg-primary-50/50 rounded-2xl shadow-sm p-8 md:p-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
                 Start Your Project
               </h2>
@@ -86,7 +86,9 @@ export default function ContactPage() {
                   ></textarea>
                 </div>
                 <div className="flex justify-center">
-                  <Button size="lg" className="w-full md:w-auto">
+                  <Button 
+                    className="px-8 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 text-white hover:text-white shadow-sm transition-colors duration-200 w-full md:w-auto"
+                  >
                     Send Message
                   </Button>
                 </div>
