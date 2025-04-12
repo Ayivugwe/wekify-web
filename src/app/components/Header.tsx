@@ -151,10 +151,10 @@ const megaMenuItems = {
       description: "Browse languages by continent",
     },
     {
-      name: "Currencies",
-      href: "/currencies",
-      icon: "Dollar",
-      description: "Currency information by region",
+      name: "Contribute a Language",
+      href: "/languages/contribute",
+      icon: "Share2",
+      description: "Share your language with the world",
     },
   ],
 
