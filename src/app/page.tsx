@@ -28,6 +28,7 @@ import { faqData } from "./lib/data/faqData";
 import GamePromoBanner from "./components/GamePromoBanner";
 import FuliiruHubShowcase from "./components/FuliiruHubShowcase";
 import FeaturesShowcase from "./components/FeaturesShowcase";
+import { LanguagePreservationPlatforms } from "./components/LanguagePreservationPlatforms";
 
 const languages = [
   "Kifuliiru",
@@ -196,6 +197,8 @@ export default function HomePage() {
             </div>
           </FadeIn>
         </section>
+
+        <LanguagePreservationPlatforms />
 
         {/* Platform Capabilities Section */}
         <section className="py-32 bg-gradient-to-b from-primary-600 to-primary-700">

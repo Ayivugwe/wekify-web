@@ -34,6 +34,7 @@ import {
   BarChart,
   ArrowRight,
 } from "lucide-react";
+import { usePathname } from 'next/navigation';
 
 // Icon mapping for dynamic rendering
 const IconMap: Record<string, React.ElementType> = {
@@ -215,6 +216,7 @@ const megaMenuItems = {
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const pathname = usePathname();
 
   const handleMegaMenuHover = (menuName: string | null) => {
     setActiveMegaMenu(menuName);
@@ -237,6 +239,10 @@ const Header = () => {
     { name: "Contact", href: "/contact" },
   ];
 
+  const isActive = (path: string) => {
+    return pathname === path;
+  };
+
   return (
     <header className="bg-white/80 backdrop-blur-md border-b border-neutral-100 sticky top-0 z-50">
       <div className="container flex items-center justify-between py-3">
@@ -257,9 +263,20 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-8">
           <Link
             href="/"
-            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
+            className={`text-text-primary hover:text-blue-600 font-medium transition-colors duration-300 ${
+              isActive('/') ? 'text-blue-600' : ''
+            }`}
           >
             Home
+          </Link>
+
+          <Link
+            href="/language-preservation"
+            className={`text-text-primary hover:text-blue-600 font-medium transition-colors duration-300 ${
+              isActive('/language-preservation') ? 'text-blue-600' : ''
+            }`}
+          >
+            Language Preservation
           </Link>
 
           {Object.keys(megaMenuItems).map((menuName) => (
@@ -269,7 +286,9 @@ const Header = () => {
               onMouseEnter={() => handleMegaMenuHover(menuName)}
             >
               <button
-                className="flex items-center text-text-primary hover:text-primary font-medium transition-colors duration-300"
+                className={`flex items-center text-text-primary hover:text-blue-600 font-medium transition-colors duration-300 ${
+                  isActive(`/${menuName.toLowerCase()}`) ? 'text-blue-600' : ''
+                }`}
                 onClick={() => handleMegaMenuToggle(menuName)}
               >
                 {menuName}
@@ -293,12 +312,14 @@ const Header = () => {
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="group block p-3 hover:bg-gray-50 rounded-lg text-text-primary hover:text-primary transition-all duration-300"
+                            className={`group block p-3 hover:bg-gray-50 rounded-lg text-text-primary hover:text-blue-600 transition-all duration-300 ${
+                              isActive(item.href) ? 'text-blue-600' : ''
+                            }`}
                           >
                             <div className="flex items-start">
                               {Icon && (
-                                <div className="icon-container mr-3 mt-1 p-2 bg-gray-50 rounded-lg group-hover:bg-primary/10 transition-all duration-300">
-                                  <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-primary transform group-hover:scale-110 group-hover:rotate-6" />
+                                <div className="icon-container mr-3 mt-1 p-2 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-all duration-300">
+                                  <Icon className="h-5 w-5 text-gray-500 transition-all duration-300 group-hover:text-blue-600 transform group-hover:scale-110 group-hover:rotate-6" />
                                 </div>
                               )}
                               <div>
@@ -306,7 +327,7 @@ const Header = () => {
                                   {item.name}
                                 </div>
                                 {item.description && (
-                                  <div className="text-xs text-gray-500 mt-1 pr-4 group-hover:text-primary/70 transition-colors duration-300">
+                                  <div className="text-xs text-gray-500 mt-1 pr-4 group-hover:text-blue-600/70 transition-colors duration-300">
                                     {item.description}
                                   </div>
                                 )}
@@ -324,7 +345,9 @@ const Header = () => {
 
           <Link
             href="/faq"
-            className="text-text-primary hover:text-primary font-medium transition-colors duration-300"
+            className={`text-text-primary hover:text-blue-600 font-medium transition-colors duration-300 ${
+              isActive('/faq') ? 'text-blue-600' : ''
+            }`}
           >
             FAQ
           </Link>
@@ -364,6 +387,14 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
+            </Link>
+
+            <Link
+              href="/language-preservation"
+              className="block text-text-primary hover:text-primary font-medium transition-colors duration-300"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Language Preservation
             </Link>
 
             {Object.keys(megaMenuItems).map((menuName) => (
