@@ -2,9 +2,9 @@
 
 import React from "react";
 import Layout from "@/app/components/layout";
-import { Button } from "@/app/components/Button";
 import { FadeIn } from "@/app/components/FadeIn";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ContactForm } from "@/app/components/ContactForm";
+import { Toaster } from "sonner";
 
 export default function ContactPage() {
   return (
@@ -34,69 +34,12 @@ export default function ContactPage() {
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
                 Start Your Project
               </h2>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-2">
-                    Organization/Community
-                  </label>
-                  <input
-                    type="text"
-                    id="organization"
-                    name="organization"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    placeholder="Your organization or community name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Project Details
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    placeholder="Tell us about your language preservation project..."
-                  ></textarea>
-                </div>
-                <div className="flex justify-center">
-                  <Button 
-                    className="px-8 py-3 text-base font-medium bg-primary-600 hover:bg-primary-700 text-white hover:text-white shadow-sm transition-colors duration-200 w-full md:w-auto"
-                  >
-                    Send Message
-                  </Button>
-                </div>
-              </form>
+              <ContactForm />
             </FadeIn>
           </div>
         </div>
       </section>
+      <Toaster position="top-center" />
     </Layout>
   );
 }
