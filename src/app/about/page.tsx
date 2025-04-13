@@ -57,12 +57,17 @@ export default function AboutPage() {
               </div>
               <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/office.jpg"
-                  alt="Wekify Office"
+                  src="/WekifyLLCOffice.jpg"
+                  alt="Wekify LLC Office"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={100}
+                  priority
                 />
+                <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4 text-center text-sm">
+                  This is our humble small office
+                </div>
               </div>
             </div>
           </div>

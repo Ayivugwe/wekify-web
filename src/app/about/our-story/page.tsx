@@ -102,12 +102,16 @@ export default function OurStoryPage() {
             </FadeIn>
             <FadeIn className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
-                alt="Modern office workspace with computer"
+                src="/WekifyLLCOffice.jpg"
+                alt="Wekify LLC Office"
                 fill
                 className="object-cover"
+                quality={100}
                 priority
               />
+              <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4 text-center text-sm">
+                This is our humble small office
+              </div>
             </FadeIn>
           </div>
         </div>

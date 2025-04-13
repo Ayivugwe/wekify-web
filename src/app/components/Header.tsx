@@ -32,6 +32,7 @@ import {
   Users2,
   Database,
   BarChart,
+  ArrowRight,
 } from "lucide-react";
 
 // Icon mapping for dynamic rendering
@@ -333,9 +334,10 @@ const Header = () => {
 
         <Link
           href="/contact"
-          className="px-6 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 ml-4"
+          className="px-6 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:scale-x-105 hover:scale-y-105 ml-4 group flex items-center gap-2"
         >
           Contact Us
+          <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
         </Link>
 
         {/* Mobile menu button */}
@@ -414,10 +416,11 @@ const Header = () => {
 
             <Link
               href="/contact"
-              className="block text-center px-6 py-3 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors shadow-md"
+              className="block text-center px-6 py-3 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:scale-x-105 hover:scale-y-105 group flex items-center justify-center gap-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact Us
+              <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
