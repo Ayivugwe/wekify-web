@@ -3,6 +3,10 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com'],
   },
+  devIndicators: {
+    buildActivity: false,
+    buildActivityPosition: 'bottom-right',
+  },
 }
 
 module.exports = nextConfig 
