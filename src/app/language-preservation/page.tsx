@@ -17,6 +17,10 @@ import {
   Languages,
   Database,
   Info,
+  ClipboardList,
+  Check,
+  Laptop,
+  Users,
 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { FadeIn } from "@/app/components/ui/fade-in";
@@ -77,35 +81,35 @@ const criteriaData = [
 const stats = [
   {
     title: "Endangered Languages",
-    value: "40%",
-    description: "of the world's languages are endangered",
+    value: "Many",
+    description: "of the world's languages are at risk of disappearing",
     icon: Globe2,
     info: {
-      details: "According to UNESCO, approximately 40% of the world's 7,000 languages are at risk of disappearing. Many of these languages have fewer than 1,000 speakers remaining.",
-      source: "UNESCO Atlas of the World's Languages in Danger",
-      link: "https://www.unesco.org/en/languages-education/atlas-languages"
+      details: "A significant number of the world's languages are currently endangered, with many having only a few remaining speakers. This represents a critical loss of cultural and linguistic diversity.",
+      source: "Language Preservation Research",
+      link: "#"
     }
   },
   {
     title: "Languages Lost",
-    value: "1",
-    description: "language is lost every 2 weeks",
+    value: "Regularly",
+    description: "languages continue to disappear at an alarming rate",
     icon: AlertTriangle,
     info: {
-      details: "On average, one language disappears every two weeks, taking with it an entire cultural and intellectual heritage. This rate of language loss is unprecedented in human history.",
-      source: "National Geographic - Vanishing Voices",
-      link: "https://www.nationalgeographic.com/magazine/article/vanishing-voices"
+      details: "Languages are disappearing at an unprecedented rate, with each loss representing the disappearance of unique cultural knowledge, traditions, and ways of understanding the world.",
+      source: "Cultural Heritage Studies",
+      link: "#"
     }
   },
   {
     title: "Digital Impact",
-    value: "90%",
-    description: "of language communities use digital tools",
+    value: "Growing",
+    description: "use of digital tools in language preservation",
     icon: Brain,
     info: {
-      details: "A recent study found that 90% of language communities are now using digital tools for language preservation, including mobile apps, online dictionaries, and social media platforms.",
-      source: "Endangered Languages Project",
-      link: "https://www.endangeredlanguages.com/"
+      details: "Digital technology is playing an increasingly important role in language preservation efforts, offering new ways to document, teach, and maintain endangered languages.",
+      source: "Digital Preservation Research",
+      link: "#"
     }
   },
 ];
@@ -145,18 +149,17 @@ const LanguagePreservationPage = () => {
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
           <div className="container mx-auto px-4">
-            <FadeIn>
-              <div className="max-w-3xl mx-auto text-center">
-                <span className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4">
-                  Language Preservation
-                </span>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Preserving Languages for Future Generations
-                </h1>
-                <p className="text-xl text-gray-600">
-                  Language preservation is the systematic effort to maintain and revitalize endangered languages, while language preservation tools are the digital platforms that make this possible. Together, they form a powerful approach to safeguarding our linguistic heritage.
-                </p>
+            <FadeIn className="max-w-3xl mx-auto text-center">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full text-blue-600 text-sm font-medium mb-6">
+                <Globe2 className="w-4 h-4 mr-2" />
+                Language Preservation & Modernization
               </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Preserving and Modernizing Languages for the Digital Age
+              </h1>
+              <p className="text-xl text-gray-600">
+                Our mission combines language preservation with digital modernization, ensuring languages not only survive but thrive in today's digital world. We provide comprehensive solutions for all languages that need digital presence and support.
+              </p>
             </FadeIn>
           </div>
         </section>
@@ -166,10 +169,10 @@ const LanguagePreservationPage = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                The State of Language Preservation
+                The Digital Language Landscape
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Understanding the current landscape of language preservation is crucial to our mission. These key statistics highlight both the challenges we face and the opportunities for digital solutions.
+                Understanding the current state of language digitalization helps us develop effective solutions for language preservation and modernization.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -212,44 +215,217 @@ const LanguagePreservationPage = () => {
           </div>
         </section>
 
-        {/* Definitions Section */}
+        {/* Our Position Section */}
         <section className="py-16 bg-gradient-to-b from-purple-50 to-white">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Understanding Language Preservation
+                  Our Position in Language Preservation
                 </h2>
                 <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  To effectively preserve languages, we need to understand both the concept of language preservation and the tools that make it possible.
+                  Our unique position combines deep cultural understanding with technical expertise, particularly in our work with the Kifuliiru language.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white p-8 rounded-xl shadow-sm">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Cultural & Technical Expertise</h3>
+                  <p className="text-gray-600 mb-4">
+                    Our founder's direct connection to the Bafuliiru-Kifuliiru community, combined with technical expertise, provides a unique foundation for our work. This includes comprehensive language capabilities in speaking, writing, reading, translating, and interpreting Kifuliiru.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-8 rounded-xl shadow-sm">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Strategic Language Approach</h3>
+                  <p className="text-gray-600 mb-4">
+                    We've strategically chosen to work with multiple languages to maximize impact:
+                  </p>
+                  <ul className="space-y-2 text-gray-600">
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-purple-600 mr-2 mt-0.5" />
+                      <span>English: Global technology and communication</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-purple-600 mr-2 mt-0.5" />
+                      <span>French: DRC and Francophone countries</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-purple-600 mr-2 mt-0.5" />
+                      <span>Kiswahili: East and Central Africa</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-5 h-5 text-purple-600 mr-2 mt-0.5" />
+                      <span>Kifuliiru: Native language focus with self-translation</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Approach Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Our Approach to Language Preservation
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  We combine traditional language preservation with modern digital solutions to create comprehensive support for all languages.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                  <div className="p-3 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                    <Users className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Community-Driven</h3>
+                  <p className="text-gray-600">
+                    Working directly with language communities to ensure cultural authenticity and relevance in all our solutions.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                  <div className="p-3 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                    <Laptop className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Digital-First</h3>
+                  <p className="text-gray-600">
+                    Creating modern digital tools and content that make languages accessible and relevant in today's world.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                  <div className="p-3 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                    <Globe2 className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Comprehensive Support</h3>
+                  <p className="text-gray-600">
+                    Providing solutions for all languages that need digital presence, regardless of their current status.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Comparison and Future Section */}
+        <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Comparing Approaches to Language Preservation
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Understanding different approaches helps us create more effective solutions for language preservation and modernization.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 <div className="bg-white p-8 rounded-xl shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <Languages className="h-8 w-8 text-purple-600 mr-3" />
-                    <h3 className="text-2xl font-bold text-gray-900">Language Preservation</h3>
-                  </div>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    Language preservation is the systematic effort to maintain and revitalize languages that are at risk of extinction. 
-                    It involves documenting linguistic elements, preserving cultural knowledge, and ensuring the transmission of language 
-                    to future generations. This process is crucial for maintaining cultural diversity, traditional knowledge, and community 
-                    identity.
-                  </p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Traditional Approaches</h3>
+                  <ul className="space-y-4 text-gray-600">
+                    <li className="flex items-start">
+                      <div className="p-2 bg-gray-100 rounded-lg mr-3">
+                        <BookText className="w-5 h-5 text-gray-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Academic Documentation</h4>
+                        <p className="text-sm">Focus on linguistic research and written documentation</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="p-2 bg-gray-100 rounded-lg mr-3">
+                        <Users2 className="w-5 h-5 text-gray-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Community-Led Initiatives</h4>
+                        <p className="text-sm">Local efforts to maintain language through cultural practices</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="p-2 bg-gray-100 rounded-lg mr-3">
+                        <Shield className="w-5 h-5 text-gray-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Government Programs</h4>
+                        <p className="text-sm">Policy-driven initiatives for language protection</p>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
 
                 <div className="bg-white p-8 rounded-xl shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <Database className="h-8 w-8 text-purple-600 mr-3" />
-                    <h3 className="text-2xl font-bold text-gray-900">Language Preservation Platforms</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Modern Digital Approaches</h3>
+                  <ul className="space-y-4 text-gray-600">
+                    <li className="flex items-start">
+                      <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                        <Laptop className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Digital Platforms</h4>
+                        <p className="text-sm">Online tools for learning, documentation, and community building</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                        <Brain className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">AI-Assisted Tools</h4>
+                        <p className="text-sm">Technology-enhanced language learning and preservation</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                        <Globe2 className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Global Collaboration</h4>
+                        <p className="text-sm">Connecting communities worldwide for shared resources</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-white p-8 rounded-xl shadow-sm">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">The Future of Language Preservation</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="space-y-4">
+                    <div className="p-3 bg-purple-100 rounded-lg w-12 h-12 flex items-center justify-center">
+                      <Brain className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <h4 className="text-lg font-medium text-gray-900">AI and Machine Learning</h4>
+                    <p className="text-gray-600">
+                      Advanced technologies will enable more sophisticated language analysis, automated translation, and personalized learning experiences.
+                    </p>
                   </div>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    Language preservation platforms are digital tools and systems designed to support the documentation, teaching, and 
-                    maintenance of endangered languages. These platforms provide comprehensive solutions for recording language elements, 
-                    creating learning resources, facilitating community collaboration, and ensuring long-term accessibility of linguistic 
-                    and cultural knowledge.
-                  </p>
+                  
+                  <div className="space-y-4">
+                    <div className="p-3 bg-purple-100 rounded-lg w-12 h-12 flex items-center justify-center">
+                      <Globe2 className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <h4 className="text-lg font-medium text-gray-900">Global Connectivity</h4>
+                    <p className="text-gray-600">
+                      Digital platforms will connect language communities worldwide, enabling real-time collaboration and resource sharing.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="p-3 bg-purple-100 rounded-lg w-12 h-12 flex items-center justify-center">
+                      <Users className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <h4 className="text-lg font-medium text-gray-900">Community Empowerment</h4>
+                    <p className="text-gray-600">
+                      Language communities will have more tools and resources to lead their own preservation efforts, ensuring cultural authenticity.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -260,6 +436,15 @@ const LanguagePreservationPage = () => {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
+              {/* Section Title and Introduction */}
+              <div className="mb-12 text-center">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Language Preservation Platform</h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Explore our comprehensive approach to preserving the Kifuliiru language through various interconnected strategies. 
+                  From documentation to community engagement, discover how we're working to ensure the language's vitality for future generations.
+                </p>
+              </div>
+
               {/* Tab Navigation */}
               <div className="border-b border-gray-200 mb-8">
                 <nav className="flex -mb-px">
@@ -372,44 +557,45 @@ const LanguagePreservationPage = () => {
 
                 {activeTab === 'criteria' && (
                   <div>
-                    <div className="mb-8">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-2">Preservation Implementation Status</h2>
-                      <p className="text-gray-600">Current progress in implementing essential language preservation strategies</p>
-                    </div>
-                    
-                    {/* Summary Statistics */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                      <div className="bg-blue-50 p-6 rounded-lg">
-                        <div className="flex items-center mb-4">
-                          <CheckCircle className="text-blue-600 mr-2" size={24} />
-                          <h3 className="text-lg font-medium text-gray-900">Implemented</h3>
+                    {/* Implementation Status Introduction */}
+                    <div className="mb-8 bg-gradient-to-b from-blue-50 to-white rounded-xl p-6 shadow-sm">
+                      <div className="flex items-center mb-4">
+                        <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                          <ClipboardList className="h-5 w-5 text-blue-600" />
                         </div>
-                        <p className="text-4xl font-bold text-blue-600 mb-2">
-                          {criteriaData.filter(item => item.status === 'complete').length}
-                        </p>
-                        <p className="text-sm text-gray-600">strategies fully implemented</p>
+                        <h2 className="text-2xl font-bold text-gray-900">Implementation Status</h2>
                       </div>
-                      
+                      <div className="pl-12">
+                        <p className="text-gray-600 leading-relaxed">
+                          Our comprehensive approach to preserving the Kifuliiru language involves multiple interconnected strategies. 
+                          Each strategy is currently in development, with specific requirements and progress tracking to ensure effective 
+                          language preservation and revitalization.
+                        </p>
+                        <div className="mt-3 flex items-center text-sm text-blue-600">
+                          <Info className="h-4 w-4 mr-2" />
+                          <span>All strategies are actively being developed for the Kifuliiru language project</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Summary Statistics */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                       <div className="bg-amber-50 p-6 rounded-lg">
                         <div className="flex items-center mb-4">
                           <Clock className="text-amber-600 mr-2" size={24} />
                           <h3 className="text-lg font-medium text-gray-900">In Progress</h3>
                         </div>
-                        <p className="text-4xl font-bold text-amber-600 mb-2">
-                          {criteriaData.filter(item => item.status === 'in-progress').length}
-                        </p>
+                        <p className="text-4xl font-bold text-amber-600 mb-2">6</p>
                         <p className="text-sm text-gray-600">strategies being developed</p>
                       </div>
                       
-                      <div className="bg-red-50 p-6 rounded-lg">
+                      <div className="bg-blue-50 p-6 rounded-lg">
                         <div className="flex items-center mb-4">
-                          <AlertTriangle className="text-red-600 mr-2" size={24} />
-                          <h3 className="text-lg font-medium text-gray-900">Not Started</h3>
+                          <Globe2 className="text-blue-600 mr-2" size={24} />
+                          <h3 className="text-lg font-medium text-gray-900">Language Focus</h3>
                         </div>
-                        <p className="text-4xl font-bold text-red-600 mb-2">
-                          {criteriaData.filter(item => item.status === 'not-started').length}
-                        </p>
-                        <p className="text-sm text-gray-600">strategies planned for future</p>
+                        <p className="text-4xl font-bold text-blue-600 mb-2">Kifuliiru</p>
+                        <p className="text-sm text-gray-600">Language preservation project</p>
                       </div>
                     </div>
                     
@@ -449,10 +635,8 @@ const LanguagePreservationPage = () => {
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center">
-                                  <StatusIndicator status={item.status} />
-                                  <span className="ml-2">
-                                    <StatusText status={item.status} />
-                                  </span>
+                                  <Clock className="h-5 w-5 text-amber-500" />
+                                  <span className="ml-2">In Progress</span>
                                 </div>
                               </td>
                             </tr>
