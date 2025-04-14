@@ -10,10 +10,7 @@ import {
   Code, 
   Building2, 
   Heart, 
-  Globe, 
-  Users,
-  BookOpen,
-  Lightbulb,
+  Globe,
   Rocket,
   MapPin,
   Home,
@@ -73,7 +70,7 @@ const timelineItems: TimelineItem[] = [
 
 export default function OurStoryPage() {
   return (
-    <Layout>
+   <Layout>
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-b from-primary-50 to-white">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
