@@ -104,6 +104,12 @@ const Footer = () => {
         description: "Learn about Wekify LLC and our journey"
       },
       { 
+        name: "Language Preservation", 
+        href: "/language-preservation",
+        icon: "Globe",
+        description: "Our approach to preserving and modernizing languages"
+      },
+      { 
         name: "Our Story", 
         href: "/about/our-story",
         icon: "BookOpen",
@@ -228,7 +234,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-gray-400 text-sm mb-4">
-              Empowering communities to preserve and celebrate indigenous languages.
+              Bridging tradition with technology to preserve and modernize languages for the digital age.
             </p>
             <div className="flex space-x-3">
               <a
