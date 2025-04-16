@@ -346,26 +346,26 @@ export default function HomePage() {
         <GamePromoBanner />
 
         {/* World Languages Showcase */}
-        <section className="py-32 bg-gradient-to-b from-slate-100 to-white">
+        <section className="py-16 md:py-32 bg-gradient-to-b from-slate-100 to-white">
           <div className="container mx-auto px-4">
             <FadeIn className="max-w-7xl mx-auto">
-              <div className="text-center mb-20">
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+              <div className="text-center mb-12 md:mb-20">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
                   Supporting Languages Worldwide
                 </h2>
-                <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
                   Our platform is designed to support indigenous and endangered
                   languages from every continent.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div className="p-8 rounded-xl bg-white shadow-lg border border-slate-200 h-[400px] flex flex-col">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
+                <div className="p-6 md:p-8 rounded-xl bg-white shadow-lg border border-slate-200 min-h-[300px] md:h-[400px] flex flex-col">
                   <div className="flex items-center mb-4">
-                    <div className="bg-slate-100 p-4 rounded-full">
-                      <Languages className="h-8 w-8 text-slate-700" />
+                    <div className="bg-slate-100 p-3 md:p-4 rounded-full">
+                      <Languages className="h-6 w-6 md:h-8 md:w-8 text-slate-700" />
                     </div>
-                    <h3 className="text-2xl font-bold ml-4 text-slate-800">
+                    <h3 className="text-xl md:text-2xl font-bold ml-4 text-slate-800">
                       Global Language Directory
                     </h3>
                   </div>
@@ -373,63 +373,41 @@ export default function HomePage() {
                     Browse our extensive catalog of languages organized by
                     region, language family, and vitality status.
                   </p>
-                  <ul className="space-y-2 mb-4">
-                    <li className="flex items-center text-slate-700">
-                      <span className="w-2 h-2 bg-slate-700 rounded-full mr-2"></span>
-                      African languages including Kifuliiru, Swahili, Yoruba,
-                      and more
-                    </li>
-                    <li className="flex items-center text-slate-700">
-                      <span className="w-2 h-2 bg-slate-700 rounded-full mr-2"></span>
-                      Indigenous American languages including Quechua and Navajo
-                    </li>
-                    <li className="flex items-center text-slate-700">
-                      <span className="w-2 h-2 bg-slate-700 rounded-full mr-2"></span>
-                      Pacific languages including Māori and Hawaiian
-                    </li>
-                    <li className="flex items-center text-slate-700">
-                      <span className="w-2 h-2 bg-slate-700 rounded-full mr-2"></span>
-                      European endangered languages including Welsh and Sámi
-                    </li>
-                  </ul>
                   <div className="mt-auto">
-                    <Button 
-                      variant="outline" 
-                      className="w-full px-6 py-3 text-base font-medium border-primary-600 text-primary-600 hover:bg-primary-50"
+                    <Button
+                      variant="outline"
+                      className="w-full md:w-auto"
                       asChild
                     >
                       <Link href="/languages">
-                        Explore All Languages{" "}
+                        Explore Languages
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
                   </div>
                 </div>
 
-                <div className="relative rounded-xl overflow-hidden h-[400px] shadow-lg">
-                  <Image
-                    src="/ambassadors.jpg"
-                    alt="Global language communities and ambassadors"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 p-8">
-                    <h3 className="text-2xl font-bold text-white mb-2">
-                      Join Our Ambassador Program
+                <div className="p-6 md:p-8 rounded-xl bg-white shadow-lg border border-slate-200 min-h-[300px] md:h-[400px] flex flex-col">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-slate-100 p-3 md:p-4 rounded-full">
+                      <Globe className="h-6 w-6 md:h-8 md:w-8 text-slate-700" />
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold ml-4 text-slate-800">
+                      Language Preservation Tools
                     </h3>
-                    <p className="text-white/90 mb-4">
-                      Connect with language advocates from around the world
-                      dedicated to preservation efforts.
-                    </p>
-                    <Button 
-                      variant="outline" 
-                      className="w-full px-6 py-3 text-base font-medium border-white text-white hover:bg-white hover:text-slate-900 transition-colors duration-200"
+                  </div>
+                  <p className="text-slate-600 mb-4">
+                    Access our suite of tools designed to help communities
+                    preserve and revitalize their languages.
+                  </p>
+                  <div className="mt-auto">
+                    <Button
+                      variant="outline"
+                      className="w-full md:w-auto"
                       asChild
                     >
-                      <Link href="/ambassador-program">
-                        Join the Program{" "}
+                      <Link href="/solutions">
+                        View Solutions
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
