@@ -399,313 +399,108 @@ const LanguagePreservationPage = () => {
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
-              {/* Section Title and Introduction */}
-              <div className="mb-8 md:mb-12 text-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-4">Language Preservation Platform</h2>
-                <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                  Explore our comprehensive approach to preserving the Kifuliiru language through various interconnected strategies. 
-                  From documentation to community engagement, discover how we're working to ensure the language's vitality for future generations.
-                </p>
+              {/* Overview Section */}
+              <div className="mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-3">The Importance of Language Preservation</h2>
+                    <p className="text-gray-600">
+                      Language preservation is crucial for maintaining cultural diversity and heritage. Each language carries unique knowledge, 
+                      traditions, and ways of understanding the world. When a language is lost, we lose not just words, but entire systems of 
+                      knowledge and cultural identity.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-3">How Digital Platforms Help</h2>
+                    <ul className="space-y-3 text-gray-600">
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-blue-600 mr-2 mt-1" />
+                        <span>Recording and archiving spoken language samples</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-blue-600 mr-2 mt-1" />
+                        <span>Creating interactive learning materials</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-blue-600 mr-2 mt-1" />
+                        <span>Facilitating community collaboration</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-blue-600 mr-2 mt-1" />
+                        <span>Making language resources accessible globally</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
-              {/* Tab Navigation */}
-              <div className="border-b border-gray-200 mb-6 md:mb-8">
-                <nav className="flex -mb-px">
-                  <button
-                    onClick={() => setActiveTab('overview')}
-                    className={`flex-1 py-3 md:py-4 px-1 text-center ${
-                      activeTab === 'overview'
-                        ? 'border-b-2 border-blue-500 text-blue-600 font-medium'
-                        : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-center">
-                      <Globe2 className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                      <span className="text-sm md:text-base">Overview</span>
+              {/* Resources Section */}
+              <div className="mb-12">
+                <div className="bg-gradient-to-b from-blue-50 to-white rounded-xl p-6 md:p-8 shadow-sm mb-8">
+                  <div className="flex items-center mb-4">
+                    <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                      <BookOpen className="h-5 w-5 text-blue-600" />
                     </div>
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('criteria')}
-                    className={`flex-1 py-3 md:py-4 px-1 text-center ${
-                      activeTab === 'criteria'
-                        ? 'border-b-2 border-blue-500 text-blue-600 font-medium'
-                        : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-center">
-                      <CheckCircle className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                      <span className="text-sm md:text-base">Implementation</span>
-                    </div>
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('resources')}
-                    className={`flex-1 py-3 md:py-4 px-1 text-center ${
-                      activeTab === 'resources'
-                        ? 'border-b-2 border-blue-500 text-blue-600 font-medium'
-                        : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-center">
-                      <BookOpen className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                      <span className="text-sm md:text-base">Resources</span>
-                    </div>
-                  </button>
-                </nav>
-              </div>
-
-              {/* Tab Content */}
-              <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
-                {activeTab === 'overview' && (
-                  <div className="space-y-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div className="bg-gray-50 p-6 rounded-lg">
-                        <h2 className="text-xl font-semibold text-gray-900 mb-3">The Importance of Language Preservation</h2>
-                        <p className="text-gray-600">
-                          Language preservation is crucial for maintaining cultural diversity and heritage. Each language carries unique knowledge, 
-                          traditions, and ways of understanding the world. When a language is lost, we lose not just words, but entire systems of 
-                          knowledge and cultural identity.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-6 rounded-lg">
-                        <h2 className="text-xl font-semibold text-gray-900 mb-3">How Digital Platforms Help</h2>
-                        <ul className="space-y-3 text-gray-600">
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-blue-600 mr-2 mt-1" />
-                            <span>Recording and archiving spoken language samples</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-blue-600 mr-2 mt-1" />
-                            <span>Creating interactive learning materials</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-blue-600 mr-2 mt-1" />
-                            <span>Facilitating community collaboration</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-blue-600 mr-2 mt-1" />
-                            <span>Making language resources accessible globally</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-50 p-6 rounded-lg">
-                      <h2 className="text-xl font-semibold text-gray-900 mb-3">Key Preservation Strategies</h2>
-                      <p className="text-gray-600 mb-6">Our comprehensive approach to language preservation combines traditional methods with modern technology to ensure long-term success.</p>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {criteriaData.map((item) => (
-                          <div key={item.id} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex items-center mb-4">
-                              <item.icon className="h-6 w-6 text-blue-600 mr-2" />
-                              <h3 className="font-medium text-gray-900">{item.criteria}</h3>
-                            </div>
-                            <ul className="space-y-2 text-sm text-gray-600">
-                              <li className="flex items-start">
-                                <CheckCircle className="h-4 w-4 text-blue-600 mr-2 mt-1" />
-                                <span>{item.requirements}</span>
-                              </li>
-                              <li className="flex items-start">
-                                <CheckCircle className="h-4 w-4 text-blue-600 mr-2 mt-1" />
-                                <span>{item.details}</span>
-                              </li>
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900">Learning Resources</h2>
                   </div>
-                )}
+                  <div className="pl-12">
+                    <p className="text-gray-600 leading-relaxed">
+                      Our comprehensive collection of resources supports language preservation efforts through 
+                      educational materials, guides, and tools designed for both community members and preservation specialists.
+                    </p>
+                  </div>
+                </div>
 
-                {activeTab === 'criteria' && (
-                  <div className="space-y-8">
-                    {/* Implementation Introduction */}
-                    <div className="bg-gradient-to-b from-blue-50 to-white rounded-xl p-6 md:p-8 shadow-sm">
-                      <div className="flex items-center mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Documentation Resources</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start">
                         <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                          <ClipboardList className="h-5 w-5 text-blue-600" />
+                          <BookText className="h-5 w-5 text-blue-600" />
                         </div>
-                        <h2 className="text-2xl font-bold text-gray-900">Our Implementation Strategy</h2>
-                      </div>
-                      <div className="pl-12">
-                        <p className="text-gray-600 leading-relaxed">
-                          Our approach to language preservation combines traditional methods with modern technology, 
-                          ensuring comprehensive support for all languages that need digital presence. We focus on 
-                          creating sustainable solutions that empower language communities.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Key Focus Areas */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-white p-6 rounded-xl shadow-sm">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Core Focus Areas</h3>
-                        <ul className="space-y-4">
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <BookText className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Language Documentation</h4>
-                              <p className="text-gray-600">Comprehensive recording and preservation of language elements</p>
-                            </div>
-                          </li>
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <Users2 className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Community Involvement</h4>
-                              <p className="text-gray-600">Active participation of language speakers in preservation efforts</p>
-                            </div>
-                          </li>
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <Globe2 className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Digital Solutions</h4>
-                              <p className="text-gray-600">Modern tools and platforms for language preservation</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div className="bg-white p-6 rounded-xl shadow-sm">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Supporting Elements</h3>
-                        <ul className="space-y-4">
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <Brain className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Education</h4>
-                              <p className="text-gray-600">Resources and programs for language learning and teaching</p>
-                            </div>
-                          </li>
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <History className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Cultural Context</h4>
-                              <p className="text-gray-600">Preservation of cultural knowledge and traditions</p>
-                            </div>
-                          </li>
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <Shield className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Sustainability</h4>
-                              <p className="text-gray-600">Long-term support for language preservation initiatives</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'resources' && (
-                  <div className="space-y-8">
-                    {/* Resources Introduction */}
-                    <div className="bg-gradient-to-b from-blue-50 to-white rounded-xl p-6 md:p-8 shadow-sm">
-                      <div className="flex items-center mb-4">
+                        <div>
+                          <h4 className="font-medium text-gray-900">Language Documentation Guide</h4>
+                          <p className="text-gray-600">A comprehensive manual covering best practices for recording and documenting language elements, including phonetic transcription, grammar documentation, and cultural context preservation.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
                         <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                          <BookOpen className="h-5 w-5 text-blue-600" />
+                          <History className="h-5 w-5 text-blue-600" />
                         </div>
-                        <h2 className="text-2xl font-bold text-gray-900">Learning Resources</h2>
-                      </div>
-                      <div className="pl-12">
-                        <p className="text-gray-600 leading-relaxed">
-                          Our comprehensive collection of resources supports language preservation efforts through 
-                          educational materials, guides, and tools designed for both community members and preservation specialists.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Resource Categories */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-white p-6 rounded-xl shadow-sm">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Documentation Resources</h3>
-                        <ul className="space-y-4">
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <BookText className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Language Documentation Guide</h4>
-                              <p className="text-gray-600">A comprehensive manual covering best practices for recording and documenting language elements, including phonetic transcription, grammar documentation, and cultural context preservation.</p>
-                            </div>
-                          </li>
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <History className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Cultural Context Documentation</h4>
-                              <p className="text-gray-600">Detailed methodologies for capturing and preserving the cultural knowledge, traditions, and practices that are intertwined with language.</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div className="bg-white p-6 rounded-xl shadow-sm">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Community Resources</h3>
-                        <ul className="space-y-4">
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <Users2 className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Community Engagement Toolkit</h4>
-                              <p className="text-gray-600">Practical resources and strategies for involving community members in language preservation efforts, including workshop templates and engagement techniques.</p>
-                            </div>
-                          </li>
-                          <li className="flex items-start">
-                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                              <Heart className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">Success Stories</h4>
-                              <p className="text-gray-600">Case studies and examples of successful language preservation initiatives from around the world, highlighting effective strategies and community impact.</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    {/* Resource Features */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Resource Features</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="space-y-3">
-                          <div className="p-2 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center">
-                            <Brain className="h-6 w-6 text-blue-600" />
-                          </div>
-                          <h4 className="font-medium text-gray-900">Comprehensive</h4>
-                          <p className="text-gray-600">Covering all aspects of language preservation from documentation to community engagement</p>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Cultural Context Documentation</h4>
+                          <p className="text-gray-600">Detailed methodologies for capturing and preserving the cultural knowledge, traditions, and practices that are intertwined with language.</p>
                         </div>
-                        <div className="space-y-3">
-                          <div className="p-2 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center">
-                            <Globe2 className="h-6 w-6 text-blue-600" />
-                          </div>
-                          <h4 className="font-medium text-gray-900">Accessible</h4>
-                          <p className="text-gray-600">Designed to be easily understood and implemented by community members and specialists alike</p>
-                        </div>
-                        <div className="space-y-3">
-                          <div className="p-2 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center">
-                            <Shield className="h-6 w-6 text-blue-600" />
-                          </div>
-                          <h4 className="font-medium text-gray-900">Practical</h4>
-                          <p className="text-gray-600">Includes real-world examples, templates, and step-by-step guides for implementation</p>
-                        </div>
-                      </div>
-                    </div>
+                      </li>
+                    </ul>
                   </div>
-                )}
+
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Community Resources</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start">
+                        <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                          <Users2 className="h-5 w-5 text-blue-600" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Community Engagement Toolkit</h4>
+                          <p className="text-gray-600">Practical resources and strategies for involving community members in language preservation efforts, including workshop templates and engagement techniques.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                          <Heart className="h-5 w-5 text-blue-600" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Success Stories</h4>
+                          <p className="text-gray-600">Case studies and examples of successful language preservation initiatives from around the world, highlighting effective strategies and community impact.</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
