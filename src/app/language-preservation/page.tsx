@@ -19,7 +19,6 @@ import {
   Check,
   Laptop,
   Users,
-  Globe,
   TrendingUp,
   Code,
   Target,
@@ -147,142 +146,168 @@ const LanguagePreservationPage = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-white to-primary-50">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-b from-primary-600 to-primary-800 text-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+        <section className="py-12 md:py-20 bg-gradient-to-b from-blue-50 to-white">
+          <div className="container mx-auto px-4">
+            <FadeIn className="max-w-3xl mx-auto text-center">
+              <div className="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-blue-100 rounded-full text-blue-600 text-sm font-medium mb-4 md:mb-6">
+                <Globe2 className="w-4 h-4 mr-2" />
                 Language Preservation & Modernization
+              </div>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
+                Preserving and Modernizing Languages for the Digital Age
               </h1>
-              <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-                Bridging tradition with technology to preserve and modernize languages for the digital age
+              <p className="text-base md:text-xl text-gray-600">
+                Our mission combines language preservation with digital modernization, ensuring languages not only survive but thrive in today's digital world. We provide comprehensive solutions for all languages that need digital presence and support.
               </p>
-            </div>
+            </FadeIn>
           </div>
         </section>
 
         {/* Stats Section */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
-              The Digital Language Landscape
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section className="py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-4">
+                The Digital Language Landscape
+              </h2>
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+                Understanding the current state of language digitalization helps us develop effective solutions for language preservation and modernization.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {[
                 {
-                  icon: <Globe className="w-6 h-6 text-blue-600" />,
+                  icon: Globe2,
                   title: "Endangered Languages",
                   value: "Many",
-                  description: "Languages are at risk of disappearing, taking with them unique cultural knowledge and perspectives",
-                  details: "The loss of these languages represents a critical loss of cultural and linguistic diversity worldwide",
-                  href: "#"
+                  description: "Languages are at risk of disappearing, taking with them unique cultural knowledge and perspectives"
                 },
                 {
-                  icon: <Clock className="w-6 h-6 text-blue-600" />,
+                  icon: Clock,
                   title: "Languages Lost",
                   value: "Regularly",
-                  description: "Languages continue to disappear, each loss representing centuries of cultural knowledge",
-                  details: "This ongoing loss impacts our collective understanding of human culture and history",
-                  href: "#"
+                  description: "Languages continue to disappear, each loss representing centuries of cultural knowledge"
                 },
                 {
-                  icon: <TrendingUp className="w-6 h-6 text-blue-600" />,
+                  icon: Laptop,
                   title: "Digital Impact",
                   value: "Growing",
-                  description: "Digital tools are becoming increasingly important in language preservation efforts",
-                  details: "Technology offers new ways to document, teach, and revitalize languages",
-                  href: "#"
+                  description: "Digital tools are becoming increasingly important in language preservation efforts"
                 }
               ].map((stat, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center mb-4">
-                    <div className="p-2 bg-blue-50 rounded-lg mr-3">
-                      {stat.icon}
+                <FadeIn key={index}>
+                  <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-center mb-4">
+                      <div className="p-2 md:p-3 bg-blue-50 rounded-lg">
+                        <stat.icon className="h-5 w-5 md:h-6 md:w-6 text-blue-600" />
+                      </div>
+                      <h3 className="text-base md:text-lg font-medium text-gray-900 ml-3 md:ml-4">{stat.title}</h3>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">{stat.title}</h3>
+                    <p className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">{stat.value}</p>
+                    <p className="text-sm md:text-base text-gray-600">{stat.description}</p>
                   </div>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">{stat.value}</div>
-                  <p className="text-gray-600 mb-4">{stat.description}</p>
-                  <p className="text-sm text-gray-500">{stat.details}</p>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
         </section>
 
         {/* Our Position Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
-              Our Position
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: <Heart className="w-6 h-6 text-blue-600" />,
-                  title: "Community Connection",
-                  description: "Our founder's deep connection to the Bafuliiru-Kifuliiru community provides authentic cultural understanding and trust"
-                },
-                {
-                  icon: <Code className="w-6 h-6 text-blue-600" />,
-                  title: "Technical Expertise",
-                  description: "Strong background in software development and digital solutions for language preservation"
-                },
-                {
-                  icon: <Target className="w-6 h-6 text-blue-600" />,
-                  title: "Strategic Focus",
-                  description: "Starting with Kifuliiru allows us to develop and refine our approach before expanding to other languages"
-                }
-              ].map((item, index) => (
-                <div key={index} className="bg-gradient-to-b from-blue-50 to-white rounded-xl p-6 shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                      {item.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
-                  </div>
-                  <p className="text-gray-600">{item.description}</p>
+        <section className="py-12 md:py-16 bg-gradient-to-b from-purple-50 to-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-8 md:mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-4">
+                  Our Position in Language Preservation
+                </h2>
+                <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+                  Our unique position combines deep cultural understanding with technical expertise, particularly in our work with the Kifuliiru language.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3 md:mb-4">Cultural & Technical Expertise</h3>
+                  <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
+                    Our founder's direct connection to the Bafuliiru-Kifuliiru community, combined with technical expertise, provides a unique foundation for our work. This includes comprehensive language capabilities in speaking, writing, reading, translating, and interpreting Kifuliiru.
+                  </p>
                 </div>
-              ))}
+                
+                <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3 md:mb-4">Strategic Language Approach</h3>
+                  <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
+                    We've strategically chosen to work with multiple languages to maximize impact:
+                  </p>
+                  <ul className="space-y-2 text-sm md:text-base text-gray-600">
+                    <li className="flex items-start">
+                      <Check className="w-4 h-4 md:w-5 md:h-5 text-purple-600 mr-2 mt-0.5" />
+                      <span>English: Global technology and communication</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-4 h-4 md:w-5 md:h-5 text-purple-600 mr-2 mt-0.5" />
+                      <span>French: DRC and Francophone countries</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-4 h-4 md:w-5 md:h-5 text-purple-600 mr-2 mt-0.5" />
+                      <span>Kiswahili: East and Central Africa</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="w-4 h-4 md:w-5 md:h-5 text-purple-600 mr-2 mt-0.5" />
+                      <span>Kifuliiru: Native language focus with self-translation</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Our Approach Section */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
-              Our Approach
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: <Users className="w-6 h-6 text-blue-600" />,
-                  title: "Community-Driven",
-                  description: "Working closely with language communities to ensure solutions meet their needs and respect cultural context"
-                },
-                {
-                  icon: <Globe className="w-6 h-6 text-blue-600" />,
-                  title: "Digital-First",
-                  description: "Leveraging modern technology to create accessible, scalable solutions for language preservation"
-                },
-                {
-                  icon: <BookOpen className="w-6 h-6 text-blue-600" />,
-                  title: "Comprehensive Support",
-                  description: "Providing tools, resources, and training to empower communities in their language preservation efforts"
-                }
-              ].map((item, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                  <div className="flex items-center mb-4">
-                    <div className="p-2 bg-blue-50 rounded-lg mr-3">
-                      {item.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
+        <section className="py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-8 md:mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-4">
+                  Our Approach to Language Preservation
+                </h2>
+                <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+                  We combine traditional language preservation with modern digital solutions to create comprehensive support for all languages.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                  <div className="p-2 md:p-3 bg-blue-100 rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-3 md:mb-4">
+                    <Users className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
                   </div>
-                  <p className="text-gray-600">{item.description}</p>
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">Community-Driven</h3>
+                  <p className="text-sm md:text-base text-gray-600">
+                    Working directly with language communities to ensure cultural authenticity and relevance in all our solutions.
+                  </p>
                 </div>
-              ))}
+                
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                  <div className="p-2 md:p-3 bg-blue-100 rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-3 md:mb-4">
+                    <Laptop className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">Digital-First</h3>
+                  <p className="text-sm md:text-base text-gray-600">
+                    Creating modern digital tools and content that make languages accessible and relevant in today's world.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                  <div className="p-2 md:p-3 bg-blue-100 rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-3 md:mb-4">
+                    <Globe2 className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3">Comprehensive Support</h3>
+                  <p className="text-sm md:text-base text-gray-600">
+                    Providing solutions for all languages that need digital presence, regardless of their current status.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -494,145 +519,189 @@ const LanguagePreservationPage = () => {
                 )}
 
                 {activeTab === 'criteria' && (
-                  <div>
-                    {/* Implementation Status Introduction */}
-                    <div className="mb-8 bg-gradient-to-b from-blue-50 to-white rounded-xl p-6 shadow-sm">
+                  <div className="space-y-8">
+                    {/* Implementation Introduction */}
+                    <div className="bg-gradient-to-b from-blue-50 to-white rounded-xl p-6 md:p-8 shadow-sm">
                       <div className="flex items-center mb-4">
                         <div className="p-2 bg-blue-100 rounded-lg mr-3">
                           <ClipboardList className="h-5 w-5 text-blue-600" />
                         </div>
-                        <h2 className="text-2xl font-bold text-gray-900">Implementation Status</h2>
+                        <h2 className="text-2xl font-bold text-gray-900">Our Implementation Strategy</h2>
                       </div>
                       <div className="pl-12">
                         <p className="text-gray-600 leading-relaxed">
-                          Our comprehensive approach to preserving the Kifuliiru language involves multiple interconnected strategies. 
-                          Each strategy is currently in development, with specific requirements and progress tracking to ensure effective 
-                          language preservation and revitalization.
+                          Our approach to language preservation combines traditional methods with modern technology, 
+                          ensuring comprehensive support for all languages that need digital presence. We focus on 
+                          creating sustainable solutions that empower language communities.
                         </p>
-                        <div className="mt-3 flex items-center text-sm text-blue-600">
-                          <Info className="h-4 w-4 mr-2" />
-                          <span>All strategies are actively being developed for the Kifuliiru language project</span>
-                        </div>
                       </div>
                     </div>
 
-                    {/* Summary Statistics */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                      <div className="bg-amber-50 p-6 rounded-lg">
-                        <div className="flex items-center mb-4">
-                          <Clock className="text-amber-600 mr-2" size={24} />
-                          <h3 className="text-lg font-medium text-gray-900">In Progress</h3>
-                        </div>
-                        <p className="text-4xl font-bold text-amber-600 mb-2">6</p>
-                        <p className="text-sm text-gray-600">strategies being developed</p>
+                    {/* Key Focus Areas */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Core Focus Areas</h3>
+                        <ul className="space-y-4">
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <BookText className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Language Documentation</h4>
+                              <p className="text-gray-600">Comprehensive recording and preservation of language elements</p>
+                            </div>
+                          </li>
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <Users2 className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Community Involvement</h4>
+                              <p className="text-gray-600">Active participation of language speakers in preservation efforts</p>
+                            </div>
+                          </li>
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <Globe2 className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Digital Solutions</h4>
+                              <p className="text-gray-600">Modern tools and platforms for language preservation</p>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
-                      
-                      <div className="bg-blue-50 p-6 rounded-lg">
-                        <div className="flex items-center mb-4">
-                          <Globe2 className="text-blue-600 mr-2" size={24} />
-                          <h3 className="text-lg font-medium text-gray-900">Language Focus</h3>
-                        </div>
-                        <p className="text-4xl font-bold text-blue-600 mb-2">Kifuliiru</p>
-                        <p className="text-sm text-gray-600">Language preservation project</p>
+
+                      <div className="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Supporting Elements</h3>
+                        <ul className="space-y-4">
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <Brain className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Education</h4>
+                              <p className="text-gray-600">Resources and programs for language learning and teaching</p>
+                            </div>
+                          </li>
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <History className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Cultural Context</h4>
+                              <p className="text-gray-600">Preservation of cultural knowledge and traditions</p>
+                            </div>
+                          </li>
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <Shield className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Sustainability</h4>
+                              <p className="text-gray-600">Long-term support for language preservation initiatives</p>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
-                    </div>
-                    
-                    {/* Implementation Status Table */}
-                    <div className="overflow-x-auto">
-                      <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
-                          <tr>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Strategy
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Requirements
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Progress
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Status
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
-                          {criteriaData.map((item) => (
-                            <tr key={item.id} className="hover:bg-gray-50">
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="flex items-center">
-                                  <item.icon className="h-5 w-5 text-blue-600 mr-2" />
-                                  <div className="text-sm font-medium text-gray-900">{item.criteria}</div>
-                                </div>
-                              </td>
-                              <td className="px-6 py-4">
-                                <div className="text-sm text-gray-500">{item.requirements}</div>
-                              </td>
-                              <td className="px-6 py-4">
-                                <div className="text-sm text-gray-500">{item.details}</div>
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="flex items-center">
-                                  <Clock className="h-5 w-5 text-amber-500" />
-                                  <span className="ml-2">In Progress</span>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
                     </div>
                   </div>
                 )}
 
                 {activeTab === 'resources' && (
-                  <div>
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-4">Learning Resources</h2>
-                    <p className="text-gray-600 mb-8">Educational materials and guides for understanding language preservation</p>
-                    
+                  <div className="space-y-8">
+                    {/* Resources Introduction */}
+                    <div className="bg-gradient-to-b from-blue-50 to-white rounded-xl p-6 md:p-8 shadow-sm">
+                      <div className="flex items-center mb-4">
+                        <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                          <BookOpen className="h-5 w-5 text-blue-600" />
+                        </div>
+                        <h2 className="text-2xl font-bold text-gray-900">Learning Resources</h2>
+                      </div>
+                      <div className="pl-12">
+                        <p className="text-gray-600 leading-relaxed">
+                          Our comprehensive collection of resources supports language preservation efforts through 
+                          educational materials, guides, and tools designed for both community members and preservation specialists.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Resource Categories */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow">
-                        <div className="flex items-center mb-4">
-                          <BookText className="h-6 w-6 text-blue-600 mr-2" />
-                          <h3 className="text-lg font-medium text-gray-900">Language Documentation Guide</h3>
-                        </div>
-                        <p className="text-gray-600 mb-4">Step-by-step guide to documenting and preserving language elements</p>
-                        <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                          View Guide <ArrowRight className="ml-2 h-4 w-4" />
-                        </button>
+                      <div className="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Documentation Resources</h3>
+                        <ul className="space-y-4">
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <BookText className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Language Documentation Guide</h4>
+                              <p className="text-gray-600">A comprehensive manual covering best practices for recording and documenting language elements, including phonetic transcription, grammar documentation, and cultural context preservation.</p>
+                            </div>
+                          </li>
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <History className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Cultural Context Documentation</h4>
+                              <p className="text-gray-600">Detailed methodologies for capturing and preserving the cultural knowledge, traditions, and practices that are intertwined with language.</p>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
-                      
-                      <div className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow">
-                        <div className="flex items-center mb-4">
-                          <Users2 className="h-6 w-6 text-blue-600 mr-2" />
-                          <h3 className="text-lg font-medium text-gray-900">Community Engagement Toolkit</h3>
-                        </div>
-                        <p className="text-gray-600 mb-4">Resources for involving community members in preservation efforts</p>
-                        <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                          Access Toolkit <ArrowRight className="ml-2 h-4 w-4" />
-                        </button>
+
+                      <div className="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Community Resources</h3>
+                        <ul className="space-y-4">
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <Users2 className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Community Engagement Toolkit</h4>
+                              <p className="text-gray-600">Practical resources and strategies for involving community members in language preservation efforts, including workshop templates and engagement techniques.</p>
+                            </div>
+                          </li>
+                          <li className="flex items-start">
+                            <div className="p-2 bg-blue-100 rounded-lg mr-3">
+                              <Heart className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">Success Stories</h4>
+                              <p className="text-gray-600">Case studies and examples of successful language preservation initiatives from around the world, highlighting effective strategies and community impact.</p>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
-                      
-                      <div className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow">
-                        <div className="flex items-center mb-4">
-                          <History className="h-6 w-6 text-blue-600 mr-2" />
-                          <h3 className="text-lg font-medium text-gray-900">Cultural Context Documentation</h3>
+                    </div>
+
+                    {/* Resource Features */}
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Resource Features</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="space-y-3">
+                          <div className="p-2 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center">
+                            <Brain className="h-6 w-6 text-blue-600" />
+                          </div>
+                          <h4 className="font-medium text-gray-900">Comprehensive</h4>
+                          <p className="text-gray-600">Covering all aspects of language preservation from documentation to community engagement</p>
                         </div>
-                        <p className="text-gray-600 mb-4">Methods for preserving cultural knowledge and traditions</p>
-                        <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                          Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                        </button>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow">
-                        <div className="flex items-center mb-4">
-                          <Heart className="h-6 w-6 text-blue-600 mr-2" />
-                          <h3 className="text-lg font-medium text-gray-900">Success Stories</h3>
+                        <div className="space-y-3">
+                          <div className="p-2 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center">
+                            <Globe2 className="h-6 w-6 text-blue-600" />
+                          </div>
+                          <h4 className="font-medium text-gray-900">Accessible</h4>
+                          <p className="text-gray-600">Designed to be easily understood and implemented by community members and specialists alike</p>
                         </div>
-                        <p className="text-gray-600 mb-4">Examples of successful language preservation initiatives</p>
-                        <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                          View Stories <ArrowRight className="ml-2 h-4 w-4" />
-                        </button>
+                        <div className="space-y-3">
+                          <div className="p-2 bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center">
+                            <Shield className="h-6 w-6 text-blue-600" />
+                          </div>
+                          <h4 className="font-medium text-gray-900">Practical</h4>
+                          <p className="text-gray-600">Includes real-world examples, templates, and step-by-step guides for implementation</p>
+                        </div>
                       </div>
                     </div>
                   </div>
